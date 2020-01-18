@@ -1,0 +1,162 @@
+# wire4_sdk
+
+Wire4SDK - paquetes de Java para el API Rest de Wire4
+
+Referencia del SDK para el consumo del API de Wire4
+
+Este SDK es hecho y distrubuido por Wire4:
+
+- Versión del API de Wire4: 1.0.0
+- Versión de los paquetes SDK: 0.0.1-SNAPSHOT
+
+## Requerimientos.
+
+La compilación de la librería SDK requiere:
+
+1. Java 1.7+
+2. Maven/Gradle
+
+## <a name="installation"></a>Instalación y Uso
+### Instalación
+
+Después de clonar el repositorio Git. Para instalar la librería SDK de Wire4 en tu repositorio local Maven, simplemente ejecuta:
+
+```sh
+cd wire4-api-sdk
+mvn clean install
+```
+
+Para desplegarlo a un repositorio Maven remoto, configura los valores del repositorio y ejecuta:
+```sh
+cd wire4-api-sdk
+mvn clean deploy
+```
+
+Para mayor información consulta [OSSRH Guía](http://central.sonatype.org/pages/ossrh-guide.html).
+
+### Usuarios Maven
+
+Add this dependency to your project's POM:
+
+```xml
+<dependency>
+  <groupId>mx.wire4.sdk</groupId>
+  <artifactId>wire4-api-sdk</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <scope>compile</scope>
+</dependency>
+```
+
+### Usuarios Gradle
+
+Agregar está dependencia al tu archivo de compilación `build` de tu proyecto:
+
+```groovy
+compile "mx.wire4.sdk:wire4-api-sdk:0.0.1-SNAPSHOT"
+```
+
+### Manualmente
+
+Primero se generan los archivos `JAR` ejecutando:
+
+```shell
+cd wire4-api-sdk
+mvn clean package
+```
+
+Después manualmente hay que instalar los `JARs` en tu proyecto:
+
+* `target/wire4-api-sdk-0.0.1-SNAPSHOT.jar`
+* `target/lib/*.jar`
+
+## Para comenzar a usar
+
+Primero debes seguir la guía de [instalación](#installation) y ejecutar el siguiente código de ejemplo:
+```java
+// Create the api component
+final ComprobanteElectrnicoDePagoCepApi api = new ComprobanteElectrnicoDePagoCepApi();
+
+// Create the authenticator to obtain access token
+// (the token URL and Service URL are defined for this environment enum value))
+final OAuthWire4 oAuthWire4 = new OAuthWire4("{{your-client-id}}",
+        "{{your-client-secret}}", "{{environment}}");
+
+// Configure OAuth2 access token for authorization: oauth2
+final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
+
+try {
+
+    // Obtain an access token use application flow and scope "general"
+    final String bearer = oAuthWire4.obtainAccessTokenApp("general");
+    // Add the bearer token to request
+    oauth2.setAccessToken(bearer);
+} catch (ApiException e) {
+
+    e.printStackTrace();
+    // Manage exception in access token flow
+    return;
+}
+
+// Build body with info (check references for more info, types, required fields)
+final CepSearchBanxico body = new CepSearchBanxico()
+        .amount(new BigDecimal("8963.25"))
+        .beneficiaryAccount("072680004657656853")
+        .beneficiaryBankKey("40072")
+        .claveRastreo("58735618")
+        .operationDate("05-12-2018")
+        .reference("1122334")
+        .senderAccount("112680000156896531")
+        .senderBankKey("40112");
+
+try {
+
+    // Obtain the response
+    final CepResponse response = api.obtainTransactionCepUsingPOST(body);
+
+    System.out.println("CEP:" + response);
+} catch (ApiException e) {
+
+    e.printStackTrace();
+    // Manage exception in access token flow
+    return;
+}
+```
+
+### Ejemplo de deserialización de mensaje WebHook de Wire4
+```java
+    @PostMapping(value = "webhook-listener",
+                 consumes = MediaType.APPLICATION_JSON_VALUE,
+                 produces = MediaType.APPLICATION_JSON_VALUE,
+                 headers = "Accept=" + MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> receiveNotificationFromWire4(@RequestBody String body) {
+
+        final java.lang.reflect.Type localVarReturnType = new com.google.gson.reflect.TypeToken<mx.wire4.model.MessageWebHook>(){}.getType();
+        final mx.wire4.model.MessageWebHook notification = new mx.wire4.JSON().deserialize(body, localVarReturnType);
+
+        log.info("Notification: {}", notification);
+
+        validateMonexNotification(notification);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Validación de la deserialización de los objetos JSON recibidos como parámetros.
+     *
+     * @param notification
+     *      el objeto DTO que se espera recibir para el evento.
+     * @param <T>
+     *      El tipo del DTO que se espera recibir.
+     */
+    private <T> void validateMonexNotification(final T notification) {
+
+        final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        final Validator validator = factory.getValidator();
+
+        final Set<ConstraintViolation<T>> violations = validator.validate(notification);
+        if (!violations.isEmpty()) {
+
+            throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
+        }
+    }
+```
