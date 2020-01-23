@@ -16,6 +16,7 @@ import mx.wire4.ApiException;
 import mx.wire4.model.Deposit;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.Payment;
+import mx.wire4.model.PaymentsRequestId;
 import mx.wire4.model.TokenRequiredResponse;
 import mx.wire4.model.TransactionsOutgoingRegister;
 import org.junit.Test;
@@ -44,9 +45,10 @@ public class TransferenciasSpeiApiTest {
      */
     @Test
     public void dropTransactionsPendingUsingDELETETest() throws ApiException {
+        String authorization = null;
         String requestId = null;
         String subscription = null;
-        api.dropTransactionsPendingUsingDELETE(requestId, subscription);
+        api.dropTransactionsPendingUsingDELETE(authorization, requestId, subscription);
 
         // TODO: test validations
     }
@@ -60,8 +62,26 @@ public class TransferenciasSpeiApiTest {
      */
     @Test
     public void incomingSpeiTransactionsReportUsingGETTest() throws ApiException {
+        String authorization = null;
         String subscription = null;
-        List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(subscription);
+        List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(authorization, subscription);
+
+        // TODO: test validations
+    }
+    /**
+     * Consulta de transferencias de salida por identificador de petición
+     *
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias  de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void outCommingSpeiRequestIdTransactionsReportUsingGETTest() throws ApiException {
+        String authorization = null;
+        String requestId = null;
+        String subscription = null;
+        PaymentsRequestId response = api.outCommingSpeiRequestIdTransactionsReportUsingGET(authorization, requestId, subscription);
 
         // TODO: test validations
     }
@@ -75,9 +95,10 @@ public class TransferenciasSpeiApiTest {
      */
     @Test
     public void outgoingSpeiTransactionsReportUsingGETTest() throws ApiException {
+        String authorization = null;
         String subscription = null;
         String orderId = null;
-        List<Payment> response = api.outgoingSpeiTransactionsReportUsingGET(subscription, orderId);
+        List<Payment> response = api.outgoingSpeiTransactionsReportUsingGET(authorization, subscription, orderId);
 
         // TODO: test validations
     }
@@ -92,8 +113,9 @@ public class TransferenciasSpeiApiTest {
     @Test
     public void registerOutgoingSpeiTransactionUsingPOSTTest() throws ApiException {
         TransactionsOutgoingRegister body = null;
+        String authorization = null;
         String subscription = null;
-        TokenRequiredResponse response = api.registerOutgoingSpeiTransactionUsingPOST(body, subscription);
+        TokenRequiredResponse response = api.registerOutgoingSpeiTransactionUsingPOST(body, authorization, subscription);
 
         // TODO: test validations
     }

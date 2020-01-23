@@ -43,7 +43,8 @@ public class SuscripcionesApiTest {
     @Test
     public void preEnrollmentMonexUserUsingPOSTTest() throws ApiException {
         PreEnrollmentData body = null;
-        PreEnrollmentResponse response = api.preEnrollmentMonexUserUsingPOST(body);
+        String authorization = null;
+        PreEnrollmentResponse response = api.preEnrollmentMonexUserUsingPOST(body, authorization);
 
         // TODO: test validations
     }
@@ -57,8 +58,9 @@ public class SuscripcionesApiTest {
      */
     @Test
     public void removeEnrollmentUserUsingDELETETest() throws ApiException {
+        String authorization = null;
         String subscription = null;
-        api.removeEnrollmentUserUsingDELETE(subscription);
+        api.removeEnrollmentUserUsingDELETE(authorization, subscription);
 
         // TODO: test validations
     }
@@ -72,8 +74,9 @@ public class SuscripcionesApiTest {
      */
     @Test
     public void removeSubscriptionPendingStatusUsingDELETETest() throws ApiException {
+        String authorization = null;
         String subscription = null;
-        api.removeSubscriptionPendingStatusUsingDELETE(subscription);
+        api.removeSubscriptionPendingStatusUsingDELETE(authorization, subscription);
 
         // TODO: test validations
     }

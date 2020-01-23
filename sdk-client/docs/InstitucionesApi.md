@@ -8,28 +8,21 @@ Method | HTTP request | Description
 
 <a name="getAllInstitutionsUsingGET"></a>
 # **getAllInstitutionsUsingGET**
-> InstitutionsList getAllInstitutionsUsingGET()
+> InstitutionsList getAllInstitutionsUsingGET(authorization)
 
 Información de instituciones bancarias.
 
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.InstitucionesApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app
-OAuth wire4_aut_app = (OAuth) defaultClient.getAuthentication("wire4_aut_app");
-wire4_aut_app.setAccessToken("YOUR ACCESS TOKEN");
 
 InstitucionesApi apiInstance = new InstitucionesApi();
+String authorization = "authorization_example"; // String | Header para token
 try {
-    InstitutionsList result = apiInstance.getAllInstitutionsUsingGET();
+    InstitutionsList result = apiInstance.getAllInstitutionsUsingGET(authorization);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling InstitucionesApi#getAllInstitutionsUsingGET");
@@ -38,7 +31,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
 
 ### Return type
 
@@ -46,7 +42,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[wire4_aut_app](../README.md#wire4_aut_app)
+No authorization required
 
 ### HTTP request headers
 

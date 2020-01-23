@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getSpidClassificationsUsingGET"></a>
 # **getSpidClassificationsUsingGET**
-> SpidClassificationsResponseDTO getSpidClassificationsUsingGET(subscription)
+> SpidClassificationsResponseDTO getSpidClassificationsUsingGET(authorization, subscription)
 
 Consulta las clasificaciones para operaciones con SPID
 
@@ -18,22 +18,15 @@ Obtiene las clasificaciones para operaciones con dólares (SPID) de Monex.&lt;br
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.TransferenciasSpidApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spid
-OAuth wire4_aut_app_user_spid = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spid");
-wire4_aut_app_user_spid.setAccessToken("YOUR ACCESS TOKEN");
 
 TransferenciasSpidApi apiInstance = new TransferenciasSpidApi();
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    SpidClassificationsResponseDTO result = apiInstance.getSpidClassificationsUsingGET(subscription);
+    SpidClassificationsResponseDTO result = apiInstance.getSpidClassificationsUsingGET(authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TransferenciasSpidApi#getSpidClassificationsUsingGET");
@@ -45,6 +38,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
 ### Return type
@@ -53,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spid](../README.md#wire4_aut_app_user_spid)
+No authorization required
 
 ### HTTP request headers
 
@@ -62,7 +56,7 @@ Name | Type | Description  | Notes
 
 <a name="registerOutgoingSpidTransactionUsingPOST"></a>
 # **registerOutgoingSpidTransactionUsingPOST**
-> TokenRequiredResponse registerOutgoingSpidTransactionUsingPOST(body, subscription)
+> TokenRequiredResponse registerOutgoingSpidTransactionUsingPOST(body, authorization, subscription)
 
 Registro de transferencias SPID
 
@@ -71,23 +65,16 @@ Registra un conjunto de transferencias a realizar en la cuenta del cliente Monex
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.TransferenciasSpidApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spid
-OAuth wire4_aut_app_user_spid = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spid");
-wire4_aut_app_user_spid.setAccessToken("YOUR ACCESS TOKEN");
 
 TransferenciasSpidApi apiInstance = new TransferenciasSpidApi();
 TransactionOutgoingSpid body = new TransactionOutgoingSpid(); // TransactionOutgoingSpid | Información de las transferencias SPID de salida
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    TokenRequiredResponse result = apiInstance.registerOutgoingSpidTransactionUsingPOST(body, subscription);
+    TokenRequiredResponse result = apiInstance.registerOutgoingSpidTransactionUsingPOST(body, authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TransferenciasSpidApi#registerOutgoingSpidTransactionUsingPOST");
@@ -100,6 +87,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**TransactionOutgoingSpid**](TransactionOutgoingSpid.md)| Información de las transferencias SPID de salida |
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
 ### Return type
@@ -108,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spid](../README.md#wire4_aut_app_user_spid)
+No authorization required
 
 ### HTTP request headers
 

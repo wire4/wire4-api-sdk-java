@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>sdk-client</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "mx.wire4.sdk:sdk-client:0.0.1-SNAPSHOT"
+compile "mx.wire4.sdk:sdk-client:0.0.2-SNAPSHOT"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sdk-client-0.0.1-SNAPSHOT.jar`
+* `target/sdk-client-0.0.2-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -81,16 +81,12 @@ import java.util.*;
 public class ComprobanteElectrnicoDePagoCepApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-        // Configure OAuth2 access token for authorization: wire4_aut_app
-        OAuth wire4_aut_app = (OAuth) defaultClient.getAuthentication("wire4_aut_app");
-        wire4_aut_app.setAccessToken("YOUR ACCESS TOKEN");
-
+        
         ComprobanteElectrnicoDePagoCepApi apiInstance = new ComprobanteElectrnicoDePagoCepApi();
         CepSearchBanxico body = new CepSearchBanxico(); // CepSearchBanxico | Información para buscar un CEP
+        String authorization = "authorization_example"; // String | Header para token
         try {
-            CepResponse result = apiInstance.obtainTransactionCepUsingPOST(body);
+            CepResponse result = apiInstance.obtainTransactionCepUsingPOST(body, authorization);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ComprobanteElectrnicoDePagoCepApi#obtainTransactionCepUsingPOST");
@@ -126,6 +122,7 @@ Class | Method | HTTP request | Description
 *SuscripcionesApi* | [**removeSubscriptionPendingStatusUsingDELETE**](docs/SuscripcionesApi.md#removeSubscriptionPendingStatusUsingDELETE) | **DELETE** /subscriptions/pre-subscription/{subscription} | Elimna una pre-suscripción
 *TransferenciasSpeiApi* | [**dropTransactionsPendingUsingDELETE**](docs/TransferenciasSpeiApi.md#dropTransactionsPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/transactions/outcoming/spei/request/{requestId} | Eliminación de transferencias SPEI® pendientes
 *TransferenciasSpeiApi* | [**incomingSpeiTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#incomingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/incoming/spei | Consulta de transferencias recibidas
+*TransferenciasSpeiApi* | [**outCommingSpeiRequestIdTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#outCommingSpeiRequestIdTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei/{requestId} | Consulta de transferencias de salida por identificador de petición
 *TransferenciasSpeiApi* | [**outgoingSpeiTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#outgoingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei | Consulta de transferencias realizadas
 *TransferenciasSpeiApi* | [**registerOutgoingSpeiTransactionUsingPOST**](docs/TransferenciasSpeiApi.md#registerOutgoingSpeiTransactionUsingPOST) | **POST** /subscriptions/{subscription}/transactions/outcoming/spei | Registro de transferencias
 *TransferenciasSpidApi* | [**getSpidClassificationsUsingGET**](docs/TransferenciasSpidApi.md#getSpidClassificationsUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/spid/classifications | Consulta las clasificaciones para operaciones con SPID
@@ -166,6 +163,7 @@ Class | Method | HTTP request | Description
  - [MessageSubscription](docs/MessageSubscription.md)
  - [MessageWebHook](docs/MessageWebHook.md)
  - [Payment](docs/Payment.md)
+ - [PaymentsRequestId](docs/PaymentsRequestId.md)
  - [Person](docs/Person.md)
  - [PreEnrollmentData](docs/PreEnrollmentData.md)
  - [PreEnrollmentResponse](docs/PreEnrollmentResponse.md)
@@ -183,31 +181,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Authorization
 
+All endpoints do not require authorization.
 Authentication schemes defined for the API:
-### wire4_aut_app
-
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: 
-  - : 
-
-### wire4_aut_app_user_spei
-
-- **Type**: OAuth
-- **Flow**: password
-- **Authorization URL**: 
-- **Scopes**: 
-  - : 
-
-### wire4_aut_app_user_spid
-
-- **Type**: OAuth
-- **Flow**: password
-- **Authorization URL**: 
-- **Scopes**: 
-  - : 
-
 
 ## Recommendation
 

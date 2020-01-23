@@ -43,7 +43,8 @@ public class ComprobanteElectrnicoDePagoCepApiTest {
     @Test
     public void obtainTransactionCepUsingPOSTTest() throws ApiException {
         CepSearchBanxico body = null;
-        CepResponse response = api.obtainTransactionCepUsingPOST(body);
+        String authorization = null;
+        CepResponse response = api.obtainTransactionCepUsingPOST(body, authorization);
 
         // TODO: test validations
     }

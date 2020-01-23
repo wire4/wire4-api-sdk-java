@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="getWebhook"></a>
 # **getWebhook**
-> WebhookResponse getWebhook(id)
+> WebhookResponse getWebhook(authorization, id)
 
 Consulta de Webhook
 
@@ -19,22 +19,15 @@ Obtiene un webhook registrado en la plataforma mediante su identificador.
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.WebhooksApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app
-OAuth wire4_aut_app = (OAuth) defaultClient.getAuthentication("wire4_aut_app");
-wire4_aut_app.setAccessToken("YOUR ACCESS TOKEN");
 
 WebhooksApi apiInstance = new WebhooksApi();
+String authorization = "authorization_example"; // String | Header para token
 String id = "id_example"; // String | Identificador del webhook
 try {
-    WebhookResponse result = apiInstance.getWebhook(id);
+    WebhookResponse result = apiInstance.getWebhook(authorization, id);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling WebhooksApi#getWebhook");
@@ -46,6 +39,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **id** | **String**| Identificador del webhook |
 
 ### Return type
@@ -54,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app](../README.md#wire4_aut_app)
+No authorization required
 
 ### HTTP request headers
 
@@ -63,7 +57,7 @@ Name | Type | Description  | Notes
 
 <a name="getWebhooks"></a>
 # **getWebhooks**
-> WebhooksList getWebhooks()
+> WebhooksList getWebhooks(authorization)
 
 Consulta de Webhooks
 
@@ -72,21 +66,14 @@ Obtiene los webhooks registrados en la plataforma que tengan estatus &#x27;ACTIV
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.WebhooksApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app
-OAuth wire4_aut_app = (OAuth) defaultClient.getAuthentication("wire4_aut_app");
-wire4_aut_app.setAccessToken("YOUR ACCESS TOKEN");
 
 WebhooksApi apiInstance = new WebhooksApi();
+String authorization = "authorization_example"; // String | Header para token
 try {
-    WebhooksList result = apiInstance.getWebhooks();
+    WebhooksList result = apiInstance.getWebhooks(authorization);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling WebhooksApi#getWebhooks");
@@ -95,7 +82,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
 
 ### Return type
 
@@ -103,7 +93,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[wire4_aut_app](../README.md#wire4_aut_app)
+No authorization required
 
 ### HTTP request headers
 
@@ -112,7 +102,7 @@ This endpoint does not need any parameter.
 
 <a name="registerWebhook"></a>
 # **registerWebhook**
-> WebhookResponse registerWebhook(body)
+> WebhookResponse registerWebhook(body, authorization)
 
 Alta de Webhook
 
@@ -121,22 +111,15 @@ Registra un webhook en la plataforma para su uso como notificador de eventos cua
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.WebhooksApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app
-OAuth wire4_aut_app = (OAuth) defaultClient.getAuthentication("wire4_aut_app");
-wire4_aut_app.setAccessToken("YOUR ACCESS TOKEN");
 
 WebhooksApi apiInstance = new WebhooksApi();
 WebhookRequest body = new WebhookRequest(); // WebhookRequest | Información para registrar un Webhook
+String authorization = "authorization_example"; // String | Header para token
 try {
-    WebhookResponse result = apiInstance.registerWebhook(body);
+    WebhookResponse result = apiInstance.registerWebhook(body, authorization);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling WebhooksApi#registerWebhook");
@@ -149,6 +132,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**WebhookRequest**](WebhookRequest.md)| Información para registrar un Webhook |
+ **authorization** | **String**| Header para token |
 
 ### Return type
 
@@ -156,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app](../README.md#wire4_aut_app)
+No authorization required
 
 ### HTTP request headers
 

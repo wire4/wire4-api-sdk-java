@@ -10,7 +10,6 @@
 package mx.wire4.auth;
 
 import lombok.extern.slf4j.Slf4j;
-import mx.wire4.ApiClient;
 import mx.wire4.ApiException;
 import mx.wire4.ApiResponse;
 import mx.wire4.api.*;
@@ -58,15 +57,12 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
-
+        final String bearer;
         try {
 
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -85,7 +81,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.sendContactUsingPOSTWithHttpInfo(body);
+            final ApiResponse response = api.sendContactUsingPOSTWithHttpInfo(body,bearer);
 
             System.out.println("Response:" + response.getStatusCode());
         } catch (ApiException e) {
@@ -105,15 +101,12 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
-
+        final String bearer;
         try {
 
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -135,7 +128,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final CepResponse response = api.obtainTransactionCepUsingPOST(body);
+            final CepResponse response = api.obtainTransactionCepUsingPOST( body, bearer);
 
             System.out.println("CEP:" + response);
         } catch (ApiException e) {
@@ -155,15 +148,13 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
+        final String bearer;
 
         try {
 
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -179,7 +170,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final PreEnrollmentResponse response = api.preEnrollmentMonexUserUsingPOST(body);
+            final PreEnrollmentResponse response = api.preEnrollmentMonexUserUsingPOST(body, bearer);
 
             System.out.println("Pre-SubscriptionResult:" + response);
         } catch (ApiException e) {
@@ -199,15 +190,13 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
+        final String bearer;
 
         try {
 
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -221,7 +210,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse<Void> response = api.removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(subscription);
+            final ApiResponse<Void> response = api.removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(bearer,subscription);
 
             System.out.println("Delete Pre-Subscription result:" + response);
         } catch (ApiException e) {
@@ -242,18 +231,16 @@ public class ExamplesTest {
         // The token URL and Service URL are defined for this environment enum value.
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
+        final String bearer;
 
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             // The user_key and user_secret belongs to the subscription to delete
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(
-                "86b348442874908861098f03ed9ffa@sandbox.wire4.mx", "9ee9ae9a86446c289656ff40934370",
+            bearer = oAuthWire4.obtainAccessTokenAppUser(
+                    "86b348442874908861098f03ed9ffa@sandbox.wire4.mx", "9ee9ae9a86446c289656ff40934370",
                     "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -267,7 +254,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse<Void> response = api.removeEnrollmentUserUsingDELETEWithHttpInfo(subscription);
+            final ApiResponse<Void> response = api.removeEnrollmentUserUsingDELETEWithHttpInfo(bearer,subscription);
 
             System.out.println("Delete Pre-Subscription result:" + response.getStatusCode());
         } catch (ApiException e) {
@@ -287,15 +274,12 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
-
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -308,7 +292,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final RelationshipsResponse response = api.getAvailableRelationshipsMonexUsingGET(subscription);
+            final RelationshipsResponse response = api.getAvailableRelationshipsMonexUsingGET(bearer,subscription);
 
             System.out.println("Relationships response:" + response);
         } catch (ApiException e) {
@@ -328,15 +312,12 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
-
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -367,7 +348,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final TokenRequiredResponse response = api.preRegisterAccountsUsingPOST(body, subscription);
+            final TokenRequiredResponse response = api.preRegisterAccountsUsingPOST(body, bearer,subscription);
 
             System.out.println("TokenRequiredResponse response:" + response);
         } catch (ApiException e) {
@@ -387,15 +368,11 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
-
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -409,7 +386,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.removeBeneficiariesPendingUsingDELETEWithHttpInfo(requestId, subscription);
+            final ApiResponse response = api.removeBeneficiariesPendingUsingDELETEWithHttpInfo(bearer,requestId, subscription);
 
             System.out.println("Response:" + response.getStatusCode());
         } catch (ApiException e) {
@@ -430,15 +407,11 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
-
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -449,10 +422,11 @@ public class ExamplesTest {
         // Build body with info (check references for more info, types, required fields)
         final String subscription = SUBSCRIPTION;
         final String rfc = null; //  null if you can't filter
+        final String account = null;
         try {
 
             // Obtain the response
-            final BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(subscription, rfc);
+            final BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(bearer,subscription, account, rfc);
 
             System.out.println("Relationships response:" + response);
         } catch (ApiException e) {
@@ -472,15 +446,12 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
-
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -498,7 +469,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.updateAmountLimitAccountUsingPUTWithHttpInfo(body, account, subscription);
+            final ApiResponse response = api.updateAmountLimitAccountUsingPUTWithHttpInfo(body,bearer, account, subscription);
 
             System.out.println("response:" + response);
         } catch (ApiException e) {
@@ -518,15 +489,12 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
-
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -541,7 +509,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.deleteAccountUsingDELETEWithHttpInfo(account, subscription);
+            final ApiResponse response = api.deleteAccountUsingDELETEWithHttpInfo(bearer,account, subscription);
 
             System.out.println("response:" + response);
         } catch (ApiException e) {
@@ -561,15 +529,12 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
-
+        final String bearer;
         try {
 
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -581,7 +546,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final InstitutionsList response = api.getAllInstitutionsUsingGET();
+            final InstitutionsList response = api.getAllInstitutionsUsingGET(bearer);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -601,15 +566,12 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
-
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -622,7 +584,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final BalanceListResponse response = api.getBalanceUsingGET(subscription);
+            final BalanceListResponse response = api.getBalanceUsingGET(bearer,subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -642,15 +604,13 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spid");
+        final String bearer;
 
         try {
 
             // Obtain an access token use password flow and scope "spid_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -675,7 +635,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            TokenRequiredResponse response = api.preRegisterAccountsUsingPOST1(body, subscription);
+            TokenRequiredResponse response = api.preRegisterAccountsUsingPOST1(body,bearer, subscription);
 
             System.out.println("TokenRequiredResponse response:" + response);
         } catch (ApiException e) {
@@ -695,15 +655,13 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spid");
+        final String bearer;
 
         try {
 
             // Obtain an access token use password flow and scope "spid_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spid_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spid_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -716,7 +674,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final SpidClassificationsResponseDTO response = api.getSpidClassificationsUsingGET(subscription);
+            final SpidClassificationsResponseDTO response = api.getSpidClassificationsUsingGET(bearer,subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -736,15 +694,13 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
+        final String bearer;
 
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -758,7 +714,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final GetDepositants response = api.getDepositantsUsingGET(subscription);
+            final GetDepositants response = api.getDepositantsUsingGET(bearer,subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -778,15 +734,13 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
+        final String bearer;
 
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -805,7 +759,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final DepositantsResponse response = api.registerDepositantsUsingPOST(body, subscription);
+            final DepositantsResponse response = api.registerDepositantsUsingPOST(body,bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -825,15 +779,13 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
+        final String bearer;
 
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -846,7 +798,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(subscription);
+            final List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(bearer,subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -868,13 +820,12 @@ public class ExamplesTest {
 
         // Configure OAuth2 access token for authorization: oauth2
         final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
-
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -888,7 +839,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final List<Payment> response = api.outgoingSpeiTransactionsReportUsingGET(subscription, orderId);
+            final List<Payment> response = api.outgoingSpeiTransactionsReportUsingGET(bearer,subscription, orderId);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -908,15 +859,12 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
-
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -942,7 +890,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final TokenRequiredResponse response = api.registerOutgoingSpeiTransactionUsingPOST(body, subscription);
+            final TokenRequiredResponse response = api.registerOutgoingSpeiTransactionUsingPOST(body, bearer,subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -962,15 +910,13 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
+        final String bearer;
 
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -984,7 +930,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.dropTransactionsPendingUsingDELETEWithHttpInfo(requestId, subscription);
+            final ApiResponse response = api.dropTransactionsPendingUsingDELETEWithHttpInfo(bearer,requestId, subscription);
 
             System.out.println("Response:" + response.getStatusCode());
         } catch (ApiException e) {
@@ -1007,16 +953,14 @@ public class ExamplesTest {
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spid");
+        final String bearer;
 
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             //final String bearer = oAuthWire4.obtainAccessTokenAppUser("fd6a581b88440c58e39a0e179adb21@dev-saint.speiok.com", "95dd3b617e2425c89b5b3faff89749", "spid_admin");
-            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -1042,7 +986,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final TokenRequiredResponse response = api.registerOutgoingSpidTransactionUsingPOST(body, subscription);
+            final TokenRequiredResponse response = api.registerOutgoingSpidTransactionUsingPOST(body,bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -1063,12 +1007,11 @@ public class ExamplesTest {
 
         // Configure OAuth2 access token for authorization: oauth2
         final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
-
+        final String bearer;
         try {
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
             e.printStackTrace();
             return;
@@ -1081,7 +1024,7 @@ public class ExamplesTest {
                             "ACCOUNT.CREATED",
                             "TRANSACTION.OUTGOING.RECEIVED",
                             "ENROLLMENT.CREATED"));
-            WebhookResponse response = api.registerWebhook(request);
+            WebhookResponse response = api.registerWebhook(request,bearer);
             System.out.println("Webhook registered :: " + response);
         } catch (ApiException e) {
             e.printStackTrace();
@@ -1096,20 +1039,18 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
+        final String bearer;
 
         try {
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
             e.printStackTrace();
             return;
         }
         try {
-            WebhooksList response = api.getWebhooks();
+            WebhooksList response = api.getWebhooks(bearer);
             System.out.println("Webhooks :: " + response);
         } catch (ApiException e) {
             e.printStackTrace();
@@ -1124,20 +1065,18 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
+        final String bearer;
 
         try {
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
             e.printStackTrace();
             return;
         }
         try {
-            WebhookResponse response = api.getWebhook("wh_f16529713e6a4be88097740cc7db1f28");
+            WebhookResponse response = api.getWebhook(bearer,"wh_f16529713e6a4be88097740cc7db1f28");
             System.out.println("Webhook :: " + response);
         } catch (ApiException e) {
             e.printStackTrace();
@@ -1152,21 +1091,19 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
+        final String bearer;
 
         try {
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
             return;
         }
         try {
-            List<Billing> responseList = api.billingsReportUsingGET ("2019-10");
+            List<Billing> responseList = api.billingsReportUsingGET (bearer,"2019-10");
             System.out.println("Facturas :: " + responseList);
         } catch (ApiException e) {
             System.out.println("staus code:"+e.getCode());
@@ -1186,21 +1123,19 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
+        final String bearer;
 
         try {
             // Obtain an access token use application flow and scope "general"
-            final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-            // Add the bearer token to request
-            oauth2.setAccessToken(bearer);
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
             return;
         }
         try {
-            Billing response = api.billingsReportByIdUsingGET("834BA74A-BBBB-43C4-8400-A4528153C2BD");
+            Billing response = api.billingsReportByIdUsingGET(bearer,"834BA74A-BBBB-43C4-8400-A4528153C2BD");
             System.out.println("Factura :: " + response);
         } catch (ApiException e) {
             System.out.println("staus code:"+e.getCode());
@@ -1209,6 +1144,47 @@ public class ExamplesTest {
                 e.printStackTrace();
             }
 
+            return;
+        }
+    }
+
+    @Test
+    public void outCommingSpeiRequestIdTransactionsReportUsingGET() {
+
+        // Create the api component
+        final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
+
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+
+        final String bearer;
+
+        try {
+
+            // Obtain an access token use password flow and scope "spei_admin"
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = SUBSCRIPTION;
+        final String orderId = "5fec50a8-d987-4e11-b23e-606ca296712b"; // null for no filter
+        try {
+
+            // Obtain the response
+
+            final PaymentsRequestId paymentsRequestId = api.outCommingSpeiRequestIdTransactionsReportUsingGET(bearer,subscription, orderId);
+
+            System.out.println("Response:" + paymentsRequestId);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
             return;
         }
     }

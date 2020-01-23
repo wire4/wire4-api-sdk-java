@@ -23,8 +23,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import mx.wire4.model.Institution;
 import mx.wire4.model.MessageCEP;
-import mx.wire4.model.MessageInstitution;
 /**
  * Payment
  */
@@ -41,7 +41,7 @@ public class Payment {
   private String beneficiaryAccount = null;
 
   @SerializedName("beneficiary_bank")
-  private MessageInstitution beneficiaryBank = null;
+  private Institution beneficiaryBank = null;
 
   @SerializedName("beneficiary_name")
   private String beneficiaryName = null;
@@ -136,7 +136,7 @@ public class Payment {
     this.beneficiaryAccount = beneficiaryAccount;
   }
 
-  public Payment beneficiaryBank(MessageInstitution beneficiaryBank) {
+  public Payment beneficiaryBank(Institution beneficiaryBank) {
     this.beneficiaryBank = beneficiaryBank;
     return this;
   }
@@ -146,11 +146,11 @@ public class Payment {
    * @return beneficiaryBank
   **/
   @Schema(description = "")
-  public MessageInstitution getBeneficiaryBank() {
+  public Institution getBeneficiaryBank() {
     return beneficiaryBank;
   }
 
-  public void setBeneficiaryBank(MessageInstitution beneficiaryBank) {
+  public void setBeneficiaryBank(Institution beneficiaryBank) {
     this.beneficiaryBank = beneficiaryBank;
   }
 

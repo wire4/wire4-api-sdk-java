@@ -43,8 +43,9 @@ public class TransferenciasSpidApiTest {
      */
     @Test
     public void getSpidClassificationsUsingGETTest() throws ApiException {
+        String authorization = null;
         String subscription = null;
-        SpidClassificationsResponseDTO response = api.getSpidClassificationsUsingGET(subscription);
+        SpidClassificationsResponseDTO response = api.getSpidClassificationsUsingGET(authorization, subscription);
 
         // TODO: test validations
     }
@@ -59,8 +60,9 @@ public class TransferenciasSpidApiTest {
     @Test
     public void registerOutgoingSpidTransactionUsingPOSTTest() throws ApiException {
         TransactionOutgoingSpid body = null;
+        String authorization = null;
         String subscription = null;
-        TokenRequiredResponse response = api.registerOutgoingSpidTransactionUsingPOST(body, subscription);
+        TokenRequiredResponse response = api.registerOutgoingSpidTransactionUsingPOST(body, authorization, subscription);
 
         // TODO: test validations
     }

@@ -58,12 +58,13 @@ public class ComprobanteElectrnicoDePagoCepApi {
     /**
      * Build call for obtainTransactionCepUsingPOST
      * @param body Información para buscar un CEP (required)
+     * @param authorization Header para token (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call obtainTransactionCepUsingPOSTCall(CepSearchBanxico body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call obtainTransactionCepUsingPOSTCall(CepSearchBanxico body, String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -73,6 +74,8 @@ public class ComprobanteElectrnicoDePagoCepApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -100,18 +103,22 @@ public class ComprobanteElectrnicoDePagoCepApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call obtainTransactionCepUsingPOSTValidateBeforeCall(CepSearchBanxico body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call obtainTransactionCepUsingPOSTValidateBeforeCall(CepSearchBanxico body, String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling obtainTransactionCepUsingPOST(Async)");
         }
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling obtainTransactionCepUsingPOST(Async)");
+        }
         
-        com.squareup.okhttp.Call call = obtainTransactionCepUsingPOSTCall(body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = obtainTransactionCepUsingPOSTCall(body, authorization, progressListener, progressRequestListener);
         return call;
 
         
@@ -124,11 +131,12 @@ public class ComprobanteElectrnicoDePagoCepApi {
      * Consulta de CEP
      * Consulta el CEP de un pago realizado a través del SPEI, si es que este se encuentra disponible en BANXICO.
      * @param body Información para buscar un CEP (required)
+     * @param authorization Header para token (required)
      * @return CepResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public CepResponse obtainTransactionCepUsingPOST(CepSearchBanxico body) throws ApiException {
-        ApiResponse<CepResponse> resp = obtainTransactionCepUsingPOSTWithHttpInfo(body);
+    public CepResponse obtainTransactionCepUsingPOST(CepSearchBanxico body, String authorization) throws ApiException {
+        ApiResponse<CepResponse> resp = obtainTransactionCepUsingPOSTWithHttpInfo(body, authorization);
         return resp.getData();
     }
 
@@ -136,11 +144,12 @@ public class ComprobanteElectrnicoDePagoCepApi {
      * Consulta de CEP
      * Consulta el CEP de un pago realizado a través del SPEI, si es que este se encuentra disponible en BANXICO.
      * @param body Información para buscar un CEP (required)
+     * @param authorization Header para token (required)
      * @return ApiResponse&lt;CepResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CepResponse> obtainTransactionCepUsingPOSTWithHttpInfo(CepSearchBanxico body) throws ApiException {
-        com.squareup.okhttp.Call call = obtainTransactionCepUsingPOSTValidateBeforeCall(body, null, null);
+    public ApiResponse<CepResponse> obtainTransactionCepUsingPOSTWithHttpInfo(CepSearchBanxico body, String authorization) throws ApiException {
+        com.squareup.okhttp.Call call = obtainTransactionCepUsingPOSTValidateBeforeCall(body, authorization, null, null);
         Type localVarReturnType = new TypeToken<CepResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -149,11 +158,12 @@ public class ComprobanteElectrnicoDePagoCepApi {
      * Consulta de CEP (asynchronously)
      * Consulta el CEP de un pago realizado a través del SPEI, si es que este se encuentra disponible en BANXICO.
      * @param body Información para buscar un CEP (required)
+     * @param authorization Header para token (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call obtainTransactionCepUsingPOSTAsync(CepSearchBanxico body, final ApiCallback<CepResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call obtainTransactionCepUsingPOSTAsync(CepSearchBanxico body, String authorization, final ApiCallback<CepResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -174,7 +184,7 @@ public class ComprobanteElectrnicoDePagoCepApi {
             };
         }
 
-        com.squareup.okhttp.Call call = obtainTransactionCepUsingPOSTValidateBeforeCall(body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = obtainTransactionCepUsingPOSTValidateBeforeCall(body, authorization, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CepResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

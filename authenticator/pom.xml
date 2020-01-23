@@ -6,13 +6,13 @@
     <parent>
         <groupId>mx.wire4.sdk</groupId>
         <artifactId>wire4-sdk</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.2-SNAPSHOT</version>
         <relativePath/>
     </parent>
 
     <artifactId>authenticator</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <name>Wire4 authenticator</name>
     <description>Commons utilities for Wire authentication</description>
@@ -65,13 +65,13 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.9.9</version>
+            <version>2.10.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.9</version>
+            <version>2.10.2</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.dmfs/oauth2-essentials -->
@@ -89,7 +89,7 @@
         <dependency>
             <groupId>mx.wire4.sdk</groupId>
             <artifactId>sdk-client</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.2-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 

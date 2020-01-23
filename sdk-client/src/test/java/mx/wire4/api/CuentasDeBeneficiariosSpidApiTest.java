@@ -43,8 +43,9 @@ public class CuentasDeBeneficiariosSpidApiTest {
     @Test
     public void preRegisterAccountsUsingPOST1Test() throws ApiException {
         AccountSpid body = null;
+        String authorization = null;
         String subscription = null;
-        TokenRequiredResponse response = api.preRegisterAccountsUsingPOST1(body, subscription);
+        TokenRequiredResponse response = api.preRegisterAccountsUsingPOST1(body, authorization, subscription);
 
         // TODO: test validations
     }

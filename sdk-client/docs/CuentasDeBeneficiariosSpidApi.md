@@ -8,30 +8,23 @@ Method | HTTP request | Description
 
 <a name="preRegisterAccountsUsingPOST1"></a>
 # **preRegisterAccountsUsingPOST1**
-> TokenRequiredResponse preRegisterAccountsUsingPOST1(body, subscription)
+> TokenRequiredResponse preRegisterAccountsUsingPOST1(body, authorization, subscription)
 
 Pre-registro de cuentas de beneficiarios SPID
 
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.CuentasDeBeneficiariosSpidApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spid
-OAuth wire4_aut_app_user_spid = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spid");
-wire4_aut_app_user_spid.setAccessToken("YOUR ACCESS TOKEN");
 
 CuentasDeBeneficiariosSpidApi apiInstance = new CuentasDeBeneficiariosSpidApi();
 AccountSpid body = new AccountSpid(); // AccountSpid | Información de la cuenta del beneficiario
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    TokenRequiredResponse result = apiInstance.preRegisterAccountsUsingPOST1(body, subscription);
+    TokenRequiredResponse result = apiInstance.preRegisterAccountsUsingPOST1(body, authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpidApi#preRegisterAccountsUsingPOST1");
@@ -44,6 +37,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**AccountSpid**](AccountSpid.md)| Información de la cuenta del beneficiario |
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
 ### Return type
@@ -52,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spid](../README.md#wire4_aut_app_user_spid)
+No authorization required
 
 ### HTTP request headers
 

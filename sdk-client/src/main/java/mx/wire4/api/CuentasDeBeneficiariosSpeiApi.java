@@ -60,6 +60,7 @@ public class CuentasDeBeneficiariosSpeiApi {
 
     /**
      * Build call for deleteAccountUsingDELETE
+     * @param authorization Header para token (required)
      * @param account La cuenta del beneciario que será eliminada (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
@@ -67,7 +68,7 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteAccountUsingDELETECall(String account, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call deleteAccountUsingDELETECall(String authorization, String account, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -79,6 +80,8 @@ public class CuentasDeBeneficiariosSpeiApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -106,12 +109,16 @@ public class CuentasDeBeneficiariosSpeiApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spei" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteAccountUsingDELETEValidateBeforeCall(String account, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deleteAccountUsingDELETEValidateBeforeCall(String authorization, String account, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling deleteAccountUsingDELETE(Async)");
+        }
         // verify the required parameter 'account' is set
         if (account == null) {
             throw new ApiException("Missing the required parameter 'account' when calling deleteAccountUsingDELETE(Async)");
@@ -121,7 +128,7 @@ public class CuentasDeBeneficiariosSpeiApi {
             throw new ApiException("Missing the required parameter 'subscription' when calling deleteAccountUsingDELETE(Async)");
         }
         
-        com.squareup.okhttp.Call call = deleteAccountUsingDELETECall(account, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteAccountUsingDELETECall(authorization, account, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -133,37 +140,40 @@ public class CuentasDeBeneficiariosSpeiApi {
     /**
      * Elimina la cuenta del beneficiario
      * Borra la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción. La cuenta a borrar debe ser una cuenta que opere con SPEI.
+     * @param authorization Header para token (required)
      * @param account La cuenta del beneciario que será eliminada (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void deleteAccountUsingDELETE(String account, String subscription) throws ApiException {
-        deleteAccountUsingDELETEWithHttpInfo(account, subscription);
+    public void deleteAccountUsingDELETE(String authorization, String account, String subscription) throws ApiException {
+        deleteAccountUsingDELETEWithHttpInfo(authorization, account, subscription);
     }
 
     /**
      * Elimina la cuenta del beneficiario
      * Borra la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción. La cuenta a borrar debe ser una cuenta que opere con SPEI.
+     * @param authorization Header para token (required)
      * @param account La cuenta del beneciario que será eliminada (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> deleteAccountUsingDELETEWithHttpInfo(String account, String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = deleteAccountUsingDELETEValidateBeforeCall(account, subscription, null, null);
+    public ApiResponse<Void> deleteAccountUsingDELETEWithHttpInfo(String authorization, String account, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = deleteAccountUsingDELETEValidateBeforeCall(authorization, account, subscription, null, null);
         return apiClient.execute(call);
     }
 
     /**
      * Elimina la cuenta del beneficiario (asynchronously)
      * Borra la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción. La cuenta a borrar debe ser una cuenta que opere con SPEI.
+     * @param authorization Header para token (required)
      * @param account La cuenta del beneciario que será eliminada (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteAccountUsingDELETEAsync(String account, String subscription, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteAccountUsingDELETEAsync(String authorization, String account, String subscription, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -184,19 +194,20 @@ public class CuentasDeBeneficiariosSpeiApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteAccountUsingDELETEValidateBeforeCall(account, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteAccountUsingDELETEValidateBeforeCall(authorization, account, subscription, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
      * Build call for getAvailableRelationshipsMonexUsingGET
+     * @param authorization Header para token (required)
      * @param subscription Identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getAvailableRelationshipsMonexUsingGETCall(String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getAvailableRelationshipsMonexUsingGETCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -207,6 +218,8 @@ public class CuentasDeBeneficiariosSpeiApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -234,18 +247,22 @@ public class CuentasDeBeneficiariosSpeiApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spei" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getAvailableRelationshipsMonexUsingGETValidateBeforeCall(String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getAvailableRelationshipsMonexUsingGETValidateBeforeCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling getAvailableRelationshipsMonexUsingGET(Async)");
+        }
         // verify the required parameter 'subscription' is set
         if (subscription == null) {
             throw new ApiException("Missing the required parameter 'subscription' when calling getAvailableRelationshipsMonexUsingGET(Async)");
         }
         
-        com.squareup.okhttp.Call call = getAvailableRelationshipsMonexUsingGETCall(subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getAvailableRelationshipsMonexUsingGETCall(authorization, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -257,24 +274,26 @@ public class CuentasDeBeneficiariosSpeiApi {
     /**
      * Consulta de relaciones
      * Obtiene las posibles relaciones existentes para registrar beneficiarios en Monex. Se debe invocar este recurso antes de pre-registrar una cuenta de beneficiario.
+     * @param authorization Header para token (required)
      * @param subscription Identificador de la suscripción a esta API (required)
      * @return RelationshipsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public RelationshipsResponse getAvailableRelationshipsMonexUsingGET(String subscription) throws ApiException {
-        ApiResponse<RelationshipsResponse> resp = getAvailableRelationshipsMonexUsingGETWithHttpInfo(subscription);
+    public RelationshipsResponse getAvailableRelationshipsMonexUsingGET(String authorization, String subscription) throws ApiException {
+        ApiResponse<RelationshipsResponse> resp = getAvailableRelationshipsMonexUsingGETWithHttpInfo(authorization, subscription);
         return resp.getData();
     }
 
     /**
      * Consulta de relaciones
      * Obtiene las posibles relaciones existentes para registrar beneficiarios en Monex. Se debe invocar este recurso antes de pre-registrar una cuenta de beneficiario.
+     * @param authorization Header para token (required)
      * @param subscription Identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;RelationshipsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<RelationshipsResponse> getAvailableRelationshipsMonexUsingGETWithHttpInfo(String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = getAvailableRelationshipsMonexUsingGETValidateBeforeCall(subscription, null, null);
+    public ApiResponse<RelationshipsResponse> getAvailableRelationshipsMonexUsingGETWithHttpInfo(String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = getAvailableRelationshipsMonexUsingGETValidateBeforeCall(authorization, subscription, null, null);
         Type localVarReturnType = new TypeToken<RelationshipsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -282,12 +301,13 @@ public class CuentasDeBeneficiariosSpeiApi {
     /**
      * Consulta de relaciones (asynchronously)
      * Obtiene las posibles relaciones existentes para registrar beneficiarios en Monex. Se debe invocar este recurso antes de pre-registrar una cuenta de beneficiario.
+     * @param authorization Header para token (required)
      * @param subscription Identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getAvailableRelationshipsMonexUsingGETAsync(String subscription, final ApiCallback<RelationshipsResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getAvailableRelationshipsMonexUsingGETAsync(String authorization, String subscription, final ApiCallback<RelationshipsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -308,21 +328,23 @@ public class CuentasDeBeneficiariosSpeiApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getAvailableRelationshipsMonexUsingGETValidateBeforeCall(subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getAvailableRelationshipsMonexUsingGETValidateBeforeCall(authorization, subscription, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<RelationshipsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for getBeneficiariesForAccountUsingGET
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
+     * @param account Cuenta del beneficiario, puede ser Clabe, TDD o Celular (optional)
      * @param rfc RFC del beneficiario (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETCall(String subscription, String rfc, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETCall(String authorization, String subscription, String account, String rfc, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -331,10 +353,14 @@ public class CuentasDeBeneficiariosSpeiApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (account != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("account", account));
         if (rfc != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("rfc", rfc));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -362,18 +388,22 @@ public class CuentasDeBeneficiariosSpeiApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spei" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETValidateBeforeCall(String subscription, String rfc, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETValidateBeforeCall(String authorization, String subscription, String account, String rfc, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling getBeneficiariesForAccountUsingGET(Async)");
+        }
         // verify the required parameter 'subscription' is set
         if (subscription == null) {
             throw new ApiException("Missing the required parameter 'subscription' when calling getBeneficiariesForAccountUsingGET(Async)");
         }
         
-        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETCall(subscription, rfc, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETCall(authorization, subscription, account, rfc, progressListener, progressRequestListener);
         return call;
 
         
@@ -385,26 +415,30 @@ public class CuentasDeBeneficiariosSpeiApi {
     /**
      * Consulta los beneficiarios registrados
      * Obtiene los beneficiarios registrados al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
+     * @param account Cuenta del beneficiario, puede ser Clabe, TDD o Celular (optional)
      * @param rfc RFC del beneficiario (optional)
      * @return BeneficiariesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public BeneficiariesResponse getBeneficiariesForAccountUsingGET(String subscription, String rfc) throws ApiException {
-        ApiResponse<BeneficiariesResponse> resp = getBeneficiariesForAccountUsingGETWithHttpInfo(subscription, rfc);
+    public BeneficiariesResponse getBeneficiariesForAccountUsingGET(String authorization, String subscription, String account, String rfc) throws ApiException {
+        ApiResponse<BeneficiariesResponse> resp = getBeneficiariesForAccountUsingGETWithHttpInfo(authorization, subscription, account, rfc);
         return resp.getData();
     }
 
     /**
      * Consulta los beneficiarios registrados
      * Obtiene los beneficiarios registrados al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
+     * @param account Cuenta del beneficiario, puede ser Clabe, TDD o Celular (optional)
      * @param rfc RFC del beneficiario (optional)
      * @return ApiResponse&lt;BeneficiariesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BeneficiariesResponse> getBeneficiariesForAccountUsingGETWithHttpInfo(String subscription, String rfc) throws ApiException {
-        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETValidateBeforeCall(subscription, rfc, null, null);
+    public ApiResponse<BeneficiariesResponse> getBeneficiariesForAccountUsingGETWithHttpInfo(String authorization, String subscription, String account, String rfc) throws ApiException {
+        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETValidateBeforeCall(authorization, subscription, account, rfc, null, null);
         Type localVarReturnType = new TypeToken<BeneficiariesResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -412,13 +446,15 @@ public class CuentasDeBeneficiariosSpeiApi {
     /**
      * Consulta los beneficiarios registrados (asynchronously)
      * Obtiene los beneficiarios registrados al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
+     * @param account Cuenta del beneficiario, puede ser Clabe, TDD o Celular (optional)
      * @param rfc RFC del beneficiario (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETAsync(String subscription, String rfc, final ApiCallback<BeneficiariesResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETAsync(String authorization, String subscription, String account, String rfc, final ApiCallback<BeneficiariesResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -439,7 +475,7 @@ public class CuentasDeBeneficiariosSpeiApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETValidateBeforeCall(subscription, rfc, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETValidateBeforeCall(authorization, subscription, account, rfc, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<BeneficiariesResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -447,13 +483,14 @@ public class CuentasDeBeneficiariosSpeiApi {
     /**
      * Build call for preRegisterAccountsUsingPOST
      * @param body Información de la cuenta del beneficiario (required)
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call preRegisterAccountsUsingPOSTCall(AccountRequest body, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call preRegisterAccountsUsingPOSTCall(AccountRequest body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -464,6 +501,8 @@ public class CuentasDeBeneficiariosSpeiApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -491,22 +530,26 @@ public class CuentasDeBeneficiariosSpeiApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spei" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call preRegisterAccountsUsingPOSTValidateBeforeCall(AccountRequest body, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call preRegisterAccountsUsingPOSTValidateBeforeCall(AccountRequest body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling preRegisterAccountsUsingPOST(Async)");
+        }
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling preRegisterAccountsUsingPOST(Async)");
         }
         // verify the required parameter 'subscription' is set
         if (subscription == null) {
             throw new ApiException("Missing the required parameter 'subscription' when calling preRegisterAccountsUsingPOST(Async)");
         }
         
-        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOSTCall(body, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOSTCall(body, authorization, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -519,12 +562,13 @@ public class CuentasDeBeneficiariosSpeiApi {
      * Pre-registro de cuentas de beneficiarios.
      * Pre-registra una o más cuentas de beneficiario en la plataforma, proporcionando una URL donde el cuentahabiente Monex debe ingresar un valor de su llave digital para confirmar el alta de las cuentas de beneficiarios.&lt;br/&gt;Los posibles valores de &lt;i&gt;relationship&lt;/i&gt; y &lt;i&gt;kind_of_relationship&lt;/i&gt; se deben  obtener de /subscriptions/{subscription}/beneficiaries/relationships.&lt;br/&gt;&lt;br/&gt;La confirmación de registro en Monex se realiza a través de una llamada a los webhooks registrados con el evento ACCOUNT.CREATED.
      * @param body Información de la cuenta del beneficiario (required)
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return TokenRequiredResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public TokenRequiredResponse preRegisterAccountsUsingPOST(AccountRequest body, String subscription) throws ApiException {
-        ApiResponse<TokenRequiredResponse> resp = preRegisterAccountsUsingPOSTWithHttpInfo(body, subscription);
+    public TokenRequiredResponse preRegisterAccountsUsingPOST(AccountRequest body, String authorization, String subscription) throws ApiException {
+        ApiResponse<TokenRequiredResponse> resp = preRegisterAccountsUsingPOSTWithHttpInfo(body, authorization, subscription);
         return resp.getData();
     }
 
@@ -532,12 +576,13 @@ public class CuentasDeBeneficiariosSpeiApi {
      * Pre-registro de cuentas de beneficiarios.
      * Pre-registra una o más cuentas de beneficiario en la plataforma, proporcionando una URL donde el cuentahabiente Monex debe ingresar un valor de su llave digital para confirmar el alta de las cuentas de beneficiarios.&lt;br/&gt;Los posibles valores de &lt;i&gt;relationship&lt;/i&gt; y &lt;i&gt;kind_of_relationship&lt;/i&gt; se deben  obtener de /subscriptions/{subscription}/beneficiaries/relationships.&lt;br/&gt;&lt;br/&gt;La confirmación de registro en Monex se realiza a través de una llamada a los webhooks registrados con el evento ACCOUNT.CREATED.
      * @param body Información de la cuenta del beneficiario (required)
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;TokenRequiredResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TokenRequiredResponse> preRegisterAccountsUsingPOSTWithHttpInfo(AccountRequest body, String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOSTValidateBeforeCall(body, subscription, null, null);
+    public ApiResponse<TokenRequiredResponse> preRegisterAccountsUsingPOSTWithHttpInfo(AccountRequest body, String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOSTValidateBeforeCall(body, authorization, subscription, null, null);
         Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -546,12 +591,13 @@ public class CuentasDeBeneficiariosSpeiApi {
      * Pre-registro de cuentas de beneficiarios. (asynchronously)
      * Pre-registra una o más cuentas de beneficiario en la plataforma, proporcionando una URL donde el cuentahabiente Monex debe ingresar un valor de su llave digital para confirmar el alta de las cuentas de beneficiarios.&lt;br/&gt;Los posibles valores de &lt;i&gt;relationship&lt;/i&gt; y &lt;i&gt;kind_of_relationship&lt;/i&gt; se deben  obtener de /subscriptions/{subscription}/beneficiaries/relationships.&lt;br/&gt;&lt;br/&gt;La confirmación de registro en Monex se realiza a través de una llamada a los webhooks registrados con el evento ACCOUNT.CREATED.
      * @param body Información de la cuenta del beneficiario (required)
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call preRegisterAccountsUsingPOSTAsync(AccountRequest body, String subscription, final ApiCallback<TokenRequiredResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call preRegisterAccountsUsingPOSTAsync(AccountRequest body, String authorization, String subscription, final ApiCallback<TokenRequiredResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -572,13 +618,14 @@ public class CuentasDeBeneficiariosSpeiApi {
             };
         }
 
-        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOSTValidateBeforeCall(body, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOSTValidateBeforeCall(body, authorization, subscription, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for removeBeneficiariesPendingUsingDELETE
+     * @param authorization Header para token (required)
      * @param requestId Identificador de los beneficiarios a eliminar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
@@ -586,7 +633,7 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call removeBeneficiariesPendingUsingDELETECall(String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call removeBeneficiariesPendingUsingDELETECall(String authorization, String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -598,6 +645,8 @@ public class CuentasDeBeneficiariosSpeiApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -625,12 +674,16 @@ public class CuentasDeBeneficiariosSpeiApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spei" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call removeBeneficiariesPendingUsingDELETEValidateBeforeCall(String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call removeBeneficiariesPendingUsingDELETEValidateBeforeCall(String authorization, String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling removeBeneficiariesPendingUsingDELETE(Async)");
+        }
         // verify the required parameter 'requestId' is set
         if (requestId == null) {
             throw new ApiException("Missing the required parameter 'requestId' when calling removeBeneficiariesPendingUsingDELETE(Async)");
@@ -640,7 +693,7 @@ public class CuentasDeBeneficiariosSpeiApi {
             throw new ApiException("Missing the required parameter 'subscription' when calling removeBeneficiariesPendingUsingDELETE(Async)");
         }
         
-        com.squareup.okhttp.Call call = removeBeneficiariesPendingUsingDELETECall(requestId, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = removeBeneficiariesPendingUsingDELETECall(authorization, requestId, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -652,37 +705,40 @@ public class CuentasDeBeneficiariosSpeiApi {
     /**
      * Eliminación de beneficiarios SPEI® sin confirmar
      * Elimina un conjunto de beneficiarios a registrar en la cuenta del cliente Monex relacionada a la suscripción, los beneficiarios no deben haber sido confirmados por el cliente.
+     * @param authorization Header para token (required)
      * @param requestId Identificador de los beneficiarios a eliminar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void removeBeneficiariesPendingUsingDELETE(String requestId, String subscription) throws ApiException {
-        removeBeneficiariesPendingUsingDELETEWithHttpInfo(requestId, subscription);
+    public void removeBeneficiariesPendingUsingDELETE(String authorization, String requestId, String subscription) throws ApiException {
+        removeBeneficiariesPendingUsingDELETEWithHttpInfo(authorization, requestId, subscription);
     }
 
     /**
      * Eliminación de beneficiarios SPEI® sin confirmar
      * Elimina un conjunto de beneficiarios a registrar en la cuenta del cliente Monex relacionada a la suscripción, los beneficiarios no deben haber sido confirmados por el cliente.
+     * @param authorization Header para token (required)
      * @param requestId Identificador de los beneficiarios a eliminar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> removeBeneficiariesPendingUsingDELETEWithHttpInfo(String requestId, String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = removeBeneficiariesPendingUsingDELETEValidateBeforeCall(requestId, subscription, null, null);
+    public ApiResponse<Void> removeBeneficiariesPendingUsingDELETEWithHttpInfo(String authorization, String requestId, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = removeBeneficiariesPendingUsingDELETEValidateBeforeCall(authorization, requestId, subscription, null, null);
         return apiClient.execute(call);
     }
 
     /**
      * Eliminación de beneficiarios SPEI® sin confirmar (asynchronously)
      * Elimina un conjunto de beneficiarios a registrar en la cuenta del cliente Monex relacionada a la suscripción, los beneficiarios no deben haber sido confirmados por el cliente.
+     * @param authorization Header para token (required)
      * @param requestId Identificador de los beneficiarios a eliminar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call removeBeneficiariesPendingUsingDELETEAsync(String requestId, String subscription, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call removeBeneficiariesPendingUsingDELETEAsync(String authorization, String requestId, String subscription, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -703,13 +759,14 @@ public class CuentasDeBeneficiariosSpeiApi {
             };
         }
 
-        com.squareup.okhttp.Call call = removeBeneficiariesPendingUsingDELETEValidateBeforeCall(requestId, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = removeBeneficiariesPendingUsingDELETEValidateBeforeCall(authorization, requestId, subscription, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
      * Build call for updateAmountLimitAccountUsingPUT
      * @param body Información de la cuenta y el monto límite a actualizar (required)
+     * @param authorization Header para token (required)
      * @param account Cuenta a actualizar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
@@ -717,7 +774,7 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateAmountLimitAccountUsingPUTCall(AmountRequest body, String account, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call updateAmountLimitAccountUsingPUTCall(AmountRequest body, String authorization, String account, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -729,6 +786,8 @@ public class CuentasDeBeneficiariosSpeiApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -756,15 +815,19 @@ public class CuentasDeBeneficiariosSpeiApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spei" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateAmountLimitAccountUsingPUTValidateBeforeCall(AmountRequest body, String account, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateAmountLimitAccountUsingPUTValidateBeforeCall(AmountRequest body, String authorization, String account, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling updateAmountLimitAccountUsingPUT(Async)");
+        }
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling updateAmountLimitAccountUsingPUT(Async)");
         }
         // verify the required parameter 'account' is set
         if (account == null) {
@@ -775,7 +838,7 @@ public class CuentasDeBeneficiariosSpeiApi {
             throw new ApiException("Missing the required parameter 'subscription' when calling updateAmountLimitAccountUsingPUT(Async)");
         }
         
-        com.squareup.okhttp.Call call = updateAmountLimitAccountUsingPUTCall(body, account, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateAmountLimitAccountUsingPUTCall(body, authorization, account, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -788,25 +851,27 @@ public class CuentasDeBeneficiariosSpeiApi {
      * Actualiza el monto límite
      * Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
      * @param body Información de la cuenta y el monto límite a actualizar (required)
+     * @param authorization Header para token (required)
      * @param account Cuenta a actualizar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void updateAmountLimitAccountUsingPUT(AmountRequest body, String account, String subscription) throws ApiException {
-        updateAmountLimitAccountUsingPUTWithHttpInfo(body, account, subscription);
+    public void updateAmountLimitAccountUsingPUT(AmountRequest body, String authorization, String account, String subscription) throws ApiException {
+        updateAmountLimitAccountUsingPUTWithHttpInfo(body, authorization, account, subscription);
     }
 
     /**
      * Actualiza el monto límite
      * Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
      * @param body Información de la cuenta y el monto límite a actualizar (required)
+     * @param authorization Header para token (required)
      * @param account Cuenta a actualizar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> updateAmountLimitAccountUsingPUTWithHttpInfo(AmountRequest body, String account, String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = updateAmountLimitAccountUsingPUTValidateBeforeCall(body, account, subscription, null, null);
+    public ApiResponse<Void> updateAmountLimitAccountUsingPUTWithHttpInfo(AmountRequest body, String authorization, String account, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = updateAmountLimitAccountUsingPUTValidateBeforeCall(body, authorization, account, subscription, null, null);
         return apiClient.execute(call);
     }
 
@@ -814,13 +879,14 @@ public class CuentasDeBeneficiariosSpeiApi {
      * Actualiza el monto límite (asynchronously)
      * Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
      * @param body Información de la cuenta y el monto límite a actualizar (required)
+     * @param authorization Header para token (required)
      * @param account Cuenta a actualizar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateAmountLimitAccountUsingPUTAsync(AmountRequest body, String account, String subscription, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateAmountLimitAccountUsingPUTAsync(AmountRequest body, String authorization, String account, String subscription, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -841,7 +907,7 @@ public class CuentasDeBeneficiariosSpeiApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateAmountLimitAccountUsingPUTValidateBeforeCall(body, account, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateAmountLimitAccountUsingPUTValidateBeforeCall(body, authorization, account, subscription, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }

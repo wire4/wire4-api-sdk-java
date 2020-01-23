@@ -41,8 +41,9 @@ public class SaldoApiTest {
      */
     @Test
     public void getBalanceUsingGETTest() throws ApiException {
+        String authorization = null;
         String subscription = null;
-        BalanceListResponse response = api.getBalanceUsingGET(subscription);
+        BalanceListResponse response = api.getBalanceUsingGET(authorization, subscription);
 
         // TODO: test validations
     }

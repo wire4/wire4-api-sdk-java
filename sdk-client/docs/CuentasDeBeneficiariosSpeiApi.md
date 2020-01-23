@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="deleteAccountUsingDELETE"></a>
 # **deleteAccountUsingDELETE**
-> deleteAccountUsingDELETE(account, subscription)
+> deleteAccountUsingDELETE(authorization, account, subscription)
 
 Elimina la cuenta del beneficiario
 
@@ -22,23 +22,16 @@ Borra la cuenta de beneficiario proporcionada relacionada al contrato pertenecie
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.CuentasDeBeneficiariosSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
+String authorization = "authorization_example"; // String | Header para token
 String account = "account_example"; // String | La cuenta del beneciario que será eliminada
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    apiInstance.deleteAccountUsingDELETE(account, subscription);
+    apiInstance.deleteAccountUsingDELETE(authorization, account, subscription);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#deleteAccountUsingDELETE");
     e.printStackTrace();
@@ -49,6 +42,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **account** | **String**| La cuenta del beneciario que será eliminada |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
@@ -58,7 +52,7 @@ null (empty response body)
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -67,7 +61,7 @@ null (empty response body)
 
 <a name="getAvailableRelationshipsMonexUsingGET"></a>
 # **getAvailableRelationshipsMonexUsingGET**
-> RelationshipsResponse getAvailableRelationshipsMonexUsingGET(subscription)
+> RelationshipsResponse getAvailableRelationshipsMonexUsingGET(authorization, subscription)
 
 Consulta de relaciones
 
@@ -76,22 +70,15 @@ Obtiene las posibles relaciones existentes para registrar beneficiarios en Monex
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.CuentasDeBeneficiariosSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | Identificador de la suscripción a esta API
 try {
-    RelationshipsResponse result = apiInstance.getAvailableRelationshipsMonexUsingGET(subscription);
+    RelationshipsResponse result = apiInstance.getAvailableRelationshipsMonexUsingGET(authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#getAvailableRelationshipsMonexUsingGET");
@@ -103,6 +90,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| Identificador de la suscripción a esta API |
 
 ### Return type
@@ -111,7 +99,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -120,7 +108,7 @@ Name | Type | Description  | Notes
 
 <a name="getBeneficiariesForAccountUsingGET"></a>
 # **getBeneficiariesForAccountUsingGET**
-> BeneficiariesResponse getBeneficiariesForAccountUsingGET(subscription, rfc)
+> BeneficiariesResponse getBeneficiariesForAccountUsingGET(authorization, subscription, account, rfc)
 
 Consulta los beneficiarios registrados
 
@@ -129,23 +117,17 @@ Obtiene los beneficiarios registrados al contrato relacionado con la suscripció
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.CuentasDeBeneficiariosSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String account = "account_example"; // String | Cuenta del beneficiario, puede ser Clabe, TDD o Celular
 String rfc = "rfc_example"; // String | RFC del beneficiario
 try {
-    BeneficiariesResponse result = apiInstance.getBeneficiariesForAccountUsingGET(subscription, rfc);
+    BeneficiariesResponse result = apiInstance.getBeneficiariesForAccountUsingGET(authorization, subscription, account, rfc);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#getBeneficiariesForAccountUsingGET");
@@ -157,7 +139,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
+ **account** | **String**| Cuenta del beneficiario, puede ser Clabe, TDD o Celular | [optional]
  **rfc** | **String**| RFC del beneficiario | [optional]
 
 ### Return type
@@ -166,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -175,7 +159,7 @@ Name | Type | Description  | Notes
 
 <a name="preRegisterAccountsUsingPOST"></a>
 # **preRegisterAccountsUsingPOST**
-> TokenRequiredResponse preRegisterAccountsUsingPOST(body, subscription)
+> TokenRequiredResponse preRegisterAccountsUsingPOST(body, authorization, subscription)
 
 Pre-registro de cuentas de beneficiarios.
 
@@ -184,23 +168,16 @@ Pre-registra una o más cuentas de beneficiario en la plataforma, proporcionando
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.CuentasDeBeneficiariosSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 AccountRequest body = new AccountRequest(); // AccountRequest | Información de la cuenta del beneficiario
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    TokenRequiredResponse result = apiInstance.preRegisterAccountsUsingPOST(body, subscription);
+    TokenRequiredResponse result = apiInstance.preRegisterAccountsUsingPOST(body, authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#preRegisterAccountsUsingPOST");
@@ -213,6 +190,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**AccountRequest**](AccountRequest.md)| Información de la cuenta del beneficiario |
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
 ### Return type
@@ -221,7 +199,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -230,7 +208,7 @@ Name | Type | Description  | Notes
 
 <a name="removeBeneficiariesPendingUsingDELETE"></a>
 # **removeBeneficiariesPendingUsingDELETE**
-> removeBeneficiariesPendingUsingDELETE(requestId, subscription)
+> removeBeneficiariesPendingUsingDELETE(authorization, requestId, subscription)
 
 Eliminación de beneficiarios SPEI® sin confirmar
 
@@ -239,23 +217,16 @@ Elimina un conjunto de beneficiarios a registrar en la cuenta del cliente Monex 
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.CuentasDeBeneficiariosSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
+String authorization = "authorization_example"; // String | Header para token
 String requestId = "requestId_example"; // String | Identificador de los beneficiarios a eliminar
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    apiInstance.removeBeneficiariesPendingUsingDELETE(requestId, subscription);
+    apiInstance.removeBeneficiariesPendingUsingDELETE(authorization, requestId, subscription);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#removeBeneficiariesPendingUsingDELETE");
     e.printStackTrace();
@@ -266,6 +237,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **requestId** | **String**| Identificador de los beneficiarios a eliminar |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
@@ -275,7 +247,7 @@ null (empty response body)
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -284,7 +256,7 @@ null (empty response body)
 
 <a name="updateAmountLimitAccountUsingPUT"></a>
 # **updateAmountLimitAccountUsingPUT**
-> updateAmountLimitAccountUsingPUT(body, account, subscription)
+> updateAmountLimitAccountUsingPUT(body, authorization, account, subscription)
 
 Actualiza el monto límite
 
@@ -293,24 +265,17 @@ Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.CuentasDeBeneficiariosSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 AmountRequest body = new AmountRequest(); // AmountRequest | Información de la cuenta y el monto límite a actualizar
+String authorization = "authorization_example"; // String | Header para token
 String account = "account_example"; // String | Cuenta a actualizar
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    apiInstance.updateAmountLimitAccountUsingPUT(body, account, subscription);
+    apiInstance.updateAmountLimitAccountUsingPUT(body, authorization, account, subscription);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#updateAmountLimitAccountUsingPUT");
     e.printStackTrace();
@@ -322,6 +287,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**AmountRequest**](AmountRequest.md)| Información de la cuenta y el monto límite a actualizar |
+ **authorization** | **String**| Header para token |
  **account** | **String**| Cuenta a actualizar |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
@@ -331,7 +297,7 @@ null (empty response body)
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
