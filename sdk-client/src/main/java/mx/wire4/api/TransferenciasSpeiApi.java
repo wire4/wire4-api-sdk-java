@@ -29,6 +29,7 @@ import java.io.IOException;
 import mx.wire4.model.Deposit;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.Payment;
+import mx.wire4.model.PaymentsRequestId;
 import mx.wire4.model.TokenRequiredResponse;
 import mx.wire4.model.TransactionsOutgoingRegister;
 
@@ -309,6 +310,140 @@ public class TransferenciasSpeiApi {
 
         com.squareup.okhttp.Call call = incomingSpeiTransactionsReportUsingGETValidateBeforeCall(subscription, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Deposit>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for outCommingSpeiRequestIdTransactionsReportUsingGET
+     * @param requestId Identificador de la petición a buscar (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call outCommingSpeiRequestIdTransactionsReportUsingGETCall(String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/subscriptions/{subscription}/transactions/outcoming/spei/{requestId}"
+            .replaceAll("\\{" + "requestId" + "\\}", apiClient.escapeString(requestId.toString()))
+            .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spei" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call outCommingSpeiRequestIdTransactionsReportUsingGETValidateBeforeCall(String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'requestId' is set
+        if (requestId == null) {
+            throw new ApiException("Missing the required parameter 'requestId' when calling outCommingSpeiRequestIdTransactionsReportUsingGET(Async)");
+        }
+        // verify the required parameter 'subscription' is set
+        if (subscription == null) {
+            throw new ApiException("Missing the required parameter 'subscription' when calling outCommingSpeiRequestIdTransactionsReportUsingGET(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = outCommingSpeiRequestIdTransactionsReportUsingGETCall(requestId, subscription, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Consulta de transferencias de salida por identificador de petición
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias  de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
+     * @param requestId Identificador de la petición a buscar (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @return PaymentsRequestId
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PaymentsRequestId outCommingSpeiRequestIdTransactionsReportUsingGET(String requestId, String subscription) throws ApiException {
+        ApiResponse<PaymentsRequestId> resp = outCommingSpeiRequestIdTransactionsReportUsingGETWithHttpInfo(requestId, subscription);
+        return resp.getData();
+    }
+
+    /**
+     * Consulta de transferencias de salida por identificador de petición
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias  de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
+     * @param requestId Identificador de la petición a buscar (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @return ApiResponse&lt;PaymentsRequestId&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PaymentsRequestId> outCommingSpeiRequestIdTransactionsReportUsingGETWithHttpInfo(String requestId, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = outCommingSpeiRequestIdTransactionsReportUsingGETValidateBeforeCall(requestId, subscription, null, null);
+        Type localVarReturnType = new TypeToken<PaymentsRequestId>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Consulta de transferencias de salida por identificador de petición (asynchronously)
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias  de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
+     * @param requestId Identificador de la petición a buscar (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call outCommingSpeiRequestIdTransactionsReportUsingGETAsync(String requestId, String subscription, final ApiCallback<PaymentsRequestId> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = outCommingSpeiRequestIdTransactionsReportUsingGETValidateBeforeCall(requestId, subscription, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PaymentsRequestId>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

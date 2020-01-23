@@ -16,6 +16,7 @@ import mx.wire4.ApiException;
 import mx.wire4.model.Deposit;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.Payment;
+import mx.wire4.model.PaymentsRequestId;
 import mx.wire4.model.TokenRequiredResponse;
 import mx.wire4.model.TransactionsOutgoingRegister;
 import org.junit.Test;
@@ -62,6 +63,22 @@ public class TransferenciasSpeiApiTest {
     public void incomingSpeiTransactionsReportUsingGETTest() throws ApiException {
         String subscription = null;
         List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(subscription);
+
+        // TODO: test validations
+    }
+    /**
+     * Consulta de transferencias de salida por identificador de petición
+     *
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias  de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void outCommingSpeiRequestIdTransactionsReportUsingGETTest() throws ApiException {
+        String requestId = null;
+        String subscription = null;
+        PaymentsRequestId response = api.outCommingSpeiRequestIdTransactionsReportUsingGET(requestId, subscription);
 
         // TODO: test validations
     }

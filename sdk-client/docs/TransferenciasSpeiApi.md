@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**dropTransactionsPendingUsingDELETE**](TransferenciasSpeiApi.md#dropTransactionsPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/transactions/outcoming/spei/request/{requestId} | Eliminación de transferencias SPEI® pendientes
 [**incomingSpeiTransactionsReportUsingGET**](TransferenciasSpeiApi.md#incomingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/incoming/spei | Consulta de transferencias recibidas
+[**outCommingSpeiRequestIdTransactionsReportUsingGET**](TransferenciasSpeiApi.md#outCommingSpeiRequestIdTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei/{requestId} | Consulta de transferencias de salida por identificador de petición
 [**outgoingSpeiTransactionsReportUsingGET**](TransferenciasSpeiApi.md#outgoingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei | Consulta de transferencias realizadas
 [**registerOutgoingSpeiTransactionUsingPOST**](TransferenciasSpeiApi.md#registerOutgoingSpeiTransactionUsingPOST) | **POST** /subscriptions/{subscription}/transactions/outcoming/spei | Registro de transferencias
 
@@ -106,6 +107,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List&lt;Deposit&gt;**](Deposit.md)
+
+### Authorization
+
+[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="outCommingSpeiRequestIdTransactionsReportUsingGET"></a>
+# **outCommingSpeiRequestIdTransactionsReportUsingGET**
+> PaymentsRequestId outCommingSpeiRequestIdTransactionsReportUsingGET(requestId, subscription)
+
+Consulta de transferencias de salida por identificador de petición
+
+Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias  de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
+
+### Example
+```java
+// Import classes:
+//import mx.wire4.ApiClient;
+//import mx.wire4.ApiException;
+//import mx.wire4.Configuration;
+//import mx.wire4.auth.*;
+//import mx.wire4.api.TransferenciasSpeiApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
+OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
+wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
+
+TransferenciasSpeiApi apiInstance = new TransferenciasSpeiApi();
+String requestId = "requestId_example"; // String | Identificador de la petición a buscar
+String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+try {
+    PaymentsRequestId result = apiInstance.outCommingSpeiRequestIdTransactionsReportUsingGET(requestId, subscription);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling TransferenciasSpeiApi#outCommingSpeiRequestIdTransactionsReportUsingGET");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **requestId** | **String**| Identificador de la petición a buscar |
+ **subscription** | **String**| El identificador de la suscripción a esta API |
+
+### Return type
+
+[**PaymentsRequestId**](PaymentsRequestId.md)
 
 ### Authorization
 

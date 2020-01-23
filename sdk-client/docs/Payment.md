@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **account** | **String** | Cuenta emisora |  [optional]
 **amount** | [**BigDecimal**](BigDecimal.md) | Monto de la transferencia |  [optional]
 **beneficiaryAccount** | **String** | Cuenta del beneficiario |  [optional]
-**beneficiaryBank** | [**MessageInstitution**](MessageInstitution.md) |  |  [optional]
+**beneficiaryBank** | [**Institution**](Institution.md) |  |  [optional]
 **beneficiaryName** | **String** | Nombre del Beneficiario |  [optional]
 **cep** | [**MessageCEP**](MessageCEP.md) |  |  [optional]
 **claveRastreo** | **String** | Clave de rastreo de la transferencia |  [optional]

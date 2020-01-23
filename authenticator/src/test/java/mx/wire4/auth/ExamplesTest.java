@@ -1212,4 +1212,47 @@ public class ExamplesTest {
             return;
         }
     }
+
+    @Test
+    public void outCommingSpeiRequestIdTransactionsReportUsingGET() {
+
+        // Create the api component
+        final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
+
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+
+        // Configure OAuth2 access token for authorization: oauth2
+        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
+
+        try {
+
+            // Obtain an access token use password flow and scope "spei_admin"
+            final String bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+            // Add the bearer token to request
+            oauth2.setAccessToken(bearer);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = SUBSCRIPTION;
+        final String orderId = "5fec50a8-d987-4e11-b23e-606ca296712b"; // null for no filter
+        try {
+
+            // Obtain the response
+
+            final PaymentsRequestId paymentsRequestId = api.outCommingSpeiRequestIdTransactionsReportUsingGET(subscription, orderId);
+
+            System.out.println("Response:" + paymentsRequestId);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
 }

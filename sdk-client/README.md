@@ -126,6 +126,7 @@ Class | Method | HTTP request | Description
 *SuscripcionesApi* | [**removeSubscriptionPendingStatusUsingDELETE**](docs/SuscripcionesApi.md#removeSubscriptionPendingStatusUsingDELETE) | **DELETE** /subscriptions/pre-subscription/{subscription} | Elimna una pre-suscripción
 *TransferenciasSpeiApi* | [**dropTransactionsPendingUsingDELETE**](docs/TransferenciasSpeiApi.md#dropTransactionsPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/transactions/outcoming/spei/request/{requestId} | Eliminación de transferencias SPEI® pendientes
 *TransferenciasSpeiApi* | [**incomingSpeiTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#incomingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/incoming/spei | Consulta de transferencias recibidas
+*TransferenciasSpeiApi* | [**outCommingSpeiRequestIdTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#outCommingSpeiRequestIdTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei/{requestId} | Consulta de transferencias de salida por identificador de petición
 *TransferenciasSpeiApi* | [**outgoingSpeiTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#outgoingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei | Consulta de transferencias realizadas
 *TransferenciasSpeiApi* | [**registerOutgoingSpeiTransactionUsingPOST**](docs/TransferenciasSpeiApi.md#registerOutgoingSpeiTransactionUsingPOST) | **POST** /subscriptions/{subscription}/transactions/outcoming/spei | Registro de transferencias
 *TransferenciasSpidApi* | [**getSpidClassificationsUsingGET**](docs/TransferenciasSpidApi.md#getSpidClassificationsUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/spid/classifications | Consulta las clasificaciones para operaciones con SPID
@@ -166,6 +167,7 @@ Class | Method | HTTP request | Description
  - [MessageSubscription](docs/MessageSubscription.md)
  - [MessageWebHook](docs/MessageWebHook.md)
  - [Payment](docs/Payment.md)
+ - [PaymentsRequestId](docs/PaymentsRequestId.md)
  - [Person](docs/Person.md)
  - [PreEnrollmentData](docs/PreEnrollmentData.md)
  - [PreEnrollmentResponse](docs/PreEnrollmentResponse.md)

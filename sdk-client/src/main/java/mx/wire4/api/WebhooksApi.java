@@ -69,7 +69,7 @@ public class WebhooksApi {
         
         // create path and map variables
         String localVarPath = "/webhooks/{id}"
-            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id));
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
