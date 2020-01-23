@@ -45,9 +45,10 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      */
     @Test
     public void deleteAccountUsingDELETETest() throws ApiException {
+        String authorization = null;
         String account = null;
         String subscription = null;
-        api.deleteAccountUsingDELETE(account, subscription);
+        api.deleteAccountUsingDELETE(authorization, account, subscription);
 
         // TODO: test validations
     }
@@ -61,8 +62,9 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      */
     @Test
     public void getAvailableRelationshipsMonexUsingGETTest() throws ApiException {
+        String authorization = null;
         String subscription = null;
-        RelationshipsResponse response = api.getAvailableRelationshipsMonexUsingGET(subscription);
+        RelationshipsResponse response = api.getAvailableRelationshipsMonexUsingGET(authorization, subscription);
 
         // TODO: test validations
     }
@@ -76,9 +78,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      */
     @Test
     public void getBeneficiariesForAccountUsingGETTest() throws ApiException {
+        String authorization = null;
         String subscription = null;
+        String account = null;
         String rfc = null;
-        BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(subscription, rfc);
+        BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(authorization, subscription, account, rfc);
 
         // TODO: test validations
     }
@@ -93,8 +97,9 @@ public class CuentasDeBeneficiariosSpeiApiTest {
     @Test
     public void preRegisterAccountsUsingPOSTTest() throws ApiException {
         AccountRequest body = null;
+        String authorization = null;
         String subscription = null;
-        TokenRequiredResponse response = api.preRegisterAccountsUsingPOST(body, subscription);
+        TokenRequiredResponse response = api.preRegisterAccountsUsingPOST(body, authorization, subscription);
 
         // TODO: test validations
     }
@@ -108,9 +113,10 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      */
     @Test
     public void removeBeneficiariesPendingUsingDELETETest() throws ApiException {
+        String authorization = null;
         String requestId = null;
         String subscription = null;
-        api.removeBeneficiariesPendingUsingDELETE(requestId, subscription);
+        api.removeBeneficiariesPendingUsingDELETE(authorization, requestId, subscription);
 
         // TODO: test validations
     }
@@ -125,9 +131,10 @@ public class CuentasDeBeneficiariosSpeiApiTest {
     @Test
     public void updateAmountLimitAccountUsingPUTTest() throws ApiException {
         AmountRequest body = null;
+        String authorization = null;
         String account = null;
         String subscription = null;
-        api.updateAmountLimitAccountUsingPUT(body, account, subscription);
+        api.updateAmountLimitAccountUsingPUT(body, authorization, account, subscription);
 
         // TODO: test validations
     }

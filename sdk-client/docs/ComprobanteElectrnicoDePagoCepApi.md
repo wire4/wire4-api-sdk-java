@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 <a name="obtainTransactionCepUsingPOST"></a>
 # **obtainTransactionCepUsingPOST**
-> CepResponse obtainTransactionCepUsingPOST(body)
+> CepResponse obtainTransactionCepUsingPOST(body, authorization)
 
 Consulta de CEP
 
@@ -17,22 +17,15 @@ Consulta el CEP de un pago realizado a través del SPEI, si es que este se encue
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.ComprobanteElectrnicoDePagoCepApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app
-OAuth wire4_aut_app = (OAuth) defaultClient.getAuthentication("wire4_aut_app");
-wire4_aut_app.setAccessToken("YOUR ACCESS TOKEN");
 
 ComprobanteElectrnicoDePagoCepApi apiInstance = new ComprobanteElectrnicoDePagoCepApi();
 CepSearchBanxico body = new CepSearchBanxico(); // CepSearchBanxico | Información para buscar un CEP
+String authorization = "authorization_example"; // String | Header para token
 try {
-    CepResponse result = apiInstance.obtainTransactionCepUsingPOST(body);
+    CepResponse result = apiInstance.obtainTransactionCepUsingPOST(body, authorization);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ComprobanteElectrnicoDePagoCepApi#obtainTransactionCepUsingPOST");
@@ -45,6 +38,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CepSearchBanxico**](CepSearchBanxico.md)| Información para buscar un CEP |
+ **authorization** | **String**| Header para token |
 
 ### Return type
 
@@ -52,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app](../README.md#wire4_aut_app)
+No authorization required
 
 ### HTTP request headers
 

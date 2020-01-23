@@ -41,8 +41,9 @@ public class FacturasApiTest {
      */
     @Test
     public void billingsReportByIdUsingGETTest() throws ApiException {
+        String authorization = null;
         String id = null;
-        Billing response = api.billingsReportByIdUsingGET(id);
+        Billing response = api.billingsReportByIdUsingGET(authorization, id);
 
         // TODO: test validations
     }
@@ -56,8 +57,9 @@ public class FacturasApiTest {
      */
     @Test
     public void billingsReportUsingGETTest() throws ApiException {
+        String authorization = null;
         String period = null;
-        List<Billing> response = api.billingsReportUsingGET(period);
+        List<Billing> response = api.billingsReportUsingGET(authorization, period);
 
         // TODO: test validations
     }

@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 <a name="getBalanceUsingGET"></a>
 # **getBalanceUsingGET**
-> BalanceListResponse getBalanceUsingGET(subscription)
+> BalanceListResponse getBalanceUsingGET(authorization, subscription)
 
 Consulta los saldo de una cuenta
 
@@ -17,22 +17,15 @@ Obtiene el de las divisas que se manejen en el contrato.
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.SaldoApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 SaldoApi apiInstance = new SaldoApi();
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    BalanceListResponse result = apiInstance.getBalanceUsingGET(subscription);
+    BalanceListResponse result = apiInstance.getBalanceUsingGET(authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SaldoApi#getBalanceUsingGET");
@@ -44,6 +37,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
 ### Return type
@@ -52,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 

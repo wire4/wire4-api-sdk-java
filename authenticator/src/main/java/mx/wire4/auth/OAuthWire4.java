@@ -100,7 +100,7 @@ public class OAuthWire4 {
                         StringUtils.contains(this.tokenCachedApp.getToken().scope().toString(), scope) &&
                         DateTime.now().before(this.tokenCachedApp.getToken().expirationDate())) {
 
-                    return this.tokenCachedApp.getToken().accessToken().toString();
+                    return formatToHeader(this.tokenCachedApp.getToken().accessToken().toString());
                 }
 
                 // Create HttpRequestExecutor to execute HTTP requests
@@ -110,6 +110,7 @@ public class OAuthWire4 {
                 final OAuth2AccessToken token = new ClientCredentialsGrant(buildOAuthClient(),
                         new BasicScope(scope)).accessToken(executor);
 
+
                 this.tokenCachedApp.setToken(token);
                 accessToken = token.accessToken().toString();
             } catch (IOException | ProtocolError | ProtocolException e) {
@@ -117,8 +118,12 @@ public class OAuthWire4 {
                 throw new ApiException(e);
             }
 
-            return accessToken;
+            return formatToHeader(accessToken);
         }
+    }
+
+    private String formatToHeader(String token){
+        return "Bearer "+token;
     }
 
     public String obtainAccessTokenAppUser(final String userKey, final String secretKey,
@@ -138,7 +143,7 @@ public class OAuthWire4 {
 
                     if (DateTime.now().before(cachedToken.getToken().expirationDate())) {
 
-                        return cachedToken.getToken().accessToken().toString();
+                        return formatToHeader(cachedToken.getToken().accessToken().toString());
                     } else {
 
                         grant = new TokenRefreshGrant(buildOAuthClient(), cachedToken.getToken());
@@ -161,7 +166,7 @@ public class OAuthWire4 {
                 throw new ApiException(e);
             }
 
-            return accessToken;
+            return formatToHeader(accessToken);
         }
     }
 

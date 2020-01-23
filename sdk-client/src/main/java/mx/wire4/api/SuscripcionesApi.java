@@ -58,12 +58,13 @@ public class SuscripcionesApi {
     /**
      * Build call for preEnrollmentMonexUserUsingPOST
      * @param body Información para el enrolamiento (required)
+     * @param authorization Header para token (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call preEnrollmentMonexUserUsingPOSTCall(PreEnrollmentData body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call preEnrollmentMonexUserUsingPOSTCall(PreEnrollmentData body, String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -73,6 +74,8 @@ public class SuscripcionesApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -100,18 +103,22 @@ public class SuscripcionesApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call preEnrollmentMonexUserUsingPOSTValidateBeforeCall(PreEnrollmentData body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call preEnrollmentMonexUserUsingPOSTValidateBeforeCall(PreEnrollmentData body, String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling preEnrollmentMonexUserUsingPOST(Async)");
         }
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling preEnrollmentMonexUserUsingPOST(Async)");
+        }
         
-        com.squareup.okhttp.Call call = preEnrollmentMonexUserUsingPOSTCall(body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = preEnrollmentMonexUserUsingPOSTCall(body, authorization, progressListener, progressRequestListener);
         return call;
 
         
@@ -124,11 +131,12 @@ public class SuscripcionesApi {
      * registra una pre-suscripción
      * Pre-registra una suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envia un webhook con el evento ENROLLMENT.CREATED, el cual contiene los datos de acceso.
      * @param body Información para el enrolamiento (required)
+     * @param authorization Header para token (required)
      * @return PreEnrollmentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public PreEnrollmentResponse preEnrollmentMonexUserUsingPOST(PreEnrollmentData body) throws ApiException {
-        ApiResponse<PreEnrollmentResponse> resp = preEnrollmentMonexUserUsingPOSTWithHttpInfo(body);
+    public PreEnrollmentResponse preEnrollmentMonexUserUsingPOST(PreEnrollmentData body, String authorization) throws ApiException {
+        ApiResponse<PreEnrollmentResponse> resp = preEnrollmentMonexUserUsingPOSTWithHttpInfo(body, authorization);
         return resp.getData();
     }
 
@@ -136,11 +144,12 @@ public class SuscripcionesApi {
      * registra una pre-suscripción
      * Pre-registra una suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envia un webhook con el evento ENROLLMENT.CREATED, el cual contiene los datos de acceso.
      * @param body Información para el enrolamiento (required)
+     * @param authorization Header para token (required)
      * @return ApiResponse&lt;PreEnrollmentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<PreEnrollmentResponse> preEnrollmentMonexUserUsingPOSTWithHttpInfo(PreEnrollmentData body) throws ApiException {
-        com.squareup.okhttp.Call call = preEnrollmentMonexUserUsingPOSTValidateBeforeCall(body, null, null);
+    public ApiResponse<PreEnrollmentResponse> preEnrollmentMonexUserUsingPOSTWithHttpInfo(PreEnrollmentData body, String authorization) throws ApiException {
+        com.squareup.okhttp.Call call = preEnrollmentMonexUserUsingPOSTValidateBeforeCall(body, authorization, null, null);
         Type localVarReturnType = new TypeToken<PreEnrollmentResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -149,11 +158,12 @@ public class SuscripcionesApi {
      * registra una pre-suscripción (asynchronously)
      * Pre-registra una suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envia un webhook con el evento ENROLLMENT.CREATED, el cual contiene los datos de acceso.
      * @param body Información para el enrolamiento (required)
+     * @param authorization Header para token (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call preEnrollmentMonexUserUsingPOSTAsync(PreEnrollmentData body, final ApiCallback<PreEnrollmentResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call preEnrollmentMonexUserUsingPOSTAsync(PreEnrollmentData body, String authorization, final ApiCallback<PreEnrollmentResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -174,20 +184,21 @@ public class SuscripcionesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = preEnrollmentMonexUserUsingPOSTValidateBeforeCall(body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = preEnrollmentMonexUserUsingPOSTValidateBeforeCall(body, authorization, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<PreEnrollmentResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for removeEnrollmentUserUsingDELETE
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call removeEnrollmentUserUsingDELETECall(String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call removeEnrollmentUserUsingDELETECall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -198,6 +209,8 @@ public class SuscripcionesApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -225,18 +238,22 @@ public class SuscripcionesApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spei" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call removeEnrollmentUserUsingDELETEValidateBeforeCall(String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call removeEnrollmentUserUsingDELETEValidateBeforeCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling removeEnrollmentUserUsingDELETE(Async)");
+        }
         // verify the required parameter 'subscription' is set
         if (subscription == null) {
             throw new ApiException("Missing the required parameter 'subscription' when calling removeEnrollmentUserUsingDELETE(Async)");
         }
         
-        com.squareup.okhttp.Call call = removeEnrollmentUserUsingDELETECall(subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = removeEnrollmentUserUsingDELETECall(authorization, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -248,34 +265,37 @@ public class SuscripcionesApi {
     /**
      * Elimna una suscripción por id
      * Elimina una suscripción, una ves eliminada la suscripcion ya no se podran realizar operacions en el API uilizando esta suscripción
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void removeEnrollmentUserUsingDELETE(String subscription) throws ApiException {
-        removeEnrollmentUserUsingDELETEWithHttpInfo(subscription);
+    public void removeEnrollmentUserUsingDELETE(String authorization, String subscription) throws ApiException {
+        removeEnrollmentUserUsingDELETEWithHttpInfo(authorization, subscription);
     }
 
     /**
      * Elimna una suscripción por id
      * Elimina una suscripción, una ves eliminada la suscripcion ya no se podran realizar operacions en el API uilizando esta suscripción
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> removeEnrollmentUserUsingDELETEWithHttpInfo(String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = removeEnrollmentUserUsingDELETEValidateBeforeCall(subscription, null, null);
+    public ApiResponse<Void> removeEnrollmentUserUsingDELETEWithHttpInfo(String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = removeEnrollmentUserUsingDELETEValidateBeforeCall(authorization, subscription, null, null);
         return apiClient.execute(call);
     }
 
     /**
      * Elimna una suscripción por id (asynchronously)
      * Elimina una suscripción, una ves eliminada la suscripcion ya no se podran realizar operacions en el API uilizando esta suscripción
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call removeEnrollmentUserUsingDELETEAsync(String subscription, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call removeEnrollmentUserUsingDELETEAsync(String authorization, String subscription, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -296,19 +316,20 @@ public class SuscripcionesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = removeEnrollmentUserUsingDELETEValidateBeforeCall(subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = removeEnrollmentUserUsingDELETEValidateBeforeCall(authorization, subscription, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
      * Build call for removeSubscriptionPendingStatusUsingDELETE
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call removeSubscriptionPendingStatusUsingDELETECall(String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call removeSubscriptionPendingStatusUsingDELETECall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -319,6 +340,8 @@ public class SuscripcionesApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -346,18 +369,22 @@ public class SuscripcionesApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call removeSubscriptionPendingStatusUsingDELETEValidateBeforeCall(String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call removeSubscriptionPendingStatusUsingDELETEValidateBeforeCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling removeSubscriptionPendingStatusUsingDELETE(Async)");
+        }
         // verify the required parameter 'subscription' is set
         if (subscription == null) {
             throw new ApiException("Missing the required parameter 'subscription' when calling removeSubscriptionPendingStatusUsingDELETE(Async)");
         }
         
-        com.squareup.okhttp.Call call = removeSubscriptionPendingStatusUsingDELETECall(subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = removeSubscriptionPendingStatusUsingDELETECall(authorization, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -369,34 +396,37 @@ public class SuscripcionesApi {
     /**
      * Elimna una pre-suscripción
      * Se elimina una pre-suscripción, sólo se elimina en caso de que cliente monex no haya concedio su autorización de acceso, es decir que la pre-suscripcion este pendiente.
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void removeSubscriptionPendingStatusUsingDELETE(String subscription) throws ApiException {
-        removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(subscription);
+    public void removeSubscriptionPendingStatusUsingDELETE(String authorization, String subscription) throws ApiException {
+        removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(authorization, subscription);
     }
 
     /**
      * Elimna una pre-suscripción
      * Se elimina una pre-suscripción, sólo se elimina en caso de que cliente monex no haya concedio su autorización de acceso, es decir que la pre-suscripcion este pendiente.
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = removeSubscriptionPendingStatusUsingDELETEValidateBeforeCall(subscription, null, null);
+    public ApiResponse<Void> removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = removeSubscriptionPendingStatusUsingDELETEValidateBeforeCall(authorization, subscription, null, null);
         return apiClient.execute(call);
     }
 
     /**
      * Elimna una pre-suscripción (asynchronously)
      * Se elimina una pre-suscripción, sólo se elimina en caso de que cliente monex no haya concedio su autorización de acceso, es decir que la pre-suscripcion este pendiente.
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call removeSubscriptionPendingStatusUsingDELETEAsync(String subscription, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call removeSubscriptionPendingStatusUsingDELETEAsync(String authorization, String subscription, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -417,7 +447,7 @@ public class SuscripcionesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = removeSubscriptionPendingStatusUsingDELETEValidateBeforeCall(subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = removeSubscriptionPendingStatusUsingDELETEValidateBeforeCall(authorization, subscription, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }

@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 <a name="sendContactUsingPOST"></a>
 # **sendContactUsingPOST**
-> sendContactUsingPOST(body)
+> sendContactUsingPOST(body, authorization)
 
 Solicitud de contacto
 
@@ -17,22 +17,15 @@ Notifica a un asesor Monex para que se ponga en contacto con un posible cliente.
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.ContactoApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app
-OAuth wire4_aut_app = (OAuth) defaultClient.getAuthentication("wire4_aut_app");
-wire4_aut_app.setAccessToken("YOUR ACCESS TOKEN");
 
 ContactoApi apiInstance = new ContactoApi();
 ContactRequest body = new ContactRequest(); // ContactRequest | Información del contacto
+String authorization = "authorization_example"; // String | Header para token
 try {
-    apiInstance.sendContactUsingPOST(body);
+    apiInstance.sendContactUsingPOST(body, authorization);
 } catch (ApiException e) {
     System.err.println("Exception when calling ContactoApi#sendContactUsingPOST");
     e.printStackTrace();
@@ -44,6 +37,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**ContactRequest**](ContactRequest.md)| Información del contacto |
+ **authorization** | **String**| Header para token |
 
 ### Return type
 
@@ -51,7 +45,7 @@ null (empty response body)
 
 ### Authorization
 
-[wire4_aut_app](../README.md#wire4_aut_app)
+No authorization required
 
 ### HTTP request headers
 

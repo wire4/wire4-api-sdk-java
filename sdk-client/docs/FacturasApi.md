@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="billingsReportByIdUsingGET"></a>
 # **billingsReportByIdUsingGET**
-> Billing billingsReportByIdUsingGET(id)
+> Billing billingsReportByIdUsingGET(authorization, id)
 
 Consulta de facturas por identificador
 
@@ -18,22 +18,15 @@ Consulta las facturas emitidas por conceptos de uso de la plataforma y operacion
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.FacturasApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app
-OAuth wire4_aut_app = (OAuth) defaultClient.getAuthentication("wire4_aut_app");
-wire4_aut_app.setAccessToken("YOUR ACCESS TOKEN");
 
 FacturasApi apiInstance = new FacturasApi();
+String authorization = "authorization_example"; // String | Header para token
 String id = "id_example"; // String | Identificador de la factura
 try {
-    Billing result = apiInstance.billingsReportByIdUsingGET(id);
+    Billing result = apiInstance.billingsReportByIdUsingGET(authorization, id);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling FacturasApi#billingsReportByIdUsingGET");
@@ -45,6 +38,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **id** | **String**| Identificador de la factura |
 
 ### Return type
@@ -53,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app](../README.md#wire4_aut_app)
+No authorization required
 
 ### HTTP request headers
 
@@ -62,7 +56,7 @@ Name | Type | Description  | Notes
 
 <a name="billingsReportUsingGET"></a>
 # **billingsReportUsingGET**
-> List&lt;Billing&gt; billingsReportUsingGET(period)
+> List&lt;Billing&gt; billingsReportUsingGET(authorization, period)
 
 Consulta de facturas
 
@@ -71,22 +65,15 @@ Consulta las facturas emitidas por conceptos de uso de la plataforma y operacion
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.FacturasApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app
-OAuth wire4_aut_app = (OAuth) defaultClient.getAuthentication("wire4_aut_app");
-wire4_aut_app.setAccessToken("YOUR ACCESS TOKEN");
 
 FacturasApi apiInstance = new FacturasApi();
+String authorization = "authorization_example"; // String | Header para token
 String period = "period_example"; // String | Filtro de fecha yyyy-MM
 try {
-    List<Billing> result = apiInstance.billingsReportUsingGET(period);
+    List<Billing> result = apiInstance.billingsReportUsingGET(authorization, period);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling FacturasApi#billingsReportUsingGET");
@@ -98,6 +85,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **period** | **String**| Filtro de fecha yyyy-MM | [optional]
 
 ### Return type
@@ -106,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app](../README.md#wire4_aut_app)
+No authorization required
 
 ### HTTP request headers
 

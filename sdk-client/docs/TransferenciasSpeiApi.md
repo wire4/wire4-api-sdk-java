@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="dropTransactionsPendingUsingDELETE"></a>
 # **dropTransactionsPendingUsingDELETE**
-> dropTransactionsPendingUsingDELETE(requestId, subscription)
+> dropTransactionsPendingUsingDELETE(authorization, requestId, subscription)
 
 Eliminación de transferencias SPEI® pendientes
 
@@ -21,23 +21,16 @@ Elimina un conjunto de transferencias a realizar en la cuenta del cliente Monex 
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.TransferenciasSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 TransferenciasSpeiApi apiInstance = new TransferenciasSpeiApi();
+String authorization = "authorization_example"; // String | Header para token
 String requestId = "requestId_example"; // String | Identificador de las transferencias a eliminar
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    apiInstance.dropTransactionsPendingUsingDELETE(requestId, subscription);
+    apiInstance.dropTransactionsPendingUsingDELETE(authorization, requestId, subscription);
 } catch (ApiException e) {
     System.err.println("Exception when calling TransferenciasSpeiApi#dropTransactionsPendingUsingDELETE");
     e.printStackTrace();
@@ -48,6 +41,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **requestId** | **String**| Identificador de las transferencias a eliminar |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
@@ -57,7 +51,7 @@ null (empty response body)
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -66,7 +60,7 @@ null (empty response body)
 
 <a name="incomingSpeiTransactionsReportUsingGET"></a>
 # **incomingSpeiTransactionsReportUsingGET**
-> List&lt;Deposit&gt; incomingSpeiTransactionsReportUsingGET(subscription)
+> List&lt;Deposit&gt; incomingSpeiTransactionsReportUsingGET(authorization, subscription)
 
 Consulta de transferencias recibidas
 
@@ -75,22 +69,15 @@ Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta d
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.TransferenciasSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 TransferenciasSpeiApi apiInstance = new TransferenciasSpeiApi();
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    List<Deposit> result = apiInstance.incomingSpeiTransactionsReportUsingGET(subscription);
+    List<Deposit> result = apiInstance.incomingSpeiTransactionsReportUsingGET(authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TransferenciasSpeiApi#incomingSpeiTransactionsReportUsingGET");
@@ -102,6 +89,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
 ### Return type
@@ -110,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -119,7 +107,7 @@ Name | Type | Description  | Notes
 
 <a name="outCommingSpeiRequestIdTransactionsReportUsingGET"></a>
 # **outCommingSpeiRequestIdTransactionsReportUsingGET**
-> PaymentsRequestId outCommingSpeiRequestIdTransactionsReportUsingGET(requestId, subscription)
+> PaymentsRequestId outCommingSpeiRequestIdTransactionsReportUsingGET(authorization, requestId, subscription)
 
 Consulta de transferencias de salida por identificador de petición
 
@@ -128,23 +116,16 @@ Consulta las transferencias de salida registradas en una petición, las transfer
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.TransferenciasSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 TransferenciasSpeiApi apiInstance = new TransferenciasSpeiApi();
+String authorization = "authorization_example"; // String | Header para token
 String requestId = "requestId_example"; // String | Identificador de la petición a buscar
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    PaymentsRequestId result = apiInstance.outCommingSpeiRequestIdTransactionsReportUsingGET(requestId, subscription);
+    PaymentsRequestId result = apiInstance.outCommingSpeiRequestIdTransactionsReportUsingGET(authorization, requestId, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TransferenciasSpeiApi#outCommingSpeiRequestIdTransactionsReportUsingGET");
@@ -156,6 +137,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **requestId** | **String**| Identificador de la petición a buscar |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
@@ -165,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -174,7 +156,7 @@ Name | Type | Description  | Notes
 
 <a name="outgoingSpeiTransactionsReportUsingGET"></a>
 # **outgoingSpeiTransactionsReportUsingGET**
-> List&lt;Payment&gt; outgoingSpeiTransactionsReportUsingGET(subscription, orderId)
+> List&lt;Payment&gt; outgoingSpeiTransactionsReportUsingGET(authorization, subscription, orderId)
 
 Consulta de transferencias realizadas
 
@@ -183,23 +165,16 @@ Consulta las transferencias realizadas en la cuenta del cliente Monex relacionad
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.TransferenciasSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 TransferenciasSpeiApi apiInstance = new TransferenciasSpeiApi();
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 String orderId = "orderId_example"; // String | Identificador de la orden a buscar
 try {
-    List<Payment> result = apiInstance.outgoingSpeiTransactionsReportUsingGET(subscription, orderId);
+    List<Payment> result = apiInstance.outgoingSpeiTransactionsReportUsingGET(authorization, subscription, orderId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TransferenciasSpeiApi#outgoingSpeiTransactionsReportUsingGET");
@@ -211,6 +186,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
  **orderId** | **String**| Identificador de la orden a buscar | [optional]
 
@@ -220,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -229,7 +205,7 @@ Name | Type | Description  | Notes
 
 <a name="registerOutgoingSpeiTransactionUsingPOST"></a>
 # **registerOutgoingSpeiTransactionUsingPOST**
-> TokenRequiredResponse registerOutgoingSpeiTransactionUsingPOST(body, subscription)
+> TokenRequiredResponse registerOutgoingSpeiTransactionUsingPOST(body, authorization, subscription)
 
 Registro de transferencias
 
@@ -238,23 +214,16 @@ Registra un conjunto de transferencias a realizar en la cuenta del cliente Monex
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.TransferenciasSpeiApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 TransferenciasSpeiApi apiInstance = new TransferenciasSpeiApi();
 TransactionsOutgoingRegister body = new TransactionsOutgoingRegister(); // TransactionsOutgoingRegister | Información de las transferencias SPEI de salida
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    TokenRequiredResponse result = apiInstance.registerOutgoingSpeiTransactionUsingPOST(body, subscription);
+    TokenRequiredResponse result = apiInstance.registerOutgoingSpeiTransactionUsingPOST(body, authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TransferenciasSpeiApi#registerOutgoingSpeiTransactionUsingPOST");
@@ -267,6 +236,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**TransactionsOutgoingRegister**](TransactionsOutgoingRegister.md)| Información de las transferencias SPEI de salida |
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
 ### Return type
@@ -275,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 

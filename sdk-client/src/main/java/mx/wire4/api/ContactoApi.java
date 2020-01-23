@@ -57,12 +57,13 @@ public class ContactoApi {
     /**
      * Build call for sendContactUsingPOST
      * @param body Información del contacto (required)
+     * @param authorization Header para token (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call sendContactUsingPOSTCall(ContactRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call sendContactUsingPOSTCall(ContactRequest body, String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -72,6 +73,8 @@ public class ContactoApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -99,18 +102,22 @@ public class ContactoApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call sendContactUsingPOSTValidateBeforeCall(ContactRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call sendContactUsingPOSTValidateBeforeCall(ContactRequest body, String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling sendContactUsingPOST(Async)");
         }
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling sendContactUsingPOST(Async)");
+        }
         
-        com.squareup.okhttp.Call call = sendContactUsingPOSTCall(body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = sendContactUsingPOSTCall(body, authorization, progressListener, progressRequestListener);
         return call;
 
         
@@ -123,21 +130,23 @@ public class ContactoApi {
      * Solicitud de contacto
      * Notifica a un asesor Monex para que se ponga en contacto con un posible cliente.
      * @param body Información del contacto (required)
+     * @param authorization Header para token (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void sendContactUsingPOST(ContactRequest body) throws ApiException {
-        sendContactUsingPOSTWithHttpInfo(body);
+    public void sendContactUsingPOST(ContactRequest body, String authorization) throws ApiException {
+        sendContactUsingPOSTWithHttpInfo(body, authorization);
     }
 
     /**
      * Solicitud de contacto
      * Notifica a un asesor Monex para que se ponga en contacto con un posible cliente.
      * @param body Información del contacto (required)
+     * @param authorization Header para token (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> sendContactUsingPOSTWithHttpInfo(ContactRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = sendContactUsingPOSTValidateBeforeCall(body, null, null);
+    public ApiResponse<Void> sendContactUsingPOSTWithHttpInfo(ContactRequest body, String authorization) throws ApiException {
+        com.squareup.okhttp.Call call = sendContactUsingPOSTValidateBeforeCall(body, authorization, null, null);
         return apiClient.execute(call);
     }
 
@@ -145,11 +154,12 @@ public class ContactoApi {
      * Solicitud de contacto (asynchronously)
      * Notifica a un asesor Monex para que se ponga en contacto con un posible cliente.
      * @param body Información del contacto (required)
+     * @param authorization Header para token (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call sendContactUsingPOSTAsync(ContactRequest body, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call sendContactUsingPOSTAsync(ContactRequest body, String authorization, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -170,7 +180,7 @@ public class ContactoApi {
             };
         }
 
-        com.squareup.okhttp.Call call = sendContactUsingPOSTValidateBeforeCall(body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = sendContactUsingPOSTValidateBeforeCall(body, authorization, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }

@@ -79,7 +79,7 @@ public class OAuthWire4Test {
                 oauth2.setAccessToken(bearer);
                 System.out.println("bearer:" + bearer);
                 api = new ContactoApi(defaultClient);
-                final ApiResponse<Void> response = api.sendContactUsingPOSTWithHttpInfo(body);
+                final ApiResponse<Void> response = api.sendContactUsingPOSTWithHttpInfo(body,"AUTHORIZATION");
                 System.out.println("response:" + response.getStatusCode());
 
                 //break;
@@ -151,7 +151,7 @@ public class OAuthWire4Test {
                 oauth2.setAccessToken(bearer);
                 System.out.println("bearer:" + bearer);
                 api = new SaldoApi(defaultClient);
-                final BalanceListResponse response = api.getBalanceUsingGET(subscription);
+                final BalanceListResponse response = api.getBalanceUsingGET("AUTHORIZATION",subscription);
                 System.out.println("response:" + response);
 
                 //break;

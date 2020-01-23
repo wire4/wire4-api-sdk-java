@@ -43,8 +43,9 @@ public class DepositantesApiTest {
      */
     @Test
     public void getDepositantsUsingGETTest() throws ApiException {
+        String authorization = null;
         String subscription = null;
-        GetDepositants response = api.getDepositantsUsingGET(subscription);
+        GetDepositants response = api.getDepositantsUsingGET(authorization, subscription);
 
         // TODO: test validations
     }
@@ -59,8 +60,9 @@ public class DepositantesApiTest {
     @Test
     public void registerDepositantsUsingPOSTTest() throws ApiException {
         DepositantsRegister body = null;
+        String authorization = null;
         String subscription = null;
-        DepositantsResponse response = api.registerDepositantsUsingPOST(body, subscription);
+        DepositantsResponse response = api.registerDepositantsUsingPOST(body, authorization, subscription);
 
         // TODO: test validations
     }

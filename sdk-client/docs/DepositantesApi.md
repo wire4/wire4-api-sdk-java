@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getDepositantsUsingGET"></a>
 # **getDepositantsUsingGET**
-> GetDepositants getDepositantsUsingGET(subscription)
+> GetDepositants getDepositantsUsingGET(authorization, subscription)
 
 Consulta de cuentas de depositantes
 
@@ -18,22 +18,15 @@ Obtiene una lista de depositantes asociados al contrato relacionado a la subscri
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.DepositantesApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 DepositantesApi apiInstance = new DepositantesApi();
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    GetDepositants result = apiInstance.getDepositantsUsingGET(subscription);
+    GetDepositants result = apiInstance.getDepositantsUsingGET(authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DepositantesApi#getDepositantsUsingGET");
@@ -45,6 +38,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
 ### Return type
@@ -53,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 
@@ -62,7 +56,7 @@ Name | Type | Description  | Notes
 
 <a name="registerDepositantsUsingPOST"></a>
 # **registerDepositantsUsingPOST**
-> DepositantsResponse registerDepositantsUsingPOST(body, subscription)
+> DepositantsResponse registerDepositantsUsingPOST(body, authorization, subscription)
 
 Registra un nuevo depositante
 
@@ -71,23 +65,16 @@ Registra un nuevo depositante en el contrato asociado a la subscripción.
 ### Example
 ```java
 // Import classes:
-//import mx.wire4.ApiClient;
 //import mx.wire4.ApiException;
-//import mx.wire4.Configuration;
-//import mx.wire4.auth.*;
 //import mx.wire4.api.DepositantesApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure OAuth2 access token for authorization: wire4_aut_app_user_spei
-OAuth wire4_aut_app_user_spei = (OAuth) defaultClient.getAuthentication("wire4_aut_app_user_spei");
-wire4_aut_app_user_spei.setAccessToken("YOUR ACCESS TOKEN");
 
 DepositantesApi apiInstance = new DepositantesApi();
 DepositantsRegister body = new DepositantsRegister(); // DepositantsRegister | Depositant info
+String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    DepositantsResponse result = apiInstance.registerDepositantsUsingPOST(body, subscription);
+    DepositantsResponse result = apiInstance.registerDepositantsUsingPOST(body, authorization, subscription);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DepositantesApi#registerDepositantsUsingPOST");
@@ -100,6 +87,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**DepositantsRegister**](DepositantsRegister.md)| Depositant info |
+ **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
 
 ### Return type
@@ -108,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[wire4_aut_app_user_spei](../README.md#wire4_aut_app_user_spei)
+No authorization required
 
 ### HTTP request headers
 

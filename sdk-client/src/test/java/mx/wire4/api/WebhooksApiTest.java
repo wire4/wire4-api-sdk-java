@@ -43,8 +43,9 @@ public class WebhooksApiTest {
      */
     @Test
     public void getWebhookTest() throws ApiException {
+        String authorization = null;
         String id = null;
-        WebhookResponse response = api.getWebhook(id);
+        WebhookResponse response = api.getWebhook(authorization, id);
 
         // TODO: test validations
     }
@@ -58,7 +59,8 @@ public class WebhooksApiTest {
      */
     @Test
     public void getWebhooksTest() throws ApiException {
-        WebhooksList response = api.getWebhooks();
+        String authorization = null;
+        WebhooksList response = api.getWebhooks(authorization);
 
         // TODO: test validations
     }
@@ -73,7 +75,8 @@ public class WebhooksApiTest {
     @Test
     public void registerWebhookTest() throws ApiException {
         WebhookRequest body = null;
-        WebhookResponse response = api.registerWebhook(body);
+        String authorization = null;
+        WebhookResponse response = api.registerWebhook(body, authorization);
 
         // TODO: test validations
     }

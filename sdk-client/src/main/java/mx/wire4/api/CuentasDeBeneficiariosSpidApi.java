@@ -58,13 +58,14 @@ public class CuentasDeBeneficiariosSpidApi {
     /**
      * Build call for preRegisterAccountsUsingPOST1
      * @param body Información de la cuenta del beneficiario (required)
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call preRegisterAccountsUsingPOST1Call(AccountSpid body, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call preRegisterAccountsUsingPOST1Call(AccountSpid body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -75,6 +76,8 @@ public class CuentasDeBeneficiariosSpidApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -102,22 +105,26 @@ public class CuentasDeBeneficiariosSpidApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spid" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call preRegisterAccountsUsingPOST1ValidateBeforeCall(AccountSpid body, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call preRegisterAccountsUsingPOST1ValidateBeforeCall(AccountSpid body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling preRegisterAccountsUsingPOST1(Async)");
+        }
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling preRegisterAccountsUsingPOST1(Async)");
         }
         // verify the required parameter 'subscription' is set
         if (subscription == null) {
             throw new ApiException("Missing the required parameter 'subscription' when calling preRegisterAccountsUsingPOST1(Async)");
         }
         
-        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOST1Call(body, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOST1Call(body, authorization, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -130,12 +137,13 @@ public class CuentasDeBeneficiariosSpidApi {
      * Pre-registro de cuentas de beneficiarios SPID
      * 
      * @param body Información de la cuenta del beneficiario (required)
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return TokenRequiredResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public TokenRequiredResponse preRegisterAccountsUsingPOST1(AccountSpid body, String subscription) throws ApiException {
-        ApiResponse<TokenRequiredResponse> resp = preRegisterAccountsUsingPOST1WithHttpInfo(body, subscription);
+    public TokenRequiredResponse preRegisterAccountsUsingPOST1(AccountSpid body, String authorization, String subscription) throws ApiException {
+        ApiResponse<TokenRequiredResponse> resp = preRegisterAccountsUsingPOST1WithHttpInfo(body, authorization, subscription);
         return resp.getData();
     }
 
@@ -143,12 +151,13 @@ public class CuentasDeBeneficiariosSpidApi {
      * Pre-registro de cuentas de beneficiarios SPID
      * 
      * @param body Información de la cuenta del beneficiario (required)
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;TokenRequiredResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TokenRequiredResponse> preRegisterAccountsUsingPOST1WithHttpInfo(AccountSpid body, String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOST1ValidateBeforeCall(body, subscription, null, null);
+    public ApiResponse<TokenRequiredResponse> preRegisterAccountsUsingPOST1WithHttpInfo(AccountSpid body, String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOST1ValidateBeforeCall(body, authorization, subscription, null, null);
         Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -157,12 +166,13 @@ public class CuentasDeBeneficiariosSpidApi {
      * Pre-registro de cuentas de beneficiarios SPID (asynchronously)
      * 
      * @param body Información de la cuenta del beneficiario (required)
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call preRegisterAccountsUsingPOST1Async(AccountSpid body, String subscription, final ApiCallback<TokenRequiredResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call preRegisterAccountsUsingPOST1Async(AccountSpid body, String authorization, String subscription, final ApiCallback<TokenRequiredResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -183,7 +193,7 @@ public class CuentasDeBeneficiariosSpidApi {
             };
         }
 
-        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOST1ValidateBeforeCall(body, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = preRegisterAccountsUsingPOST1ValidateBeforeCall(body, authorization, subscription, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

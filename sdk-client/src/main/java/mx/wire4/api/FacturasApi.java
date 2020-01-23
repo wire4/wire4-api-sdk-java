@@ -56,13 +56,14 @@ public class FacturasApi {
 
     /**
      * Build call for billingsReportByIdUsingGET
+     * @param authorization Header para token (required)
      * @param id Identificador de la factura (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call billingsReportByIdUsingGETCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call billingsReportByIdUsingGETCall(String authorization, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -73,6 +74,8 @@ public class FacturasApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -100,18 +103,22 @@ public class FacturasApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call billingsReportByIdUsingGETValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call billingsReportByIdUsingGETValidateBeforeCall(String authorization, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling billingsReportByIdUsingGET(Async)");
+        }
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling billingsReportByIdUsingGET(Async)");
         }
         
-        com.squareup.okhttp.Call call = billingsReportByIdUsingGETCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = billingsReportByIdUsingGETCall(authorization, id, progressListener, progressRequestListener);
         return call;
 
         
@@ -123,24 +130,26 @@ public class FacturasApi {
     /**
      * Consulta de facturas por identificador
      * Consulta las facturas emitidas por conceptos de uso de la plataforma y operaciones realizadas tanto de entrada como de salida. Se debe especificar el identificador de la factura
+     * @param authorization Header para token (required)
      * @param id Identificador de la factura (required)
      * @return Billing
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Billing billingsReportByIdUsingGET(String id) throws ApiException {
-        ApiResponse<Billing> resp = billingsReportByIdUsingGETWithHttpInfo(id);
+    public Billing billingsReportByIdUsingGET(String authorization, String id) throws ApiException {
+        ApiResponse<Billing> resp = billingsReportByIdUsingGETWithHttpInfo(authorization, id);
         return resp.getData();
     }
 
     /**
      * Consulta de facturas por identificador
      * Consulta las facturas emitidas por conceptos de uso de la plataforma y operaciones realizadas tanto de entrada como de salida. Se debe especificar el identificador de la factura
+     * @param authorization Header para token (required)
      * @param id Identificador de la factura (required)
      * @return ApiResponse&lt;Billing&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Billing> billingsReportByIdUsingGETWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = billingsReportByIdUsingGETValidateBeforeCall(id, null, null);
+    public ApiResponse<Billing> billingsReportByIdUsingGETWithHttpInfo(String authorization, String id) throws ApiException {
+        com.squareup.okhttp.Call call = billingsReportByIdUsingGETValidateBeforeCall(authorization, id, null, null);
         Type localVarReturnType = new TypeToken<Billing>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -148,12 +157,13 @@ public class FacturasApi {
     /**
      * Consulta de facturas por identificador (asynchronously)
      * Consulta las facturas emitidas por conceptos de uso de la plataforma y operaciones realizadas tanto de entrada como de salida. Se debe especificar el identificador de la factura
+     * @param authorization Header para token (required)
      * @param id Identificador de la factura (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call billingsReportByIdUsingGETAsync(String id, final ApiCallback<Billing> callback) throws ApiException {
+    public com.squareup.okhttp.Call billingsReportByIdUsingGETAsync(String authorization, String id, final ApiCallback<Billing> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -174,20 +184,21 @@ public class FacturasApi {
             };
         }
 
-        com.squareup.okhttp.Call call = billingsReportByIdUsingGETValidateBeforeCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = billingsReportByIdUsingGETValidateBeforeCall(authorization, id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Billing>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for billingsReportUsingGET
+     * @param authorization Header para token (required)
      * @param period Filtro de fecha yyyy-MM (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call billingsReportUsingGETCall(String period, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call billingsReportUsingGETCall(String authorization, String period, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -199,6 +210,8 @@ public class FacturasApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("period", period));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -226,14 +239,18 @@ public class FacturasApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call billingsReportUsingGETValidateBeforeCall(String period, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call billingsReportUsingGETValidateBeforeCall(String authorization, String period, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling billingsReportUsingGET(Async)");
+        }
         
-        com.squareup.okhttp.Call call = billingsReportUsingGETCall(period, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = billingsReportUsingGETCall(authorization, period, progressListener, progressRequestListener);
         return call;
 
         
@@ -245,24 +262,26 @@ public class FacturasApi {
     /**
      * Consulta de facturas
      * Consulta las facturas emitidas por conceptos de uso de la plataforma y operaciones realizadas tanto de entrada como de salida. Es posible filtrar por periodo de fecha yyyy-MM, por ejemplo 2019-11
+     * @param authorization Header para token (required)
      * @param period Filtro de fecha yyyy-MM (optional)
      * @return List&lt;Billing&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Billing> billingsReportUsingGET(String period) throws ApiException {
-        ApiResponse<List<Billing>> resp = billingsReportUsingGETWithHttpInfo(period);
+    public List<Billing> billingsReportUsingGET(String authorization, String period) throws ApiException {
+        ApiResponse<List<Billing>> resp = billingsReportUsingGETWithHttpInfo(authorization, period);
         return resp.getData();
     }
 
     /**
      * Consulta de facturas
      * Consulta las facturas emitidas por conceptos de uso de la plataforma y operaciones realizadas tanto de entrada como de salida. Es posible filtrar por periodo de fecha yyyy-MM, por ejemplo 2019-11
+     * @param authorization Header para token (required)
      * @param period Filtro de fecha yyyy-MM (optional)
      * @return ApiResponse&lt;List&lt;Billing&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Billing>> billingsReportUsingGETWithHttpInfo(String period) throws ApiException {
-        com.squareup.okhttp.Call call = billingsReportUsingGETValidateBeforeCall(period, null, null);
+    public ApiResponse<List<Billing>> billingsReportUsingGETWithHttpInfo(String authorization, String period) throws ApiException {
+        com.squareup.okhttp.Call call = billingsReportUsingGETValidateBeforeCall(authorization, period, null, null);
         Type localVarReturnType = new TypeToken<List<Billing>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -270,12 +289,13 @@ public class FacturasApi {
     /**
      * Consulta de facturas (asynchronously)
      * Consulta las facturas emitidas por conceptos de uso de la plataforma y operaciones realizadas tanto de entrada como de salida. Es posible filtrar por periodo de fecha yyyy-MM, por ejemplo 2019-11
+     * @param authorization Header para token (required)
      * @param period Filtro de fecha yyyy-MM (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call billingsReportUsingGETAsync(String period, final ApiCallback<List<Billing>> callback) throws ApiException {
+    public com.squareup.okhttp.Call billingsReportUsingGETAsync(String authorization, String period, final ApiCallback<List<Billing>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -296,7 +316,7 @@ public class FacturasApi {
             };
         }
 
-        com.squareup.okhttp.Call call = billingsReportUsingGETValidateBeforeCall(period, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = billingsReportUsingGETValidateBeforeCall(authorization, period, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Billing>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

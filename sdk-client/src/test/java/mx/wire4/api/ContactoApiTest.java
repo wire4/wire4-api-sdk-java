@@ -42,7 +42,8 @@ public class ContactoApiTest {
     @Test
     public void sendContactUsingPOSTTest() throws ApiException {
         ContactRequest body = null;
-        api.sendContactUsingPOST(body);
+        String authorization = null;
+        api.sendContactUsingPOST(body, authorization);
 
         // TODO: test validations
     }

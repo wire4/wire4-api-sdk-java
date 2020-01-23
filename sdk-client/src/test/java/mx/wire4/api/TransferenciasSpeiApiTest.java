@@ -45,9 +45,10 @@ public class TransferenciasSpeiApiTest {
      */
     @Test
     public void dropTransactionsPendingUsingDELETETest() throws ApiException {
+        String authorization = null;
         String requestId = null;
         String subscription = null;
-        api.dropTransactionsPendingUsingDELETE(requestId, subscription);
+        api.dropTransactionsPendingUsingDELETE(authorization, requestId, subscription);
 
         // TODO: test validations
     }
@@ -61,8 +62,9 @@ public class TransferenciasSpeiApiTest {
      */
     @Test
     public void incomingSpeiTransactionsReportUsingGETTest() throws ApiException {
+        String authorization = null;
         String subscription = null;
-        List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(subscription);
+        List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(authorization, subscription);
 
         // TODO: test validations
     }
@@ -76,9 +78,10 @@ public class TransferenciasSpeiApiTest {
      */
     @Test
     public void outCommingSpeiRequestIdTransactionsReportUsingGETTest() throws ApiException {
+        String authorization = null;
         String requestId = null;
         String subscription = null;
-        PaymentsRequestId response = api.outCommingSpeiRequestIdTransactionsReportUsingGET(requestId, subscription);
+        PaymentsRequestId response = api.outCommingSpeiRequestIdTransactionsReportUsingGET(authorization, requestId, subscription);
 
         // TODO: test validations
     }
@@ -92,9 +95,10 @@ public class TransferenciasSpeiApiTest {
      */
     @Test
     public void outgoingSpeiTransactionsReportUsingGETTest() throws ApiException {
+        String authorization = null;
         String subscription = null;
         String orderId = null;
-        List<Payment> response = api.outgoingSpeiTransactionsReportUsingGET(subscription, orderId);
+        List<Payment> response = api.outgoingSpeiTransactionsReportUsingGET(authorization, subscription, orderId);
 
         // TODO: test validations
     }
@@ -109,8 +113,9 @@ public class TransferenciasSpeiApiTest {
     @Test
     public void registerOutgoingSpeiTransactionUsingPOSTTest() throws ApiException {
         TransactionsOutgoingRegister body = null;
+        String authorization = null;
         String subscription = null;
-        TokenRequiredResponse response = api.registerOutgoingSpeiTransactionUsingPOST(body, subscription);
+        TokenRequiredResponse response = api.registerOutgoingSpeiTransactionUsingPOST(body, authorization, subscription);
 
         // TODO: test validations
     }

@@ -56,13 +56,14 @@ public class SaldoApi {
 
     /**
      * Build call for getBalanceUsingGET
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getBalanceUsingGETCall(String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getBalanceUsingGETCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -73,6 +74,8 @@ public class SaldoApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -100,18 +103,22 @@ public class SaldoApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app_user_spei" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getBalanceUsingGETValidateBeforeCall(String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getBalanceUsingGETValidateBeforeCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling getBalanceUsingGET(Async)");
+        }
         // verify the required parameter 'subscription' is set
         if (subscription == null) {
             throw new ApiException("Missing the required parameter 'subscription' when calling getBalanceUsingGET(Async)");
         }
         
-        com.squareup.okhttp.Call call = getBalanceUsingGETCall(subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getBalanceUsingGETCall(authorization, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -123,24 +130,26 @@ public class SaldoApi {
     /**
      * Consulta los saldo de una cuenta
      * Obtiene el de las divisas que se manejen en el contrato.
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return BalanceListResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public BalanceListResponse getBalanceUsingGET(String subscription) throws ApiException {
-        ApiResponse<BalanceListResponse> resp = getBalanceUsingGETWithHttpInfo(subscription);
+    public BalanceListResponse getBalanceUsingGET(String authorization, String subscription) throws ApiException {
+        ApiResponse<BalanceListResponse> resp = getBalanceUsingGETWithHttpInfo(authorization, subscription);
         return resp.getData();
     }
 
     /**
      * Consulta los saldo de una cuenta
      * Obtiene el de las divisas que se manejen en el contrato.
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;BalanceListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BalanceListResponse> getBalanceUsingGETWithHttpInfo(String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = getBalanceUsingGETValidateBeforeCall(subscription, null, null);
+    public ApiResponse<BalanceListResponse> getBalanceUsingGETWithHttpInfo(String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = getBalanceUsingGETValidateBeforeCall(authorization, subscription, null, null);
         Type localVarReturnType = new TypeToken<BalanceListResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -148,12 +157,13 @@ public class SaldoApi {
     /**
      * Consulta los saldo de una cuenta (asynchronously)
      * Obtiene el de las divisas que se manejen en el contrato.
+     * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getBalanceUsingGETAsync(String subscription, final ApiCallback<BalanceListResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getBalanceUsingGETAsync(String authorization, String subscription, final ApiCallback<BalanceListResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -174,7 +184,7 @@ public class SaldoApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getBalanceUsingGETValidateBeforeCall(subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getBalanceUsingGETValidateBeforeCall(authorization, subscription, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<BalanceListResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

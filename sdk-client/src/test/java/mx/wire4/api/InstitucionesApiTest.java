@@ -41,7 +41,8 @@ public class InstitucionesApiTest {
      */
     @Test
     public void getAllInstitutionsUsingGETTest() throws ApiException {
-        InstitutionsList response = api.getAllInstitutionsUsingGET();
+        String authorization = null;
+        InstitutionsList response = api.getAllInstitutionsUsingGET(authorization);
 
         // TODO: test validations
     }

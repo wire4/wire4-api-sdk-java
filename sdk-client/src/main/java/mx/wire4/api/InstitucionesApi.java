@@ -56,12 +56,13 @@ public class InstitucionesApi {
 
     /**
      * Build call for getAllInstitutionsUsingGET
+     * @param authorization Header para token (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getAllInstitutionsUsingGETCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getAllInstitutionsUsingGETCall(String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -71,6 +72,8 @@ public class InstitucionesApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -98,14 +101,18 @@ public class InstitucionesApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getAllInstitutionsUsingGETValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getAllInstitutionsUsingGETValidateBeforeCall(String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling getAllInstitutionsUsingGET(Async)");
+        }
         
-        com.squareup.okhttp.Call call = getAllInstitutionsUsingGETCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getAllInstitutionsUsingGETCall(authorization, progressListener, progressRequestListener);
         return call;
 
         
@@ -117,22 +124,24 @@ public class InstitucionesApi {
     /**
      * Información de instituciones bancarias.
      * 
+     * @param authorization Header para token (required)
      * @return InstitutionsList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InstitutionsList getAllInstitutionsUsingGET() throws ApiException {
-        ApiResponse<InstitutionsList> resp = getAllInstitutionsUsingGETWithHttpInfo();
+    public InstitutionsList getAllInstitutionsUsingGET(String authorization) throws ApiException {
+        ApiResponse<InstitutionsList> resp = getAllInstitutionsUsingGETWithHttpInfo(authorization);
         return resp.getData();
     }
 
     /**
      * Información de instituciones bancarias.
      * 
+     * @param authorization Header para token (required)
      * @return ApiResponse&lt;InstitutionsList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InstitutionsList> getAllInstitutionsUsingGETWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = getAllInstitutionsUsingGETValidateBeforeCall(null, null);
+    public ApiResponse<InstitutionsList> getAllInstitutionsUsingGETWithHttpInfo(String authorization) throws ApiException {
+        com.squareup.okhttp.Call call = getAllInstitutionsUsingGETValidateBeforeCall(authorization, null, null);
         Type localVarReturnType = new TypeToken<InstitutionsList>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -140,11 +149,12 @@ public class InstitucionesApi {
     /**
      * Información de instituciones bancarias. (asynchronously)
      * 
+     * @param authorization Header para token (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getAllInstitutionsUsingGETAsync(final ApiCallback<InstitutionsList> callback) throws ApiException {
+    public com.squareup.okhttp.Call getAllInstitutionsUsingGETAsync(String authorization, final ApiCallback<InstitutionsList> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -165,7 +175,7 @@ public class InstitucionesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getAllInstitutionsUsingGETValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getAllInstitutionsUsingGETValidateBeforeCall(authorization, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<InstitutionsList>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

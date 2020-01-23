@@ -58,13 +58,14 @@ public class WebhooksApi {
 
     /**
      * Build call for getWebhook
+     * @param authorization Header para token (required)
      * @param id Identificador del webhook (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getWebhookCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getWebhookCall(String authorization, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -75,6 +76,8 @@ public class WebhooksApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -102,18 +105,22 @@ public class WebhooksApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getWebhookValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getWebhookValidateBeforeCall(String authorization, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling getWebhook(Async)");
+        }
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getWebhook(Async)");
         }
         
-        com.squareup.okhttp.Call call = getWebhookCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getWebhookCall(authorization, id, progressListener, progressRequestListener);
         return call;
 
         
@@ -125,24 +132,26 @@ public class WebhooksApi {
     /**
      * Consulta de Webhook
      * Obtiene un webhook registrado en la plataforma mediante su identificador.
+     * @param authorization Header para token (required)
      * @param id Identificador del webhook (required)
      * @return WebhookResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public WebhookResponse getWebhook(String id) throws ApiException {
-        ApiResponse<WebhookResponse> resp = getWebhookWithHttpInfo(id);
+    public WebhookResponse getWebhook(String authorization, String id) throws ApiException {
+        ApiResponse<WebhookResponse> resp = getWebhookWithHttpInfo(authorization, id);
         return resp.getData();
     }
 
     /**
      * Consulta de Webhook
      * Obtiene un webhook registrado en la plataforma mediante su identificador.
+     * @param authorization Header para token (required)
      * @param id Identificador del webhook (required)
      * @return ApiResponse&lt;WebhookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<WebhookResponse> getWebhookWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = getWebhookValidateBeforeCall(id, null, null);
+    public ApiResponse<WebhookResponse> getWebhookWithHttpInfo(String authorization, String id) throws ApiException {
+        com.squareup.okhttp.Call call = getWebhookValidateBeforeCall(authorization, id, null, null);
         Type localVarReturnType = new TypeToken<WebhookResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -150,12 +159,13 @@ public class WebhooksApi {
     /**
      * Consulta de Webhook (asynchronously)
      * Obtiene un webhook registrado en la plataforma mediante su identificador.
+     * @param authorization Header para token (required)
      * @param id Identificador del webhook (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getWebhookAsync(String id, final ApiCallback<WebhookResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getWebhookAsync(String authorization, String id, final ApiCallback<WebhookResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -176,19 +186,20 @@ public class WebhooksApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getWebhookValidateBeforeCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getWebhookValidateBeforeCall(authorization, id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<WebhookResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for getWebhooks
+     * @param authorization Header para token (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getWebhooksCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getWebhooksCall(String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -198,6 +209,8 @@ public class WebhooksApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -225,14 +238,18 @@ public class WebhooksApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getWebhooksValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getWebhooksValidateBeforeCall(String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling getWebhooks(Async)");
+        }
         
-        com.squareup.okhttp.Call call = getWebhooksCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getWebhooksCall(authorization, progressListener, progressRequestListener);
         return call;
 
         
@@ -244,22 +261,24 @@ public class WebhooksApi {
     /**
      * Consulta de Webhooks
      * Obtiene los webhooks registrados en la plataforma que tengan estatus &#x27;ACTIVE&#x27; e &#x27;INACTIVE&#x27;.
+     * @param authorization Header para token (required)
      * @return WebhooksList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public WebhooksList getWebhooks() throws ApiException {
-        ApiResponse<WebhooksList> resp = getWebhooksWithHttpInfo();
+    public WebhooksList getWebhooks(String authorization) throws ApiException {
+        ApiResponse<WebhooksList> resp = getWebhooksWithHttpInfo(authorization);
         return resp.getData();
     }
 
     /**
      * Consulta de Webhooks
      * Obtiene los webhooks registrados en la plataforma que tengan estatus &#x27;ACTIVE&#x27; e &#x27;INACTIVE&#x27;.
+     * @param authorization Header para token (required)
      * @return ApiResponse&lt;WebhooksList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<WebhooksList> getWebhooksWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = getWebhooksValidateBeforeCall(null, null);
+    public ApiResponse<WebhooksList> getWebhooksWithHttpInfo(String authorization) throws ApiException {
+        com.squareup.okhttp.Call call = getWebhooksValidateBeforeCall(authorization, null, null);
         Type localVarReturnType = new TypeToken<WebhooksList>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -267,11 +286,12 @@ public class WebhooksApi {
     /**
      * Consulta de Webhooks (asynchronously)
      * Obtiene los webhooks registrados en la plataforma que tengan estatus &#x27;ACTIVE&#x27; e &#x27;INACTIVE&#x27;.
+     * @param authorization Header para token (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getWebhooksAsync(final ApiCallback<WebhooksList> callback) throws ApiException {
+    public com.squareup.okhttp.Call getWebhooksAsync(String authorization, final ApiCallback<WebhooksList> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -292,7 +312,7 @@ public class WebhooksApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getWebhooksValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getWebhooksValidateBeforeCall(authorization, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<WebhooksList>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -300,12 +320,13 @@ public class WebhooksApi {
     /**
      * Build call for registerWebhook
      * @param body Información para registrar un Webhook (required)
+     * @param authorization Header para token (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call registerWebhookCall(WebhookRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call registerWebhookCall(WebhookRequest body, String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -315,6 +336,8 @@ public class WebhooksApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -342,18 +365,22 @@ public class WebhooksApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "wire4_aut_app" };
+        String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call registerWebhookValidateBeforeCall(WebhookRequest body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call registerWebhookValidateBeforeCall(WebhookRequest body, String authorization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling registerWebhook(Async)");
         }
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling registerWebhook(Async)");
+        }
         
-        com.squareup.okhttp.Call call = registerWebhookCall(body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = registerWebhookCall(body, authorization, progressListener, progressRequestListener);
         return call;
 
         
@@ -366,11 +393,12 @@ public class WebhooksApi {
      * Alta de Webhook
      * Registra un webhook en la plataforma para su uso como notificador de eventos cuando estos ocurran.
      * @param body Información para registrar un Webhook (required)
+     * @param authorization Header para token (required)
      * @return WebhookResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public WebhookResponse registerWebhook(WebhookRequest body) throws ApiException {
-        ApiResponse<WebhookResponse> resp = registerWebhookWithHttpInfo(body);
+    public WebhookResponse registerWebhook(WebhookRequest body, String authorization) throws ApiException {
+        ApiResponse<WebhookResponse> resp = registerWebhookWithHttpInfo(body, authorization);
         return resp.getData();
     }
 
@@ -378,11 +406,12 @@ public class WebhooksApi {
      * Alta de Webhook
      * Registra un webhook en la plataforma para su uso como notificador de eventos cuando estos ocurran.
      * @param body Información para registrar un Webhook (required)
+     * @param authorization Header para token (required)
      * @return ApiResponse&lt;WebhookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<WebhookResponse> registerWebhookWithHttpInfo(WebhookRequest body) throws ApiException {
-        com.squareup.okhttp.Call call = registerWebhookValidateBeforeCall(body, null, null);
+    public ApiResponse<WebhookResponse> registerWebhookWithHttpInfo(WebhookRequest body, String authorization) throws ApiException {
+        com.squareup.okhttp.Call call = registerWebhookValidateBeforeCall(body, authorization, null, null);
         Type localVarReturnType = new TypeToken<WebhookResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -391,11 +420,12 @@ public class WebhooksApi {
      * Alta de Webhook (asynchronously)
      * Registra un webhook en la plataforma para su uso como notificador de eventos cuando estos ocurran.
      * @param body Información para registrar un Webhook (required)
+     * @param authorization Header para token (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call registerWebhookAsync(WebhookRequest body, final ApiCallback<WebhookResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call registerWebhookAsync(WebhookRequest body, String authorization, final ApiCallback<WebhookResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -416,7 +446,7 @@ public class WebhooksApi {
             };
         }
 
-        com.squareup.okhttp.Call call = registerWebhookValidateBeforeCall(body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = registerWebhookValidateBeforeCall(body, authorization, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<WebhookResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
