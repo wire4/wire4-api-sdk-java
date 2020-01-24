@@ -123,6 +123,8 @@ try {
 ```
 
 ### Ejemplo de deserialización de mensaje WebHook de Wire4
+
+Nota adicional, para usar las clases que provee el SDK de Wire4 para la deserialización de los mensajes que manda por WebHook Wire4 a su aplicación, lo más sencillo es usar las clases, recursos y métodos que provee el SDK de Wire4, como se muestra en el siguiente ejemplo, aunque siempre es posible crear sus propias implementaciones extras a este SDK.
 ```java
     @PostMapping(value = "webhook-listener",
                  consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -134,6 +136,9 @@ try {
         final mx.wire4.model.MessageWebHook notification = new mx.wire4.JSON().deserialize(body, localVarReturnType);
 
         log.info("Notification: {}", notification);
+        notification.setData(this.rebuildDataObjectFromMsg(notification.getData(), notification.getObject()));
+
+        log.info("Notification.getData().getClass(): {}", notification.getData().getClass());
 
         validateMonexNotification(notification);
 
@@ -158,5 +163,46 @@ try {
 
             throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
         }
+    }
+
+    /**
+     * Convierte la data en el mensaje al objeto original. Para el envío correcto en los reintentos.
+     *
+     * @param dataOrigin
+     *      el objeto origen, generalmente un LinkedMap.
+     * @param objectDescMsg
+     *      la descripción del tipo de mensaje WebHook.
+     *
+     * @return
+     *      el objeto correspondiente al tipo de mensaje WebHook.
+     */
+    public Object rebuildDataObjectFromMsg(final Object dataOrigin, final String objectDescMsg) {
+
+        final mx.wire4.JSON wire4ObjectMapper = new mx.wire4.JSON();
+        Object resultData = dataOrigin;
+        final String dataStr =  wire4ObjectMapper.serialize(dataOrigin);
+        if (dataStr != null) {
+
+            if (StringUtils.equals(objectDescMsg, "spei_incoming")) {
+
+                final java.lang.reflect.Type localVarReturnType = new com.google.gson.reflect.TypeToken<mx.wire4.model.MessageDepositReceived>(){}.getType();
+                resultData = wire4ObjectMapper.deserialize(dataStr, localVarReturnType);
+            } else if (StringUtils.equals(objectDescMsg, "spei_outgoing") ||
+                    StringUtils.equals(objectDescMsg, "spid_outgoing")) {
+
+                final java.lang.reflect.Type localVarReturnType = new com.google.gson.reflect.TypeToken<mx.wire4.model.MessagePayment>(){}.getType();
+                resultData = wire4ObjectMapper.deserialize(dataStr, localVarReturnType);
+            } else if (StringUtils.equals(objectDescMsg, "beneficiary")) {
+
+                final java.lang.reflect.Type localVarReturnType = new com.google.gson.reflect.TypeToken<mx.wire4.model.MessageAccountBeneficiary>(){}.getType();
+                resultData = wire4ObjectMapper.deserialize(dataStr, localVarReturnType);
+            } else if (StringUtils.equals(objectDescMsg, "subscription")) {
+
+                final java.lang.reflect.Type localVarReturnType = new com.google.gson.reflect.TypeToken<mx.wire4.model.MessageSubscription>(){}.getType();
+                resultData = wire4ObjectMapper.deserialize(dataStr, localVarReturnType);
+            }
+        }
+
+        return resultData;
     }
 ```
