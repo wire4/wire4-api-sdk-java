@@ -69,6 +69,10 @@ Después manualmente hay que instalar los `JARs` en tu proyecto:
 * `target/wire4-api-sdk-0.0.1-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
+## Change log
+
+* Se corrigió error en el manejo de tokens por el ApiClient al usarse en ambiente multi hilos
+
 ## Para comenzar a usar
 
 Primero debes seguir la guía de [instalación](#installation) y ejecutar el siguiente código de ejemplo:
