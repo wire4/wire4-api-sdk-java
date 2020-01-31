@@ -647,6 +647,45 @@ public class ExamplesTest {
     }
 
     @Test
+    public void obtainBeneficiariesSpid() {
+
+        // Create the api component
+        final CuentasDeBeneficiariosSpidApi api = new CuentasDeBeneficiariosSpidApi();
+
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use password flow and scope "spid_admin"
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spid_admin");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = SUBSCRIPTION;
+        final String rfc = null; //  null if you can't filter
+        final String account = null;
+        try {
+
+            // Obtain the response
+            final SpidBeneficiariesResponse response = api.getSpidBeneficiariesForAccount(bearer, subscription, account, rfc);
+
+            System.out.println("Beneficiaries Spid response:" + response);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in request to API
+            return;
+        }
+    }
+
+    @Test
     public void obtainSPIDClassifications() {
 
         // Create the api component

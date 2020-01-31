@@ -25,23 +25,21 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import mx.wire4.model.BeneficiaryInstitution;
+import mx.wire4.model.Institution;
 /**
- * Objeto que contiene información de la cuenta
+ * Objeto que contiene información de la cuenta de beneficiario SPID
  */
-@Schema(description = "Objeto que contiene información de la cuenta")
+@Schema(description = "Objeto que contiene información de la cuenta de beneficiario SPID")
 
-public class AccountSpid {
+public class SpidBeneficiaryResponse {
   @SerializedName("amount_limit")
   private BigDecimal amountLimit = null;
 
-  @SerializedName("bank_code_banxico")
-  private String bankCodeBanxico = null;
+  @SerializedName("bank")
+  private Institution bank = null;
 
   @SerializedName("beneficiary_account")
   private String beneficiaryAccount = null;
-
-  @SerializedName("cancel_return_url")
-  private String cancelReturnUrl = null;
 
   @SerializedName("email")
   private List<String> email = null;
@@ -52,22 +50,19 @@ public class AccountSpid {
   @SerializedName("kind_of_relationship")
   private String kindOfRelationship = null;
 
-  @SerializedName("numeric_reference")
-  private String numericReference = null;
+  @SerializedName("numeric_reference_spid")
+  private String numericReferenceSpid = null;
 
-  @SerializedName("payment_concept")
-  private String paymentConcept = null;
+  @SerializedName("payment_concept_spid")
+  private String paymentConceptSpid = null;
 
   @SerializedName("relationship")
   private String relationship = null;
 
-  @SerializedName("return_url")
-  private String returnUrl = null;
-
   @SerializedName("rfc")
   private String rfc = null;
 
-  public AccountSpid amountLimit(BigDecimal amountLimit) {
+  public SpidBeneficiaryResponse amountLimit(BigDecimal amountLimit) {
     this.amountLimit = amountLimit;
     return this;
   }
@@ -85,25 +80,25 @@ public class AccountSpid {
     this.amountLimit = amountLimit;
   }
 
-  public AccountSpid bankCodeBanxico(String bankCodeBanxico) {
-    this.bankCodeBanxico = bankCodeBanxico;
+  public SpidBeneficiaryResponse bank(Institution bank) {
+    this.bank = bank;
     return this;
   }
 
    /**
-   * Código banxico con una longitud de 5 dígitos, es requerido en caso de que la cuenta del beneficiario sea un número de celular
-   * @return bankCodeBanxico
+   * Get bank
+   * @return bank
   **/
-  @Schema(description = "Código banxico con una longitud de 5 dígitos, es requerido en caso de que la cuenta del beneficiario sea un número de celular")
-  public String getBankCodeBanxico() {
-    return bankCodeBanxico;
+  @Schema(description = "")
+  public Institution getBank() {
+    return bank;
   }
 
-  public void setBankCodeBanxico(String bankCodeBanxico) {
-    this.bankCodeBanxico = bankCodeBanxico;
+  public void setBank(Institution bank) {
+    this.bank = bank;
   }
 
-  public AccountSpid beneficiaryAccount(String beneficiaryAccount) {
+  public SpidBeneficiaryResponse beneficiaryAccount(String beneficiaryAccount) {
     this.beneficiaryAccount = beneficiaryAccount;
     return this;
   }
@@ -121,30 +116,12 @@ public class AccountSpid {
     this.beneficiaryAccount = beneficiaryAccount;
   }
 
-  public AccountSpid cancelReturnUrl(String cancelReturnUrl) {
-    this.cancelReturnUrl = cancelReturnUrl;
-    return this;
-  }
-
-   /**
-   * Url a la que se redirigira en caso no exitoso
-   * @return cancelReturnUrl
-  **/
-  @Schema(description = "Url a la que se redirigira en caso no exitoso")
-  public String getCancelReturnUrl() {
-    return cancelReturnUrl;
-  }
-
-  public void setCancelReturnUrl(String cancelReturnUrl) {
-    this.cancelReturnUrl = cancelReturnUrl;
-  }
-
-  public AccountSpid email(List<String> email) {
+  public SpidBeneficiaryResponse email(List<String> email) {
     this.email = email;
     return this;
   }
 
-  public AccountSpid addEmailItem(String emailItem) {
+  public SpidBeneficiaryResponse addEmailItem(String emailItem) {
     if (this.email == null) {
       this.email = new ArrayList<>();
     }
@@ -165,7 +142,7 @@ public class AccountSpid {
     this.email = email;
   }
 
-  public AccountSpid institution(BeneficiaryInstitution institution) {
+  public SpidBeneficiaryResponse institution(BeneficiaryInstitution institution) {
     this.institution = institution;
     return this;
   }
@@ -183,7 +160,7 @@ public class AccountSpid {
     this.institution = institution;
   }
 
-  public AccountSpid kindOfRelationship(String kindOfRelationship) {
+  public SpidBeneficiaryResponse kindOfRelationship(String kindOfRelationship) {
     this.kindOfRelationship = kindOfRelationship;
     return this;
   }
@@ -201,43 +178,43 @@ public class AccountSpid {
     this.kindOfRelationship = kindOfRelationship;
   }
 
-  public AccountSpid numericReference(String numericReference) {
-    this.numericReference = numericReference;
+  public SpidBeneficiaryResponse numericReferenceSpid(String numericReferenceSpid) {
+    this.numericReferenceSpid = numericReferenceSpid;
     return this;
   }
 
    /**
    * Referencia numérica
-   * @return numericReference
+   * @return numericReferenceSpid
   **/
   @Schema(description = "Referencia numérica")
-  public String getNumericReference() {
-    return numericReference;
+  public String getNumericReferenceSpid() {
+    return numericReferenceSpid;
   }
 
-  public void setNumericReference(String numericReference) {
-    this.numericReference = numericReference;
+  public void setNumericReferenceSpid(String numericReferenceSpid) {
+    this.numericReferenceSpid = numericReferenceSpid;
   }
 
-  public AccountSpid paymentConcept(String paymentConcept) {
-    this.paymentConcept = paymentConcept;
+  public SpidBeneficiaryResponse paymentConceptSpid(String paymentConceptSpid) {
+    this.paymentConceptSpid = paymentConceptSpid;
     return this;
   }
 
    /**
    * Concepto de pago
-   * @return paymentConcept
+   * @return paymentConceptSpid
   **/
   @Schema(description = "Concepto de pago")
-  public String getPaymentConcept() {
-    return paymentConcept;
+  public String getPaymentConceptSpid() {
+    return paymentConceptSpid;
   }
 
-  public void setPaymentConcept(String paymentConcept) {
-    this.paymentConcept = paymentConcept;
+  public void setPaymentConceptSpid(String paymentConceptSpid) {
+    this.paymentConceptSpid = paymentConceptSpid;
   }
 
-  public AccountSpid relationship(String relationship) {
+  public SpidBeneficiaryResponse relationship(String relationship) {
     this.relationship = relationship;
     return this;
   }
@@ -255,25 +232,7 @@ public class AccountSpid {
     this.relationship = relationship;
   }
 
-  public AccountSpid returnUrl(String returnUrl) {
-    this.returnUrl = returnUrl;
-    return this;
-  }
-
-   /**
-   * Url a la que se redireccionara en caso exitoso
-   * @return returnUrl
-  **/
-  @Schema(description = "Url a la que se redireccionara en caso exitoso")
-  public String getReturnUrl() {
-    return returnUrl;
-  }
-
-  public void setReturnUrl(String returnUrl) {
-    this.returnUrl = returnUrl;
-  }
-
-  public AccountSpid rfc(String rfc) {
+  public SpidBeneficiaryResponse rfc(String rfc) {
     this.rfc = rfc;
     return this;
   }
@@ -300,43 +259,39 @@ public class AccountSpid {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AccountSpid accountSpid = (AccountSpid) o;
-    return Objects.equals(this.amountLimit, accountSpid.amountLimit) &&
-        Objects.equals(this.bankCodeBanxico, accountSpid.bankCodeBanxico) &&
-        Objects.equals(this.beneficiaryAccount, accountSpid.beneficiaryAccount) &&
-        Objects.equals(this.cancelReturnUrl, accountSpid.cancelReturnUrl) &&
-        Objects.equals(this.email, accountSpid.email) &&
-        Objects.equals(this.institution, accountSpid.institution) &&
-        Objects.equals(this.kindOfRelationship, accountSpid.kindOfRelationship) &&
-        Objects.equals(this.numericReference, accountSpid.numericReference) &&
-        Objects.equals(this.paymentConcept, accountSpid.paymentConcept) &&
-        Objects.equals(this.relationship, accountSpid.relationship) &&
-        Objects.equals(this.returnUrl, accountSpid.returnUrl) &&
-        Objects.equals(this.rfc, accountSpid.rfc);
+    SpidBeneficiaryResponse spidBeneficiaryResponse = (SpidBeneficiaryResponse) o;
+    return Objects.equals(this.amountLimit, spidBeneficiaryResponse.amountLimit) &&
+        Objects.equals(this.bank, spidBeneficiaryResponse.bank) &&
+        Objects.equals(this.beneficiaryAccount, spidBeneficiaryResponse.beneficiaryAccount) &&
+        Objects.equals(this.email, spidBeneficiaryResponse.email) &&
+        Objects.equals(this.institution, spidBeneficiaryResponse.institution) &&
+        Objects.equals(this.kindOfRelationship, spidBeneficiaryResponse.kindOfRelationship) &&
+        Objects.equals(this.numericReferenceSpid, spidBeneficiaryResponse.numericReferenceSpid) &&
+        Objects.equals(this.paymentConceptSpid, spidBeneficiaryResponse.paymentConceptSpid) &&
+        Objects.equals(this.relationship, spidBeneficiaryResponse.relationship) &&
+        Objects.equals(this.rfc, spidBeneficiaryResponse.rfc);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountLimit, bankCodeBanxico, beneficiaryAccount, cancelReturnUrl, email, institution, kindOfRelationship, numericReference, paymentConcept, relationship, returnUrl, rfc);
+    return Objects.hash(amountLimit, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpid, paymentConceptSpid, relationship, rfc);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AccountSpid {\n");
+    sb.append("class SpidBeneficiaryResponse {\n");
     
     sb.append("    amountLimit: ").append(toIndentedString(amountLimit)).append("\n");
-    sb.append("    bankCodeBanxico: ").append(toIndentedString(bankCodeBanxico)).append("\n");
+    sb.append("    bank: ").append(toIndentedString(bank)).append("\n");
     sb.append("    beneficiaryAccount: ").append(toIndentedString(beneficiaryAccount)).append("\n");
-    sb.append("    cancelReturnUrl: ").append(toIndentedString(cancelReturnUrl)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    institution: ").append(toIndentedString(institution)).append("\n");
     sb.append("    kindOfRelationship: ").append(toIndentedString(kindOfRelationship)).append("\n");
-    sb.append("    numericReference: ").append(toIndentedString(numericReference)).append("\n");
-    sb.append("    paymentConcept: ").append(toIndentedString(paymentConcept)).append("\n");
+    sb.append("    numericReferenceSpid: ").append(toIndentedString(numericReferenceSpid)).append("\n");
+    sb.append("    paymentConceptSpid: ").append(toIndentedString(paymentConceptSpid)).append("\n");
     sb.append("    relationship: ").append(toIndentedString(relationship)).append("\n");
-    sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
     sb.append("    rfc: ").append(toIndentedString(rfc)).append("\n");
     sb.append("}");
     return sb.toString();

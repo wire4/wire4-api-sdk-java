@@ -110,6 +110,7 @@ Class | Method | HTTP request | Description
 *CuentasDeBeneficiariosSpeiApi* | [**preRegisterAccountsUsingPOST**](docs/CuentasDeBeneficiariosSpeiApi.md#preRegisterAccountsUsingPOST) | **POST** /subscriptions/{subscription}/beneficiaries/spei | Pre-registro de cuentas de beneficiarios.
 *CuentasDeBeneficiariosSpeiApi* | [**removeBeneficiariesPendingUsingDELETE**](docs/CuentasDeBeneficiariosSpeiApi.md#removeBeneficiariesPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/request/{requestId} | Eliminación de beneficiarios SPEI® sin confirmar
 *CuentasDeBeneficiariosSpeiApi* | [**updateAmountLimitAccountUsingPUT**](docs/CuentasDeBeneficiariosSpeiApi.md#updateAmountLimitAccountUsingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/spei/{account} | Actualiza el monto límite
+*CuentasDeBeneficiariosSpidApi* | [**getSpidBeneficiariesForAccount**](docs/CuentasDeBeneficiariosSpidApi.md#getSpidBeneficiariesForAccount) | **GET** /subscriptions/{subscription}/beneficiaries/spid | Consulta los beneficiarios SPID registrados
 *CuentasDeBeneficiariosSpidApi* | [**preRegisterAccountsUsingPOST1**](docs/CuentasDeBeneficiariosSpidApi.md#preRegisterAccountsUsingPOST1) | **POST** /subscriptions/{subscription}/beneficiaries/spid | Pre-registro de cuentas de beneficiarios SPID
 *DepositantesApi* | [**getDepositantsUsingGET**](docs/DepositantesApi.md#getDepositantsUsingGET) | **GET** /subscriptions/{subscription}/depositants | Consulta de cuentas de depositantes
 *DepositantesApi* | [**registerDepositantsUsingPOST**](docs/DepositantesApi.md#registerDepositantsUsingPOST) | **POST** /subscriptions/{subscription}/depositants | Registra un nuevo depositante
@@ -169,6 +170,8 @@ Class | Method | HTTP request | Description
  - [PreEnrollmentResponse](docs/PreEnrollmentResponse.md)
  - [Relationship](docs/Relationship.md)
  - [RelationshipsResponse](docs/RelationshipsResponse.md)
+ - [SpidBeneficiariesResponse](docs/SpidBeneficiariesResponse.md)
+ - [SpidBeneficiaryResponse](docs/SpidBeneficiaryResponse.md)
  - [SpidClassificationDTO](docs/SpidClassificationDTO.md)
  - [SpidClassificationsResponseDTO](docs/SpidClassificationsResponseDTO.md)
  - [TokenRequiredResponse](docs/TokenRequiredResponse.md)
