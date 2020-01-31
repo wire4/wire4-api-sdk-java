@@ -30,6 +30,9 @@ public class MessageSubscription {
   @SerializedName("contract")
   private String contract = null;
 
+  @SerializedName("masked_contract")
+  private String maskedContract = null;
+
   @SerializedName("subscription")
   private String subscription = null;
 
@@ -58,6 +61,24 @@ public class MessageSubscription {
 
   public void setContract(String contract) {
     this.contract = contract;
+  }
+
+  public MessageSubscription maskedContract(String maskedContract) {
+    this.maskedContract = maskedContract;
+    return this;
+  }
+
+   /**
+   * Contrato enmascarado de Monex, con el cual se suscribió el cliente Monex en Wire4
+   * @return maskedContract
+  **/
+  @Schema(description = "Contrato enmascarado de Monex, con el cual se suscribió el cliente Monex en Wire4")
+  public String getMaskedContract() {
+    return maskedContract;
+  }
+
+  public void setMaskedContract(String maskedContract) {
+    this.maskedContract = maskedContract;
   }
 
   public MessageSubscription subscription(String subscription) {
@@ -143,6 +164,7 @@ public class MessageSubscription {
     }
     MessageSubscription messageSubscription = (MessageSubscription) o;
     return Objects.equals(this.contract, messageSubscription.contract) &&
+        Objects.equals(this.maskedContract, messageSubscription.maskedContract) &&
         Objects.equals(this.subscription, messageSubscription.subscription) &&
         Objects.equals(this.user, messageSubscription.user) &&
         Objects.equals(this.userKey, messageSubscription.userKey) &&
@@ -151,7 +173,7 @@ public class MessageSubscription {
 
   @Override
   public int hashCode() {
-    return Objects.hash(contract, subscription, user, userKey, userSecret);
+    return Objects.hash(contract, maskedContract, subscription, user, userKey, userSecret);
   }
 
 
@@ -161,6 +183,7 @@ public class MessageSubscription {
     sb.append("class MessageSubscription {\n");
     
     sb.append("    contract: ").append(toIndentedString(contract)).append("\n");
+    sb.append("    maskedContract: ").append(toIndentedString(maskedContract)).append("\n");
     sb.append("    subscription: ").append(toIndentedString(subscription)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    userKey: ").append(toIndentedString(userKey)).append("\n");

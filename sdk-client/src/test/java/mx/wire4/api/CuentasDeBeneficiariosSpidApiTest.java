@@ -15,6 +15,7 @@ package mx.wire4.api;
 import mx.wire4.ApiException;
 import mx.wire4.model.AccountSpid;
 import mx.wire4.model.ErrorResponse;
+import mx.wire4.model.SpidBeneficiariesResponse;
 import mx.wire4.model.TokenRequiredResponse;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -32,6 +33,24 @@ public class CuentasDeBeneficiariosSpidApiTest {
 
     private final CuentasDeBeneficiariosSpidApi api = new CuentasDeBeneficiariosSpidApi();
 
+    /**
+     * Consulta los beneficiarios SPID registrados
+     *
+     * Obtiene los beneficiarios SPID registrados al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSpidBeneficiariesForAccountTest() throws ApiException {
+        String authorization = null;
+        String subscription = null;
+        String account = null;
+        String rfc = null;
+        SpidBeneficiariesResponse response = api.getSpidBeneficiariesForAccount(authorization, subscription, account, rfc);
+
+        // TODO: test validations
+    }
     /**
      * Pre-registro de cuentas de beneficiarios SPID
      *

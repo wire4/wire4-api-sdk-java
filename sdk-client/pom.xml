@@ -33,6 +33,7 @@
       <organizationUrl>http://swagger.io</organizationUrl>
     </developer>
   </developers>
+
   <build>
     <plugins>
       <plugin>

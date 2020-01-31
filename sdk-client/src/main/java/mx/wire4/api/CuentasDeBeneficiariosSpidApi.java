@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import mx.wire4.model.AccountSpid;
 import mx.wire4.model.ErrorResponse;
+import mx.wire4.model.SpidBeneficiariesResponse;
 import mx.wire4.model.TokenRequiredResponse;
 
 import java.lang.reflect.Type;
@@ -55,6 +56,153 @@ public class CuentasDeBeneficiariosSpidApi {
         this.apiClient = apiClient;
     }
 
+    /**
+     * Build call for getSpidBeneficiariesForAccount
+     * @param authorization Header para token (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param account Cuenta del beneficiario, puede ser Clabe, TDD o Celular (optional)
+     * @param rfc RFC del beneficiario (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getSpidBeneficiariesForAccountCall(String authorization, String subscription, String account, String rfc, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/subscriptions/{subscription}/beneficiaries/spid"
+            .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (account != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("account", account));
+        if (rfc != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("rfc", rfc));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getSpidBeneficiariesForAccountValidateBeforeCall(String authorization, String subscription, String account, String rfc, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling getSpidBeneficiariesForAccount(Async)");
+        }
+        // verify the required parameter 'subscription' is set
+        if (subscription == null) {
+            throw new ApiException("Missing the required parameter 'subscription' when calling getSpidBeneficiariesForAccount(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = getSpidBeneficiariesForAccountCall(authorization, subscription, account, rfc, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Consulta los beneficiarios SPID registrados
+     * Obtiene los beneficiarios SPID registrados al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.
+     * @param authorization Header para token (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param account Cuenta del beneficiario, puede ser Clabe, TDD o Celular (optional)
+     * @param rfc RFC del beneficiario (optional)
+     * @return SpidBeneficiariesResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public SpidBeneficiariesResponse getSpidBeneficiariesForAccount(String authorization, String subscription, String account, String rfc) throws ApiException {
+        ApiResponse<SpidBeneficiariesResponse> resp = getSpidBeneficiariesForAccountWithHttpInfo(authorization, subscription, account, rfc);
+        return resp.getData();
+    }
+
+    /**
+     * Consulta los beneficiarios SPID registrados
+     * Obtiene los beneficiarios SPID registrados al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.
+     * @param authorization Header para token (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param account Cuenta del beneficiario, puede ser Clabe, TDD o Celular (optional)
+     * @param rfc RFC del beneficiario (optional)
+     * @return ApiResponse&lt;SpidBeneficiariesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<SpidBeneficiariesResponse> getSpidBeneficiariesForAccountWithHttpInfo(String authorization, String subscription, String account, String rfc) throws ApiException {
+        com.squareup.okhttp.Call call = getSpidBeneficiariesForAccountValidateBeforeCall(authorization, subscription, account, rfc, null, null);
+        Type localVarReturnType = new TypeToken<SpidBeneficiariesResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Consulta los beneficiarios SPID registrados (asynchronously)
+     * Obtiene los beneficiarios SPID registrados al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.
+     * @param authorization Header para token (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param account Cuenta del beneficiario, puede ser Clabe, TDD o Celular (optional)
+     * @param rfc RFC del beneficiario (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getSpidBeneficiariesForAccountAsync(String authorization, String subscription, String account, String rfc, final ApiCallback<SpidBeneficiariesResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getSpidBeneficiariesForAccountValidateBeforeCall(authorization, subscription, account, rfc, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<SpidBeneficiariesResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
     /**
      * Build call for preRegisterAccountsUsingPOST1
      * @param body Información de la cuenta del beneficiario (required)
