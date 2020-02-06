@@ -17,39 +17,107 @@
             <groupId>mx.wire4.sdk</groupId>
             <artifactId>sdk-client</artifactId>
             <version>0.0.2-SNAPSHOT</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>mx.wire4.sdk</groupId>
             <artifactId>authenticator</artifactId>
             <version>0.0.2-SNAPSHOT</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>2.4.3</version>
-            <executions>
-                <execution>
-                    <id>create-fat-jar</id>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>shade</goal>
-                    </goals>
-                    <configuration>
-                        <transformers>
-                            <!-- add Main-Class to manifest file -->
-                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                <mainClass>mx.wire4.auth.OAuthWire4</mainClass>
-                            </transformer>
-                        </transformers>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <minimizeJar>false</minimizeJar>
+                    <createDependencyReducedPom>true</createDependencyReducedPom>
+
+                    <filters>
+                        <filter>
+                            <artifact>mx.wire4.sdk:*</artifact>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                        </filter>
+                    </filters>
+
+                    <relocations>
+                        <relocation>
+                            <pattern>org.dmfs</pattern>
+                            <shadedPattern>shaded.dmfs</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>com.squareup.okhttp</pattern>
+                            <shadedPattern>shaded.okhttp</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>com.google.gson</pattern>
+                            <shadedPattern>shaded.go.gson</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>io.gsonfire</pattern>
+                            <shadedPattern>shaded.gsonfire</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>net.iharder</pattern>
+                            <shadedPattern>shaded.iharder</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>okio</pattern>
+                            <shadedPattern>shaded.okio</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>org.json</pattern>
+                            <shadedPattern>shaded.json</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>org.apache.commons</pattern>
+                            <shadedPattern>shaded.commons.apache</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>commons-codec</pattern>
+                            <shadedPattern>shaded.commons-codec</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>io.swagger</pattern>
+                            <shadedPattern>shaded.swagger</shadedPattern>
+                        </relocation>
+                    </relocations>
+
+                    <transformers>
+                        <!-- add Main-Class to manifest file -->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>mx.wire4.auth.OAuthWire4</mainClass>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.PluginXmlResourceTransformer"/>s
+                    </transformers>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

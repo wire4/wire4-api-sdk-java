@@ -9,7 +9,6 @@
  */
 package mx.wire4.auth;
 
-import lombok.extern.slf4j.Slf4j;
 import mx.wire4.ApiException;
 import mx.wire4.ApiResponse;
 import mx.wire4.api.*;
@@ -33,7 +32,6 @@ import static mx.wire4.core.EnvironmentEnum.SANDBOX;
  */
 @SuppressWarnings({"UnnecessaryLocalVariable", "UnnecessaryReturnStatement"})
 @Ignore
-@Slf4j
 public class ExamplesTest {
 
     private static final String CLIENT_ID = "FxUWmqYGZuv8O1qjxstvIyJothMa";
@@ -81,7 +79,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.sendContactUsingPOSTWithHttpInfo(body,bearer);
+            final ApiResponse<Void> response = api.sendContactUsingPOSTWithHttpInfo(body, bearer);
 
             System.out.println("Response:" + response.getStatusCode());
         } catch (ApiException e) {
@@ -128,7 +126,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final CepResponse response = api.obtainTransactionCepUsingPOST( body, bearer);
+            final CepResponse response = api.obtainTransactionCepUsingPOST(body, bearer);
 
             System.out.println("CEP:" + response);
         } catch (ApiException e) {
@@ -210,7 +208,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse<Void> response = api.removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(bearer,subscription);
+            final ApiResponse<Void> response = api.removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(bearer, subscription);
 
             System.out.println("Delete Pre-Subscription result:" + response);
         } catch (ApiException e) {
@@ -254,7 +252,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse<Void> response = api.removeEnrollmentUserUsingDELETEWithHttpInfo(bearer,subscription);
+            final ApiResponse<Void> response = api.removeEnrollmentUserUsingDELETEWithHttpInfo(bearer, subscription);
 
             System.out.println("Delete Pre-Subscription result:" + response.getStatusCode());
         } catch (ApiException e) {
@@ -292,7 +290,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final RelationshipsResponse response = api.getAvailableRelationshipsMonexUsingGET(bearer,subscription);
+            final RelationshipsResponse response = api.getAvailableRelationshipsMonexUsingGET(bearer, subscription);
 
             System.out.println("Relationships response:" + response);
         } catch (ApiException e) {
@@ -348,7 +346,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final TokenRequiredResponse response = api.preRegisterAccountsUsingPOST(body, bearer,subscription);
+            final TokenRequiredResponse response = api.preRegisterAccountsUsingPOST(body, bearer, subscription);
 
             System.out.println("TokenRequiredResponse response:" + response);
         } catch (ApiException e) {
@@ -386,7 +384,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.removeBeneficiariesPendingUsingDELETEWithHttpInfo(bearer,requestId, subscription);
+            final ApiResponse<Void> response = api.removeBeneficiariesPendingUsingDELETEWithHttpInfo(bearer, requestId, subscription);
 
             System.out.println("Response:" + response.getStatusCode());
         } catch (ApiException e) {
@@ -426,7 +424,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(bearer,subscription, account, rfc);
+            final BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(bearer, subscription, account, rfc);
 
             System.out.println("Relationships response:" + response);
         } catch (ApiException e) {
@@ -469,7 +467,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.updateAmountLimitAccountUsingPUTWithHttpInfo(body,bearer, account, subscription);
+            final ApiResponse<Void> response = api.updateAmountLimitAccountUsingPUTWithHttpInfo(body, bearer, account, subscription);
 
             System.out.println("response:" + response);
         } catch (ApiException e) {
@@ -509,7 +507,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.deleteAccountUsingDELETEWithHttpInfo(bearer,account, subscription);
+            final ApiResponse<Void> response = api.deleteAccountUsingDELETEWithHttpInfo(bearer, account, subscription);
 
             System.out.println("response:" + response);
         } catch (ApiException e) {
@@ -584,7 +582,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final BalanceListResponse response = api.getBalanceUsingGET(bearer,subscription);
+            final BalanceListResponse response = api.getBalanceUsingGET(bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -625,7 +623,7 @@ public class ExamplesTest {
                 .cancelReturnUrl("https://your-app-url.mx/cancel")
                 .amountLimit(new BigDecimal("1000.00"))
                 .beneficiaryAccount("112680000156896531")
-                .institution(new BeneficiaryInstitution().name("BMONEX"))
+                .institution(new BeneficiaryInstitution().name("Compu Mundo Hiper Mega Red"))
                 .email(Collections.singletonList("beneficiary.spid@wire4.mx"))
                 .kindOfRelationship("RECURRENTE")
                 .numericReference("1234567")
@@ -635,7 +633,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            TokenRequiredResponse response = api.preRegisterAccountsUsingPOST1(body,bearer, subscription);
+            TokenRequiredResponse response = api.preRegisterAccountsUsingPOST1(body, bearer, subscription);
 
             System.out.println("TokenRequiredResponse response:" + response);
         } catch (ApiException e) {
@@ -713,7 +711,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final SpidClassificationsResponseDTO response = api.getSpidClassificationsUsingGET(bearer,subscription);
+            final SpidClassificationsResponseDTO response = api.getSpidClassificationsUsingGET(bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -753,7 +751,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final GetDepositants response = api.getDepositantsUsingGET(bearer,subscription);
+            final GetDepositants response = api.getDepositantsUsingGET(bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -798,7 +796,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final DepositantsResponse response = api.registerDepositantsUsingPOST(body,bearer, subscription);
+            final DepositantsResponse response = api.registerDepositantsUsingPOST(body, bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -837,7 +835,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(bearer,subscription);
+            final List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -857,14 +855,11 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app_user_spei");
         final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -878,7 +873,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final List<Payment> response = api.outgoingSpeiTransactionsReportUsingGET(bearer,subscription, orderId);
+            final List<Payment> response = api.outgoingSpeiTransactionsReportUsingGET(bearer, subscription, orderId);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -929,7 +924,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final TokenRequiredResponse response = api.registerOutgoingSpeiTransactionUsingPOST(body, bearer,subscription);
+            final TokenRequiredResponse response = api.registerOutgoingSpeiTransactionUsingPOST(body, bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -969,7 +964,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ApiResponse response = api.dropTransactionsPendingUsingDELETEWithHttpInfo(bearer,requestId, subscription);
+            final ApiResponse<Void> response = api.dropTransactionsPendingUsingDELETEWithHttpInfo(bearer, requestId, subscription);
 
             System.out.println("Response:" + response.getStatusCode());
         } catch (ApiException e) {
@@ -988,18 +983,13 @@ public class ExamplesTest {
         final TransferenciasSpidApi api = new TransferenciasSpidApi();
 
         // Create the authenticator to obtain access token
-        //final OAuthWire4 oAuthWire4 = new OAuthWire4("rN9o6UPW6gg733X1qH7Pn4bmxfAa", "nNxxIsN_ErSNh20k440L7w2dTv8a", SANDBOX);
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-
         final String bearer;
-
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
-            //final String bearer = oAuthWire4.obtainAccessTokenAppUser("fd6a581b88440c58e39a0e179adb21@dev-saint.speiok.com", "95dd3b617e2425c89b5b3faff89749", "spid_admin");
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -1008,7 +998,6 @@ public class ExamplesTest {
         }
 
         // Build body with info (check references for more info, types, required fields)
-        //final String subscription = "ad30176d-c826-4f89-9b48-3d8b614ed826";
         final String subscription = SUBSCRIPTION;
         final TransactionOutgoingSpid body = new TransactionOutgoingSpid()
                 .returnUrl("https://your-app-url.mx/return")
@@ -1025,7 +1014,8 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final TokenRequiredResponse response = api.registerOutgoingSpidTransactionUsingPOST(body,bearer, subscription);
+            final TokenRequiredResponse response = api.registerOutgoingSpidTransactionUsingPOST(
+                    body, bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -1044,8 +1034,6 @@ public class ExamplesTest {
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
-        // Configure OAuth2 access token for authorization: oauth2
-        final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
         final String bearer;
         try {
             // Obtain an access token use application flow and scope "general"
@@ -1063,7 +1051,7 @@ public class ExamplesTest {
                             "ACCOUNT.CREATED",
                             "TRANSACTION.OUTGOING.RECEIVED",
                             "ENROLLMENT.CREATED"));
-            WebhookResponse response = api.registerWebhook(request,bearer);
+            WebhookResponse response = api.registerWebhook(request, bearer);
             System.out.println("Webhook registered :: " + response);
         } catch (ApiException e) {
             e.printStackTrace();
@@ -1115,7 +1103,7 @@ public class ExamplesTest {
             return;
         }
         try {
-            WebhookResponse response = api.getWebhook(bearer,"wh_f16529713e6a4be88097740cc7db1f28");
+            WebhookResponse response = api.getWebhook(bearer, "wh_f16529713e6a4be88097740cc7db1f28");
             System.out.println("Webhook :: " + response);
         } catch (ApiException e) {
             e.printStackTrace();
@@ -1142,10 +1130,10 @@ public class ExamplesTest {
             return;
         }
         try {
-            List<Billing> responseList = api.billingsReportUsingGET (bearer,"2019-10");
+            List<Billing> responseList = api.billingsReportUsingGET(bearer, "2019-10");
             System.out.println("Facturas :: " + responseList);
         } catch (ApiException e) {
-            System.out.println("staus code:"+e.getCode());
+            System.out.println("staus code:" + e.getCode());
 
             if (e.getCode() != 204) {
                 e.printStackTrace();
@@ -1174,10 +1162,10 @@ public class ExamplesTest {
             return;
         }
         try {
-            Billing response = api.billingsReportByIdUsingGET(bearer,"834BA74A-BBBB-43C4-8400-A4528153C2BD");
+            Billing response = api.billingsReportByIdUsingGET(bearer, "834BA74A-BBBB-43C4-8400-A4528153C2BD");
             System.out.println("Factura :: " + response);
         } catch (ApiException e) {
-            System.out.println("staus code:"+e.getCode());
+            System.out.println("staus code:" + e.getCode());
 
             if (e.getCode() != 204) {
                 e.printStackTrace();
@@ -1197,12 +1185,10 @@ public class ExamplesTest {
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
         final String bearer;
-
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -1217,7 +1203,8 @@ public class ExamplesTest {
 
             // Obtain the response
 
-            final PaymentsRequestId paymentsRequestId = api.outCommingSpeiRequestIdTransactionsReportUsingGET(bearer,subscription, orderId);
+            final PaymentsRequestId paymentsRequestId = api.outCommingSpeiRequestIdTransactionsReportUsingGET(
+                    bearer, subscription, orderId);
 
             System.out.println("Response:" + paymentsRequestId);
         } catch (ApiException e) {

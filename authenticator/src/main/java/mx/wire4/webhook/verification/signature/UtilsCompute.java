@@ -9,10 +9,9 @@
  */
 package mx.wire4.webhook.verification.signature;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Hex;
 
-import javax.crypto.*;
+import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.Serializable;
 import java.nio.charset.Charset;
@@ -27,7 +26,6 @@ import java.security.NoSuchAlgorithmException;
  * @author Saintiago García
  * @version 1.0
  */
-@Slf4j
 public final class UtilsCompute implements Serializable {
 
     private static final Charset DEFAULT_ENCODING = StandardCharsets.UTF_8;

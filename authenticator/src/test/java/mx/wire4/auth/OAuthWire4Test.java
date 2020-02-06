@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
  * @author Saintiago García
  * @version 1.0
  */
-
+@Ignore
 public class OAuthWire4Test {
 
     @Rule
