@@ -7,7 +7,7 @@ Referencia del SDK para el consumo del API de Wire4
 Este SDK es hecho y distrubuido por Wire4:
 
 - Versión del API de Wire4: 1.0.0
-- Versión de los paquetes SDK: 0.0.1-SNAPSHOT
+- Versión de los paquetes SDK: 0.0.2-SNAPSHOT
 
 ## Requerimientos.
 
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>wire4-api-sdk</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Agregar está dependencia al tu archivo de compilación `build` de tu proyecto:
 
 ```groovy
-compile "mx.wire4.sdk:wire4-api-sdk:0.0.1-SNAPSHOT"
+compile "mx.wire4.sdk:wire4-api-sdk:0.0.2-SNAPSHOT"
 ```
 
 ### Manualmente
@@ -66,7 +66,7 @@ mvn clean package
 
 Después manualmente hay que instalar los `JARs` en tu proyecto:
 
-* `target/wire4-api-sdk-0.0.1-SNAPSHOT.jar`
+* `target/wire4-api-sdk-0.0.2-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Change log
@@ -78,52 +78,48 @@ Después manualmente hay que instalar los `JARs` en tu proyecto:
 Primero debes seguir la guía de [instalación](#installation) y ejecutar el siguiente código de ejemplo:
 ```java
 // Create the api component
-final ComprobanteElectrnicoDePagoCepApi api = new ComprobanteElectrnicoDePagoCepApi();
+        final ComprobanteElectrnicoDePagoCepApi api = new ComprobanteElectrnicoDePagoCepApi();
 
-// Create the authenticator to obtain access token
-// (the token URL and Service URL are defined for this environment enum value))
-final OAuthWire4 oAuthWire4 = new OAuthWire4("{{your-client-id}}",
-        "{{your-client-secret}}", "{{environment}}");
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
 
-// Configure OAuth2 access token for authorization: oauth2
-final OAuth oauth2 = (OAuth) api.getApiClient().getAuthentication("wire4_aut_app");
+        final String bearer;
+        try {
 
-try {
+            // Obtain an access token use application flow and scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
 
-    // Obtain an access token use application flow and scope "general"
-    final String bearer = oAuthWire4.obtainAccessTokenApp("general");
-    // Add the bearer token to request
-    oauth2.setAccessToken(bearer);
-} catch (ApiException e) {
+        } catch (ApiException e) {
 
-    e.printStackTrace();
-    // Manage exception in access token flow
-    return;
-}
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
 
-// Build body with info (check references for more info, types, required fields)
-final CepSearchBanxico body = new CepSearchBanxico()
-        .amount(new BigDecimal("8963.25"))
-        .beneficiaryAccount("072680004657656853")
-        .beneficiaryBankKey("40072")
-        .claveRastreo("58735618")
-        .operationDate("05-12-2018")
-        .reference("1122334")
-        .senderAccount("112680000156896531")
-        .senderBankKey("40112");
+        // Build body with info (check references for more info, types, required fields)
+        final CepSearchBanxico body = new CepSearchBanxico()
+                .amount(new BigDecimal("8963.25"))
+                .beneficiaryAccount("072680004657656853")
+                .beneficiaryBankKey("40072")
+                .claveRastreo("58735618")
+                .operationDate("05-12-2018")
+                .reference("1122334")
+                .senderAccount("112680000156896531")
+                .senderBankKey("40112");
 
-try {
+        try {
 
-    // Obtain the response
-    final CepResponse response = api.obtainTransactionCepUsingPOST(body);
+            // Obtain the response
+            final CepResponse response = api.obtainTransactionCepUsingPOST( body, bearer);
 
-    System.out.println("CEP:" + response);
-} catch (ApiException e) {
+            System.out.println("CEP:" + response);
+        } catch (ApiException e) {
 
-    e.printStackTrace();
-    // Manage exception in access token flow
-    return;
-}
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+        
 ```
 
 ### Ejemplo de deserialización de mensaje WebHook de Wire4
