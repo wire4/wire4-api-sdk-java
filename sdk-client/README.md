@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>sdk-client</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "mx.wire4.sdk:sdk-client:0.0.2-SNAPSHOT"
+compile "mx.wire4.sdk:sdk-client:0.0.3-SNAPSHOT"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sdk-client-0.0.2-SNAPSHOT.jar`
+* `target/sdk-client-0.0.3-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -170,6 +170,7 @@ Class | Method | HTTP request | Description
  - [PreEnrollmentResponse](docs/PreEnrollmentResponse.md)
  - [Relationship](docs/Relationship.md)
  - [RelationshipsResponse](docs/RelationshipsResponse.md)
+ - [RequestChangedMessage](docs/RequestChangedMessage.md)
  - [SpidBeneficiariesResponse](docs/SpidBeneficiariesResponse.md)
  - [SpidBeneficiaryResponse](docs/SpidBeneficiaryResponse.md)
  - [SpidClassificationDTO](docs/SpidClassificationDTO.md)
