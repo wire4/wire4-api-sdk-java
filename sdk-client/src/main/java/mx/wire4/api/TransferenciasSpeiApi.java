@@ -414,7 +414,7 @@ public class TransferenciasSpeiApi {
 
     /**
      * Consulta de transferencias de salida por identificador de petición
-     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferenciasde salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
      * @param authorization Header para token (required)
      * @param requestId Identificador de la petición a buscar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
@@ -428,7 +428,7 @@ public class TransferenciasSpeiApi {
 
     /**
      * Consulta de transferencias de salida por identificador de petición
-     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferenciasde salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
      * @param authorization Header para token (required)
      * @param requestId Identificador de la petición a buscar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
@@ -443,7 +443,7 @@ public class TransferenciasSpeiApi {
 
     /**
      * Consulta de transferencias de salida por identificador de petición (asynchronously)
-     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferenciasde salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cual se debe especificar como parte del path de este endpoint.
      * @param authorization Header para token (required)
      * @param requestId Identificador de la petición a buscar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
