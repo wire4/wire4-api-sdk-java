@@ -1,4 +1,4 @@
-# RequestChangedMessage
+# MessageRequestChanged
 
 ## Properties
 Name | Type | Description | Notes

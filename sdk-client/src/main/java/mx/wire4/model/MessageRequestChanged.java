@@ -26,7 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "El mensaje que se envía mediante (webHook) con la información acerca de algún cambio en el procesamiento de la petición a esta a esta API")
 
-public class RequestChangedMessage {
+public class MessageRequestChanged {
   @SerializedName("request_id")
   private String requestId = null;
 
@@ -73,7 +73,7 @@ public class RequestChangedMessage {
   }  @SerializedName("status")
   private StatusEnum status = null;
 
-  public RequestChangedMessage requestId(String requestId) {
+  public MessageRequestChanged requestId(String requestId) {
     this.requestId = requestId;
     return this;
   }
@@ -91,7 +91,7 @@ public class RequestChangedMessage {
     this.requestId = requestId;
   }
 
-  public RequestChangedMessage status(StatusEnum status) {
+  public MessageRequestChanged status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -118,9 +118,9 @@ public class RequestChangedMessage {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RequestChangedMessage requestChangedMessage = (RequestChangedMessage) o;
-    return Objects.equals(this.requestId, requestChangedMessage.requestId) &&
-        Objects.equals(this.status, requestChangedMessage.status);
+    MessageRequestChanged messageRequestChanged = (MessageRequestChanged) o;
+    return Objects.equals(this.requestId, messageRequestChanged.requestId) &&
+        Objects.equals(this.status, messageRequestChanged.status);
   }
 
   @Override
@@ -132,7 +132,7 @@ public class RequestChangedMessage {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RequestChangedMessage {\n");
+    sb.append("class MessageRequestChanged {\n");
     
     sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
