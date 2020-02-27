@@ -14,6 +14,7 @@ import mx.wire4.ApiResponse;
 import mx.wire4.api.*;
 import mx.wire4.core.EnvironmentEnum;
 import mx.wire4.model.*;
+import mx.wire4.webhook.verification.signature.UtilsCompute;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -22,7 +23,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static mx.wire4.core.EnvironmentEnum.SANDBOX;
+import static mx.wire4.core.EnvironmentEnum.*;
+import static org.junit.Assert.*;
 
 /**
  * <i>Fecha de creación: 22 de octubre, 2019</i>
@@ -1213,5 +1215,58 @@ public class ExamplesTest {
             // Optional manage exception in access token flow
             return;
         }
+    }
+
+    @Test
+    public void obtainBeneficiariesByRequestId() {
+
+        // Create the api component
+        final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
+
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use password flow and scope "spei_admin"
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = SUBSCRIPTION;
+        final String requestId = "0726a947-deaf-4bdc-a411-dc40192c78d9";
+        try {
+
+            // Obtain the response
+            final BeneficiariesResponse response = api.getBeneficiariesByRequestId(bearer, requestId, subscription);
+
+            System.out.println("Relationships response:" + response);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
+
+    @Test
+    public void shouldSignWebHookMessage() throws Exception {
+
+        final String message = "{ \"responseCode\":0, \n" +
+                "  \"message\":\"Ya existe este beneficiario de pago a ctas nacionales en el contrato\",\n" +
+                "  \"statusCode\":\"ERROR\",\n" +
+                "  \"externalReference\":\"8939TR\"\n" +
+                "}";
+        final String key = "9ie93030?=";
+        final String signature = "8e63e88434679473bdb28546d7d91537601f4588e801972376d5c5addcb8fd706e6c92421b73151de3c" +
+                "1945ce000a8a5aa1d5cc3cdd73f2769ee9980db420db9";
+
+        assertTrue(UtilsCompute.compareWebHookMsgSignatures(message, key, signature));
     }
 }
