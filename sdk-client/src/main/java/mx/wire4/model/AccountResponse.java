@@ -66,6 +66,9 @@ public class AccountResponse {
   @SerializedName("rfc")
   private String rfc = null;
 
+  @SerializedName("status")
+  private String status = null;
+
   public AccountResponse amountLimit(BigDecimal amountLimit) {
     this.amountLimit = amountLimit;
     return this;
@@ -272,6 +275,24 @@ public class AccountResponse {
     this.rfc = rfc;
   }
 
+  public AccountResponse status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * El estado (status) en el que se encuentra el registro del beneficiario
+   * @return status
+  **/
+  @Schema(description = "El estado (status) en el que se encuentra el registro del beneficiario")
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -292,12 +313,13 @@ public class AccountResponse {
         Objects.equals(this.paymentConceptSpei, accountResponse.paymentConceptSpei) &&
         Objects.equals(this.person, accountResponse.person) &&
         Objects.equals(this.relationship, accountResponse.relationship) &&
-        Objects.equals(this.rfc, accountResponse.rfc);
+        Objects.equals(this.rfc, accountResponse.rfc) &&
+        Objects.equals(this.status, accountResponse.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountLimit, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpei, paymentConceptSpei, person, relationship, rfc);
+    return Objects.hash(amountLimit, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpei, paymentConceptSpei, person, relationship, rfc, status);
   }
 
 
@@ -317,6 +339,7 @@ public class AccountResponse {
     sb.append("    person: ").append(toIndentedString(person)).append("\n");
     sb.append("    relationship: ").append(toIndentedString(relationship)).append("\n");
     sb.append("    rfc: ").append(toIndentedString(rfc)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }
