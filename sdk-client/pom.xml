@@ -1,7 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>mx.wire4.sdk</groupId>
+  <parent>
+    <groupId>mx.wire4.sdk</groupId>
+    <artifactId>wire4-sdk</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+    <relativePath/>
+  </parent>
   <artifactId>sdk-client</artifactId>
   <packaging>jar</packaging>
   <name>sdk-client</name>
