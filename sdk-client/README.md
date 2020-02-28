@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>sdk-client</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "mx.wire4.sdk:sdk-client:0.0.2-SNAPSHOT"
+compile "mx.wire4.sdk:sdk-client:0.0.3-SNAPSHOT"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sdk-client-0.0.2-SNAPSHOT.jar`
+* `target/sdk-client-0.0.3-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -106,6 +106,7 @@ Class | Method | HTTP request | Description
 *ContactoApi* | [**sendContactUsingPOST**](docs/ContactoApi.md#sendContactUsingPOST) | **POST** /contact | Solicitud de contacto
 *CuentasDeBeneficiariosSpeiApi* | [**deleteAccountUsingDELETE**](docs/CuentasDeBeneficiariosSpeiApi.md#deleteAccountUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/{account} | Elimina la cuenta del beneficiario
 *CuentasDeBeneficiariosSpeiApi* | [**getAvailableRelationshipsMonexUsingGET**](docs/CuentasDeBeneficiariosSpeiApi.md#getAvailableRelationshipsMonexUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/relationships | Consulta de relaciones
+*CuentasDeBeneficiariosSpeiApi* | [**getBeneficiariesByRequestId**](docs/CuentasDeBeneficiariosSpeiApi.md#getBeneficiariesByRequestId) | **GET** /subscriptions/{subscription}/beneficiaries/spei/{requestId} | Consulta los beneficiarios por el identificador de la petición de registro
 *CuentasDeBeneficiariosSpeiApi* | [**getBeneficiariesForAccountUsingGET**](docs/CuentasDeBeneficiariosSpeiApi.md#getBeneficiariesForAccountUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/spei | Consulta los beneficiarios registrados
 *CuentasDeBeneficiariosSpeiApi* | [**preRegisterAccountsUsingPOST**](docs/CuentasDeBeneficiariosSpeiApi.md#preRegisterAccountsUsingPOST) | **POST** /subscriptions/{subscription}/beneficiaries/spei | Pre-registro de cuentas de beneficiarios.
 *CuentasDeBeneficiariosSpeiApi* | [**removeBeneficiariesPendingUsingDELETE**](docs/CuentasDeBeneficiariosSpeiApi.md#removeBeneficiariesPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/request/{requestId} | Eliminación de beneficiarios SPEI® sin confirmar
@@ -141,6 +142,7 @@ Class | Method | HTTP request | Description
  - [AmountRequest](docs/AmountRequest.md)
  - [Balance](docs/Balance.md)
  - [BalanceListResponse](docs/BalanceListResponse.md)
+ - [BeneficiariesQueryRegisterStatus](docs/BeneficiariesQueryRegisterStatus.md)
  - [BeneficiariesResponse](docs/BeneficiariesResponse.md)
  - [BeneficiaryInstitution](docs/BeneficiaryInstitution.md)
  - [Billing](docs/Billing.md)
@@ -161,6 +163,7 @@ Class | Method | HTTP request | Description
  - [MessageDepositReceived](docs/MessageDepositReceived.md)
  - [MessageInstitution](docs/MessageInstitution.md)
  - [MessagePayment](docs/MessagePayment.md)
+ - [MessageRequestChanged](docs/MessageRequestChanged.md)
  - [MessageSubscription](docs/MessageSubscription.md)
  - [MessageWebHook](docs/MessageWebHook.md)
  - [Payment](docs/Payment.md)

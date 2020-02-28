@@ -69,6 +69,23 @@ public class CuentasDeBeneficiariosSpeiApiTest {
         // TODO: test validations
     }
     /**
+     * Consulta los beneficiarios por el identificador de la petición de registro
+     *
+     * Obtiene los beneficiarios enviados para registro en una petición al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex, que pertenezcan a la petición que se solicita.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getBeneficiariesByRequestIdTest() throws ApiException {
+        String authorization = null;
+        String requestId = null;
+        String subscription = null;
+        BeneficiariesResponse response = api.getBeneficiariesByRequestId(authorization, requestId, subscription);
+
+        // TODO: test validations
+    }
+    /**
      * Consulta los beneficiarios registrados
      *
      * Obtiene los beneficiarios registrados al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.

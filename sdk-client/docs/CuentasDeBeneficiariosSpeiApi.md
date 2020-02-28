@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteAccountUsingDELETE**](CuentasDeBeneficiariosSpeiApi.md#deleteAccountUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/{account} | Elimina la cuenta del beneficiario
 [**getAvailableRelationshipsMonexUsingGET**](CuentasDeBeneficiariosSpeiApi.md#getAvailableRelationshipsMonexUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/relationships | Consulta de relaciones
+[**getBeneficiariesByRequestId**](CuentasDeBeneficiariosSpeiApi.md#getBeneficiariesByRequestId) | **GET** /subscriptions/{subscription}/beneficiaries/spei/{requestId} | Consulta los beneficiarios por el identificador de la petición de registro
 [**getBeneficiariesForAccountUsingGET**](CuentasDeBeneficiariosSpeiApi.md#getBeneficiariesForAccountUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/spei | Consulta los beneficiarios registrados
 [**preRegisterAccountsUsingPOST**](CuentasDeBeneficiariosSpeiApi.md#preRegisterAccountsUsingPOST) | **POST** /subscriptions/{subscription}/beneficiaries/spei | Pre-registro de cuentas de beneficiarios.
 [**removeBeneficiariesPendingUsingDELETE**](CuentasDeBeneficiariosSpeiApi.md#removeBeneficiariesPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/request/{requestId} | Eliminación de beneficiarios SPEI® sin confirmar
@@ -96,6 +97,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RelationshipsResponse**](RelationshipsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getBeneficiariesByRequestId"></a>
+# **getBeneficiariesByRequestId**
+> BeneficiariesResponse getBeneficiariesByRequestId(authorization, requestId, subscription)
+
+Consulta los beneficiarios por el identificador de la petición de registro
+
+Obtiene los beneficiarios enviados para registro en una petición al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex, que pertenezcan a la petición que se solicita.
+
+### Example
+```java
+// Import classes:
+//import mx.wire4.ApiException;
+//import mx.wire4.api.CuentasDeBeneficiariosSpeiApi;
+
+
+CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
+String authorization = "authorization_example"; // String | Header para token
+String requestId = "requestId_example"; // String | El identificador de la petición del registro de beneficiarios a esta API
+String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+try {
+    BeneficiariesResponse result = apiInstance.getBeneficiariesByRequestId(authorization, requestId, subscription);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#getBeneficiariesByRequestId");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
+ **requestId** | **String**| El identificador de la petición del registro de beneficiarios a esta API |
+ **subscription** | **String**| El identificador de la suscripción a esta API |
+
+### Return type
+
+[**BeneficiariesResponse**](BeneficiariesResponse.md)
 
 ### Authorization
 

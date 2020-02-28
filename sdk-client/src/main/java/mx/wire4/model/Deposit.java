@@ -23,6 +23,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import mx.wire4.model.MessageCEP;
 import mx.wire4.model.MessageInstitution;
 /**
  * Deposit
@@ -41,6 +42,9 @@ public class Deposit {
 
   @SerializedName("beneficiary_rfc")
   private String beneficiaryRfc = null;
+
+  @SerializedName("cep")
+  private MessageCEP cep = null;
 
   @SerializedName("clave_rastreo")
   private String claveRastreo = null;
@@ -160,6 +164,24 @@ public class Deposit {
 
   public void setBeneficiaryRfc(String beneficiaryRfc) {
     this.beneficiaryRfc = beneficiaryRfc;
+  }
+
+  public Deposit cep(MessageCEP cep) {
+    this.cep = cep;
+    return this;
+  }
+
+   /**
+   * Get cep
+   * @return cep
+  **/
+  @Schema(description = "")
+  public MessageCEP getCep() {
+    return cep;
+  }
+
+  public void setCep(MessageCEP cep) {
+    this.cep = cep;
   }
 
   public Deposit claveRastreo(String claveRastreo) {
@@ -464,6 +486,7 @@ public class Deposit {
         Objects.equals(this.beneficiaryAccount, deposit.beneficiaryAccount) &&
         Objects.equals(this.beneficiaryName, deposit.beneficiaryName) &&
         Objects.equals(this.beneficiaryRfc, deposit.beneficiaryRfc) &&
+        Objects.equals(this.cep, deposit.cep) &&
         Objects.equals(this.claveRastreo, deposit.claveRastreo) &&
         Objects.equals(this.confirmDate, deposit.confirmDate) &&
         Objects.equals(this.currencyCode, deposit.currencyCode) &&
@@ -484,7 +507,7 @@ public class Deposit {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, reference, senderAccount, senderBank, senderName, senderRfc);
+    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, cep, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, reference, senderAccount, senderBank, senderName, senderRfc);
   }
 
 
@@ -497,6 +520,7 @@ public class Deposit {
     sb.append("    beneficiaryAccount: ").append(toIndentedString(beneficiaryAccount)).append("\n");
     sb.append("    beneficiaryName: ").append(toIndentedString(beneficiaryName)).append("\n");
     sb.append("    beneficiaryRfc: ").append(toIndentedString(beneficiaryRfc)).append("\n");
+    sb.append("    cep: ").append(toIndentedString(cep)).append("\n");
     sb.append("    claveRastreo: ").append(toIndentedString(claveRastreo)).append("\n");
     sb.append("    confirmDate: ").append(toIndentedString(confirmDate)).append("\n");
     sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");

@@ -334,6 +334,150 @@ public class CuentasDeBeneficiariosSpeiApi {
         return call;
     }
     /**
+     * Build call for getBeneficiariesByRequestId
+     * @param authorization Header para token (required)
+     * @param requestId El identificador de la petición del registro de beneficiarios a esta API (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getBeneficiariesByRequestIdCall(String authorization, String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/subscriptions/{subscription}/beneficiaries/spei/{requestId}"
+            .replaceAll("\\{" + "requestId" + "\\}", apiClient.escapeString(requestId.toString()))
+            .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getBeneficiariesByRequestIdValidateBeforeCall(String authorization, String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling getBeneficiariesByRequestId(Async)");
+        }
+        // verify the required parameter 'requestId' is set
+        if (requestId == null) {
+            throw new ApiException("Missing the required parameter 'requestId' when calling getBeneficiariesByRequestId(Async)");
+        }
+        // verify the required parameter 'subscription' is set
+        if (subscription == null) {
+            throw new ApiException("Missing the required parameter 'subscription' when calling getBeneficiariesByRequestId(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = getBeneficiariesByRequestIdCall(authorization, requestId, subscription, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Consulta los beneficiarios por el identificador de la petición de registro
+     * Obtiene los beneficiarios enviados para registro en una petición al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex, que pertenezcan a la petición que se solicita.
+     * @param authorization Header para token (required)
+     * @param requestId El identificador de la petición del registro de beneficiarios a esta API (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @return BeneficiariesResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public BeneficiariesResponse getBeneficiariesByRequestId(String authorization, String requestId, String subscription) throws ApiException {
+        ApiResponse<BeneficiariesResponse> resp = getBeneficiariesByRequestIdWithHttpInfo(authorization, requestId, subscription);
+        return resp.getData();
+    }
+
+    /**
+     * Consulta los beneficiarios por el identificador de la petición de registro
+     * Obtiene los beneficiarios enviados para registro en una petición al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex, que pertenezcan a la petición que se solicita.
+     * @param authorization Header para token (required)
+     * @param requestId El identificador de la petición del registro de beneficiarios a esta API (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @return ApiResponse&lt;BeneficiariesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BeneficiariesResponse> getBeneficiariesByRequestIdWithHttpInfo(String authorization, String requestId, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = getBeneficiariesByRequestIdValidateBeforeCall(authorization, requestId, subscription, null, null);
+        Type localVarReturnType = new TypeToken<BeneficiariesResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Consulta los beneficiarios por el identificador de la petición de registro (asynchronously)
+     * Obtiene los beneficiarios enviados para registro en una petición al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex, que pertenezcan a la petición que se solicita.
+     * @param authorization Header para token (required)
+     * @param requestId El identificador de la petición del registro de beneficiarios a esta API (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getBeneficiariesByRequestIdAsync(String authorization, String requestId, String subscription, final ApiCallback<BeneficiariesResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getBeneficiariesByRequestIdValidateBeforeCall(authorization, requestId, subscription, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<BeneficiariesResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for getBeneficiariesForAccountUsingGET
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
