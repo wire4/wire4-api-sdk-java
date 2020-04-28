@@ -49,9 +49,7 @@ public class OAuthWire4 {
 
     private static final int MAX_APP_USER_SIZE_CACHED = 100;
 
-    private final  Map<String, CachedToken> tokensCachedAppUser;
-
-//    private final CachedToken tokenCachedApp;
+    private final Map<String, CachedToken> tokensCachedAppUser;
 
     private String clientId;
 
@@ -72,22 +70,23 @@ public class OAuthWire4 {
 
             throw new IllegalArgumentException("Environment enum value is required...");
         }
+
         this.tokensCachedAppUser = createTokenCachedAppUser();
-//        this.tokenCachedApp = new CachedToken(null, null, null);
     }
 
-    private Map<String,CachedToken> createTokenCachedAppUser() {
+    private Map<String, CachedToken> createTokenCachedAppUser() {
+
         return Collections.synchronizedMap(
-                new LinkedHashMap<String, CachedToken>() {
+            new LinkedHashMap<String, CachedToken>() {
 
-                    private static final long serialVersionUID = -6109304202490886343L;
+                private static final long serialVersionUID = -6109304202490886343L;
 
-                    @Override
-                    protected boolean removeEldestEntry(final Map.Entry eldest) {
+                @Override
+                protected boolean removeEldestEntry(final Map.Entry eldest) {
 
-                        return size() > MAX_APP_USER_SIZE_CACHED;
-                    }
-                });
+                    return size() > MAX_APP_USER_SIZE_CACHED;
+                }
+        });
     }
 
     public String obtainAccessTokenApp(final String scope) throws ApiException {
@@ -97,13 +96,14 @@ public class OAuthWire4 {
             try {
 
                 validateScopeIsPresent(scope);
-                CachedToken tokenCachedApp =  tokensCachedAppUser.get(this.clientId + scope);
-                if(tokenCachedApp == null){
+                CachedToken tokenCachedApp = tokensCachedAppUser.get(this.clientId + scope);
+                if (tokenCachedApp == null) {
+
                     tokenCachedApp = new CachedToken(null, null, null);
                     tokensCachedAppUser.put(this.clientId + scope, tokenCachedApp);
                 }
-                if (tokenCachedApp.getToken() != null &&
-                        DateTime.now().before(tokenCachedApp.getToken().expirationDate())) {
+
+                if (tokenCachedApp.getToken() != null && this.isExpired(tokenCachedApp.getToken().expirationDate())) {
 
                     return formatToHeader(tokenCachedApp.getToken().accessToken().toString());
                 }
@@ -128,17 +128,6 @@ public class OAuthWire4 {
         }
     }
 
-    private void validateScopeIsPresent(final String scope) throws ApiException {
-        if (StringUtils.isBlank(scope)) {
-
-            throw new ApiException(HttpStatus.UNAUTHORIZED.statusCode(), "A least one scope is required...");
-        }
-    }
-
-    private String formatToHeader(String token){
-        return "Bearer "+token;
-    }
-
     public String obtainAccessTokenAppUser(final String userKey, final String secretKey,
                                            final String scope) throws ApiException {
 
@@ -153,7 +142,7 @@ public class OAuthWire4 {
                 final CachedToken cachedToken = tokensCachedAppUser.get(userKey + scope);
                 if (cachedToken != null) {
 
-                    if (DateTime.now().before(cachedToken.getToken().expirationDate())) {
+                    if (this.isExpired(cachedToken.getToken().expirationDate())) {
 
                         return formatToHeader(cachedToken.getToken().accessToken().toString());
                     } else {
@@ -173,7 +162,7 @@ public class OAuthWire4 {
 
                 tokensCachedAppUser.put(userKey + scope, new CachedToken(userKey, secretKey, token));
                 accessToken = token.accessToken().toString();
-            } catch (ProtocolException  e) {
+            } catch (ProtocolException e) {
 
                 throw new ApiException(e);
             }
@@ -208,6 +197,27 @@ public class OAuthWire4 {
         }
     }
 
+    private void validateScopeIsPresent(final String scope) throws ApiException {
+
+        if (StringUtils.isBlank(scope)) {
+
+            throw new ApiException(HttpStatus.UNAUTHORIZED.statusCode(), "A least one scope is required...");
+        }
+    }
+
+    private String formatToHeader(final String token) {
+
+        return "Bearer " + token;
+    }
+
+    private boolean isExpired(final DateTime expirationDate) {
+
+        // Duration(int sign, int days, int hours, int minutes, int seconds)
+        final DateTime now = DateTime.now().addDuration(new Duration(-1, 0, 0, 5, 0));
+
+        return expirationDate != null && now.before(expirationDate);
+    }
+
     private void validObtainAccessTokenAppUser(final String userKey, final String secretKey,
                                                final String scope) throws ApiException {
 
@@ -231,7 +241,7 @@ public class OAuthWire4 {
         final OAuth2AuthorizationProvider provider = new BasicOAuth2AuthorizationProvider(
                 URI.create(this.tokenUrl), // authorization URL - disable for Wire4
                 URI.create(this.tokenUrl), // token URL
-                new Duration(1,0,3600) /* default expiration time in case the server doesn't return any */);
+                new Duration(1, 0, 3600) /* default expiration time in case the server doesn't return any */);
 
         // Create OAuth2 client credentials
         final OAuth2ClientCredentials credentials = new BasicOAuth2ClientCredentials(
@@ -242,14 +252,17 @@ public class OAuthWire4 {
                 new LazyUri(new Precoded("http://localhost")) /* Redirect URL for refresh token, not used */);
     }
 
-    public String regenerateAccessTokenApp(final String scope) throws ApiException{
+    public String regenerateAccessTokenApp(final String scope) throws ApiException {
+
         synchronized (this.tokensCachedAppUser) {
-            String accessToken;
+
+            final String accessToken;
             try {
 
                 validateScopeIsPresent(scope);
-                CachedToken tokenCachedApp =  tokensCachedAppUser.get(this.clientId + scope);
-                if(tokenCachedApp == null){
+                CachedToken tokenCachedApp = tokensCachedAppUser.get(this.clientId + scope);
+                if (tokenCachedApp == null) {
+
                     tokenCachedApp = new CachedToken(null, null, null);
                     tokensCachedAppUser.put(this.clientId + scope, tokenCachedApp);
                 }
@@ -261,7 +274,6 @@ public class OAuthWire4 {
                         new BasicScope(scope));
                 final OAuth2AccessToken token = clientCredentialsGrant.accessToken(executor);
 
-
                 tokenCachedApp.setToken(token);
                 accessToken = token.accessToken().toString();
             } catch (IOException | ProtocolError | ProtocolException e) {
@@ -271,24 +283,26 @@ public class OAuthWire4 {
 
             return formatToHeader(accessToken);
         }
-
     }
 
     public String regenerateAccessTokenAppUser(final String userKey, final String secretKey,
-            final String scope) throws ApiException {
+                                               final String scope) throws ApiException {
+
         synchronized (tokensCachedAppUser) {
+
             final String accessToken;
             try {
+
                 this.validObtainAccessTokenAppUser(userKey, secretKey, scope);
-                final OAuth2Grant grant = new ResourceOwnerPasswordGrant(buildOAuthClient(), new BasicScope(scope), userKey,
-                            secretKey);
+                final OAuth2Grant grant = new ResourceOwnerPasswordGrant(buildOAuthClient(), new BasicScope(scope),
+                        userKey, secretKey);
                 // Request access token using a Resource Owner Password Grant
                 final boolean useRefreshToken = false;
                 final OAuth2AccessToken token = executeTokenRequest(userKey, secretKey, scope, grant, useRefreshToken);
 
                 tokensCachedAppUser.put(userKey + scope, new CachedToken(userKey, secretKey, token));
                 accessToken = token.accessToken().toString();
-            } catch (ProtocolException  e) {
+            } catch (ProtocolException e) {
 
                 throw new ApiException(e);
             }
@@ -296,6 +310,4 @@ public class OAuthWire4 {
             return formatToHeader(accessToken);
         }
     }
-
-
 }

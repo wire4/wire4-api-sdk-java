@@ -16,6 +16,8 @@ import mx.wire4.api.SaldoApi;
 import mx.wire4.core.EnvironmentEnum;
 import mx.wire4.model.BalanceListResponse;
 import mx.wire4.model.ContactRequest;
+import org.dmfs.rfc5545.DateTime;
+import org.dmfs.rfc5545.Duration;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
 import org.hamcrest.core.StringStartsWith;
@@ -313,5 +315,17 @@ public class OAuthWire4Test {
         System.out.println(cache);
         cache.put("G", "A");
         System.out.println(cache);
+    }
+
+    @Test
+    public void shouldSubtractMinutes() {
+
+        final DateTime now = DateTime.now();
+
+        System.out.println("now         : " + now);
+
+        final DateTime nowMinusFive = now.addDuration(new Duration(-1, 0, 0, 5, 0));
+
+        System.out.println("nowMinusFive: " + nowMinusFive);
     }
 }

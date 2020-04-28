@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>mx.wire4.sdk</groupId>
+    <artifactId>wire4-sdk</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>wire4-sdk</name>
+    <description>Wire4 sdk</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <nexus.tcpip.repository.url>http://nexus.tcpip.tech/nexus/content/repositories/releases/</nexus.tcpip.repository.url>
+        <nexus.tcpip.snapshot.url>http://nexus.tcpip.tech/nexus/content/repositories/snapshots/</nexus.tcpip.snapshot.url>
+        <nexus.openpay.repository.url>http://nexus.openpay.mx:8081/nexus/content/repositories/releases/</nexus.openpay.repository.url>
+        <nexus.openpay.snapshot.url>http://nexus.openpay.mx:8081/nexus/content/repositories/snapshots/</nexus.openpay.snapshot.url>
+    </properties>
+
+    <modules>
+        <module>sdk-client</module>
+        <module>authenticator</module>
+        <module>wire4-api-sdk</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>io.ultreia.java4all.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0.0-rc-1</version>
+
+                <configuration>
+                    <!--suppress UnresolvedMavenProperty -->
+                    <username>${gitUser}</username>
+                    <!--suppress UnresolvedMavenProperty -->
+                    <password>${gitPassword}</password>
+                    <squash>true</squash>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <pushFeatures>true</pushFeatures>
+                    <pushHotfixes>true</pushHotfixes>
+                    <pushReleases>true</pushReleases>
+                    <enableSshAgent>true</enableSshAgent>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>develop</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                        <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
+                    </flowInitContext>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-tcpip</id>
+            <url>${nexus.tcpip.repository.url}</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>nexus-tcpip</id>
+            <url>${nexus.tcpip.snapshot.url}</url>
+        </snapshotRepository>
+
+        <!--<repository>
+            <id>nexus-facelend</id>
+            <url>${nexus.openpay.repository.url}</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>nexus-facelend</id>
+            <url>${nexus.openpay.snapshot.url}</url>
+        </snapshotRepository>-->
+    </distributionManagement>
+
+    <organization>
+        <name>TCPIP</name>
+        <url>https://tcpip.tech</url>
+    </organization>
+</project>
