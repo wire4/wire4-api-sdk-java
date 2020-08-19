@@ -4,8 +4,8 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**consultCodiRequestByOrderId**](PeticionesDePagoPorCoDiApi.md#consultCodiRequestByOrderId) | **GET** /codi/sales-point/{sales_point_id}/charges/{order_id} | Obtiene la información de una petición de pago CODI® por orderId para un punto de venta
-[**generateCodiCodeQR**](PeticionesDePagoPorCoDiApi.md#generateCodiCodeQR) | **POST** /codi/sales-point/{salesPointId}/charges | Genera un código QR para un pago mediante CODI®
+[**consultCodiRequestByOrderId**](PeticionesDePagoPorCoDiApi.md#consultCodiRequestByOrderId) | **GET** /codi/sales-point/charges | Obtiene la información de una petición de pago CODI® por orderId para un punto de venta
+[**generateCodiCodeQR**](PeticionesDePagoPorCoDiApi.md#generateCodiCodeQR) | **POST** /codi/sales-point/charges | Genera un código QR para un pago mediante CODI®
 
 <a name="consultCodiRequestByOrderId"></a>
 # **consultCodiRequestByOrderId**
@@ -24,7 +24,7 @@ Obtiene la información de una petición de pago CODI® por orderId para un punt
 
 PeticionesDePagoPorCoDiApi apiInstance = new PeticionesDePagoPorCoDiApi();
 String authorization = "authorization_example"; // String | Header para token
-String orderId = "orderId_example"; // String | OrderId
+String orderId = "orderId_example"; // String | Identificador del pago CODI®
 String salesPointId = "salesPointId_example"; // String | Identificador del punto de venta
 try {
     PaymentRequestCodiResponseDTO result = apiInstance.consultCodiRequestByOrderId(authorization, orderId, salesPointId);
@@ -40,7 +40,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **orderId** | **String**| OrderId |
+ **orderId** | **String**| Identificador del pago CODI® |
  **salesPointId** | **String**| Identificador del punto de venta |
 
 ### Return type

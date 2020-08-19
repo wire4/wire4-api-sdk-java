@@ -4,12 +4,12 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createSalesPoint**](PuntosDeVentaCoDiApi.md#createSalesPoint) | **POST** /codi/companies/{company_id}/salespoint | Registra un punto de venta asociado a una empresa
-[**obtainSalePoints**](PuntosDeVentaCoDiApi.md#obtainSalePoints) | **GET** /codi/companies/{company_id}/salespoint | Obtiene los puntos de venta asociados a una empresa
+[**createSalesPoint**](PuntosDeVentaCoDiApi.md#createSalesPoint) | **POST** /codi/companies/salespoint | Registra un punto de venta asociado a una empresa
+[**obtainSalePoints**](PuntosDeVentaCoDiApi.md#obtainSalePoints) | **GET** /codi/companies/salespoint | Obtiene los puntos de venta asociados a una empresa
 
 <a name="createSalesPoint"></a>
 # **createSalesPoint**
-> SalesPointRespose createSalesPoint(body, authorization, companyId, name)
+> SalesPointRespose createSalesPoint(body, authorization, companyId)
 
 Registra un punto de venta asociado a una empresa
 
@@ -23,12 +23,11 @@ Registra un punto de venta desde donde se emitaran los cobros CODI®, el punto d
 
 
 PuntosDeVentaCoDiApi apiInstance = new PuntosDeVentaCoDiApi();
-SalesPointRequest body = new SalesPointRequest(); // SalesPointRequest | salesPointRequest
+SalesPointRequest body = new SalesPointRequest(); // SalesPointRequest | Información del punto de venta CODI®
 String authorization = "authorization_example"; // String | Header para token
-String companyId = "companyId_example"; // String | company_id
-String name = "name_example"; // String | 
+String companyId = "companyId_example"; // String | El identificador de la empresa
 try {
-    SalesPointRespose result = apiInstance.createSalesPoint(body, authorization, companyId, name);
+    SalesPointRespose result = apiInstance.createSalesPoint(body, authorization, companyId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PuntosDeVentaCoDiApi#createSalesPoint");
@@ -40,10 +39,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SalesPointRequest**](SalesPointRequest.md)| salesPointRequest |
+ **body** | [**SalesPointRequest**](SalesPointRequest.md)| Información del punto de venta CODI® |
  **authorization** | **String**| Header para token |
- **companyId** | **String**| company_id |
- **name** | **String**|  | [optional]
+ **companyId** | **String**| El identificador de la empresa |
 
 ### Return type
 

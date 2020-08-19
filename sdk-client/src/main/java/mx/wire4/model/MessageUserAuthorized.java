@@ -22,11 +22,11 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
- * La información del usuario autorizado para usar el API de Monex.
+ * El mensaje que se envía mediante (webHook) con la información del usuario que se le autorizó el uso del API de Monex.
  */
-@Schema(description = "La información del usuario autorizado para usar el API de Monex.")
+@Schema(description = "El mensaje que se envía mediante (webHook) con la información del usuario que se le autorizó el uso del API de Monex.")
 
-public class AuthorizedUsers {
+public class MessageUserAuthorized {
   @SerializedName("account")
   private String account = null;
 
@@ -42,10 +42,10 @@ public class AuthorizedUsers {
   @SerializedName("name")
   private String name = null;
 
-  @SerializedName("user_name")
-  private String userName = null;
+  @SerializedName("request_id")
+  private String requestId = null;
 
-  public AuthorizedUsers account(String account) {
+  public MessageUserAuthorized account(String account) {
     this.account = account;
     return this;
   }
@@ -63,7 +63,7 @@ public class AuthorizedUsers {
     this.account = account;
   }
 
-  public AuthorizedUsers maskedAccount(String maskedAccount) {
+  public MessageUserAuthorized maskedAccount(String maskedAccount) {
     this.maskedAccount = maskedAccount;
     return this;
   }
@@ -81,7 +81,7 @@ public class AuthorizedUsers {
     this.maskedAccount = maskedAccount;
   }
 
-  public AuthorizedUsers maskedName(String maskedName) {
+  public MessageUserAuthorized maskedName(String maskedName) {
     this.maskedName = maskedName;
     return this;
   }
@@ -99,7 +99,7 @@ public class AuthorizedUsers {
     this.maskedName = maskedName;
   }
 
-  public AuthorizedUsers maskedUserName(String maskedUserName) {
+  public MessageUserAuthorized maskedUserName(String maskedUserName) {
     this.maskedUserName = maskedUserName;
     return this;
   }
@@ -117,7 +117,7 @@ public class AuthorizedUsers {
     this.maskedUserName = maskedUserName;
   }
 
-  public AuthorizedUsers name(String name) {
+  public MessageUserAuthorized name(String name) {
     this.name = name;
     return this;
   }
@@ -135,22 +135,22 @@ public class AuthorizedUsers {
     this.name = name;
   }
 
-  public AuthorizedUsers userName(String userName) {
-    this.userName = userName;
+  public MessageUserAuthorized requestId(String requestId) {
+    this.requestId = requestId;
     return this;
   }
 
    /**
-   * El usuario de acceso que se autorizó
-   * @return userName
+   * El identificador de la petición cuando se solicitó la autorización
+   * @return requestId
   **/
-  @Schema(description = "El usuario de acceso que se autorizó")
-  public String getUserName() {
-    return userName;
+  @Schema(description = "El identificador de la petición cuando se solicitó la autorización")
+  public String getRequestId() {
+    return requestId;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
   }
 
 
@@ -162,32 +162,32 @@ public class AuthorizedUsers {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AuthorizedUsers authorizedUsers = (AuthorizedUsers) o;
-    return Objects.equals(this.account, authorizedUsers.account) &&
-        Objects.equals(this.maskedAccount, authorizedUsers.maskedAccount) &&
-        Objects.equals(this.maskedName, authorizedUsers.maskedName) &&
-        Objects.equals(this.maskedUserName, authorizedUsers.maskedUserName) &&
-        Objects.equals(this.name, authorizedUsers.name) &&
-        Objects.equals(this.userName, authorizedUsers.userName);
+    MessageUserAuthorized messageUserAuthorized = (MessageUserAuthorized) o;
+    return Objects.equals(this.account, messageUserAuthorized.account) &&
+        Objects.equals(this.maskedAccount, messageUserAuthorized.maskedAccount) &&
+        Objects.equals(this.maskedName, messageUserAuthorized.maskedName) &&
+        Objects.equals(this.maskedUserName, messageUserAuthorized.maskedUserName) &&
+        Objects.equals(this.name, messageUserAuthorized.name) &&
+        Objects.equals(this.requestId, messageUserAuthorized.requestId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, maskedAccount, maskedName, maskedUserName, name, userName);
+    return Objects.hash(account, maskedAccount, maskedName, maskedUserName, name, requestId);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AuthorizedUsers {\n");
+    sb.append("class MessageUserAuthorized {\n");
     
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("    maskedAccount: ").append(toIndentedString(maskedAccount)).append("\n");
     sb.append("    maskedName: ").append(toIndentedString(maskedName)).append("\n");
     sb.append("    maskedUserName: ").append(toIndentedString(maskedUserName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    userName: ").append(toIndentedString(userName)).append("\n");
+    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
