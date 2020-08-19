@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **beneficiaryAccount** | **String** | Cuenta del beneficiario, podría ser teléfono celular, TDD o cuenta CLABE | 
 **email** | **List&lt;String&gt;** | Lista de email&#x27;s, este dato es opcional |  [optional]
 **institution** | [**BeneficiaryInstitution**](BeneficiaryInstitution.md) |  |  [optional]
-**kindOfRelationship** | **String** | Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships | 
+**kindOfRelationship** | **String** | Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. &lt;br&gt; Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta. | 
 **numericReferenceSpei** | **String** | Referencia numérica a utilizar cuando se realice una transferencia y no se especifique una referencia |  [optional]
 **paymentConceptSpei** | **String** | Concepto de pago a utilizar cuando se realice una transferencia y no se especifique un concepto |  [optional]
 **person** | [**Person**](Person.md) |  |  [optional]
-**relationship** | **String** | Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships | 
-**rfc** | **String** | Registro federal de contribuyentes de la persona o institución propietaria de la cuenta | 
+**relationship** | **String** | Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. &lt;br&gt; Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta. | 
+**rfc** | **String** | Registro federal de contribuyentes de la persona o institución propietaria de la cuenta. &lt;br&gt; Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta. | 

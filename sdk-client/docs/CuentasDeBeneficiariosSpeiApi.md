@@ -4,6 +4,7 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**authorizeAccountsPendingPUT**](CuentasDeBeneficiariosSpeiApi.md#authorizeAccountsPendingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/pending | Recibe la solicitud para agrupar las cuentas SPEI/SPID de beneficiarios en estado pendiente que deben ser autorizadas
 [**deleteAccountUsingDELETE**](CuentasDeBeneficiariosSpeiApi.md#deleteAccountUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/{account} | Elimina la cuenta del beneficiario
 [**getAvailableRelationshipsMonexUsingGET**](CuentasDeBeneficiariosSpeiApi.md#getAvailableRelationshipsMonexUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/relationships | Consulta de relaciones
 [**getBeneficiariesByRequestId**](CuentasDeBeneficiariosSpeiApi.md#getBeneficiariesByRequestId) | **GET** /subscriptions/{subscription}/beneficiaries/spei/{requestId} | Consulta los beneficiarios por el identificador de la petición de registro
@@ -11,6 +12,55 @@ Method | HTTP request | Description
 [**preRegisterAccountsUsingPOST**](CuentasDeBeneficiariosSpeiApi.md#preRegisterAccountsUsingPOST) | **POST** /subscriptions/{subscription}/beneficiaries/spei | Pre-registro de cuentas de beneficiarios.
 [**removeBeneficiariesPendingUsingDELETE**](CuentasDeBeneficiariosSpeiApi.md#removeBeneficiariesPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/request/{requestId} | Eliminación de beneficiarios SPEI® sin confirmar
 [**updateAmountLimitAccountUsingPUT**](CuentasDeBeneficiariosSpeiApi.md#updateAmountLimitAccountUsingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/spei/{account} | Actualiza el monto límite
+
+<a name="authorizeAccountsPendingPUT"></a>
+# **authorizeAccountsPendingPUT**
+> AuthorizedBeneficiariesResponse authorizeAccountsPendingPUT(body, authorization, subscription)
+
+Recibe la solicitud para agrupar las cuentas SPEI/SPID de beneficiarios en estado pendiente que deben ser autorizadas
+
+Solicta autorizar las cuentas de beneficiarios en estado pendiente agrupandolas en un set de cuentas que pueden incluir tanto cuentas de SPI como de SPID, debe indicar las urls de redireccion en caso de error y en caso de exito&lt;br/&gt;
+
+### Example
+```java
+// Import classes:
+//import mx.wire4.ApiException;
+//import mx.wire4.api.CuentasDeBeneficiariosSpeiApi;
+
+
+CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
+UrlsRedirect body = new UrlsRedirect(); // UrlsRedirect | Información de la cuenta del beneficiario
+String authorization = "authorization_example"; // String | Header para token
+String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+try {
+    AuthorizedBeneficiariesResponse result = apiInstance.authorizeAccountsPendingPUT(body, authorization, subscription);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#authorizeAccountsPendingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**UrlsRedirect**](UrlsRedirect.md)| Información de la cuenta del beneficiario |
+ **authorization** | **String**| Header para token |
+ **subscription** | **String**| El identificador de la suscripción a esta API |
+
+### Return type
+
+[**AuthorizedBeneficiariesResponse**](AuthorizedBeneficiariesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="deleteAccountUsingDELETE"></a>
 # **deleteAccountUsingDELETE**
@@ -158,7 +208,7 @@ No authorization required
 
 <a name="getBeneficiariesForAccountUsingGET"></a>
 # **getBeneficiariesForAccountUsingGET**
-> BeneficiariesResponse getBeneficiariesForAccountUsingGET(authorization, subscription, account, rfc)
+> BeneficiariesResponse getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status)
 
 Consulta los beneficiarios registrados
 
@@ -175,9 +225,14 @@ CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 String account = "account_example"; // String | Cuenta del beneficiario, puede ser Clabe, TDD o Celular
+String beneficiaryBank = "beneficiaryBank_example"; // String | Clave del banco beneficiario
+String beneficiaryName = "beneficiaryName_example"; // String | Nombre del beneficiario
+String endDate = "endDate_example"; // String | Fecha de inicio del perido a filtrar en formato dd-mm-yyyy
+String initDate = "initDate_example"; // String | Fecha de inicio del perido a filtrar en formato dd-mm-yyyy
 String rfc = "rfc_example"; // String | RFC del beneficiario
+String status = "status_example"; // String | Estatus de la cuenta
 try {
-    BeneficiariesResponse result = apiInstance.getBeneficiariesForAccountUsingGET(authorization, subscription, account, rfc);
+    BeneficiariesResponse result = apiInstance.getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#getBeneficiariesForAccountUsingGET");
@@ -192,7 +247,12 @@ Name | Type | Description  | Notes
  **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
  **account** | **String**| Cuenta del beneficiario, puede ser Clabe, TDD o Celular | [optional]
+ **beneficiaryBank** | **String**| Clave del banco beneficiario | [optional]
+ **beneficiaryName** | **String**| Nombre del beneficiario | [optional]
+ **endDate** | **String**| Fecha de inicio del perido a filtrar en formato dd-mm-yyyy | [optional]
+ **initDate** | **String**| Fecha de inicio del perido a filtrar en formato dd-mm-yyyy | [optional]
  **rfc** | **String**| RFC del beneficiario | [optional]
+ **status** | **String**| Estatus de la cuenta | [optional]
 
 ### Return type
 
