@@ -6,20 +6,20 @@
     <parent>
         <groupId>mx.wire4.sdk</groupId>
         <artifactId>wire4-sdk</artifactId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.5-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
     <artifactId>authenticator</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
 
     <name>Wire4 authenticator</name>
     <description>Commons utilities for Wire authentication</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>        
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -64,7 +64,7 @@
         <dependency>
             <groupId>mx.wire4.sdk</groupId>
             <artifactId>sdk-client</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
+            <version>0.0.5-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 

@@ -7,7 +7,7 @@ Referencia del SDK para el consumo del API de Wire4
 Este SDK es hecho y distrubuido por Wire4:
 
 - Versión del API de Wire4: 1.0.0
-- Versión de los paquetes SDK: 0.0.2-SNAPSHOT
+- Versión de los paquetes SDK: 0.0.5-SNAPSHOT
 
 ## Requerimientos.
 
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>wire4-api-sdk</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.5-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Agregar está dependencia al tu archivo de compilación `build` de tu proyecto:
 
 ```groovy
-compile "mx.wire4.sdk:wire4-api-sdk:0.0.2-SNAPSHOT"
+compile "mx.wire4.sdk:wire4-api-sdk:0.0.5-SNAPSHOT"
 ```
 
 ### Manualmente
@@ -66,7 +66,7 @@ mvn clean package
 
 Después manualmente hay que instalar los `JARs` en tu proyecto:
 
-* `target/wire4-api-sdk-0.0.2-SNAPSHOT.jar`
+* `target/wire4-api-sdk-0.0.5-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Change log
@@ -119,7 +119,7 @@ Primero debes seguir la guía de [instalación](#installation) y ejecutar el sig
             // Optional manage exception in access token flow
             return;
         }
-        
+
 ```
 
 ### Ejemplo de deserialización de mensaje WebHook de Wire4
