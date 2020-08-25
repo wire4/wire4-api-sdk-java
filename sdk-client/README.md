@@ -170,6 +170,7 @@ Class | Method | HTTP request | Description
  - [CertificateRequest](docs/CertificateRequest.md)
  - [CodiCodeQrResponseDTO](docs/CodiCodeQrResponseDTO.md)
  - [CodiCodeRequestDTO](docs/CodiCodeRequestDTO.md)
+ - [CodiOperationResponseDTO](docs/CodiOperationResponseDTO.md)
  - [CodiOperationsFiltersRequestDTO](docs/CodiOperationsFiltersRequestDTO.md)
  - [CompanyRegistered](docs/CompanyRegistered.md)
  - [CompanyRequested](docs/CompanyRequested.md)

@@ -25,7 +25,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import mx.wire4.model.PaymentRequestCodiResponseDTO;
+import mx.wire4.model.CodiOperationResponseDTO;
 /**
  * Objeto que contiene la información de solicitud de pago por CODI®.
  */
@@ -50,29 +50,17 @@ public class PaymentRequestCodiResponseDTO {
   @SerializedName("due_date")
   private OffsetDateTime dueDate = null;
 
-  @SerializedName("id")
-  private String id = null;
-
-  @SerializedName("operation_date")
-  private OffsetDateTime operationDate = null;
-
   @SerializedName("operations")
-  private List<PaymentRequestCodiResponseDTO> operations = null;
+  private List<CodiOperationResponseDTO> operations = null;
 
   @SerializedName("order_id")
   private String orderId = null;
-
-  @SerializedName("payment_type")
-  private String paymentType = null;
 
   @SerializedName("phone_number")
   private String phoneNumber = null;
 
   @SerializedName("status")
   private String status = null;
-
-  @SerializedName("transaction_id")
-  private String transactionId = null;
 
   @SerializedName("type")
   private String type = null;
@@ -185,48 +173,12 @@ public class PaymentRequestCodiResponseDTO {
     this.dueDate = dueDate;
   }
 
-  public PaymentRequestCodiResponseDTO id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Identificador de la operacion.
-   * @return id
-  **/
-  @Schema(description = "Identificador de la operacion.")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public PaymentRequestCodiResponseDTO operationDate(OffsetDateTime operationDate) {
-    this.operationDate = operationDate;
-    return this;
-  }
-
-   /**
-   * Fecha de la operacion.
-   * @return operationDate
-  **/
-  @Schema(description = "Fecha de la operacion.")
-  public OffsetDateTime getOperationDate() {
-    return operationDate;
-  }
-
-  public void setOperationDate(OffsetDateTime operationDate) {
-    this.operationDate = operationDate;
-  }
-
-  public PaymentRequestCodiResponseDTO operations(List<PaymentRequestCodiResponseDTO> operations) {
+  public PaymentRequestCodiResponseDTO operations(List<CodiOperationResponseDTO> operations) {
     this.operations = operations;
     return this;
   }
 
-  public PaymentRequestCodiResponseDTO addOperationsItem(PaymentRequestCodiResponseDTO operationsItem) {
+  public PaymentRequestCodiResponseDTO addOperationsItem(CodiOperationResponseDTO operationsItem) {
     if (this.operations == null) {
       this.operations = new ArrayList<>();
     }
@@ -239,11 +191,11 @@ public class PaymentRequestCodiResponseDTO {
    * @return operations
   **/
   @Schema(description = "Listado de pagos realizados sobre la petición.")
-  public List<PaymentRequestCodiResponseDTO> getOperations() {
+  public List<CodiOperationResponseDTO> getOperations() {
     return operations;
   }
 
-  public void setOperations(List<PaymentRequestCodiResponseDTO> operations) {
+  public void setOperations(List<CodiOperationResponseDTO> operations) {
     this.operations = operations;
   }
 
@@ -263,24 +215,6 @@ public class PaymentRequestCodiResponseDTO {
 
   public void setOrderId(String orderId) {
     this.orderId = orderId;
-  }
-
-  public PaymentRequestCodiResponseDTO paymentType(String paymentType) {
-    this.paymentType = paymentType;
-    return this;
-  }
-
-   /**
-   * Tipo de pago.
-   * @return paymentType
-  **/
-  @Schema(description = "Tipo de pago.")
-  public String getPaymentType() {
-    return paymentType;
-  }
-
-  public void setPaymentType(String paymentType) {
-    this.paymentType = paymentType;
   }
 
   public PaymentRequestCodiResponseDTO phoneNumber(String phoneNumber) {
@@ -319,24 +253,6 @@ public class PaymentRequestCodiResponseDTO {
     this.status = status;
   }
 
-  public PaymentRequestCodiResponseDTO transactionId(String transactionId) {
-    this.transactionId = transactionId;
-    return this;
-  }
-
-   /**
-   * Identificador de la transacción.
-   * @return transactionId
-  **/
-  @Schema(description = "Identificador de la transacción.")
-  public String getTransactionId() {
-    return transactionId;
-  }
-
-  public void setTransactionId(String transactionId) {
-    this.transactionId = transactionId;
-  }
-
   public PaymentRequestCodiResponseDTO type(String type) {
     this.type = type;
     return this;
@@ -371,20 +287,16 @@ public class PaymentRequestCodiResponseDTO {
         Objects.equals(this.concept, paymentRequestCodiResponseDTO.concept) &&
         Objects.equals(this.creationDate, paymentRequestCodiResponseDTO.creationDate) &&
         Objects.equals(this.dueDate, paymentRequestCodiResponseDTO.dueDate) &&
-        Objects.equals(this.id, paymentRequestCodiResponseDTO.id) &&
-        Objects.equals(this.operationDate, paymentRequestCodiResponseDTO.operationDate) &&
         Objects.equals(this.operations, paymentRequestCodiResponseDTO.operations) &&
         Objects.equals(this.orderId, paymentRequestCodiResponseDTO.orderId) &&
-        Objects.equals(this.paymentType, paymentRequestCodiResponseDTO.paymentType) &&
         Objects.equals(this.phoneNumber, paymentRequestCodiResponseDTO.phoneNumber) &&
         Objects.equals(this.status, paymentRequestCodiResponseDTO.status) &&
-        Objects.equals(this.transactionId, paymentRequestCodiResponseDTO.transactionId) &&
         Objects.equals(this.type, paymentRequestCodiResponseDTO.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, barcodeBase64, barcodeUrl, concept, creationDate, dueDate, id, operationDate, operations, orderId, paymentType, phoneNumber, status, transactionId, type);
+    return Objects.hash(amount, barcodeBase64, barcodeUrl, concept, creationDate, dueDate, operations, orderId, phoneNumber, status, type);
   }
 
 
@@ -399,14 +311,10 @@ public class PaymentRequestCodiResponseDTO {
     sb.append("    concept: ").append(toIndentedString(concept)).append("\n");
     sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
     sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    operationDate: ").append(toIndentedString(operationDate)).append("\n");
     sb.append("    operations: ").append(toIndentedString(operations)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
-    sb.append("    paymentType: ").append(toIndentedString(paymentType)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
