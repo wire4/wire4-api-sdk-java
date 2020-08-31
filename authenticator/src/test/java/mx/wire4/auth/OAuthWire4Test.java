@@ -155,6 +155,18 @@ public class OAuthWire4Test {
         Assert.assertThat(appAccessToken,IsNot.not(IsEqual.equalTo(newUserAccessToken)));
     }
 
+    @Test
+    public void whenGenerateTokeForTwoScopes_should_returnTheAccessToken() throws ApiException {
+        final OAuthWire4 oAuthWire4 = new OAuthWire4("6PqWzT6DgbEyLNu7d4YItJyuT2Ea","00cRaDHZimyDENOJOQbA5psoVNoa",EnvironmentEnum.DEVELOPMENT);
+        final String appDoubleScope = oAuthWire4.obtainAccessTokenApp("general codi_report");
+        final String appGeneral = oAuthWire4.obtainAccessTokenApp("general");
+        final String appCodiReport = oAuthWire4.obtainAccessTokenApp("codi_report");
+        Assert.assertThat(appDoubleScope, IsNot.not(IsEqual.equalTo(appGeneral)));
+        Assert.assertThat(appDoubleScope, IsNot.not(IsEqual.equalTo(appCodiReport)));
+        Assert.assertThat(appGeneral, IsNot.not(IsEqual.equalTo(appCodiReport)));
+
+    }
+
 
     @Ignore
     @Test
