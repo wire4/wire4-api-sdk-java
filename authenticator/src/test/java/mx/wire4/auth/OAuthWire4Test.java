@@ -167,6 +167,22 @@ public class OAuthWire4Test {
 
     }
 
+    @Test
+    public void whenGenerateTokeForManyScopes_should_keepsInCache() throws ApiException {
+        final OAuthWire4 oAuthWire4 = new OAuthWire4("6PqWzT6DgbEyLNu7d4YItJyuT2Ea","00cRaDHZimyDENOJOQbA5psoVNoa",EnvironmentEnum.DEVELOPMENT);
+        final String appDoubleScopeFirst = oAuthWire4.obtainAccessTokenApp("general codi_report");
+        final String appGeneralFirst = oAuthWire4.obtainAccessTokenApp("general");
+        final String appCodiReportFirst = oAuthWire4.obtainAccessTokenApp("codi_report");
+        final String appDoubleScopeSecond = oAuthWire4.obtainAccessTokenApp("general codi_report");
+        final String appGeneralSecond = oAuthWire4.obtainAccessTokenApp("general");
+        final String appCodiReportSecond = oAuthWire4.obtainAccessTokenApp("codi_report");
+        Assert.assertThat(appDoubleScopeFirst, IsEqual.equalTo(appDoubleScopeSecond));
+        Assert.assertThat(appGeneralFirst, IsEqual.equalTo(appGeneralSecond));
+        Assert.assertThat(appCodiReportFirst, IsEqual.equalTo(appCodiReportSecond));
+
+
+    }
+
 
     @Ignore
     @Test
