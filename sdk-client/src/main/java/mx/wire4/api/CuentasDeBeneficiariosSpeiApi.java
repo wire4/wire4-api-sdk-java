@@ -1111,7 +1111,7 @@ public class CuentasDeBeneficiariosSpeiApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
@@ -1173,10 +1173,12 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @param authorization Header para token (required)
      * @param account Cuenta a actualizar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
+     * @return TokenRequiredResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void updateAmountLimitAccountUsingPUT(AmountRequest body, String authorization, String account, String subscription) throws ApiException {
-        updateAmountLimitAccountUsingPUTWithHttpInfo(body, authorization, account, subscription);
+    public TokenRequiredResponse updateAmountLimitAccountUsingPUT(AmountRequest body, String authorization, String account, String subscription) throws ApiException {
+        ApiResponse<TokenRequiredResponse> resp = updateAmountLimitAccountUsingPUTWithHttpInfo(body, authorization, account, subscription);
+        return resp.getData();
     }
 
     /**
@@ -1186,12 +1188,13 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @param authorization Header para token (required)
      * @param account Cuenta a actualizar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;TokenRequiredResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> updateAmountLimitAccountUsingPUTWithHttpInfo(AmountRequest body, String authorization, String account, String subscription) throws ApiException {
+    public ApiResponse<TokenRequiredResponse> updateAmountLimitAccountUsingPUTWithHttpInfo(AmountRequest body, String authorization, String account, String subscription) throws ApiException {
         com.squareup.okhttp.Call call = updateAmountLimitAccountUsingPUTValidateBeforeCall(body, authorization, account, subscription, null, null);
-        return apiClient.execute(call);
+        Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -1205,7 +1208,7 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateAmountLimitAccountUsingPUTAsync(AmountRequest body, String authorization, String account, String subscription, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateAmountLimitAccountUsingPUTAsync(AmountRequest body, String authorization, String account, String subscription, final ApiCallback<TokenRequiredResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1227,7 +1230,8 @@ public class CuentasDeBeneficiariosSpeiApi {
         }
 
         com.squareup.okhttp.Call call = updateAmountLimitAccountUsingPUTValidateBeforeCall(body, authorization, account, subscription, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
+        Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
 }

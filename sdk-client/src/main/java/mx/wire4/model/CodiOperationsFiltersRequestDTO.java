@@ -102,8 +102,8 @@ public class CodiOperationsFiltersRequestDTO {
 
    /**
    * Monto minimo, dos decimales
-   * minimum: 1
-   * maximum: 8000
+   * minimum: 0
+   * maximum: 9999999
    * @return amountFrom
   **/
   @Schema(description = "Monto minimo, dos decimales")
@@ -122,8 +122,8 @@ public class CodiOperationsFiltersRequestDTO {
 
    /**
    * Monto máximo,dos decimales
-   * minimum: 1
-   * maximum: 8000
+   * minimum: 0
+   * maximum: 9999999
    * @return amountTo
   **/
   @Schema(description = "Monto máximo,dos decimales")

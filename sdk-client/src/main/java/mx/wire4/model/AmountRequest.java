@@ -31,11 +31,17 @@ public class AmountRequest {
   @SerializedName("amount_limit")
   private BigDecimal amountLimit = null;
 
+  @SerializedName("cancel_return_url")
+  private String cancelReturnUrl = null;
+
   @SerializedName("currency_code")
   private String currencyCode = null;
 
   @SerializedName("previous_amount_limit")
   private BigDecimal previousAmountLimit = null;
+
+  @SerializedName("return_url")
+  private String returnUrl = null;
 
   public AmountRequest amountLimit(BigDecimal amountLimit) {
     this.amountLimit = amountLimit;
@@ -54,6 +60,24 @@ public class AmountRequest {
 
   public void setAmountLimit(BigDecimal amountLimit) {
     this.amountLimit = amountLimit;
+  }
+
+  public AmountRequest cancelReturnUrl(String cancelReturnUrl) {
+    this.cancelReturnUrl = cancelReturnUrl;
+    return this;
+  }
+
+   /**
+   * Url a la que se redirigirá en caso de que el cliente cancele el registro
+   * @return cancelReturnUrl
+  **/
+  @Schema(required = true, description = "Url a la que se redirigirá en caso de que el cliente cancele el registro")
+  public String getCancelReturnUrl() {
+    return cancelReturnUrl;
+  }
+
+  public void setCancelReturnUrl(String cancelReturnUrl) {
+    this.cancelReturnUrl = cancelReturnUrl;
   }
 
   public AmountRequest currencyCode(String currencyCode) {
@@ -93,6 +117,24 @@ public class AmountRequest {
     this.previousAmountLimit = previousAmountLimit;
   }
 
+  public AmountRequest returnUrl(String returnUrl) {
+    this.returnUrl = returnUrl;
+    return this;
+  }
+
+   /**
+   * Url a la que se redirigirá en caso de éxito
+   * @return returnUrl
+  **/
+  @Schema(example = "http://mysite.com/ok", required = true, description = "Url a la que se redirigirá en caso de éxito")
+  public String getReturnUrl() {
+    return returnUrl;
+  }
+
+  public void setReturnUrl(String returnUrl) {
+    this.returnUrl = returnUrl;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -104,13 +146,15 @@ public class AmountRequest {
     }
     AmountRequest amountRequest = (AmountRequest) o;
     return Objects.equals(this.amountLimit, amountRequest.amountLimit) &&
+        Objects.equals(this.cancelReturnUrl, amountRequest.cancelReturnUrl) &&
         Objects.equals(this.currencyCode, amountRequest.currencyCode) &&
-        Objects.equals(this.previousAmountLimit, amountRequest.previousAmountLimit);
+        Objects.equals(this.previousAmountLimit, amountRequest.previousAmountLimit) &&
+        Objects.equals(this.returnUrl, amountRequest.returnUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountLimit, currencyCode, previousAmountLimit);
+    return Objects.hash(amountLimit, cancelReturnUrl, currencyCode, previousAmountLimit, returnUrl);
   }
 
 
@@ -120,8 +164,10 @@ public class AmountRequest {
     sb.append("class AmountRequest {\n");
     
     sb.append("    amountLimit: ").append(toIndentedString(amountLimit)).append("\n");
+    sb.append("    cancelReturnUrl: ").append(toIndentedString(cancelReturnUrl)).append("\n");
     sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
     sb.append("    previousAmountLimit: ").append(toIndentedString(previousAmountLimit)).append("\n");
+    sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

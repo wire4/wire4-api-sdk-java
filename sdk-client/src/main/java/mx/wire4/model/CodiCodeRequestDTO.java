@@ -38,6 +38,9 @@ public class CodiCodeRequestDTO {
   @SerializedName("due_date")
   private OffsetDateTime dueDate = null;
 
+  @SerializedName("metadata")
+  private String metadata = null;
+
   @SerializedName("order_id")
   private String orderId = null;
 
@@ -144,6 +147,24 @@ public class CodiCodeRequestDTO {
     this.dueDate = dueDate;
   }
 
+  public CodiCodeRequestDTO metadata(String metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+   /**
+   * Campo de metada CODI®, longitud máxima determinada por configuracion de la empresa, por defecto 100 caracteres
+   * @return metadata
+  **/
+  @Schema(description = "Campo de metada CODI®, longitud máxima determinada por configuracion de la empresa, por defecto 100 caracteres")
+  public String getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(String metadata) {
+    this.metadata = metadata;
+  }
+
   public CodiCodeRequestDTO orderId(String orderId) {
     this.orderId = orderId;
     return this;
@@ -211,6 +232,7 @@ public class CodiCodeRequestDTO {
     return Objects.equals(this.amount, codiCodeRequestDTO.amount) &&
         Objects.equals(this.concept, codiCodeRequestDTO.concept) &&
         Objects.equals(this.dueDate, codiCodeRequestDTO.dueDate) &&
+        Objects.equals(this.metadata, codiCodeRequestDTO.metadata) &&
         Objects.equals(this.orderId, codiCodeRequestDTO.orderId) &&
         Objects.equals(this.phoneNumber, codiCodeRequestDTO.phoneNumber) &&
         Objects.equals(this.type, codiCodeRequestDTO.type);
@@ -218,7 +240,7 @@ public class CodiCodeRequestDTO {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, concept, dueDate, orderId, phoneNumber, type);
+    return Objects.hash(amount, concept, dueDate, metadata, orderId, phoneNumber, type);
   }
 
 
@@ -230,6 +252,7 @@ public class CodiCodeRequestDTO {
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    concept: ").append(toIndentedString(concept)).append("\n");
     sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

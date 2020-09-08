@@ -366,7 +366,7 @@ No authorization required
 
 <a name="updateAmountLimitAccountUsingPUT"></a>
 # **updateAmountLimitAccountUsingPUT**
-> updateAmountLimitAccountUsingPUT(body, authorization, account, subscription)
+> TokenRequiredResponse updateAmountLimitAccountUsingPUT(body, authorization, account, subscription)
 
 Actualiza el monto límite
 
@@ -385,7 +385,8 @@ String authorization = "authorization_example"; // String | Header para token
 String account = "account_example"; // String | Cuenta a actualizar
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 try {
-    apiInstance.updateAmountLimitAccountUsingPUT(body, authorization, account, subscription);
+    TokenRequiredResponse result = apiInstance.updateAmountLimitAccountUsingPUT(body, authorization, account, subscription);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#updateAmountLimitAccountUsingPUT");
     e.printStackTrace();
@@ -403,7 +404,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**TokenRequiredResponse**](TokenRequiredResponse.md)
 
 ### Authorization
 
@@ -412,5 +413,5 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 

@@ -175,7 +175,7 @@ public class CuentasDeBeneficiariosSpeiApiTest {
         String authorization = null;
         String account = null;
         String subscription = null;
-        api.updateAmountLimitAccountUsingPUT(body, authorization, account, subscription);
+        TokenRequiredResponse response = api.updateAmountLimitAccountUsingPUT(body, authorization, account, subscription);
 
         // TODO: test validations
     }
