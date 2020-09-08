@@ -477,11 +477,13 @@ public class ExamplesTest {
         final AmountRequest body = new AmountRequest()
                 .amountLimit(new BigDecimal("20000.00"))
                 .currencyCode("MXP")
-                .previousAmountLimit(new BigDecimal("10000.00"));
+                .previousAmountLimit(new BigDecimal("10000.00"))
+                .returnUrl("https://your-app-url.mx/return")
+                .cancelReturnUrl("https://your-app-url.mx/cancel");
         try {
 
             // Obtain the response
-            final ApiResponse<Void> response = api.updateAmountLimitAccountUsingPUTWithHttpInfo(body, bearer, account, subscription);
+            final TokenRequiredResponse response = api.updateAmountLimitAccountUsingPUT(body, bearer, account, subscription);
 
             System.out.println("response:" + response);
         } catch (ApiException e) {
