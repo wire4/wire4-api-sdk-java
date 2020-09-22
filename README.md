@@ -77,11 +77,12 @@ Después manualmente hay que instalar los `JARs` en tu proyecto:
 
 Primero debes seguir la guía de [instalación](#installation) y ejecutar el siguiente código de ejemplo:
 ```java
-// Create the api component
+        // Create the api component
         final ComprobanteElectrnicoDePagoCepApi api = new ComprobanteElectrnicoDePagoCepApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET,
+                                            mx.wire4.core.EnvironmentEnum.SANDBOX);
 
         final String bearer;
         try {
