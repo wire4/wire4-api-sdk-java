@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import mx.wire4.model.BeneficiaryInstitution;
@@ -59,6 +60,9 @@ public class AccountResponse {
 
   @SerializedName("person")
   private Person person = null;
+
+  @SerializedName("register_date")
+  private OffsetDateTime registerDate = null;
 
   @SerializedName("relationship")
   private String relationship = null;
@@ -173,10 +177,10 @@ public class AccountResponse {
   }
 
    /**
-   * Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships
+   * Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. &lt;br&gt; Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.
    * @return kindOfRelationship
   **/
-  @Schema(required = true, description = "Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships")
+  @Schema(required = true, description = "Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. <br> Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.")
   public String getKindOfRelationship() {
     return kindOfRelationship;
   }
@@ -239,16 +243,34 @@ public class AccountResponse {
     this.person = person;
   }
 
+  public AccountResponse registerDate(OffsetDateTime registerDate) {
+    this.registerDate = registerDate;
+    return this;
+  }
+
+   /**
+   * La fecha en la que se registro el beneficiario
+   * @return registerDate
+  **/
+  @Schema(description = "La fecha en la que se registro el beneficiario")
+  public OffsetDateTime getRegisterDate() {
+    return registerDate;
+  }
+
+  public void setRegisterDate(OffsetDateTime registerDate) {
+    this.registerDate = registerDate;
+  }
+
   public AccountResponse relationship(String relationship) {
     this.relationship = relationship;
     return this;
   }
 
    /**
-   * Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships
+   * Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. &lt;br&gt; Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.
    * @return relationship
   **/
-  @Schema(required = true, description = "Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships")
+  @Schema(required = true, description = "Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. <br> Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.")
   public String getRelationship() {
     return relationship;
   }
@@ -263,10 +285,10 @@ public class AccountResponse {
   }
 
    /**
-   * Registro federal de contribuyentes de la persona o institución propietaria de la cuenta
+   * Registro federal de contribuyentes de la persona o institución propietaria de la cuenta. &lt;br&gt; Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.
    * @return rfc
   **/
-  @Schema(required = true, description = "Registro federal de contribuyentes de la persona o institución propietaria de la cuenta")
+  @Schema(required = true, description = "Registro federal de contribuyentes de la persona o institución propietaria de la cuenta. <br> Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.")
   public String getRfc() {
     return rfc;
   }
@@ -312,6 +334,7 @@ public class AccountResponse {
         Objects.equals(this.numericReferenceSpei, accountResponse.numericReferenceSpei) &&
         Objects.equals(this.paymentConceptSpei, accountResponse.paymentConceptSpei) &&
         Objects.equals(this.person, accountResponse.person) &&
+        Objects.equals(this.registerDate, accountResponse.registerDate) &&
         Objects.equals(this.relationship, accountResponse.relationship) &&
         Objects.equals(this.rfc, accountResponse.rfc) &&
         Objects.equals(this.status, accountResponse.status);
@@ -319,7 +342,7 @@ public class AccountResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountLimit, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpei, paymentConceptSpei, person, relationship, rfc, status);
+    return Objects.hash(amountLimit, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpei, paymentConceptSpei, person, registerDate, relationship, rfc, status);
   }
 
 
@@ -337,6 +360,7 @@ public class AccountResponse {
     sb.append("    numericReferenceSpei: ").append(toIndentedString(numericReferenceSpei)).append("\n");
     sb.append("    paymentConceptSpei: ").append(toIndentedString(paymentConceptSpei)).append("\n");
     sb.append("    person: ").append(toIndentedString(person)).append("\n");
+    sb.append("    registerDate: ").append(toIndentedString(registerDate)).append("\n");
     sb.append("    relationship: ").append(toIndentedString(relationship)).append("\n");
     sb.append("    rfc: ").append(toIndentedString(rfc)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

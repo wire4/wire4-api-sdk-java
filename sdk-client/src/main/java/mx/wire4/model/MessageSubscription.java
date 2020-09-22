@@ -22,9 +22,9 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
- * El mensaje que se envía mediante (webHook) con la información del la suscripción a esta a esta API
+ * El mensaje que se envía mediante (webHook) con la información de la suscripción a esta a esta API
  */
-@Schema(description = "El mensaje que se envía mediante (webHook) con la información del la suscripción a esta a esta API")
+@Schema(description = "El mensaje que se envía mediante (webHook) con la información de la suscripción a esta a esta API")
 
 public class MessageSubscription {
   @SerializedName("contract")
@@ -51,10 +51,10 @@ public class MessageSubscription {
   }
 
    /**
-   * Contrato Monex, con el cual se suscribió el cliente Monex en Wire4
+   * Contrato Monex, con el cuál se suscribió el cliente Monex en Wire4
    * @return contract
   **/
-  @Schema(description = "Contrato Monex, con el cual se suscribió el cliente Monex en Wire4")
+  @Schema(description = "Contrato Monex, con el cuál se suscribió el cliente Monex en Wire4")
   public String getContract() {
     return contract;
   }
@@ -69,10 +69,10 @@ public class MessageSubscription {
   }
 
    /**
-   * Contrato enmascarado de Monex, con el cual se suscribió el cliente Monex en Wire4
+   * Contrato enmascarado de Monex, con el cuál se suscribió el cliente Monex en Wire4
    * @return maskedContract
   **/
-  @Schema(description = "Contrato enmascarado de Monex, con el cual se suscribió el cliente Monex en Wire4")
+  @Schema(description = "Contrato enmascarado de Monex, con el cuál se suscribió el cliente Monex en Wire4")
   public String getMaskedContract() {
     return maskedContract;
   }
@@ -87,10 +87,10 @@ public class MessageSubscription {
   }
 
    /**
-   * Identificador de la suscripción, el cual se utiliza en las operaciones que solicitan una suscripción
+   * Identificador de la suscripción, el cual se utilizará en las operaciones que solicitan una suscripción
    * @return subscription
   **/
-  @Schema(description = "Identificador de la suscripción, el cual se utiliza en las operaciones que solicitan una suscripción")
+  @Schema(description = "Identificador de la suscripción, el cual se utilizará en las operaciones que solicitan una suscripción")
   public String getSubscription() {
     return subscription;
   }
@@ -105,10 +105,10 @@ public class MessageSubscription {
   }
 
    /**
-   * Usuario enmascardo, con el cual se suscribió el cliente Monex en Wire4
+   * Usuario enmascardo, con el cuál se suscribió el cliente Monex en Wire4
    * @return user
   **/
-  @Schema(description = "Usuario enmascardo, con el cual se suscribió el cliente Monex en Wire4")
+  @Schema(description = "Usuario enmascardo, con el cuál se suscribió el cliente Monex en Wire4")
   public String getUser() {
     return user;
   }
@@ -123,10 +123,10 @@ public class MessageSubscription {
   }
 
    /**
-   * Usuario proporcionado por Wire4, el cual se debe utilizar para autenticar a esta suscripción
+   * Usuario proporcionado por Wire4, el cuál se debe utilizar para autenticar a esta suscripción
    * @return userKey
   **/
-  @Schema(description = "Usuario proporcionado por Wire4, el cual se debe utilizar para autenticar a esta suscripción")
+  @Schema(description = "Usuario proporcionado por Wire4, el cuál se debe utilizar para autenticar a esta suscripción")
   public String getUserKey() {
     return userKey;
   }
@@ -141,10 +141,10 @@ public class MessageSubscription {
   }
 
    /**
-   * Contraseña proporcionada por Wire4, la cual se debe utilizar para autenticar a esta suscripción
+   * Contraseña proporcionada por Wire4, la cuál se debe utilizar para autenticar a esta suscripción
    * @return userSecret
   **/
-  @Schema(description = "Contraseña proporcionada por Wire4, la cual se debe utilizar para autenticar a esta suscripción")
+  @Schema(description = "Contraseña proporcionada por Wire4, la cuál se debe utilizar para autenticar a esta suscripción")
   public String getUserSecret() {
     return userSecret;
   }

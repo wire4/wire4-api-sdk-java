@@ -4,17 +4,17 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**preEnrollmentMonexUserUsingPOST**](SuscripcionesApi.md#preEnrollmentMonexUserUsingPOST) | **POST** /subscriptions/pre-subscription | registra una pre-suscripción
-[**removeEnrollmentUserUsingDELETE**](SuscripcionesApi.md#removeEnrollmentUserUsingDELETE) | **DELETE** /subscriptions/{subscription} | Elimna una suscripción por id
-[**removeSubscriptionPendingStatusUsingDELETE**](SuscripcionesApi.md#removeSubscriptionPendingStatusUsingDELETE) | **DELETE** /subscriptions/pre-subscription/{subscription} | Elimna una pre-suscripción
+[**preEnrollmentMonexUserUsingPOST**](SuscripcionesApi.md#preEnrollmentMonexUserUsingPOST) | **POST** /subscriptions/pre-subscription | Registra una pre-suscripción
+[**removeEnrollmentUserUsingDELETE**](SuscripcionesApi.md#removeEnrollmentUserUsingDELETE) | **DELETE** /subscriptions/{subscription} | Elimina una suscripción por el identificador de la suscripción
+[**removeSubscriptionPendingStatusUsingDELETE**](SuscripcionesApi.md#removeSubscriptionPendingStatusUsingDELETE) | **DELETE** /subscriptions/pre-subscription/{subscription} | Elimina una pre-suscripción
 
 <a name="preEnrollmentMonexUserUsingPOST"></a>
 # **preEnrollmentMonexUserUsingPOST**
 > PreEnrollmentResponse preEnrollmentMonexUserUsingPOST(body, authorization)
 
-registra una pre-suscripción
+Registra una pre-suscripción
 
-Pre-registra una suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envia un webhook con el evento ENROLLMENT.CREATED, el cual contiene los datos de acceso.
+Registra una pre-suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envía un mensaje webhook con el evento &#x27;ENROLLMENT.CREATED&#x27;, el cuál contiene los datos de acceso a esta API.
 
 ### Example
 ```java
@@ -24,7 +24,7 @@ Pre-registra una suscripción para operar un contrato a través de un aplicació
 
 
 SuscripcionesApi apiInstance = new SuscripcionesApi();
-PreEnrollmentData body = new PreEnrollmentData(); // PreEnrollmentData | Información para el enrolamiento
+PreEnrollmentData body = new PreEnrollmentData(); // PreEnrollmentData | Información para la pre-suscripción
 String authorization = "authorization_example"; // String | Header para token
 try {
     PreEnrollmentResponse result = apiInstance.preEnrollmentMonexUserUsingPOST(body, authorization);
@@ -39,7 +39,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**PreEnrollmentData**](PreEnrollmentData.md)| Información para el enrolamiento |
+ **body** | [**PreEnrollmentData**](PreEnrollmentData.md)| Información para la pre-suscripción |
  **authorization** | **String**| Header para token |
 
 ### Return type
@@ -59,9 +59,9 @@ No authorization required
 # **removeEnrollmentUserUsingDELETE**
 > removeEnrollmentUserUsingDELETE(authorization, subscription)
 
-Elimna una suscripción por id
+Elimina una suscripción por el identificador de la suscripción
 
-Elimina una suscripción, una ves eliminada la suscripcion ya no se podran realizar operacions en el API uilizando esta suscripción
+Elimina una suscripción, una vez eliminada ya no se podrán realizar operacions en el API utilizando esta suscripción
 
 ### Example
 ```java
@@ -105,9 +105,9 @@ No authorization required
 # **removeSubscriptionPendingStatusUsingDELETE**
 > removeSubscriptionPendingStatusUsingDELETE(authorization, subscription)
 
-Elimna una pre-suscripción
+Elimina una pre-suscripción
 
-Se elimina una pre-suscripción, sólo se elimina en caso de que cliente monex no haya concedio su autorización de acceso, es decir que la pre-suscripcion este pendiente.
+Se elimina una pre-suscripción, sólo se elimina en caso de que el cliente Monex no haya concedido su autorización de acceso (token), es decir que la pre-suscripcion este pendiente.
 
 ### Example
 ```java

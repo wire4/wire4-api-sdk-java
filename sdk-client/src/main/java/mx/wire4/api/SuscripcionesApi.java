@@ -57,7 +57,7 @@ public class SuscripcionesApi {
 
     /**
      * Build call for preEnrollmentMonexUserUsingPOST
-     * @param body Información para el enrolamiento (required)
+     * @param body Información para la pre-suscripción (required)
      * @param authorization Header para token (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -128,9 +128,9 @@ public class SuscripcionesApi {
     }
 
     /**
-     * registra una pre-suscripción
-     * Pre-registra una suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envia un webhook con el evento ENROLLMENT.CREATED, el cual contiene los datos de acceso.
-     * @param body Información para el enrolamiento (required)
+     * Registra una pre-suscripción
+     * Registra una pre-suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envía un mensaje webhook con el evento &#x27;ENROLLMENT.CREATED&#x27;, el cuál contiene los datos de acceso a esta API.
+     * @param body Información para la pre-suscripción (required)
      * @param authorization Header para token (required)
      * @return PreEnrollmentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -141,9 +141,9 @@ public class SuscripcionesApi {
     }
 
     /**
-     * registra una pre-suscripción
-     * Pre-registra una suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envia un webhook con el evento ENROLLMENT.CREATED, el cual contiene los datos de acceso.
-     * @param body Información para el enrolamiento (required)
+     * Registra una pre-suscripción
+     * Registra una pre-suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envía un mensaje webhook con el evento &#x27;ENROLLMENT.CREATED&#x27;, el cuál contiene los datos de acceso a esta API.
+     * @param body Información para la pre-suscripción (required)
      * @param authorization Header para token (required)
      * @return ApiResponse&lt;PreEnrollmentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -155,9 +155,9 @@ public class SuscripcionesApi {
     }
 
     /**
-     * registra una pre-suscripción (asynchronously)
-     * Pre-registra una suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envia un webhook con el evento ENROLLMENT.CREATED, el cual contiene los datos de acceso.
-     * @param body Información para el enrolamiento (required)
+     * Registra una pre-suscripción (asynchronously)
+     * Registra una pre-suscripción para operar un contrato a través de un aplicación socio de la plataforma, proporcionando una URL donde el cliente Monex debe autorizar el acceso a los datos de su cuenta a el socio.&lt;br/&gt;Una vez que el cuentahabiente autorice el acceso, se envía un mensaje webhook con el evento &#x27;ENROLLMENT.CREATED&#x27;, el cuál contiene los datos de acceso a esta API.
+     * @param body Información para la pre-suscripción (required)
      * @param authorization Header para token (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
@@ -263,8 +263,8 @@ public class SuscripcionesApi {
     }
 
     /**
-     * Elimna una suscripción por id
-     * Elimina una suscripción, una ves eliminada la suscripcion ya no se podran realizar operacions en el API uilizando esta suscripción
+     * Elimina una suscripción por el identificador de la suscripción
+     * Elimina una suscripción, una vez eliminada ya no se podrán realizar operacions en el API utilizando esta suscripción
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -274,8 +274,8 @@ public class SuscripcionesApi {
     }
 
     /**
-     * Elimna una suscripción por id
-     * Elimina una suscripción, una ves eliminada la suscripcion ya no se podran realizar operacions en el API uilizando esta suscripción
+     * Elimina una suscripción por el identificador de la suscripción
+     * Elimina una suscripción, una vez eliminada ya no se podrán realizar operacions en el API utilizando esta suscripción
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;Void&gt;
@@ -287,8 +287,8 @@ public class SuscripcionesApi {
     }
 
     /**
-     * Elimna una suscripción por id (asynchronously)
-     * Elimina una suscripción, una ves eliminada la suscripcion ya no se podran realizar operacions en el API uilizando esta suscripción
+     * Elimina una suscripción por el identificador de la suscripción (asynchronously)
+     * Elimina una suscripción, una vez eliminada ya no se podrán realizar operacions en el API utilizando esta suscripción
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
@@ -394,8 +394,8 @@ public class SuscripcionesApi {
     }
 
     /**
-     * Elimna una pre-suscripción
-     * Se elimina una pre-suscripción, sólo se elimina en caso de que cliente monex no haya concedio su autorización de acceso, es decir que la pre-suscripcion este pendiente.
+     * Elimina una pre-suscripción
+     * Se elimina una pre-suscripción, sólo se elimina en caso de que el cliente Monex no haya concedido su autorización de acceso (token), es decir que la pre-suscripcion este pendiente.
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -405,8 +405,8 @@ public class SuscripcionesApi {
     }
 
     /**
-     * Elimna una pre-suscripción
-     * Se elimina una pre-suscripción, sólo se elimina en caso de que cliente monex no haya concedio su autorización de acceso, es decir que la pre-suscripcion este pendiente.
+     * Elimina una pre-suscripción
+     * Se elimina una pre-suscripción, sólo se elimina en caso de que el cliente Monex no haya concedido su autorización de acceso (token), es decir que la pre-suscripcion este pendiente.
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @return ApiResponse&lt;Void&gt;
@@ -418,8 +418,8 @@ public class SuscripcionesApi {
     }
 
     /**
-     * Elimna una pre-suscripción (asynchronously)
-     * Se elimina una pre-suscripción, sólo se elimina en caso de que cliente monex no haya concedio su autorización de acceso, es decir que la pre-suscripcion este pendiente.
+     * Elimina una pre-suscripción (asynchronously)
+     * Se elimina una pre-suscripción, sólo se elimina en caso de que el cliente Monex no haya concedido su autorización de acceso (token), es decir que la pre-suscripcion este pendiente.
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes

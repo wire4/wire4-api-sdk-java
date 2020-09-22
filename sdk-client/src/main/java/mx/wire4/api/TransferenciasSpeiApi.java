@@ -26,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import mx.wire4.model.AuthorizationTransactionGroup;
 import mx.wire4.model.Deposit;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.Payment;
@@ -59,16 +60,160 @@ public class TransferenciasSpeiApi {
     }
 
     /**
-     * Build call for dropTransactionsPendingUsingDELETE
+     * Build call for createAuthorizationTransactionsGroup
+     * @param body authorizationTransactionsGroupRequestDTO (required)
      * @param authorization Header para token (required)
-     * @param requestId Identificador de las transferencias a eliminar (required)
-     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param subscription Identificador de la suscripcion (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call dropTransactionsPendingUsingDELETECall(String authorization, String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call createAuthorizationTransactionsGroupCall(AuthorizationTransactionGroup body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/subscriptions/{subscription}/transactions/group"
+            .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "*/*"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call createAuthorizationTransactionsGroupValidateBeforeCall(AuthorizationTransactionGroup body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling createAuthorizationTransactionsGroup(Async)");
+        }
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling createAuthorizationTransactionsGroup(Async)");
+        }
+        // verify the required parameter 'subscription' is set
+        if (subscription == null) {
+            throw new ApiException("Missing the required parameter 'subscription' when calling createAuthorizationTransactionsGroup(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = createAuthorizationTransactionsGroupCall(body, authorization, subscription, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Agrupa un conjunto de transacciones bajo un mismo request_id para autorizar
+     * Agrupa transacciones SPEI/SPID en un transaction_id, generando la URL para su autorización. Las transacciones deben estar en estatus PENDING y pertenecer a un mmismo contrato
+     * @param body authorizationTransactionsGroupRequestDTO (required)
+     * @param authorization Header para token (required)
+     * @param subscription Identificador de la suscripcion (required)
+     * @return TokenRequiredResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public TokenRequiredResponse createAuthorizationTransactionsGroup(AuthorizationTransactionGroup body, String authorization, String subscription) throws ApiException {
+        ApiResponse<TokenRequiredResponse> resp = createAuthorizationTransactionsGroupWithHttpInfo(body, authorization, subscription);
+        return resp.getData();
+    }
+
+    /**
+     * Agrupa un conjunto de transacciones bajo un mismo request_id para autorizar
+     * Agrupa transacciones SPEI/SPID en un transaction_id, generando la URL para su autorización. Las transacciones deben estar en estatus PENDING y pertenecer a un mmismo contrato
+     * @param body authorizationTransactionsGroupRequestDTO (required)
+     * @param authorization Header para token (required)
+     * @param subscription Identificador de la suscripcion (required)
+     * @return ApiResponse&lt;TokenRequiredResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<TokenRequiredResponse> createAuthorizationTransactionsGroupWithHttpInfo(AuthorizationTransactionGroup body, String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = createAuthorizationTransactionsGroupValidateBeforeCall(body, authorization, subscription, null, null);
+        Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Agrupa un conjunto de transacciones bajo un mismo request_id para autorizar (asynchronously)
+     * Agrupa transacciones SPEI/SPID en un transaction_id, generando la URL para su autorización. Las transacciones deben estar en estatus PENDING y pertenecer a un mmismo contrato
+     * @param body authorizationTransactionsGroupRequestDTO (required)
+     * @param authorization Header para token (required)
+     * @param subscription Identificador de la suscripcion (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createAuthorizationTransactionsGroupAsync(AuthorizationTransactionGroup body, String authorization, String subscription, final ApiCallback<TokenRequiredResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createAuthorizationTransactionsGroupValidateBeforeCall(body, authorization, subscription, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for dropTransactionsPendingUsingDELETE
+     * @param authorization Header para token (required)
+     * @param requestId Identificador de las transferencias a eliminar (required)
+     * @param subscription El identificador de la suscripción a esta API (required)
+     * @param orderId Listado de identificadores dentro del request_id para eliminar (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call dropTransactionsPendingUsingDELETECall(String authorization, String requestId, String subscription, String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -78,6 +223,8 @@ public class TransferenciasSpeiApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (orderId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("order_id", orderId));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (authorization != null)
@@ -114,7 +261,7 @@ public class TransferenciasSpeiApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call dropTransactionsPendingUsingDELETEValidateBeforeCall(String authorization, String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call dropTransactionsPendingUsingDELETEValidateBeforeCall(String authorization, String requestId, String subscription, String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
             throw new ApiException("Missing the required parameter 'authorization' when calling dropTransactionsPendingUsingDELETE(Async)");
@@ -128,7 +275,7 @@ public class TransferenciasSpeiApi {
             throw new ApiException("Missing the required parameter 'subscription' when calling dropTransactionsPendingUsingDELETE(Async)");
         }
         
-        com.squareup.okhttp.Call call = dropTransactionsPendingUsingDELETECall(authorization, requestId, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = dropTransactionsPendingUsingDELETECall(authorization, requestId, subscription, orderId, progressListener, progressRequestListener);
         return call;
 
         
@@ -143,10 +290,11 @@ public class TransferenciasSpeiApi {
      * @param authorization Header para token (required)
      * @param requestId Identificador de las transferencias a eliminar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
+     * @param orderId Listado de identificadores dentro del request_id para eliminar (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void dropTransactionsPendingUsingDELETE(String authorization, String requestId, String subscription) throws ApiException {
-        dropTransactionsPendingUsingDELETEWithHttpInfo(authorization, requestId, subscription);
+    public void dropTransactionsPendingUsingDELETE(String authorization, String requestId, String subscription, String orderId) throws ApiException {
+        dropTransactionsPendingUsingDELETEWithHttpInfo(authorization, requestId, subscription, orderId);
     }
 
     /**
@@ -155,11 +303,12 @@ public class TransferenciasSpeiApi {
      * @param authorization Header para token (required)
      * @param requestId Identificador de las transferencias a eliminar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
+     * @param orderId Listado de identificadores dentro del request_id para eliminar (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> dropTransactionsPendingUsingDELETEWithHttpInfo(String authorization, String requestId, String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = dropTransactionsPendingUsingDELETEValidateBeforeCall(authorization, requestId, subscription, null, null);
+    public ApiResponse<Void> dropTransactionsPendingUsingDELETEWithHttpInfo(String authorization, String requestId, String subscription, String orderId) throws ApiException {
+        com.squareup.okhttp.Call call = dropTransactionsPendingUsingDELETEValidateBeforeCall(authorization, requestId, subscription, orderId, null, null);
         return apiClient.execute(call);
     }
 
@@ -169,11 +318,12 @@ public class TransferenciasSpeiApi {
      * @param authorization Header para token (required)
      * @param requestId Identificador de las transferencias a eliminar (required)
      * @param subscription El identificador de la suscripción a esta API (required)
+     * @param orderId Listado de identificadores dentro del request_id para eliminar (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call dropTransactionsPendingUsingDELETEAsync(String authorization, String requestId, String subscription, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call dropTransactionsPendingUsingDELETEAsync(String authorization, String requestId, String subscription, String orderId, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -194,7 +344,7 @@ public class TransferenciasSpeiApi {
             };
         }
 
-        com.squareup.okhttp.Call call = dropTransactionsPendingUsingDELETEValidateBeforeCall(authorization, requestId, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = dropTransactionsPendingUsingDELETEValidateBeforeCall(authorization, requestId, subscription, orderId, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }

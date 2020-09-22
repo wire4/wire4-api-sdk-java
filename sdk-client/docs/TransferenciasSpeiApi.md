@@ -4,15 +4,65 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**createAuthorizationTransactionsGroup**](TransferenciasSpeiApi.md#createAuthorizationTransactionsGroup) | **POST** /subscriptions/{subscription}/transactions/group | Agrupa un conjunto de transacciones bajo un mismo request_id para autorizar
 [**dropTransactionsPendingUsingDELETE**](TransferenciasSpeiApi.md#dropTransactionsPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/transactions/outcoming/spei/request/{requestId} | Eliminación de transferencias SPEI® pendientes
 [**incomingSpeiTransactionsReportUsingGET**](TransferenciasSpeiApi.md#incomingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/incoming/spei | Consulta de transferencias recibidas
 [**outCommingSpeiRequestIdTransactionsReportUsingGET**](TransferenciasSpeiApi.md#outCommingSpeiRequestIdTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei/{requestId} | Consulta de transferencias de salida por identificador de petición
 [**outgoingSpeiTransactionsReportUsingGET**](TransferenciasSpeiApi.md#outgoingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei | Consulta de transferencias realizadas
 [**registerOutgoingSpeiTransactionUsingPOST**](TransferenciasSpeiApi.md#registerOutgoingSpeiTransactionUsingPOST) | **POST** /subscriptions/{subscription}/transactions/outcoming/spei | Registro de transferencias
 
+<a name="createAuthorizationTransactionsGroup"></a>
+# **createAuthorizationTransactionsGroup**
+> TokenRequiredResponse createAuthorizationTransactionsGroup(body, authorization, subscription)
+
+Agrupa un conjunto de transacciones bajo un mismo request_id para autorizar
+
+Agrupa transacciones SPEI/SPID en un transaction_id, generando la URL para su autorización. Las transacciones deben estar en estatus PENDING y pertenecer a un mmismo contrato
+
+### Example
+```java
+// Import classes:
+//import mx.wire4.ApiException;
+//import mx.wire4.api.TransferenciasSpeiApi;
+
+
+TransferenciasSpeiApi apiInstance = new TransferenciasSpeiApi();
+AuthorizationTransactionGroup body = new AuthorizationTransactionGroup(); // AuthorizationTransactionGroup | authorizationTransactionsGroupRequestDTO
+String authorization = "authorization_example"; // String | Header para token
+String subscription = "subscription_example"; // String | Identificador de la suscripcion
+try {
+    TokenRequiredResponse result = apiInstance.createAuthorizationTransactionsGroup(body, authorization, subscription);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling TransferenciasSpeiApi#createAuthorizationTransactionsGroup");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**AuthorizationTransactionGroup**](AuthorizationTransactionGroup.md)| authorizationTransactionsGroupRequestDTO |
+ **authorization** | **String**| Header para token |
+ **subscription** | **String**| Identificador de la suscripcion |
+
+### Return type
+
+[**TokenRequiredResponse**](TokenRequiredResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
 <a name="dropTransactionsPendingUsingDELETE"></a>
 # **dropTransactionsPendingUsingDELETE**
-> dropTransactionsPendingUsingDELETE(authorization, requestId, subscription)
+> dropTransactionsPendingUsingDELETE(authorization, requestId, subscription, orderId)
 
 Eliminación de transferencias SPEI® pendientes
 
@@ -29,8 +79,9 @@ TransferenciasSpeiApi apiInstance = new TransferenciasSpeiApi();
 String authorization = "authorization_example"; // String | Header para token
 String requestId = "requestId_example"; // String | Identificador de las transferencias a eliminar
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String orderId = "orderId_example"; // String | Listado de identificadores dentro del request_id para eliminar
 try {
-    apiInstance.dropTransactionsPendingUsingDELETE(authorization, requestId, subscription);
+    apiInstance.dropTransactionsPendingUsingDELETE(authorization, requestId, subscription, orderId);
 } catch (ApiException e) {
     System.err.println("Exception when calling TransferenciasSpeiApi#dropTransactionsPendingUsingDELETE");
     e.printStackTrace();
@@ -44,6 +95,7 @@ Name | Type | Description  | Notes
  **authorization** | **String**| Header para token |
  **requestId** | **String**| Identificador de las transferencias a eliminar |
  **subscription** | **String**| El identificador de la suscripción a esta API |
+ **orderId** | **String**| Listado de identificadores dentro del request_id para eliminar | [optional]
 
 ### Return type
 

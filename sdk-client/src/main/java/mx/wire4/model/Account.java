@@ -169,10 +169,10 @@ public class Account {
   }
 
    /**
-   * Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships
+   * Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. &lt;br&gt; Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.
    * @return kindOfRelationship
   **/
-  @Schema(required = true, description = "Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships")
+  @Schema(required = true, description = "Tipo de relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. <br> Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.")
   public String getKindOfRelationship() {
     return kindOfRelationship;
   }
@@ -241,10 +241,10 @@ public class Account {
   }
 
    /**
-   * Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships
+   * Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. &lt;br&gt; Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.
    * @return relationship
   **/
-  @Schema(required = true, description = "Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships")
+  @Schema(required = true, description = "Relación con el propietario de la cuenta, para registrar una cuenta este valor se debe obtener  del recurso relationships. <br> Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.")
   public String getRelationship() {
     return relationship;
   }
@@ -259,10 +259,10 @@ public class Account {
   }
 
    /**
-   * Registro federal de contribuyentes de la persona o institución propietaria de la cuenta
+   * Registro federal de contribuyentes de la persona o institución propietaria de la cuenta. &lt;br&gt; Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.
    * @return rfc
   **/
-  @Schema(required = true, description = "Registro federal de contribuyentes de la persona o institución propietaria de la cuenta")
+  @Schema(required = true, description = "Registro federal de contribuyentes de la persona o institución propietaria de la cuenta. <br> Nota: Si en la respuesta de Monex esta propiedad es nula, tampoco estará presente en esta respuesta.")
   public String getRfc() {
     return rfc;
   }

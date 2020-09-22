@@ -103,7 +103,7 @@ public class OAuthWire4 {
                     tokensCachedAppUser.put(this.clientId + scope, tokenCachedApp);
                 }
 
-                if (tokenCachedApp.getToken() != null && this.isExpired(tokenCachedApp.getToken().expirationDate())) {
+                if (tokenCachedApp.getToken() != null && this.isValid(tokenCachedApp.getToken().expirationDate())) {
 
                     return formatToHeader(tokenCachedApp.getToken().accessToken().toString());
                 }
@@ -142,7 +142,7 @@ public class OAuthWire4 {
                 final CachedToken cachedToken = tokensCachedAppUser.get(userKey + scope);
                 if (cachedToken != null) {
 
-                    if (this.isExpired(cachedToken.getToken().expirationDate())) {
+                    if (this.isValid(cachedToken.getToken().expirationDate())) {
 
                         return formatToHeader(cachedToken.getToken().accessToken().toString());
                     } else {
@@ -210,10 +210,10 @@ public class OAuthWire4 {
         return "Bearer " + token;
     }
 
-    private boolean isExpired(final DateTime expirationDate) {
+    private boolean isValid(final DateTime expirationDate) {
 
         // Duration(int sign, int days, int hours, int minutes, int seconds)
-        final DateTime now = DateTime.now().addDuration(new Duration(-1, 0, 0, 5, 0));
+        final DateTime now = DateTime.now().addDuration(new Duration(1, 0, 0, 5, 0));
 
         return expirationDate != null && now.before(expirationDate);
     }

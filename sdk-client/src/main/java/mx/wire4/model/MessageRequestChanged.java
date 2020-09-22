@@ -22,16 +22,16 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
- * El mensaje que se envía mediante (webHook) con la información acerca de algún cambio en el procesamiento de la petición a esta a esta API
+ * El mensaje que se envía mediante (WebHook) con la información acerca de algún cambio en el procesamiento o estado de la petición a esta a esta API
  */
-@Schema(description = "El mensaje que se envía mediante (webHook) con la información acerca de algún cambio en el procesamiento de la petición a esta a esta API")
+@Schema(description = "El mensaje que se envía mediante (WebHook) con la información acerca de algún cambio en el procesamiento o estado de la petición a esta a esta API")
 
 public class MessageRequestChanged {
   @SerializedName("request_id")
   private String requestId = null;
 
   /**
-   * El cambio a informar en la procesamiento de la petición
+   * El cambio a informar en la procesamiento/estado de la petición
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
@@ -79,10 +79,10 @@ public class MessageRequestChanged {
   }
 
    /**
-   * Identificador de la petición realizada a está API
+   * Identificador de la petición realizada a esta API
    * @return requestId
   **/
-  @Schema(description = "Identificador de la petición realizada a está API")
+  @Schema(description = "Identificador de la petición realizada a esta API")
   public String getRequestId() {
     return requestId;
   }
@@ -97,10 +97,10 @@ public class MessageRequestChanged {
   }
 
    /**
-   * El cambio a informar en la procesamiento de la petición
+   * El cambio a informar en la procesamiento/estado de la petición
    * @return status
   **/
-  @Schema(description = "El cambio a informar en la procesamiento de la petición")
+  @Schema(description = "El cambio a informar en la procesamiento/estado de la petición")
   public StatusEnum getStatus() {
     return status;
   }

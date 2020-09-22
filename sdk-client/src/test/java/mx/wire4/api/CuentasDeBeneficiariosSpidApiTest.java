@@ -46,8 +46,13 @@ public class CuentasDeBeneficiariosSpidApiTest {
         String authorization = null;
         String subscription = null;
         String account = null;
+        String beneficiaryBank = null;
+        String beneficiaryName = null;
+        String endDate = null;
+        String initDate = null;
         String rfc = null;
-        SpidBeneficiariesResponse response = api.getSpidBeneficiariesForAccount(authorization, subscription, account, rfc);
+        String status = null;
+        SpidBeneficiariesResponse response = api.getSpidBeneficiariesForAccount(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
 
         // TODO: test validations
     }

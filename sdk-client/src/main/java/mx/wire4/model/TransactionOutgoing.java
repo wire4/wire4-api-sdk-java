@@ -36,6 +36,9 @@ public class TransactionOutgoing {
   @SerializedName("beneficiary_account")
   private String beneficiaryAccount = null;
 
+  @SerializedName("beneficiary_bank_key")
+  private String beneficiaryBankKey = null;
+
   @SerializedName("concept")
   private String concept = null;
 
@@ -76,16 +79,34 @@ public class TransactionOutgoing {
   }
 
    /**
-   * Cuenta del beneficiario, podría ser un numero celular, TDD o Cuenta CLABE interbancaria 
+   * Cuenta del beneficiario, podría ser un número celular, TDD o Cuenta CLABE interbancaria 
    * @return beneficiaryAccount
   **/
-  @Schema(example = "cellphone: 5525072600, TDD: 4323 1234 5678 9123, clabe: 032180000118359719", required = true, description = "Cuenta del beneficiario, podría ser un numero celular, TDD o Cuenta CLABE interbancaria ")
+  @Schema(example = "cellphone: 5525072600, TDD: 4323 1234 5678 9123, clabe: 032180000118359719", required = true, description = "Cuenta del beneficiario, podría ser un número celular, TDD o Cuenta CLABE interbancaria ")
   public String getBeneficiaryAccount() {
     return beneficiaryAccount;
   }
 
   public void setBeneficiaryAccount(String beneficiaryAccount) {
     this.beneficiaryAccount = beneficiaryAccount;
+  }
+
+  public TransactionOutgoing beneficiaryBankKey(String beneficiaryBankKey) {
+    this.beneficiaryBankKey = beneficiaryBankKey;
+    return this;
+  }
+
+   /**
+   * La clave del banco beneficiario, proprocionada por BANXICO, este campo solo es obligatario cuando la cuenta beneficiaria es un número celular (*).
+   * @return beneficiaryBankKey
+  **/
+  @Schema(example = "40112", description = "La clave del banco beneficiario, proprocionada por BANXICO, este campo solo es obligatario cuando la cuenta beneficiaria es un número celular (*).")
+  public String getBeneficiaryBankKey() {
+    return beneficiaryBankKey;
+  }
+
+  public void setBeneficiaryBankKey(String beneficiaryBankKey) {
+    this.beneficiaryBankKey = beneficiaryBankKey;
   }
 
   public TransactionOutgoing concept(String concept) {
@@ -200,6 +221,7 @@ public class TransactionOutgoing {
     TransactionOutgoing transactionOutgoing = (TransactionOutgoing) o;
     return Objects.equals(this.amount, transactionOutgoing.amount) &&
         Objects.equals(this.beneficiaryAccount, transactionOutgoing.beneficiaryAccount) &&
+        Objects.equals(this.beneficiaryBankKey, transactionOutgoing.beneficiaryBankKey) &&
         Objects.equals(this.concept, transactionOutgoing.concept) &&
         Objects.equals(this.currencyCode, transactionOutgoing.currencyCode) &&
         Objects.equals(this.email, transactionOutgoing.email) &&
@@ -209,7 +231,7 @@ public class TransactionOutgoing {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, beneficiaryAccount, concept, currencyCode, email, orderId, reference);
+    return Objects.hash(amount, beneficiaryAccount, beneficiaryBankKey, concept, currencyCode, email, orderId, reference);
   }
 
 
@@ -220,6 +242,7 @@ public class TransactionOutgoing {
     
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    beneficiaryAccount: ").append(toIndentedString(beneficiaryAccount)).append("\n");
+    sb.append("    beneficiaryBankKey: ").append(toIndentedString(beneficiaryBankKey)).append("\n");
     sb.append("    concept: ").append(toIndentedString(concept)).append("\n");
     sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");

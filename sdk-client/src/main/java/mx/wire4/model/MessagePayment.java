@@ -26,9 +26,9 @@ import java.time.OffsetDateTime;
 import mx.wire4.model.MessageCEP;
 import mx.wire4.model.MessageInstitution;
 /**
- * El mensaje que se envía mediante (webHook) con la información del transferencia de salida realizada
+ * El mensaje que se envía mediante (webHook) con la información de la transferencia de salida realizada
  */
-@Schema(description = "El mensaje que se envía mediante (webHook) con la información del transferencia de salida realizada")
+@Schema(description = "El mensaje que se envía mediante (webHook) con la información de la transferencia de salida realizada")
 
 public class MessagePayment {
   @SerializedName("account")
@@ -64,6 +64,9 @@ public class MessagePayment {
   @SerializedName("detention_message")
   private String detentionMessage = null;
 
+  @SerializedName("error_message")
+  private String errorMessage = null;
+
   @SerializedName("monex_description")
   private String monexDescription = null;
 
@@ -72,6 +75,9 @@ public class MessagePayment {
 
   @SerializedName("payment_order_id")
   private Integer paymentOrderId = null;
+
+  @SerializedName("pending_reason")
+  private String pendingReason = null;
 
   @SerializedName("reference")
   private Integer reference = null;
@@ -283,6 +289,24 @@ public class MessagePayment {
     this.detentionMessage = detentionMessage;
   }
 
+  public MessagePayment errorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
+    return this;
+  }
+
+   /**
+   * Mensaje de error
+   * @return errorMessage
+  **/
+  @Schema(description = "Mensaje de error")
+  public String getErrorMessage() {
+    return errorMessage;
+  }
+
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
+  }
+
   public MessagePayment monexDescription(String monexDescription) {
     this.monexDescription = monexDescription;
     return this;
@@ -335,6 +359,24 @@ public class MessagePayment {
 
   public void setPaymentOrderId(Integer paymentOrderId) {
     this.paymentOrderId = paymentOrderId;
+  }
+
+  public MessagePayment pendingReason(String pendingReason) {
+    this.pendingReason = pendingReason;
+    return this;
+  }
+
+   /**
+   * Razón de porque está pendiente aún cuando se autorizó la transferencia
+   * @return pendingReason
+  **/
+  @Schema(description = "Razón de porque está pendiente aún cuando se autorizó la transferencia")
+  public String getPendingReason() {
+    return pendingReason;
+  }
+
+  public void setPendingReason(String pendingReason) {
+    this.pendingReason = pendingReason;
   }
 
   public MessagePayment reference(Integer reference) {
@@ -430,9 +472,11 @@ public class MessagePayment {
         Objects.equals(this.confirmDate, messagePayment.confirmDate) &&
         Objects.equals(this.currencyCode, messagePayment.currencyCode) &&
         Objects.equals(this.detentionMessage, messagePayment.detentionMessage) &&
+        Objects.equals(this.errorMessage, messagePayment.errorMessage) &&
         Objects.equals(this.monexDescription, messagePayment.monexDescription) &&
         Objects.equals(this.orderId, messagePayment.orderId) &&
         Objects.equals(this.paymentOrderId, messagePayment.paymentOrderId) &&
+        Objects.equals(this.pendingReason, messagePayment.pendingReason) &&
         Objects.equals(this.reference, messagePayment.reference) &&
         Objects.equals(this.requestId, messagePayment.requestId) &&
         Objects.equals(this.statusCode, messagePayment.statusCode) &&
@@ -441,7 +485,7 @@ public class MessagePayment {
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, amount, beneficiaryAccount, beneficiaryBank, beneficiaryName, cep, claveRastreo, concept, confirmDate, currencyCode, detentionMessage, monexDescription, orderId, paymentOrderId, reference, requestId, statusCode, transactionId);
+    return Objects.hash(account, amount, beneficiaryAccount, beneficiaryBank, beneficiaryName, cep, claveRastreo, concept, confirmDate, currencyCode, detentionMessage, errorMessage, monexDescription, orderId, paymentOrderId, pendingReason, reference, requestId, statusCode, transactionId);
   }
 
 
@@ -461,9 +505,11 @@ public class MessagePayment {
     sb.append("    confirmDate: ").append(toIndentedString(confirmDate)).append("\n");
     sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
     sb.append("    detentionMessage: ").append(toIndentedString(detentionMessage)).append("\n");
+    sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
     sb.append("    monexDescription: ").append(toIndentedString(monexDescription)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    paymentOrderId: ").append(toIndentedString(paymentOrderId)).append("\n");
+    sb.append("    pendingReason: ").append(toIndentedString(pendingReason)).append("\n");
     sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
     sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");

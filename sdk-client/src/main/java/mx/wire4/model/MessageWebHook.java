@@ -61,10 +61,10 @@ public class MessageWebHook {
   }
 
    /**
-   * La versión de la API
+   * La versión de esta API
    * @return apiVersion
   **/
-  @Schema(description = "La versión de la API")
+  @Schema(description = "La versión de esta API")
   public String getApiVersion() {
     return apiVersion;
   }
@@ -151,10 +151,10 @@ public class MessageWebHook {
   }
 
    /**
-   * Tipo de objeto  que contiene el mensaje en el atributo data los posibles valores son: subscription, beneficiary, spei_outgoing, spei_incoming, spid_outgoing 
+   * Tipo de objeto  que contiene el mensaje en el atributo &#x27;data&#x27; los posibles valores son: subscription, beneficiary, spei_outgoing, spei_incoming, spid_outgoing, request_outgoing 
    * @return object
   **/
-  @Schema(description = "Tipo de objeto  que contiene el mensaje en el atributo data los posibles valores son: subscription, beneficiary, spei_outgoing, spei_incoming, spid_outgoing ")
+  @Schema(description = "Tipo de objeto  que contiene el mensaje en el atributo 'data' los posibles valores son: subscription, beneficiary, spei_outgoing, spei_incoming, spid_outgoing, request_outgoing ")
   public String getObject() {
     return object;
   }

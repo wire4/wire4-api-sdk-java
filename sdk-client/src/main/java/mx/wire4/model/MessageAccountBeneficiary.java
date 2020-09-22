@@ -42,10 +42,10 @@ public class MessageAccountBeneficiary {
   }
 
    /**
-   * Cuenta del beneficiario
+   * Cuenta del beneficiario registrado
    * @return account
   **/
-  @Schema(description = "Cuenta del beneficiario")
+  @Schema(description = "Cuenta del beneficiario registrado")
   public String getAccount() {
     return account;
   }
@@ -78,10 +78,10 @@ public class MessageAccountBeneficiary {
   }
 
    /**
-   * El identificador, en esta API, de la petición de registro de la cuenta del beneficiario
+   * El identificador en esta API, de la petición de registro de la cuenta del beneficiario
    * @return requestId
   **/
-  @Schema(description = "El identificador, en esta API, de la petición de registro de la cuenta del beneficiario")
+  @Schema(description = "El identificador en esta API, de la petición de registro de la cuenta del beneficiario")
   public String getRequestId() {
     return requestId;
   }

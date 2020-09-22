@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import mx.wire4.model.BeneficiaryInstitution;
@@ -56,11 +57,17 @@ public class SpidBeneficiaryResponse {
   @SerializedName("payment_concept_spid")
   private String paymentConceptSpid = null;
 
+  @SerializedName("register_date")
+  private OffsetDateTime registerDate = null;
+
   @SerializedName("relationship")
   private String relationship = null;
 
   @SerializedName("rfc")
   private String rfc = null;
+
+  @SerializedName("status")
+  private String status = null;
 
   public SpidBeneficiaryResponse amountLimit(BigDecimal amountLimit) {
     this.amountLimit = amountLimit;
@@ -214,6 +221,24 @@ public class SpidBeneficiaryResponse {
     this.paymentConceptSpid = paymentConceptSpid;
   }
 
+  public SpidBeneficiaryResponse registerDate(OffsetDateTime registerDate) {
+    this.registerDate = registerDate;
+    return this;
+  }
+
+   /**
+   * La fecha en la que se registro el beneficiario
+   * @return registerDate
+  **/
+  @Schema(description = "La fecha en la que se registro el beneficiario")
+  public OffsetDateTime getRegisterDate() {
+    return registerDate;
+  }
+
+  public void setRegisterDate(OffsetDateTime registerDate) {
+    this.registerDate = registerDate;
+  }
+
   public SpidBeneficiaryResponse relationship(String relationship) {
     this.relationship = relationship;
     return this;
@@ -250,6 +275,24 @@ public class SpidBeneficiaryResponse {
     this.rfc = rfc;
   }
 
+  public SpidBeneficiaryResponse status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * El estado en el que se encuentra el registo del beneficiario
+   * @return status
+  **/
+  @Schema(description = "El estado en el que se encuentra el registo del beneficiario")
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -268,13 +311,15 @@ public class SpidBeneficiaryResponse {
         Objects.equals(this.kindOfRelationship, spidBeneficiaryResponse.kindOfRelationship) &&
         Objects.equals(this.numericReferenceSpid, spidBeneficiaryResponse.numericReferenceSpid) &&
         Objects.equals(this.paymentConceptSpid, spidBeneficiaryResponse.paymentConceptSpid) &&
+        Objects.equals(this.registerDate, spidBeneficiaryResponse.registerDate) &&
         Objects.equals(this.relationship, spidBeneficiaryResponse.relationship) &&
-        Objects.equals(this.rfc, spidBeneficiaryResponse.rfc);
+        Objects.equals(this.rfc, spidBeneficiaryResponse.rfc) &&
+        Objects.equals(this.status, spidBeneficiaryResponse.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountLimit, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpid, paymentConceptSpid, relationship, rfc);
+    return Objects.hash(amountLimit, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpid, paymentConceptSpid, registerDate, relationship, rfc, status);
   }
 
 
@@ -291,8 +336,10 @@ public class SpidBeneficiaryResponse {
     sb.append("    kindOfRelationship: ").append(toIndentedString(kindOfRelationship)).append("\n");
     sb.append("    numericReferenceSpid: ").append(toIndentedString(numericReferenceSpid)).append("\n");
     sb.append("    paymentConceptSpid: ").append(toIndentedString(paymentConceptSpid)).append("\n");
+    sb.append("    registerDate: ").append(toIndentedString(registerDate)).append("\n");
     sb.append("    relationship: ").append(toIndentedString(relationship)).append("\n");
     sb.append("    rfc: ").append(toIndentedString(rfc)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

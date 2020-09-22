@@ -13,6 +13,7 @@
 package mx.wire4.api;
 
 import mx.wire4.ApiException;
+import mx.wire4.model.AuthorizationTransactionGroup;
 import mx.wire4.model.Deposit;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.Payment;
@@ -36,6 +37,23 @@ public class TransferenciasSpeiApiTest {
     private final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
 
     /**
+     * Agrupa un conjunto de transacciones bajo un mismo request_id para autorizar
+     *
+     * Agrupa transacciones SPEI/SPID en un transaction_id, generando la URL para su autorización. Las transacciones deben estar en estatus PENDING y pertenecer a un mmismo contrato
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createAuthorizationTransactionsGroupTest() throws ApiException {
+        AuthorizationTransactionGroup body = null;
+        String authorization = null;
+        String subscription = null;
+        TokenRequiredResponse response = api.createAuthorizationTransactionsGroup(body, authorization, subscription);
+
+        // TODO: test validations
+    }
+    /**
      * Eliminación de transferencias SPEI® pendientes
      *
      * Elimina un conjunto de transferencias a realizar en la cuenta del cliente Monex relacionada a la suscripción, las transferencias no deben haber sido confirmadas por el cliente.
@@ -48,7 +66,8 @@ public class TransferenciasSpeiApiTest {
         String authorization = null;
         String requestId = null;
         String subscription = null;
-        api.dropTransactionsPendingUsingDELETE(authorization, requestId, subscription);
+        String orderId = null;
+        api.dropTransactionsPendingUsingDELETE(authorization, requestId, subscription, orderId);
 
         // TODO: test validations
     }

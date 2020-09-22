@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getSpidBeneficiariesForAccount"></a>
 # **getSpidBeneficiariesForAccount**
-> SpidBeneficiariesResponse getSpidBeneficiariesForAccount(authorization, subscription, account, rfc)
+> SpidBeneficiariesResponse getSpidBeneficiariesForAccount(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status)
 
 Consulta los beneficiarios SPID registrados
 
@@ -26,9 +26,14 @@ CuentasDeBeneficiariosSpidApi apiInstance = new CuentasDeBeneficiariosSpidApi();
 String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
 String account = "account_example"; // String | Cuenta del beneficiario, puede ser Clabe, TDD o Celular
+String beneficiaryBank = "beneficiaryBank_example"; // String | Clave del banco beneficiario
+String beneficiaryName = "beneficiaryName_example"; // String | Nombre del beneficiario
+String endDate = "endDate_example"; // String | Fecha de inicio del perido a filtrar en formato dd-mm-yyyy
+String initDate = "initDate_example"; // String | Fecha de inicio del perido a filtrar en formato dd-mm-yyyy
 String rfc = "rfc_example"; // String | RFC del beneficiario
+String status = "status_example"; // String | Estatus de la cuenta
 try {
-    SpidBeneficiariesResponse result = apiInstance.getSpidBeneficiariesForAccount(authorization, subscription, account, rfc);
+    SpidBeneficiariesResponse result = apiInstance.getSpidBeneficiariesForAccount(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpidApi#getSpidBeneficiariesForAccount");
@@ -43,7 +48,12 @@ Name | Type | Description  | Notes
  **authorization** | **String**| Header para token |
  **subscription** | **String**| El identificador de la suscripción a esta API |
  **account** | **String**| Cuenta del beneficiario, puede ser Clabe, TDD o Celular | [optional]
+ **beneficiaryBank** | **String**| Clave del banco beneficiario | [optional]
+ **beneficiaryName** | **String**| Nombre del beneficiario | [optional]
+ **endDate** | **String**| Fecha de inicio del perido a filtrar en formato dd-mm-yyyy | [optional]
+ **initDate** | **String**| Fecha de inicio del perido a filtrar en formato dd-mm-yyyy | [optional]
  **rfc** | **String**| RFC del beneficiario | [optional]
+ **status** | **String**| Estatus de la cuenta | [optional]
 
 ### Return type
 

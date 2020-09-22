@@ -24,9 +24,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 /**
- * El CEP emitido por Banxico de la transferencia. Solo cuando este disponible, en otro caso se podrá usar la Consulta de CEP que esta misma API ofrece
+ * El CEP emitido por Banxico de la transferencia. Solo cuando esté disponible, en otro caso se podrá usar la Consulta de CEP que esta misma API ofrece
  */
-@Schema(description = "El CEP emitido por Banxico de la transferencia. Solo cuando este disponible, en otro caso se podrá usar la Consulta de CEP que esta misma API ofrece")
+@Schema(description = "El CEP emitido por Banxico de la transferencia. Solo cuando esté disponible, en otro caso se podrá usar la Consulta de CEP que esta misma API ofrece")
 
 public class MessageCEP {
   @SerializedName("account_beneficiary")
@@ -152,10 +152,10 @@ public class MessageCEP {
   }
 
    /**
-   * Bander para saber si el cep esta disponible
+   * Indica sí el CEP está disponible
    * @return available
   **/
-  @Schema(description = "Bander para saber si el cep esta disponible")
+  @Schema(description = "Indica sí el CEP está disponible")
   public Boolean isAvailable() {
     return available;
   }
@@ -188,10 +188,10 @@ public class MessageCEP {
   }
 
    /**
-   * Clave del banco que envia la operación
+   * Clave del banco que envía la operación
    * @return bankSender
   **/
-  @Schema(description = "Clave del banco que envia la operación")
+  @Schema(description = "Clave del banco que envía la operación")
   public String getBankSender() {
     return bankSender;
   }
@@ -278,10 +278,10 @@ public class MessageCEP {
   }
 
    /**
-   * Numero de serie emitido por el SAT
+   * Número de serie emitido por el SAT
    * @return certificateSerialNumber
   **/
-  @Schema(description = "Numero de serie emitido por el SAT")
+  @Schema(description = "Número de serie emitido por el SAT")
   public String getCertificateSerialNumber() {
     return certificateSerialNumber;
   }
@@ -332,10 +332,10 @@ public class MessageCEP {
   }
 
    /**
-   * Iva de la operación
+   * IVA de la operación
    * @return iva
   **/
-  @Schema(description = "Iva de la operación")
+  @Schema(description = "IVA de la operación")
   public BigDecimal getIva() {
     return iva;
   }
@@ -368,10 +368,10 @@ public class MessageCEP {
   }
 
    /**
-   * Fecha en la que genera el cep
+   * Fecha en la que genera el CEP
    * @return operationDateCep
   **/
-  @Schema(description = "Fecha en la que genera el cep")
+  @Schema(description = "Fecha en la que genera el CEP")
   public OffsetDateTime getOperationDateCep() {
     return operationDateCep;
   }
@@ -404,10 +404,10 @@ public class MessageCEP {
   }
 
    /**
-   * Nombre de quien envia la operación
+   * Nombre de quién envía la operación
    * @return senderName
   **/
-  @Schema(description = "Nombre de quien envia la operación")
+  @Schema(description = "Nombre de quién envía la operación")
   public String getSenderName() {
     return senderName;
   }
@@ -422,10 +422,10 @@ public class MessageCEP {
   }
 
    /**
-   * RFC de quien envia la operación
+   * RFC de quién envía la operación
    * @return senderRfc
   **/
-  @Schema(description = "RFC de quien envia la operación")
+  @Schema(description = "RFC de quién envía la operación")
   public String getSenderRfc() {
     return senderRfc;
   }
@@ -440,10 +440,10 @@ public class MessageCEP {
   }
 
    /**
-   * Firma del Cep
+   * Firma del CEP
    * @return signature
   **/
-  @Schema(description = "Firma del Cep")
+  @Schema(description = "Firma del CEP")
   public String getSignature() {
     return signature;
   }
@@ -458,10 +458,10 @@ public class MessageCEP {
   }
 
    /**
-   * Url que contiene el PDF y XML del CEP proporcionado por banxico
+   * Dirección URL de descarga del archivo ZIP que contiene el PDF y XML del CEP proporcionado por BANXICO
    * @return urlZip
   **/
-  @Schema(description = "Url que contiene el PDF y XML del CEP proporcionado por banxico")
+  @Schema(description = "Dirección URL de descarga del archivo ZIP que contiene el PDF y XML del CEP proporcionado por BANXICO")
   public String getUrlZip() {
     return urlZip;
   }

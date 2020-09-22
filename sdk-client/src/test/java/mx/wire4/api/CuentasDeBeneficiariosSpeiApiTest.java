@@ -15,10 +15,12 @@ package mx.wire4.api;
 import mx.wire4.ApiException;
 import mx.wire4.model.AccountRequest;
 import mx.wire4.model.AmountRequest;
+import mx.wire4.model.AuthorizedBeneficiariesResponse;
 import mx.wire4.model.BeneficiariesResponse;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.RelationshipsResponse;
 import mx.wire4.model.TokenRequiredResponse;
+import mx.wire4.model.UrlsRedirect;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -35,6 +37,23 @@ public class CuentasDeBeneficiariosSpeiApiTest {
 
     private final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
 
+    /**
+     * Recibe la solicitud para agrupar las cuentas SPEI/SPID de beneficiarios en estado pendiente que deben ser autorizadas
+     *
+     * Solicta autorizar las cuentas de beneficiarios en estado pendiente agrupandolas en un set de cuentas que pueden incluir tanto cuentas de SPI como de SPID, debe indicar las urls de redireccion en caso de error y en caso de exito&lt;br/&gt;
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void authorizeAccountsPendingPUTTest() throws ApiException {
+        UrlsRedirect body = null;
+        String authorization = null;
+        String subscription = null;
+        AuthorizedBeneficiariesResponse response = api.authorizeAccountsPendingPUT(body, authorization, subscription);
+
+        // TODO: test validations
+    }
     /**
      * Elimina la cuenta del beneficiario
      *
@@ -98,8 +117,13 @@ public class CuentasDeBeneficiariosSpeiApiTest {
         String authorization = null;
         String subscription = null;
         String account = null;
+        String beneficiaryBank = null;
+        String beneficiaryName = null;
+        String endDate = null;
+        String initDate = null;
         String rfc = null;
-        BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(authorization, subscription, account, rfc);
+        String status = null;
+        BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
 
         // TODO: test validations
     }
@@ -151,7 +175,7 @@ public class CuentasDeBeneficiariosSpeiApiTest {
         String authorization = null;
         String account = null;
         String subscription = null;
-        api.updateAmountLimitAccountUsingPUT(body, authorization, account, subscription);
+        TokenRequiredResponse response = api.updateAmountLimitAccountUsingPUT(body, authorization, account, subscription);
 
         // TODO: test validations
     }

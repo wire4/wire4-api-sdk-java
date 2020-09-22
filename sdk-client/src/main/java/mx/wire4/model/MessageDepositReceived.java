@@ -26,9 +26,9 @@ import java.time.OffsetDateTime;
 import mx.wire4.model.MessageCEP;
 import mx.wire4.model.MessageInstitution;
 /**
- * El mensaje que se envía mediante (webHook) con la informaciónde una transferencia de entrada recibida
+ * El mensaje que se envía mediante (webHook) con la información de una transferencia de entrada recibida
  */
-@Schema(description = "El mensaje que se envía mediante (webHook) con la informaciónde una transferencia de entrada recibida")
+@Schema(description = "El mensaje que se envía mediante (webHook) con la información de una transferencia de entrada recibida")
 
 public class MessageDepositReceived {
   @SerializedName("amount")

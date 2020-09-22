@@ -64,6 +64,9 @@ public class Payment {
   @SerializedName("detention_message")
   private String detentionMessage = null;
 
+  @SerializedName("error_message")
+  private String errorMessage = null;
+
   @SerializedName("monex_description")
   private String monexDescription = null;
 
@@ -72,6 +75,9 @@ public class Payment {
 
   @SerializedName("payment_order_id")
   private Integer paymentOrderId = null;
+
+  @SerializedName("pending_reason")
+  private String pendingReason = null;
 
   @SerializedName("reference")
   private Integer reference = null;
@@ -280,6 +286,24 @@ public class Payment {
     this.detentionMessage = detentionMessage;
   }
 
+  public Payment errorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
+    return this;
+  }
+
+   /**
+   * Mensaje de error, en caso de algún error se informará aquí
+   * @return errorMessage
+  **/
+  @Schema(description = "Mensaje de error, en caso de algún error se informará aquí")
+  public String getErrorMessage() {
+    return errorMessage;
+  }
+
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
+  }
+
   public Payment monexDescription(String monexDescription) {
     this.monexDescription = monexDescription;
     return this;
@@ -332,6 +356,24 @@ public class Payment {
 
   public void setPaymentOrderId(Integer paymentOrderId) {
     this.paymentOrderId = paymentOrderId;
+  }
+
+  public Payment pendingReason(String pendingReason) {
+    this.pendingReason = pendingReason;
+    return this;
+  }
+
+   /**
+   * Razón de porque esta pendiente aun cuando se autorizó la transferencia
+   * @return pendingReason
+  **/
+  @Schema(description = "Razón de porque esta pendiente aun cuando se autorizó la transferencia")
+  public String getPendingReason() {
+    return pendingReason;
+  }
+
+  public void setPendingReason(String pendingReason) {
+    this.pendingReason = pendingReason;
   }
 
   public Payment reference(Integer reference) {
@@ -409,9 +451,11 @@ public class Payment {
         Objects.equals(this.confirmDate, payment.confirmDate) &&
         Objects.equals(this.currencyCode, payment.currencyCode) &&
         Objects.equals(this.detentionMessage, payment.detentionMessage) &&
+        Objects.equals(this.errorMessage, payment.errorMessage) &&
         Objects.equals(this.monexDescription, payment.monexDescription) &&
         Objects.equals(this.orderId, payment.orderId) &&
         Objects.equals(this.paymentOrderId, payment.paymentOrderId) &&
+        Objects.equals(this.pendingReason, payment.pendingReason) &&
         Objects.equals(this.reference, payment.reference) &&
         Objects.equals(this.statusCode, payment.statusCode) &&
         Objects.equals(this.transactionId, payment.transactionId);
@@ -419,7 +463,7 @@ public class Payment {
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, amount, beneficiaryAccount, beneficiaryBank, beneficiaryName, cep, claveRastreo, concept, confirmDate, currencyCode, detentionMessage, monexDescription, orderId, paymentOrderId, reference, statusCode, transactionId);
+    return Objects.hash(account, amount, beneficiaryAccount, beneficiaryBank, beneficiaryName, cep, claveRastreo, concept, confirmDate, currencyCode, detentionMessage, errorMessage, monexDescription, orderId, paymentOrderId, pendingReason, reference, statusCode, transactionId);
   }
 
 
@@ -439,9 +483,11 @@ public class Payment {
     sb.append("    confirmDate: ").append(toIndentedString(confirmDate)).append("\n");
     sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
     sb.append("    detentionMessage: ").append(toIndentedString(detentionMessage)).append("\n");
+    sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
     sb.append("    monexDescription: ").append(toIndentedString(monexDescription)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    paymentOrderId: ").append(toIndentedString(paymentOrderId)).append("\n");
+    sb.append("    pendingReason: ").append(toIndentedString(pendingReason)).append("\n");
     sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
     sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
