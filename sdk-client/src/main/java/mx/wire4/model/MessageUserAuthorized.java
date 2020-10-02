@@ -45,6 +45,9 @@ public class MessageUserAuthorized {
   @SerializedName("request_id")
   private String requestId = null;
 
+  @SerializedName("user_name")
+  private String userName = null;
+
   public MessageUserAuthorized account(String account) {
     this.account = account;
     return this;
@@ -153,6 +156,24 @@ public class MessageUserAuthorized {
     this.requestId = requestId;
   }
 
+  public MessageUserAuthorized userName(String userName) {
+    this.userName = userName;
+    return this;
+  }
+
+   /**
+   * El nombre del usuario de acceso que se autorizó
+   * @return userName
+  **/
+  @Schema(description = "El nombre del usuario de acceso que se autorizó")
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -168,12 +189,13 @@ public class MessageUserAuthorized {
         Objects.equals(this.maskedName, messageUserAuthorized.maskedName) &&
         Objects.equals(this.maskedUserName, messageUserAuthorized.maskedUserName) &&
         Objects.equals(this.name, messageUserAuthorized.name) &&
-        Objects.equals(this.requestId, messageUserAuthorized.requestId);
+        Objects.equals(this.requestId, messageUserAuthorized.requestId) &&
+        Objects.equals(this.userName, messageUserAuthorized.userName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, maskedAccount, maskedName, maskedUserName, name, requestId);
+    return Objects.hash(account, maskedAccount, maskedName, maskedUserName, name, requestId, userName);
   }
 
 
@@ -188,6 +210,7 @@ public class MessageUserAuthorized {
     sb.append("    maskedUserName: ").append(toIndentedString(maskedUserName)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
+    sb.append("    userName: ").append(toIndentedString(userName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

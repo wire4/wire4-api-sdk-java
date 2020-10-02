@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>sdk-client</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>0.0.6-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "mx.wire4.sdk:sdk-client:0.0.5-SNAPSHOT"
+compile "mx.wire4.sdk:sdk-client:0.0.6-SNAPSHOT"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sdk-client-0.0.5-SNAPSHOT.jar`
+* `target/sdk-client-0.0.6-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -106,6 +106,7 @@ Class | Method | HTTP request | Description
 *ContactoApi* | [**sendContactUsingPOST**](docs/ContactoApi.md#sendContactUsingPOST) | **POST** /contact | Solicitud de contacto
 *ContractsDetailsApi* | [**createAuthorization**](docs/ContractsDetailsApi.md#createAuthorization) | **POST** /onboarding/accounts/authorize | Devuelve la URL para autorización del usuario Monex
 *ContractsDetailsApi* | [**obtainAuthorizedUsers**](docs/ContractsDetailsApi.md#obtainAuthorizedUsers) | **GET** /onboarding/accounts/{requestId}/authorized-users | Obtiene los usuarios autorizados
+*ContractsDetailsApi* | [**obtainAuthorizedUsersByContract**](docs/ContractsDetailsApi.md#obtainAuthorizedUsersByContract) | **GET** /onboarding/accounts/authorized-users | Obtiene los usuarios autorizados por contrato
 *ContractsDetailsApi* | [**obtainContractDetails**](docs/ContractsDetailsApi.md#obtainContractDetails) | **POST** /onboarding/accounts/details | Obtiene los detalles de la empresa del contrato
 *CuentasDeBeneficiariosSpeiApi* | [**authorizeAccountsPendingPUT**](docs/CuentasDeBeneficiariosSpeiApi.md#authorizeAccountsPendingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/pending | Recibe la solicitud para agrupar las cuentas SPEI/SPID de beneficiarios en estado pendiente que deben ser autorizadas
 *CuentasDeBeneficiariosSpeiApi* | [**deleteAccountUsingDELETE**](docs/CuentasDeBeneficiariosSpeiApi.md#deleteAccountUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/{account} | Elimina la cuenta del beneficiario
@@ -114,7 +115,7 @@ Class | Method | HTTP request | Description
 *CuentasDeBeneficiariosSpeiApi* | [**getBeneficiariesForAccountUsingGET**](docs/CuentasDeBeneficiariosSpeiApi.md#getBeneficiariesForAccountUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/spei | Consulta los beneficiarios registrados
 *CuentasDeBeneficiariosSpeiApi* | [**preRegisterAccountsUsingPOST**](docs/CuentasDeBeneficiariosSpeiApi.md#preRegisterAccountsUsingPOST) | **POST** /subscriptions/{subscription}/beneficiaries/spei | Pre-registro de cuentas de beneficiarios.
 *CuentasDeBeneficiariosSpeiApi* | [**removeBeneficiariesPendingUsingDELETE**](docs/CuentasDeBeneficiariosSpeiApi.md#removeBeneficiariesPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/request/{requestId} | Eliminación de beneficiarios SPEI® sin confirmar
-*CuentasDeBeneficiariosSpeiApi* | [**updateAmountLimitAccountUsingPUT**](docs/CuentasDeBeneficiariosSpeiApi.md#updateAmountLimitAccountUsingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/spei/{account} | Actualiza el monto límite
+*CuentasDeBeneficiariosSpeiApi* | [**updateAmountLimitAccountUsingPUT**](docs/CuentasDeBeneficiariosSpeiApi.md#updateAmountLimitAccountUsingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/spei/{account} | Solicitud para actualizar el monto límite
 *CuentasDeBeneficiariosSpidApi* | [**getSpidBeneficiariesForAccount**](docs/CuentasDeBeneficiariosSpidApi.md#getSpidBeneficiariesForAccount) | **GET** /subscriptions/{subscription}/beneficiaries/spid | Consulta los beneficiarios SPID registrados
 *CuentasDeBeneficiariosSpidApi* | [**preRegisterAccountsUsingPOST1**](docs/CuentasDeBeneficiariosSpidApi.md#preRegisterAccountsUsingPOST1) | **POST** /subscriptions/{subscription}/beneficiaries/spid | Pre-registro de cuentas de beneficiarios SPID
 *DepositantesApi* | [**getDepositantsUsingGET**](docs/DepositantesApi.md#getDepositantsUsingGET) | **GET** /subscriptions/{subscription}/depositants | Consulta de cuentas de depositantes
@@ -124,6 +125,8 @@ Class | Method | HTTP request | Description
 *FacturasApi* | [**billingsReportByIdUsingGET**](docs/FacturasApi.md#billingsReportByIdUsingGET) | **GET** /billings/{id} | Consulta de facturas por identificador
 *FacturasApi* | [**billingsReportUsingGET**](docs/FacturasApi.md#billingsReportUsingGET) | **GET** /billings | Consulta de facturas
 *InstitucionesApi* | [**getAllInstitutionsUsingGET**](docs/InstitucionesApi.md#getAllInstitutionsUsingGET) | **GET** /institutions | Información de instituciones bancarias.
+*LmitesDeMontosApi* | [**obtainConfigurationsLimits**](docs/LmitesDeMontosApi.md#obtainConfigurationsLimits) | **GET** /subscriptions/{suscription}/configurations | Consulta las configuraciones para el contrato asocaido al enrolamiento en la aplicación
+*LmitesDeMontosApi* | [**updateConfigurations**](docs/LmitesDeMontosApi.md#updateConfigurations) | **PUT** /subscriptions/{suscription}/configurations | Actualiza las configuraciones por subscripción
 *OperacionesCoDiApi* | [**consultCodiOperations**](docs/OperacionesCoDiApi.md#consultCodiOperations) | **POST** /codi/charges | Obtiene las operaciones generadas a partir de peticiones de pago CoDi® de forma paginada, pudiendo aplicar filtros
 *PeticionesDePagoPorCoDiApi* | [**consultCodiRequestByOrderId**](docs/PeticionesDePagoPorCoDiApi.md#consultCodiRequestByOrderId) | **GET** /codi/sales-point/charges | Obtiene la información de una petición de pago CODI® por orderId para un punto de venta
 *PeticionesDePagoPorCoDiApi* | [**generateCodiCodeQR**](docs/PeticionesDePagoPorCoDiApi.md#generateCodiCodeQR) | **POST** /codi/sales-point/charges | Genera un código QR para un pago mediante CODI®
@@ -175,6 +178,7 @@ Class | Method | HTTP request | Description
  - [CompanyRegistered](docs/CompanyRegistered.md)
  - [CompanyRequested](docs/CompanyRequested.md)
  - [Compay](docs/Compay.md)
+ - [ConfigurationsLimits](docs/ConfigurationsLimits.md)
  - [ContactRequest](docs/ContactRequest.md)
  - [ContractDetailRequest](docs/ContractDetailRequest.md)
  - [ContractDetailResponse](docs/ContractDetailResponse.md)
@@ -186,9 +190,11 @@ Class | Method | HTTP request | Description
  - [GetDepositants](docs/GetDepositants.md)
  - [Institution](docs/Institution.md)
  - [InstitutionsList](docs/InstitutionsList.md)
+ - [Item](docs/Item.md)
  - [MessageAccountBeneficiary](docs/MessageAccountBeneficiary.md)
  - [MessageCEP](docs/MessageCEP.md)
  - [MessageCodiAction](docs/MessageCodiAction.md)
+ - [MessageConfigurationsLimits](docs/MessageConfigurationsLimits.md)
  - [MessageDepositReceived](docs/MessageDepositReceived.md)
  - [MessageInstitution](docs/MessageInstitution.md)
  - [MessagePayment](docs/MessagePayment.md)
@@ -221,6 +227,7 @@ Class | Method | HTTP request | Description
  - [TransactionOutgoing](docs/TransactionOutgoing.md)
  - [TransactionOutgoingSpid](docs/TransactionOutgoingSpid.md)
  - [TransactionsOutgoingRegister](docs/TransactionsOutgoingRegister.md)
+ - [UpdateConfigurationsRequestDTO](docs/UpdateConfigurationsRequestDTO.md)
  - [UrlsRedirect](docs/UrlsRedirect.md)
  - [UserCompany](docs/UserCompany.md)
  - [Webhook](docs/Webhook.md)

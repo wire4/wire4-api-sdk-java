@@ -1811,4 +1811,58 @@ public class ExamplesTest {
             return;
         }
     }
+    @Test
+    public void updateConfigurations(){
+        // Create the api component
+        final LmitesDeMontosApi api = new LmitesDeMontosApi();
+
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+
+        final String bearer;
+
+        try {
+
+            // Obtain an access token use password flow and scope "spei_admin"
+            // The user_key and user_secret belongs to the subscription to delete
+            bearer = oAuthWire4.obtainAccessTokenAppUser(
+                    "86b348442874908861098f03ed9ffa@sandbox.wire4.mx", "9ee9ae9a86446c289656ff40934370",
+                    "spei_admin");
+
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+            UpdateConfigurationsRequestDTO body = new UpdateConfigurationsRequestDTO();
+        final ConfigurationsLimits configurationsItem = new ConfigurationsLimits();
+        configurationsItem.setGroup("LIMIT_BY_TIME");
+        final Item amountLimit = new Item();
+        amountLimit.setKey("BY_AMOUNT");
+        amountLimit.setValue("15000.00");
+        configurationsItem.addItemsItem(amountLimit);
+        final Item operationsLimit = new Item();
+        operationsLimit.setKey("BY_OPERATION");
+        operationsLimit.setValue("150");
+        configurationsItem.addItemsItem(operationsLimit);
+        body.addConfigurationsItem(configurationsItem);
+
+
+        try {
+
+            // Obtain the response
+            final ApiResponse<Void> response = api.updateConfigurationsWithHttpInfo(body,bearer,SUBSCRIPTION);
+
+            System.out.println("Update Configurations result:" + response.getStatusCode());
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
 }

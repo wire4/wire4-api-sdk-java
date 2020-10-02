@@ -6,13 +6,13 @@
     <parent>
         <groupId>mx.wire4.sdk</groupId>
         <artifactId>wire4-sdk</artifactId>
-        <version>0.0.5-SNAPSHOT</version>
+        <version>0.0.6-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
     <artifactId>authenticator</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.6-SNAPSHOT</version>
 
     <name>Wire4 authenticator</name>
     <description>Commons utilities for Wire authentication</description>
@@ -64,7 +64,7 @@
         <dependency>
             <groupId>mx.wire4.sdk</groupId>
             <artifactId>sdk-client</artifactId>
-            <version>0.0.5-SNAPSHOT</version>
+            <version>0.0.6-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 

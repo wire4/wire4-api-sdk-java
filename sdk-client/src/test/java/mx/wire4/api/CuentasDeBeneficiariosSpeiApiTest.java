@@ -162,9 +162,9 @@ public class CuentasDeBeneficiariosSpeiApiTest {
         // TODO: test validations
     }
     /**
-     * Actualiza el monto límite
+     * Solicitud para actualizar el monto límite
      *
-     * Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
+     * Inicia una solicitud para actualizar el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
      *
      * @throws ApiException
      *          if the Api call fails

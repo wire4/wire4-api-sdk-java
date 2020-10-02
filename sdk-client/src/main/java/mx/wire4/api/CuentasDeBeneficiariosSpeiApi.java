@@ -1167,8 +1167,8 @@ public class CuentasDeBeneficiariosSpeiApi {
     }
 
     /**
-     * Actualiza el monto límite
-     * Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
+     * Solicitud para actualizar el monto límite
+     * Inicia una solicitud para actualizar el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
      * @param body Información de la cuenta y el monto límite a actualizar (required)
      * @param authorization Header para token (required)
      * @param account Cuenta a actualizar (required)
@@ -1182,8 +1182,8 @@ public class CuentasDeBeneficiariosSpeiApi {
     }
 
     /**
-     * Actualiza el monto límite
-     * Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
+     * Solicitud para actualizar el monto límite
+     * Inicia una solicitud para actualizar el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
      * @param body Información de la cuenta y el monto límite a actualizar (required)
      * @param authorization Header para token (required)
      * @param account Cuenta a actualizar (required)
@@ -1198,8 +1198,8 @@ public class CuentasDeBeneficiariosSpeiApi {
     }
 
     /**
-     * Actualiza el monto límite (asynchronously)
-     * Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
+     * Solicitud para actualizar el monto límite (asynchronously)
+     * Inicia una solicitud para actualizar el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
      * @param body Información de la cuenta y el monto límite a actualizar (required)
      * @param authorization Header para token (required)
      * @param account Cuenta a actualizar (required)
