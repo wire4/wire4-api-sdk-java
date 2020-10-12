@@ -21,52 +21,180 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 /**
- * Recibe las urls para redirigir en caso de exito o de error
+ * Objeto que contiene la información del pago realizado
  */
-@Schema(description = "Recibe las urls para redirigir en caso de exito o de error")
+@Schema(description = "Objeto que contiene la información del pago realizado")
 
-public class UrlsRedirect {
-  @SerializedName("cancel_return_url")
-  private String cancelReturnUrl = null;
+public class PaymentCODI {
+  @SerializedName("amount")
+  private BigDecimal amount = null;
 
-  @SerializedName("return_url")
-  private String returnUrl = null;
+  @SerializedName("description")
+  private String description = null;
 
-  public UrlsRedirect cancelReturnUrl(String cancelReturnUrl) {
-    this.cancelReturnUrl = cancelReturnUrl;
+  @SerializedName("error_message")
+  private String errorMessage = null;
+
+  @SerializedName("id")
+  private String id = null;
+
+  @SerializedName("operation_date")
+  private OffsetDateTime operationDate = null;
+
+  /**
+   * Estatus del pago
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    RECEIVED("RECEIVED"),
+    COMPLETED("COMPLETED"),
+    CANCELLED("CANCELLED");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    public static StatusEnum fromValue(String text) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StatusEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }  @SerializedName("status")
+  private StatusEnum status = null;
+
+  public PaymentCODI amount(BigDecimal amount) {
+    this.amount = amount;
     return this;
   }
 
    /**
-   * Url a la que se redirigira en caso de que el cliente cancele el registro
-   * @return cancelReturnUrl
+   * Monto del pago
+   * @return amount
   **/
-  @Schema(required = true, description = "Url a la que se redirigira en caso de que el cliente cancele el registro")
-  public String getCancelReturnUrl() {
-    return cancelReturnUrl;
+  @Schema(description = "Monto del pago")
+  public BigDecimal getAmount() {
+    return amount;
   }
 
-  public void setCancelReturnUrl(String cancelReturnUrl) {
-    this.cancelReturnUrl = cancelReturnUrl;
+  public void setAmount(BigDecimal amount) {
+    this.amount = amount;
   }
 
-  public UrlsRedirect returnUrl(String returnUrl) {
-    this.returnUrl = returnUrl;
+  public PaymentCODI description(String description) {
+    this.description = description;
     return this;
   }
 
    /**
-   * Url a la que se redireccionara en caso exitoso
-   * @return returnUrl
+   * Descripción del pago
+   * @return description
   **/
-  @Schema(required = true, description = "Url a la que se redireccionara en caso exitoso")
-  public String getReturnUrl() {
-    return returnUrl;
+  @Schema(description = "Descripción del pago")
+  public String getDescription() {
+    return description;
   }
 
-  public void setReturnUrl(String returnUrl) {
-    this.returnUrl = returnUrl;
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public PaymentCODI errorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
+    return this;
+  }
+
+   /**
+   * Mensaje de error
+   * @return errorMessage
+  **/
+  @Schema(description = "Mensaje de error")
+  public String getErrorMessage() {
+    return errorMessage;
+  }
+
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
+  }
+
+  public PaymentCODI id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Identificador del pago
+   * @return id
+  **/
+  @Schema(description = "Identificador del pago")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public PaymentCODI operationDate(OffsetDateTime operationDate) {
+    this.operationDate = operationDate;
+    return this;
+  }
+
+   /**
+   * Fecha en que se efectuo el pago
+   * @return operationDate
+  **/
+  @Schema(description = "Fecha en que se efectuo el pago")
+  public OffsetDateTime getOperationDate() {
+    return operationDate;
+  }
+
+  public void setOperationDate(OffsetDateTime operationDate) {
+    this.operationDate = operationDate;
+  }
+
+  public PaymentCODI status(StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Estatus del pago
+   * @return status
+  **/
+  @Schema(description = "Estatus del pago")
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
   }
 
 
@@ -78,24 +206,32 @@ public class UrlsRedirect {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UrlsRedirect urlsRedirect = (UrlsRedirect) o;
-    return Objects.equals(this.cancelReturnUrl, urlsRedirect.cancelReturnUrl) &&
-        Objects.equals(this.returnUrl, urlsRedirect.returnUrl);
+    PaymentCODI paymentCODI = (PaymentCODI) o;
+    return Objects.equals(this.amount, paymentCODI.amount) &&
+        Objects.equals(this.description, paymentCODI.description) &&
+        Objects.equals(this.errorMessage, paymentCODI.errorMessage) &&
+        Objects.equals(this.id, paymentCODI.id) &&
+        Objects.equals(this.operationDate, paymentCODI.operationDate) &&
+        Objects.equals(this.status, paymentCODI.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cancelReturnUrl, returnUrl);
+    return Objects.hash(amount, description, errorMessage, id, operationDate, status);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UrlsRedirect {\n");
+    sb.append("class PaymentCODI {\n");
     
-    sb.append("    cancelReturnUrl: ").append(toIndentedString(cancelReturnUrl)).append("\n");
-    sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    operationDate: ").append(toIndentedString(operationDate)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }
