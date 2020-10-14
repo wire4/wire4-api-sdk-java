@@ -4,7 +4,7 @@
 
     <groupId>mx.wire4.sdk</groupId>
     <artifactId>wire4-sdk</artifactId>
-    <version>0.0.6-SNAPSHOT</version>
+    <version>0.0.7-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>wire4-sdk</name>
