@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createAuthorization**](ContractsDetailsApi.md#createAuthorization) | **POST** /onboarding/accounts/authorize | Devuelve la URL para autorización del usuario Monex
 [**obtainAuthorizedUsers**](ContractsDetailsApi.md#obtainAuthorizedUsers) | **GET** /onboarding/accounts/{requestId}/authorized-users | Obtiene los usuarios autorizados
+[**obtainAuthorizedUsersByContract**](ContractsDetailsApi.md#obtainAuthorizedUsersByContract) | **GET** /onboarding/accounts/authorized-users | Obtiene los usuarios autorizados por contrato
 [**obtainContractDetails**](ContractsDetailsApi.md#obtainContractDetails) | **POST** /onboarding/accounts/details | Obtiene los detalles de la empresa del contrato
 
 <a name="createAuthorization"></a>
@@ -90,6 +91,55 @@ Name | Type | Description  | Notes
  **authorization** | **String**| Header para token |
  **X_ACCESS_KEY** | **String**| La llave de acceso de la aplicación |
  **requestId** | **String**| El identificador de la petición a esta API |
+
+### Return type
+
+[**List&lt;AuthorizedUsers&gt;**](AuthorizedUsers.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="obtainAuthorizedUsersByContract"></a>
+# **obtainAuthorizedUsersByContract**
+> List&lt;AuthorizedUsers&gt; obtainAuthorizedUsersByContract(authorization, X_ACCESS_KEY, contract)
+
+Obtiene los usuarios autorizados por contrato
+
+Obtienen los detalles de los usuarios autorizados por contrato Monex.
+
+### Example
+```java
+// Import classes:
+//import mx.wire4.ApiException;
+//import mx.wire4.api.ContractsDetailsApi;
+
+
+ContractsDetailsApi apiInstance = new ContractsDetailsApi();
+String authorization = "authorization_example"; // String | Header para token
+String X_ACCESS_KEY = "X_ACCESS_KEY_example"; // String | La llave de acceso de la aplicación
+String contract = "contract_example"; // String | El contrato Monex
+try {
+    List<AuthorizedUsers> result = apiInstance.obtainAuthorizedUsersByContract(authorization, X_ACCESS_KEY, contract);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ContractsDetailsApi#obtainAuthorizedUsersByContract");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Header para token |
+ **X_ACCESS_KEY** | **String**| La llave de acceso de la aplicación |
+ **contract** | **String**| El contrato Monex | [optional]
 
 ### Return type
 
