@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 /**
  * Objeto que contiene la información del punto de venta encontrada
  */
@@ -34,7 +35,7 @@ public class SalesPointFound {
   private String account = null;
 
   @SerializedName("created_at")
-  private java.sql.Timestamp createdAt = null;
+  private OffsetDateTime createdAt = null;
 
   @SerializedName("name")
   private String name = null;
@@ -87,7 +88,7 @@ public class SalesPointFound {
   private StatusEnum status = null;
 
   @SerializedName("updated_at")
-  private java.sql.Timestamp updatedAt = null;
+  private OffsetDateTime updatedAt = null;
 
   public SalesPointFound accessIp(String accessIp) {
     this.accessIp = accessIp;
@@ -125,21 +126,21 @@ public class SalesPointFound {
     this.account = account;
   }
 
-  public SalesPointFound createdAt(java.sql.Timestamp createdAt) {
+  public SalesPointFound createdAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
 
    /**
-   * Get createdAt
+   * Fecha en la que se creó el punto de venta
    * @return createdAt
   **/
-  @Schema(description = "")
-  public java.sql.Timestamp getCreatedAt() {
+  @Schema(description = "Fecha en la que se creó el punto de venta")
+  public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(java.sql.Timestamp createdAt) {
+  public void setCreatedAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
@@ -197,21 +198,21 @@ public class SalesPointFound {
     this.status = status;
   }
 
-  public SalesPointFound updatedAt(java.sql.Timestamp updatedAt) {
+  public SalesPointFound updatedAt(OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
 
    /**
-   * Get updatedAt
+   * Fecha en la que se actualizó el punto de venta
    * @return updatedAt
   **/
-  @Schema(description = "")
-  public java.sql.Timestamp getUpdatedAt() {
+  @Schema(description = "Fecha en la que se actualizó el punto de venta")
+  public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(java.sql.Timestamp updatedAt) {
+  public void setUpdatedAt(OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
   }
 

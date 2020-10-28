@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import mx.wire4.model.Compay;
-import mx.wire4.model.Payment;
+import mx.wire4.model.PaymentCODI;
 import mx.wire4.model.SalesPoint;
 /**
  * Objeto que contiene la información de las operaciones
@@ -48,7 +48,7 @@ public class Operations {
   private String orderId = null;
 
   @SerializedName("payment")
-  private Payment payment = null;
+  private PaymentCODI payment = null;
 
   @SerializedName("phone_number")
   private String phoneNumber = null;
@@ -235,7 +235,7 @@ public class Operations {
     this.orderId = orderId;
   }
 
-  public Operations payment(Payment payment) {
+  public Operations payment(PaymentCODI payment) {
     this.payment = payment;
     return this;
   }
@@ -245,11 +245,11 @@ public class Operations {
    * @return payment
   **/
   @Schema(description = "")
-  public Payment getPayment() {
+  public PaymentCODI getPayment() {
     return payment;
   }
 
-  public void setPayment(Payment payment) {
+  public void setPayment(PaymentCODI payment) {
     this.payment = payment;
   }
 

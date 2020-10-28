@@ -338,6 +338,148 @@ public class ContractsDetailsApi {
         return call;
     }
     /**
+     * Build call for obtainAuthorizedUsersByContract
+     * @param authorization Header para token (required)
+     * @param X_ACCESS_KEY La llave de acceso de la aplicación (required)
+     * @param contract El contrato Monex (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call obtainAuthorizedUsersByContractCall(String authorization, String X_ACCESS_KEY, String contract, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/onboarding/accounts/authorized-users";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (contract != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("contract", contract));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        if (X_ACCESS_KEY != null)
+        localVarHeaderParams.put("X-ACCESS-KEY", apiClient.parameterToString(X_ACCESS_KEY));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call obtainAuthorizedUsersByContractValidateBeforeCall(String authorization, String X_ACCESS_KEY, String contract, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling obtainAuthorizedUsersByContract(Async)");
+        }
+        // verify the required parameter 'X_ACCESS_KEY' is set
+        if (X_ACCESS_KEY == null) {
+            throw new ApiException("Missing the required parameter 'X_ACCESS_KEY' when calling obtainAuthorizedUsersByContract(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = obtainAuthorizedUsersByContractCall(authorization, X_ACCESS_KEY, contract, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Obtiene los usuarios autorizados por contrato
+     * Obtienen los detalles de los usuarios autorizados por contrato Monex.
+     * @param authorization Header para token (required)
+     * @param X_ACCESS_KEY La llave de acceso de la aplicación (required)
+     * @param contract El contrato Monex (optional)
+     * @return List&lt;AuthorizedUsers&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<AuthorizedUsers> obtainAuthorizedUsersByContract(String authorization, String X_ACCESS_KEY, String contract) throws ApiException {
+        ApiResponse<List<AuthorizedUsers>> resp = obtainAuthorizedUsersByContractWithHttpInfo(authorization, X_ACCESS_KEY, contract);
+        return resp.getData();
+    }
+
+    /**
+     * Obtiene los usuarios autorizados por contrato
+     * Obtienen los detalles de los usuarios autorizados por contrato Monex.
+     * @param authorization Header para token (required)
+     * @param X_ACCESS_KEY La llave de acceso de la aplicación (required)
+     * @param contract El contrato Monex (optional)
+     * @return ApiResponse&lt;List&lt;AuthorizedUsers&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<AuthorizedUsers>> obtainAuthorizedUsersByContractWithHttpInfo(String authorization, String X_ACCESS_KEY, String contract) throws ApiException {
+        com.squareup.okhttp.Call call = obtainAuthorizedUsersByContractValidateBeforeCall(authorization, X_ACCESS_KEY, contract, null, null);
+        Type localVarReturnType = new TypeToken<List<AuthorizedUsers>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Obtiene los usuarios autorizados por contrato (asynchronously)
+     * Obtienen los detalles de los usuarios autorizados por contrato Monex.
+     * @param authorization Header para token (required)
+     * @param X_ACCESS_KEY La llave de acceso de la aplicación (required)
+     * @param contract El contrato Monex (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call obtainAuthorizedUsersByContractAsync(String authorization, String X_ACCESS_KEY, String contract, final ApiCallback<List<AuthorizedUsers>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = obtainAuthorizedUsersByContractValidateBeforeCall(authorization, X_ACCESS_KEY, contract, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<AuthorizedUsers>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for obtainContractDetails
      * @param body Información para obtener los detalles de la companía (required)
      * @param authorization Header para token (required)

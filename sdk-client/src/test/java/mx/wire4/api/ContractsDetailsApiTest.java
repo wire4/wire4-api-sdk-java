@@ -69,6 +69,23 @@ public class ContractsDetailsApiTest {
         // TODO: test validations
     }
     /**
+     * Obtiene los usuarios autorizados por contrato
+     *
+     * Obtienen los detalles de los usuarios autorizados por contrato Monex.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void obtainAuthorizedUsersByContractTest() throws ApiException {
+        String authorization = null;
+        String X_ACCESS_KEY = null;
+        String contract = null;
+        List<AuthorizedUsers> response = api.obtainAuthorizedUsersByContract(authorization, X_ACCESS_KEY, contract);
+
+        // TODO: test validations
+    }
+    /**
      * Obtiene los detalles de la empresa del contrato
      *
      * Detalles de la compañía relacionada con el contrato de Monex.

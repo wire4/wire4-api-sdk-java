@@ -13,6 +13,7 @@
 package mx.wire4.api;
 
 import mx.wire4.ApiException;
+import mx.wire4.model.DetailedErrorResponse;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.SpidClassificationsResponseDTO;
 import mx.wire4.model.TokenRequiredResponse;

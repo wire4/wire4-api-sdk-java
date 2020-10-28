@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 /**
  * Contiene información de las transacciones que se facturan
  */
@@ -38,7 +39,7 @@ public class BillingTransaction {
   private Integer monexId = null;
 
   @SerializedName("operation_date")
-  private java.sql.Timestamp operationDate = null;
+  private OffsetDateTime operationDate = null;
 
   @SerializedName("order_id")
   private String orderId = null;
@@ -147,21 +148,21 @@ public class BillingTransaction {
     this.monexId = monexId;
   }
 
-  public BillingTransaction operationDate(java.sql.Timestamp operationDate) {
+  public BillingTransaction operationDate(OffsetDateTime operationDate) {
     this.operationDate = operationDate;
     return this;
   }
 
    /**
-   * Get operationDate
+   * Fecha y hora de la transacción
    * @return operationDate
   **/
-  @Schema(description = "")
-  public java.sql.Timestamp getOperationDate() {
+  @Schema(description = "Fecha y hora de la transacción")
+  public OffsetDateTime getOperationDate() {
     return operationDate;
   }
 
-  public void setOperationDate(java.sql.Timestamp operationDate) {
+  public void setOperationDate(OffsetDateTime operationDate) {
     this.operationDate = operationDate;
   }
 

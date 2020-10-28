@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import mx.wire4.model.AuthorizationTransactionGroup;
 import mx.wire4.model.Deposit;
+import mx.wire4.model.DetailedErrorResponse;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.Payment;
 import mx.wire4.model.PaymentsRequestId;

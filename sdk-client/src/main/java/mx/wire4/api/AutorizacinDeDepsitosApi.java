@@ -26,11 +26,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import mx.wire4.model.DetailedErrorResponse;
+import mx.wire4.model.DepositAuthorizationRequest;
+import mx.wire4.model.DepositsAuthorizationResponse;
 import mx.wire4.model.ErrorResponse;
-import mx.wire4.model.SpidClassificationsResponseDTO;
-import mx.wire4.model.TokenRequiredResponse;
-import mx.wire4.model.TransactionOutgoingSpid;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -38,14 +36,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TransferenciasSpidApi {
+public class AutorizacinDeDepsitosApi {
     private ApiClient apiClient;
 
-    public TransferenciasSpidApi() {
+    public AutorizacinDeDepsitosApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public TransferenciasSpidApi(ApiClient apiClient) {
+    public AutorizacinDeDepsitosApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -58,7 +56,7 @@ public class TransferenciasSpidApi {
     }
 
     /**
-     * Build call for getSpidClassificationsUsingGET
+     * Build call for getDepositAuthConfigurations
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
@@ -66,11 +64,11 @@ public class TransferenciasSpidApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getSpidClassificationsUsingGETCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getDepositAuthConfigurationsCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/subscriptions/{subscription}/beneficiaries/spid/classifications"
+        String localVarPath = "/subscriptions/{subscription}/configurations/deposit-authorization"
             .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -111,17 +109,17 @@ public class TransferenciasSpidApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getSpidClassificationsUsingGETValidateBeforeCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getDepositAuthConfigurationsValidateBeforeCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
-            throw new ApiException("Missing the required parameter 'authorization' when calling getSpidClassificationsUsingGET(Async)");
+            throw new ApiException("Missing the required parameter 'authorization' when calling getDepositAuthConfigurations(Async)");
         }
         // verify the required parameter 'subscription' is set
         if (subscription == null) {
-            throw new ApiException("Missing the required parameter 'subscription' when calling getSpidClassificationsUsingGET(Async)");
+            throw new ApiException("Missing the required parameter 'subscription' when calling getDepositAuthConfigurations(Async)");
         }
         
-        com.squareup.okhttp.Call call = getSpidClassificationsUsingGETCall(authorization, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getDepositAuthConfigurationsCall(authorization, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -131,42 +129,42 @@ public class TransferenciasSpidApi {
     }
 
     /**
-     * Consulta las clasificaciones para operaciones con SPID
-     * Obtiene las clasificaciones para operaciones con dólares (SPID) de Monex.&lt;br/&gt;Este recurso se debe invocar previo al realizar una operación SPID.&lt;br/&gt;Se requiere que el token de autenticación se genere con scope spid_admin.
+     * Consulta autorización de depósitos
+     * Obtiene la información de la autorización de depósitos del contrato relacionado a la subscripción.
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
-     * @return SpidClassificationsResponseDTO
+     * @return DepositsAuthorizationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SpidClassificationsResponseDTO getSpidClassificationsUsingGET(String authorization, String subscription) throws ApiException {
-        ApiResponse<SpidClassificationsResponseDTO> resp = getSpidClassificationsUsingGETWithHttpInfo(authorization, subscription);
+    public DepositsAuthorizationResponse getDepositAuthConfigurations(String authorization, String subscription) throws ApiException {
+        ApiResponse<DepositsAuthorizationResponse> resp = getDepositAuthConfigurationsWithHttpInfo(authorization, subscription);
         return resp.getData();
     }
 
     /**
-     * Consulta las clasificaciones para operaciones con SPID
-     * Obtiene las clasificaciones para operaciones con dólares (SPID) de Monex.&lt;br/&gt;Este recurso se debe invocar previo al realizar una operación SPID.&lt;br/&gt;Se requiere que el token de autenticación se genere con scope spid_admin.
+     * Consulta autorización de depósitos
+     * Obtiene la información de la autorización de depósitos del contrato relacionado a la subscripción.
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
-     * @return ApiResponse&lt;SpidClassificationsResponseDTO&gt;
+     * @return ApiResponse&lt;DepositsAuthorizationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SpidClassificationsResponseDTO> getSpidClassificationsUsingGETWithHttpInfo(String authorization, String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = getSpidClassificationsUsingGETValidateBeforeCall(authorization, subscription, null, null);
-        Type localVarReturnType = new TypeToken<SpidClassificationsResponseDTO>(){}.getType();
+    public ApiResponse<DepositsAuthorizationResponse> getDepositAuthConfigurationsWithHttpInfo(String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = getDepositAuthConfigurationsValidateBeforeCall(authorization, subscription, null, null);
+        Type localVarReturnType = new TypeToken<DepositsAuthorizationResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Consulta las clasificaciones para operaciones con SPID (asynchronously)
-     * Obtiene las clasificaciones para operaciones con dólares (SPID) de Monex.&lt;br/&gt;Este recurso se debe invocar previo al realizar una operación SPID.&lt;br/&gt;Se requiere que el token de autenticación se genere con scope spid_admin.
+     * Consulta autorización de depósitos (asynchronously)
+     * Obtiene la información de la autorización de depósitos del contrato relacionado a la subscripción.
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getSpidClassificationsUsingGETAsync(String authorization, String subscription, final ApiCallback<SpidClassificationsResponseDTO> callback) throws ApiException {
+    public com.squareup.okhttp.Call getDepositAuthConfigurationsAsync(String authorization, String subscription, final ApiCallback<DepositsAuthorizationResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -187,14 +185,14 @@ public class TransferenciasSpidApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getSpidClassificationsUsingGETValidateBeforeCall(authorization, subscription, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<SpidClassificationsResponseDTO>(){}.getType();
+        com.squareup.okhttp.Call call = getDepositAuthConfigurationsValidateBeforeCall(authorization, subscription, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<DepositsAuthorizationResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for registerOutgoingSpidTransactionUsingPOST
-     * @param body Información de las transferencias SPID de salida (required)
+     * Build call for putDepositAuthConfigurations
+     * @param body Deposit Authorization info (required)
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param progressListener Progress listener
@@ -202,11 +200,11 @@ public class TransferenciasSpidApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call registerOutgoingSpidTransactionUsingPOSTCall(TransactionOutgoingSpid body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call putDepositAuthConfigurationsCall(DepositAuthorizationRequest body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/subscriptions/{subscription}/transactions/outcoming/spid"
+        String localVarPath = "/subscriptions/{subscription}/configurations/deposit-authorization"
             .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -243,25 +241,25 @@ public class TransferenciasSpidApi {
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call registerOutgoingSpidTransactionUsingPOSTValidateBeforeCall(TransactionOutgoingSpid body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call putDepositAuthConfigurationsValidateBeforeCall(DepositAuthorizationRequest body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling registerOutgoingSpidTransactionUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'body' when calling putDepositAuthConfigurations(Async)");
         }
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
-            throw new ApiException("Missing the required parameter 'authorization' when calling registerOutgoingSpidTransactionUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'authorization' when calling putDepositAuthConfigurations(Async)");
         }
         // verify the required parameter 'subscription' is set
         if (subscription == null) {
-            throw new ApiException("Missing the required parameter 'subscription' when calling registerOutgoingSpidTransactionUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'subscription' when calling putDepositAuthConfigurations(Async)");
         }
         
-        com.squareup.okhttp.Call call = registerOutgoingSpidTransactionUsingPOSTCall(body, authorization, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = putDepositAuthConfigurationsCall(body, authorization, subscription, progressListener, progressRequestListener);
         return call;
 
         
@@ -271,45 +269,45 @@ public class TransferenciasSpidApi {
     }
 
     /**
-     * Registro de transferencias SPID
-     * Registra un conjunto de transferencias a realizar en la cuenta del cliente Monex relacionada a la suscripción, las transferencias deben ser confirmadas por el cliente para que se efectuen.
-     * @param body Información de las transferencias SPID de salida (required)
+     * Des/Habilitar autorización de depósitos
+     * Des/Habilitar autorización de depósitos, devuelve la información final de la autorización de depósitos del contrato relacionado a la subscripción al terminar.
+     * @param body Deposit Authorization info (required)
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
-     * @return TokenRequiredResponse
+     * @return DepositsAuthorizationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public TokenRequiredResponse registerOutgoingSpidTransactionUsingPOST(TransactionOutgoingSpid body, String authorization, String subscription) throws ApiException {
-        ApiResponse<TokenRequiredResponse> resp = registerOutgoingSpidTransactionUsingPOSTWithHttpInfo(body, authorization, subscription);
+    public DepositsAuthorizationResponse putDepositAuthConfigurations(DepositAuthorizationRequest body, String authorization, String subscription) throws ApiException {
+        ApiResponse<DepositsAuthorizationResponse> resp = putDepositAuthConfigurationsWithHttpInfo(body, authorization, subscription);
         return resp.getData();
     }
 
     /**
-     * Registro de transferencias SPID
-     * Registra un conjunto de transferencias a realizar en la cuenta del cliente Monex relacionada a la suscripción, las transferencias deben ser confirmadas por el cliente para que se efectuen.
-     * @param body Información de las transferencias SPID de salida (required)
+     * Des/Habilitar autorización de depósitos
+     * Des/Habilitar autorización de depósitos, devuelve la información final de la autorización de depósitos del contrato relacionado a la subscripción al terminar.
+     * @param body Deposit Authorization info (required)
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
-     * @return ApiResponse&lt;TokenRequiredResponse&gt;
+     * @return ApiResponse&lt;DepositsAuthorizationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TokenRequiredResponse> registerOutgoingSpidTransactionUsingPOSTWithHttpInfo(TransactionOutgoingSpid body, String authorization, String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = registerOutgoingSpidTransactionUsingPOSTValidateBeforeCall(body, authorization, subscription, null, null);
-        Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
+    public ApiResponse<DepositsAuthorizationResponse> putDepositAuthConfigurationsWithHttpInfo(DepositAuthorizationRequest body, String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = putDepositAuthConfigurationsValidateBeforeCall(body, authorization, subscription, null, null);
+        Type localVarReturnType = new TypeToken<DepositsAuthorizationResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Registro de transferencias SPID (asynchronously)
-     * Registra un conjunto de transferencias a realizar en la cuenta del cliente Monex relacionada a la suscripción, las transferencias deben ser confirmadas por el cliente para que se efectuen.
-     * @param body Información de las transferencias SPID de salida (required)
+     * Des/Habilitar autorización de depósitos (asynchronously)
+     * Des/Habilitar autorización de depósitos, devuelve la información final de la autorización de depósitos del contrato relacionado a la subscripción al terminar.
+     * @param body Deposit Authorization info (required)
      * @param authorization Header para token (required)
      * @param subscription El identificador de la suscripción a esta API (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call registerOutgoingSpidTransactionUsingPOSTAsync(TransactionOutgoingSpid body, String authorization, String subscription, final ApiCallback<TokenRequiredResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call putDepositAuthConfigurationsAsync(DepositAuthorizationRequest body, String authorization, String subscription, final ApiCallback<DepositsAuthorizationResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -330,8 +328,8 @@ public class TransferenciasSpidApi {
             };
         }
 
-        com.squareup.okhttp.Call call = registerOutgoingSpidTransactionUsingPOSTValidateBeforeCall(body, authorization, subscription, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
+        com.squareup.okhttp.Call call = putDepositAuthConfigurationsValidateBeforeCall(body, authorization, subscription, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<DepositsAuthorizationResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
