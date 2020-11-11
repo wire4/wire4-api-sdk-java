@@ -1811,4 +1811,44 @@ public class ExamplesTest {
             return;
         }
     }
+
+    @Test
+    public void changeSubscriptionStatus(){
+        final SuscripcionesApi api = new SuscripcionesApi();
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use application flow and scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        SubscriptionChangeStatusRequest body = new SubscriptionChangeStatusRequest();
+        body.setStatus(SubscriptionChangeStatusRequest.StatusEnum.INACTIVE);
+
+        try {
+
+            // Obtain the response
+            final ApiResponse<Void> response = api.changeSubscriptionStatusUsingPUTWithHttpInfo(body, bearer, SUBSCRIPTION);
+
+            System.out.println("Response:" + response.getStatusCode());
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+
+
+
+    }
 }

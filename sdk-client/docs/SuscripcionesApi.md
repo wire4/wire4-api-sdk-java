@@ -4,9 +4,58 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**changeSubscriptionStatusUsingPUT**](SuscripcionesApi.md#changeSubscriptionStatusUsingPUT) | **PUT** /subscriptions/{subscription}/status | Cambia el estatus de la suscripción
 [**preEnrollmentMonexUserUsingPOST**](SuscripcionesApi.md#preEnrollmentMonexUserUsingPOST) | **POST** /subscriptions/pre-subscription | Registra una pre-suscripción
 [**removeEnrollmentUserUsingDELETE**](SuscripcionesApi.md#removeEnrollmentUserUsingDELETE) | **DELETE** /subscriptions/{subscription} | Elimina una suscripción por el identificador de la suscripción
 [**removeSubscriptionPendingStatusUsingDELETE**](SuscripcionesApi.md#removeSubscriptionPendingStatusUsingDELETE) | **DELETE** /subscriptions/pre-subscription/{subscription} | Elimina una pre-suscripción
+
+<a name="changeSubscriptionStatusUsingPUT"></a>
+# **changeSubscriptionStatusUsingPUT**
+> changeSubscriptionStatusUsingPUT(body, authorization, subscription)
+
+Cambia el estatus de la suscripción
+
+Se cambia el estatus de la suscripción, los posibles valores son ACTIVE ó INACTIVE
+
+### Example
+```java
+// Import classes:
+//import mx.wire4.ApiException;
+//import mx.wire4.api.SuscripcionesApi;
+
+
+SuscripcionesApi apiInstance = new SuscripcionesApi();
+SubscriptionChangeStatusRequest body = new SubscriptionChangeStatusRequest(); // SubscriptionChangeStatusRequest | request
+String authorization = "authorization_example"; // String | Header para token
+String subscription = "subscription_example"; // String | subscription
+try {
+    apiInstance.changeSubscriptionStatusUsingPUT(body, authorization, subscription);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SuscripcionesApi#changeSubscriptionStatusUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**SubscriptionChangeStatusRequest**](SubscriptionChangeStatusRequest.md)| request |
+ **authorization** | **String**| Header para token |
+ **subscription** | **String**| subscription |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 <a name="preEnrollmentMonexUserUsingPOST"></a>
 # **preEnrollmentMonexUserUsingPOST**

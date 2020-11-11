@@ -16,6 +16,7 @@ import mx.wire4.ApiException;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.PreEnrollmentData;
 import mx.wire4.model.PreEnrollmentResponse;
+import mx.wire4.model.SubscriptionChangeStatusRequest;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -32,6 +33,23 @@ public class SuscripcionesApiTest {
 
     private final SuscripcionesApi api = new SuscripcionesApi();
 
+    /**
+     * Cambia el estatus de la suscripción
+     *
+     * Se cambia el estatus de la suscripción, los posibles valores son ACTIVE ó INACTIVE
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void changeSubscriptionStatusUsingPUTTest() throws ApiException {
+        SubscriptionChangeStatusRequest body = null;
+        String authorization = null;
+        String subscription = null;
+        api.changeSubscriptionStatusUsingPUT(body, authorization, subscription);
+
+        // TODO: test validations
+    }
     /**
      * Registra una pre-suscripción
      *

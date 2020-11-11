@@ -30,6 +30,9 @@ public class Item {
   @SerializedName("key")
   private String key = null;
 
+  @SerializedName("type")
+  private String type = null;
+
   @SerializedName("value")
   private String value = null;
 
@@ -49,6 +52,24 @@ public class Item {
 
   public void setKey(String key) {
     this.key = key;
+  }
+
+  public Item type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * El tipo de dato del grupo de configuraciones.
+   * @return type
+  **/
+  @Schema(description = "El tipo de dato del grupo de configuraciones.")
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 
   public Item value(String value) {
@@ -80,12 +101,13 @@ public class Item {
     }
     Item item = (Item) o;
     return Objects.equals(this.key, item.key) &&
+        Objects.equals(this.type, item.type) &&
         Objects.equals(this.value, item.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, value);
+    return Objects.hash(key, type, value);
   }
 
 
@@ -95,6 +117,7 @@ public class Item {
     sb.append("class Item {\n");
     
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
