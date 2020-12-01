@@ -1,6 +1,6 @@
 /*
  * Wire4RestAPI
- * Referencia de la API de Wire4
+ * Referencia de API. La API de Wire4 está organizada en torno a REST.
  *
  * OpenAPI spec version: 1.0.0
  * 
