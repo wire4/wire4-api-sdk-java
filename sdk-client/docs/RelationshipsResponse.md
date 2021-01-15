@@ -3,4 +3,4 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**relationships** | [**List&lt;Relationship&gt;**](Relationship.md) | Lista de relaciones del beneficiario |  [optional]
+**relationships** | [**List&lt;Relationship&gt;**](Relationship.md) | Es una lista de relaciones del beneficiario. |  [optional]

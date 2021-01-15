@@ -3,4 +3,4 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**clabe** | **String** | Cuenta clabe del depositante |  [optional]
+**clabe** | **String** | Cuenta CLABE (es de 18 dígitos) del depositante. |  [optional]

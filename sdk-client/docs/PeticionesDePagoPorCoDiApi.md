@@ -4,16 +4,16 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**consultCodiRequestByOrderId**](PeticionesDePagoPorCoDiApi.md#consultCodiRequestByOrderId) | **GET** /codi/sales-point/charges | Obtiene la información de una petición de pago CODI® por orderId para un punto de venta
-[**generateCodiCodeQR**](PeticionesDePagoPorCoDiApi.md#generateCodiCodeQR) | **POST** /codi/sales-point/charges | Genera un código QR para un pago mediante CODI®
+[**consultCodiRequestByOrderId**](PeticionesDePagoPorCoDiApi.md#consultCodiRequestByOrderId) | **GET** /codi/sales-point/charges | Consulta información de petición por orderId
+[**generateCodiCodeQR**](PeticionesDePagoPorCoDiApi.md#generateCodiCodeQR) | **POST** /codi/sales-point/charges | Genera código QR
 
 <a name="consultCodiRequestByOrderId"></a>
 # **consultCodiRequestByOrderId**
 > PaymentRequestCodiResponseDTO consultCodiRequestByOrderId(authorization, orderId, salesPointId)
 
-Obtiene la información de una petición de pago CODI® por orderId para un punto de venta
+Consulta información de petición por orderId
 
-Obtiene la información de una petición de pago CODI® por orderId para un punto de venta
+Obtiene la información de una petición de pago CODI® por orderId para un punto de venta.
 
 ### Example
 ```java
@@ -60,7 +60,7 @@ No authorization required
 # **generateCodiCodeQR**
 > CodiCodeQrResponseDTO generateCodiCodeQR(body, authorization, salesPointId)
 
-Genera un código QR para un pago mediante CODI®
+Genera código QR
 
 Genera un código QR solicitado por un punto de venta para un pago mediante CODI®
 

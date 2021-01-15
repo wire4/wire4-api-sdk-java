@@ -5,12 +5,12 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getWebhook**](WebhooksApi.md#getWebhook) | **GET** /webhooks/{id} | Consulta de Webhook
-[**getWebhooks**](WebhooksApi.md#getWebhooks) | **GET** /webhooks | Consulta de Webhooks
+[**getWebhooks**](WebhooksApi.md#getWebhooks) | **GET** /webhooks | Consulta la lista de Webhooks
 [**registerWebhook**](WebhooksApi.md#registerWebhook) | **POST** /webhooks | Alta de Webhook
 
 <a name="getWebhook"></a>
 # **getWebhook**
-> WebhookResponse getWebhook(authorization, id)
+> WebhookResponse getWebhook(authorization, webhookId)
 
 Consulta de Webhook
 
@@ -25,9 +25,9 @@ Obtiene un webhook registrado en la plataforma mediante su identificador.
 
 WebhooksApi apiInstance = new WebhooksApi();
 String authorization = "authorization_example"; // String | Header para token
-String id = "id_example"; // String | Identificador del webhook
+String webhookId = "webhookId_example"; // String | Es el identificador del webhook. Ejemplo: wh_54a932866f784b439bc625c0f4e04e12
 try {
-    WebhookResponse result = apiInstance.getWebhook(authorization, id);
+    WebhookResponse result = apiInstance.getWebhook(authorization, webhookId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling WebhooksApi#getWebhook");
@@ -40,7 +40,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **id** | **String**| Identificador del webhook |
+ **webhookId** | **String**| Es el identificador del webhook. Ejemplo: wh_54a932866f784b439bc625c0f4e04e12 |
 
 ### Return type
 
@@ -59,9 +59,9 @@ No authorization required
 # **getWebhooks**
 > WebhooksList getWebhooks(authorization)
 
-Consulta de Webhooks
+Consulta la lista de Webhooks
 
-Obtiene los webhooks registrados en la plataforma que tengan estatus &#x27;ACTIVE&#x27; e &#x27;INACTIVE&#x27;.
+Obtiene una lista de los webhooks registrados en la plataforma que tengan el estado (estatus)  Activo (ACTIVE) e Inactivo (INACTIVE).
 
 ### Example
 ```java
@@ -106,7 +106,7 @@ No authorization required
 
 Alta de Webhook
 
-Registra un webhook en la plataforma para su uso como notificador de eventos cuando estos ocurran.
+Registra un webhook en la plataforma para su uso como notificador de eventos, cuándo estos ocurran.
 
 ### Example
 ```java

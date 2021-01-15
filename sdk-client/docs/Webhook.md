@@ -3,12 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**events** | **List&lt;String&gt;** | Tipo de evento manejado por el webhook, para mas referencia sobre los tipos de eventos soportados, revise la siguiente liga: https://developers.wire4.mx/#section/Eventos. |  [optional]
-**name** | **String** | Nombre del webhook. |  [optional]
-**secret** | **String** | Llave con la cual se debe de identificar que el webhook fue enviado por Wire4, para mayor información revisar la guía de notificaciones (https://wire4.mx/#/guides/notificaciones), en la sección de  \&quot;Comprobación de firmas de Webhook\&quot;. |  [optional]
-**status** | [**StatusEnum**](#StatusEnum) | Estatus en el que se encuentra el webhook. |  [optional]
-**url** | **String** | URL a la cual Wire4 enviará las notificaciones cuando un evento ocurra. |  [optional]
-**whId** | **String** | Identificador del webhook. |  [optional]
+**events** | **List&lt;String&gt;** | Tipo de evento manejado por el webhook. Para más referencia sobre los tipos de eventos soportados, revise la siguiente liga: &lt;a href&#x3D;\&quot;#section/Eventos\&quot;&gt;https://developers.wire4.mx/#section/Eventos.&lt;/a&gt; |  [optional]
+**name** | **String** | Es el nombre del webhook. |  [optional]
+**secret** | **String** | Es la llave con la que se debe de identificar que el webhook fue enviado por Wire4. Para mayor información revisar la guía de notificaciones en la sección de &lt;a href&#x3D;\&quot;https://wire4.mx/#/guides/notificaciones\&quot;&gt;\&quot;Comprobación de firmas de Webhook\&quot;.&lt;/a&gt; |  [optional]
+**status** | [**StatusEnum**](#StatusEnum) | Estado (estatus) en el que se encuentra el webhook. |  [optional]
+**url** | **String** | Es la dirección URL a la que Wire4 enviará las notificaciones cuando un evento ocurra. |  [optional]
+**whId** | **String** | Es el identificador del webhook. |  [optional]
 
 <a name="StatusEnum"></a>
 ## Enum: StatusEnum

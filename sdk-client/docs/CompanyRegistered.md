@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**businessName** | **String** | Nombre de la empresa registrada |  [optional]
-**certificate** | **String** | La información del certificado |  [optional]
-**comercialName** | **String** | Nombre comercial de la empresa registrada |  [optional]
-**companyId** | **String** | Identificador de la empresa |  [optional]
-**rfc** | **String** | RFC de la empresa registrada |  [optional]
-**status** | **String** | El estado de la compañía |  [optional]
+**businessName** | **String** | Es el nombre de la empresa registrada. |  [optional]
+**certificate** | **String** | Es la información del certificado. |  [optional]
+**comercialName** | **String** | Es el nombre comercial de la empresa registrada. |  [optional]
+**companyId** | **String** | Es el identificador de la empresa. |  [optional]
+**rfc** | **String** | Es el Registro Federal de Constituyentes (RFC) de la empresa registrada. |  [optional]
+**status** | **String** | Es el estado (estatus) de la compañía. Puede ser \&quot;ACTIVE\&quot; o \&quot;INACTIVE\&quot;. |  [optional]
