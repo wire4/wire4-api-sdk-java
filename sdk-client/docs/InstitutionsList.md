@@ -3,4 +3,4 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**institutions** | [**List&lt;Institution&gt;**](Institution.md) | Lista de instituciones |  [optional]
+**institutions** | [**List&lt;Institution&gt;**](Institution.md) | Es la lista de instituciones bancarias. |  [optional]

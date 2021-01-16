@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**companyName** | **String** | Nombre de la institución registrada ante el SAT |  [optional]
-**key** | **String** | Clave de la institución |  [optional]
-**name** | **String** | Nombre de la institución |  [optional]
-**rfc** | **String** | RFC de la institución |  [optional]
+**companyName** | **String** | Es el nombre de la institución bancaria registrada ante el Servicio de Administración Tributaria (SAT). |  [optional]
+**key** | **String** | Es la clave de la institución bancaria. |  [optional]
+**name** | **String** | Es el nombre de la institución bancaria. |  [optional]
+**rfc** | **String** | Es el Registro Federal de Contribuyentes (RFC) de la institución. |  [optional]

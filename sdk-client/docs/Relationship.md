@@ -3,5 +3,5 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kindOfRelationship** | **String** | Tipo de relación |  [optional]
-**relationship** | **String** | Nombre de la  relación |  [optional]
+**kindOfRelationship** | **String** | Es el tipo de relación. |  [optional]
+**relationship** | **String** | Es el mombre de la relación. |  [optional]

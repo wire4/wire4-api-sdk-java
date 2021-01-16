@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**requestId** | **String** | Identificador de la petición realizada a esta API |  [optional]
-**status** | [**StatusEnum**](#StatusEnum) | El cambio a informar en la procesamiento/estado de la petición |  [optional]
+**requestId** | **String** | Es el identificador de la petición realizada a esta API. |  [optional]
+**status** | [**StatusEnum**](#StatusEnum) | Es el cambio a informar en el procesamiento/estado de la petición. |  [optional]
 
 <a name="StatusEnum"></a>
 ## Enum: StatusEnum

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Consulta de cuentas de depositantes
 
-Obtiene una lista de depositantes asociados al contrato relacionado a la subscripción.
+Obtiene una lista de depositantes asociados al contrato relacionado a la suscripción.
 
 ### Example
 ```java
@@ -24,7 +24,7 @@ Obtiene una lista de depositantes asociados al contrato relacionado a la subscri
 
 DepositantesApi apiInstance = new DepositantesApi();
 String authorization = "authorization_example"; // String | Header para token
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     GetDepositants result = apiInstance.getDepositantsUsingGET(authorization, subscription);
     System.out.println(result);
@@ -39,7 +39,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **subscription** | **String**| El identificador de la suscripción a esta API |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 
@@ -60,7 +60,7 @@ No authorization required
 
 Registra un nuevo depositante
 
-Registra un nuevo depositante en el contrato asociado a la subscripción.
+Registra un nuevo depositante en el contrato asociado a la suscripción.
 
 ### Example
 ```java
@@ -72,7 +72,7 @@ Registra un nuevo depositante en el contrato asociado a la subscripción.
 DepositantesApi apiInstance = new DepositantesApi();
 DepositantsRegister body = new DepositantsRegister(); // DepositantsRegister | Depositant info
 String authorization = "authorization_example"; // String | Header para token
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     DepositantsResponse result = apiInstance.registerDepositantsUsingPOST(body, authorization, subscription);
     System.out.println(result);
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**DepositantsRegister**](DepositantsRegister.md)| Depositant info |
  **authorization** | **String**| Header para token |
- **subscription** | **String**| El identificador de la suscripción a esta API |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 

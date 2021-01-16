@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 Consulta los saldo de una cuenta
 
-Obtiene el de las divisas que se manejen en el contrato.
+Obtiene el saldo de un contrato, según las divisas que se manejen en dicho contrato, ya sea peso mexicano (MXP) o dólar estadounidense (USD).
 
 ### Example
 ```java
@@ -23,7 +23,7 @@ Obtiene el de las divisas que se manejen en el contrato.
 
 SaldoApi apiInstance = new SaldoApi();
 String authorization = "authorization_example"; // String | Header para token
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     BalanceListResponse result = apiInstance.getBalanceUsingGET(authorization, subscription);
     System.out.println(result);
@@ -38,7 +38,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **subscription** | **String**| El identificador de la suscripción a esta API |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 

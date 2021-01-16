@@ -4,16 +4,16 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createSalesPoint**](PuntosDeVentaCoDiApi.md#createSalesPoint) | **POST** /codi/companies/salespoint | Registra un punto de venta asociado a una empresa
-[**obtainSalePoints**](PuntosDeVentaCoDiApi.md#obtainSalePoints) | **GET** /codi/companies/salespoint | Obtiene los puntos de venta asociados a una empresa
+[**createSalesPoint**](PuntosDeVentaCoDiApi.md#createSalesPoint) | **POST** /codi/companies/salespoint | Registro de punto de venta.
+[**obtainSalePoints**](PuntosDeVentaCoDiApi.md#obtainSalePoints) | **GET** /codi/companies/salespoint | Consulta de puntos de venta
 
 <a name="createSalesPoint"></a>
 # **createSalesPoint**
 > SalesPointRespose createSalesPoint(body, authorization, companyId)
 
-Registra un punto de venta asociado a una empresa
+Registro de punto de venta.
 
-Registra un punto de venta desde donde se emitaran los cobros CODI®, el punto de venta se debe asociar a un cuenta cableregistrada previamente ante Banxico para realizar cobros con CODI®
+Se registra un punto de venta (TPV) desde donde se emitarán los cobros CODI®. El punto de venta se debe asociar a un cuenta CLABE registrada previamente ante Banxico para realizar cobros con CODI®.
 
 ### Example
 ```java
@@ -23,9 +23,9 @@ Registra un punto de venta desde donde se emitaran los cobros CODI®, el punto d
 
 
 PuntosDeVentaCoDiApi apiInstance = new PuntosDeVentaCoDiApi();
-SalesPointRequest body = new SalesPointRequest(); // SalesPointRequest | Información del punto de venta CODI®
+SalesPointRequest body = new SalesPointRequest(); // SalesPointRequest | Es el objeto que contiene información del punto de venta CODI®.
 String authorization = "authorization_example"; // String | Header para token
-String companyId = "companyId_example"; // String | El identificador de la empresa
+String companyId = "companyId_example"; // String | Es el identificador de la empresa.
 try {
     SalesPointRespose result = apiInstance.createSalesPoint(body, authorization, companyId);
     System.out.println(result);
@@ -39,9 +39,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SalesPointRequest**](SalesPointRequest.md)| Información del punto de venta CODI® |
+ **body** | [**SalesPointRequest**](SalesPointRequest.md)| Es el objeto que contiene información del punto de venta CODI®. |
  **authorization** | **String**| Header para token |
- **companyId** | **String**| El identificador de la empresa |
+ **companyId** | **String**| Es el identificador de la empresa. |
 
 ### Return type
 
@@ -60,9 +60,9 @@ No authorization required
 # **obtainSalePoints**
 > List&lt;SalesPointFound&gt; obtainSalePoints(authorization, companyId)
 
-Obtiene los puntos de venta asociados a una empresa
+Consulta de puntos de venta
 
-Obtiene los puntos de venta asociados a una empresa en las cuales se hacen operaciones CODI®
+Obtiene los puntos de venta asociados a una empresa en las cuales se hacen operaciones CODI®.
 
 ### Example
 ```java
@@ -73,7 +73,7 @@ Obtiene los puntos de venta asociados a una empresa en las cuales se hacen opera
 
 PuntosDeVentaCoDiApi apiInstance = new PuntosDeVentaCoDiApi();
 String authorization = "authorization_example"; // String | Header para token
-String companyId = "companyId_example"; // String | El identificador de la empresa
+String companyId = "companyId_example"; // String | Es el identificador de la empresa. Ejemplo: 8838d513-5916-4662-bb30-2448f0f543ed
 try {
     List<SalesPointFound> result = apiInstance.obtainSalePoints(authorization, companyId);
     System.out.println(result);
@@ -88,7 +88,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **companyId** | **String**| El identificador de la empresa |
+ **companyId** | **String**| Es el identificador de la empresa. Ejemplo: 8838d513-5916-4662-bb30-2448f0f543ed |
 
 ### Return type
 

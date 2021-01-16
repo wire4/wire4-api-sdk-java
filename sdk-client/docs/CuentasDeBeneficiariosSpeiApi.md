@@ -4,22 +4,22 @@ All URIs are relative to *https://sandbox-api.wire4.mx/wire4/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authorizeAccountsPendingPUT**](CuentasDeBeneficiariosSpeiApi.md#authorizeAccountsPendingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/pending | Recibe la solicitud para agrupar las cuentas SPEI/SPID de beneficiarios en estado pendiente que deben ser autorizadas
+[**authorizeAccountsPendingPUT**](CuentasDeBeneficiariosSpeiApi.md#authorizeAccountsPendingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/pending | Solicitud para agrupar cuentas de beneficiarios SPEI/SPID en estado pendiente.
 [**deleteAccountUsingDELETE**](CuentasDeBeneficiariosSpeiApi.md#deleteAccountUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/{account} | Elimina la cuenta del beneficiario
 [**getAvailableRelationshipsMonexUsingGET**](CuentasDeBeneficiariosSpeiApi.md#getAvailableRelationshipsMonexUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/relationships | Consulta de relaciones
 [**getBeneficiariesByRequestId**](CuentasDeBeneficiariosSpeiApi.md#getBeneficiariesByRequestId) | **GET** /subscriptions/{subscription}/beneficiaries/spei/{requestId} | Consulta los beneficiarios por el identificador de la petición de registro
 [**getBeneficiariesForAccountUsingGET**](CuentasDeBeneficiariosSpeiApi.md#getBeneficiariesForAccountUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/spei | Consulta los beneficiarios registrados
-[**preRegisterAccountsUsingPOST**](CuentasDeBeneficiariosSpeiApi.md#preRegisterAccountsUsingPOST) | **POST** /subscriptions/{subscription}/beneficiaries/spei | Pre-registro de cuentas de beneficiarios.
+[**preRegisterAccountsUsingPOST**](CuentasDeBeneficiariosSpeiApi.md#preRegisterAccountsUsingPOST) | **POST** /subscriptions/{subscription}/beneficiaries/spei | Pre-registro de cuentas de beneficiarios SPEI®.
 [**removeBeneficiariesPendingUsingDELETE**](CuentasDeBeneficiariosSpeiApi.md#removeBeneficiariesPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/beneficiaries/spei/request/{requestId} | Eliminación de beneficiarios SPEI® sin confirmar
-[**updateAmountLimitAccountUsingPUT**](CuentasDeBeneficiariosSpeiApi.md#updateAmountLimitAccountUsingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/spei/{account} | Actualiza el monto límite
+[**updateAmountLimitAccountUsingPUT**](CuentasDeBeneficiariosSpeiApi.md#updateAmountLimitAccountUsingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/spei/{account} | Solicitud para actualizar el monto límite de una cuenta
 
 <a name="authorizeAccountsPendingPUT"></a>
 # **authorizeAccountsPendingPUT**
 > AuthorizedBeneficiariesResponse authorizeAccountsPendingPUT(body, authorization, subscription)
 
-Recibe la solicitud para agrupar las cuentas SPEI/SPID de beneficiarios en estado pendiente que deben ser autorizadas
+Solicitud para agrupar cuentas de beneficiarios SPEI/SPID en estado pendiente.
 
-Solicta autorizar las cuentas de beneficiarios en estado pendiente agrupandolas en un set de cuentas que pueden incluir tanto cuentas de SPI como de SPID, debe indicar las urls de redireccion en caso de error y en caso de exito&lt;br/&gt;
+Solicta la agrupación de las cuentas de beneficiarios en estado pendiente para que sean autorizadas,  para ello se crea un conjunto de éstas que puede incluir tanto de SPEI como de SPID. Además se debe indicar las urls de redirección en caso de error y éxito
 
 ### Example
 ```java
@@ -31,7 +31,7 @@ Solicta autorizar las cuentas de beneficiarios en estado pendiente agrupandolas 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 UrlsRedirect body = new UrlsRedirect(); // UrlsRedirect | Información de la cuenta del beneficiario
 String authorization = "authorization_example"; // String | Header para token
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     AuthorizedBeneficiariesResponse result = apiInstance.authorizeAccountsPendingPUT(body, authorization, subscription);
     System.out.println(result);
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**UrlsRedirect**](UrlsRedirect.md)| Información de la cuenta del beneficiario |
  **authorization** | **String**| Header para token |
- **subscription** | **String**| El identificador de la suscripción a esta API |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 
@@ -68,7 +68,7 @@ No authorization required
 
 Elimina la cuenta del beneficiario
 
-Borra la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción. La cuenta a borrar debe ser una cuenta que opere con SPEI.
+Elimina la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la suscripción. La cuenta a borrar debe ser una que opere con SPEI.
 
 ### Example
 ```java
@@ -79,8 +79,8 @@ Borra la cuenta de beneficiario proporcionada relacionada al contrato pertenecie
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 String authorization = "authorization_example"; // String | Header para token
-String account = "account_example"; // String | La cuenta del beneciario que será eliminada
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String account = "account_example"; // String | Es la cuenta del beneficiario que será eliminada.
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     apiInstance.deleteAccountUsingDELETE(authorization, account, subscription);
 } catch (ApiException e) {
@@ -94,8 +94,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **account** | **String**| La cuenta del beneciario que será eliminada |
- **subscription** | **String**| El identificador de la suscripción a esta API |
+ **account** | **String**| Es la cuenta del beneficiario que será eliminada. |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 
@@ -127,7 +127,7 @@ Obtiene las posibles relaciones existentes para registrar beneficiarios en Monex
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 String authorization = "authorization_example"; // String | Header para token
-String subscription = "subscription_example"; // String | Identificador de la suscripción a esta API
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     RelationshipsResponse result = apiInstance.getAvailableRelationshipsMonexUsingGET(authorization, subscription);
     System.out.println(result);
@@ -142,7 +142,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **subscription** | **String**| Identificador de la suscripción a esta API |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 
@@ -174,8 +174,8 @@ Obtiene los beneficiarios enviados para registro en una petición al contrato re
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 String authorization = "authorization_example"; // String | Header para token
-String requestId = "requestId_example"; // String | El identificador de la petición del registro de beneficiarios a esta API
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String requestId = "requestId_example"; // String | El identificador de la petición del registro de beneficiarios a esta API.
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     BeneficiariesResponse result = apiInstance.getBeneficiariesByRequestId(authorization, requestId, subscription);
     System.out.println(result);
@@ -190,8 +190,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **requestId** | **String**| El identificador de la petición del registro de beneficiarios a esta API |
- **subscription** | **String**| El identificador de la suscripción a esta API |
+ **requestId** | **String**| El identificador de la petición del registro de beneficiarios a esta API. |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 
@@ -223,14 +223,14 @@ Obtiene los beneficiarios registrados al contrato relacionado con la suscripció
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 String authorization = "authorization_example"; // String | Header para token
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
-String account = "account_example"; // String | Cuenta del beneficiario, puede ser Clabe, TDD o Celular
-String beneficiaryBank = "beneficiaryBank_example"; // String | Clave del banco beneficiario
-String beneficiaryName = "beneficiaryName_example"; // String | Nombre del beneficiario
-String endDate = "endDate_example"; // String | Fecha de inicio del perido a filtrar en formato dd-mm-yyyy
-String initDate = "initDate_example"; // String | Fecha de inicio del perido a filtrar en formato dd-mm-yyyy
-String rfc = "rfc_example"; // String | RFC del beneficiario
-String status = "status_example"; // String | Estatus de la cuenta
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
+String account = "account_example"; // String | Es la cuenta del beneficiario, podría ser teléfono celular (es de 10 dígitos), Tarjeta de débito (TDD, es de 16 dígitos) o cuenta CLABE (es de 18 dígitos). <br/><br/>Por ejemplo Teléfono celular: 5525072600, TDD: 4323 1234 5678 9123, CLABE: 032180000118359719.
+String beneficiaryBank = "beneficiaryBank_example"; // String | Es la clave del banco beneficiario. Se puede obtener del recurso de las <a href=\"#operation/getAllInstitutionsUsingGET\">instituciones.</a>
+String beneficiaryName = "beneficiaryName_example"; // String | Es el nombre del beneficiario.
+String endDate = "endDate_example"; // String | Es la fecha de inicio del perido a filtrar en formato dd-mm-yyyy.
+String initDate = "initDate_example"; // String | Es la fºecha de inicio del perido a filtrar en formato dd-mm-yyyy.
+String rfc = "rfc_example"; // String | Es el Registro Federal de Controbuyentes (RFC) del beneficiario.
+String status = "status_example"; // String | Es el estado (estatus) de la cuenta. Los valores pueden ser <b>PENDING</b> y <b>REGISTERED</b>.
 try {
     BeneficiariesResponse result = apiInstance.getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
     System.out.println(result);
@@ -245,14 +245,14 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **subscription** | **String**| El identificador de la suscripción a esta API |
- **account** | **String**| Cuenta del beneficiario, puede ser Clabe, TDD o Celular | [optional]
- **beneficiaryBank** | **String**| Clave del banco beneficiario | [optional]
- **beneficiaryName** | **String**| Nombre del beneficiario | [optional]
- **endDate** | **String**| Fecha de inicio del perido a filtrar en formato dd-mm-yyyy | [optional]
- **initDate** | **String**| Fecha de inicio del perido a filtrar en formato dd-mm-yyyy | [optional]
- **rfc** | **String**| RFC del beneficiario | [optional]
- **status** | **String**| Estatus de la cuenta | [optional]
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
+ **account** | **String**| Es la cuenta del beneficiario, podría ser teléfono celular (es de 10 dígitos), Tarjeta de débito (TDD, es de 16 dígitos) o cuenta CLABE (es de 18 dígitos). &lt;br/&gt;&lt;br/&gt;Por ejemplo Teléfono celular: 5525072600, TDD: 4323 1234 5678 9123, CLABE: 032180000118359719. | [optional]
+ **beneficiaryBank** | **String**| Es la clave del banco beneficiario. Se puede obtener del recurso de las &lt;a href&#x3D;\&quot;#operation/getAllInstitutionsUsingGET\&quot;&gt;instituciones.&lt;/a&gt; | [optional]
+ **beneficiaryName** | **String**| Es el nombre del beneficiario. | [optional]
+ **endDate** | **String**| Es la fecha de inicio del perido a filtrar en formato dd-mm-yyyy. | [optional]
+ **initDate** | **String**| Es la fºecha de inicio del perido a filtrar en formato dd-mm-yyyy. | [optional]
+ **rfc** | **String**| Es el Registro Federal de Controbuyentes (RFC) del beneficiario. | [optional]
+ **status** | **String**| Es el estado (estatus) de la cuenta. Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. | [optional]
 
 ### Return type
 
@@ -271,9 +271,9 @@ No authorization required
 # **preRegisterAccountsUsingPOST**
 > TokenRequiredResponse preRegisterAccountsUsingPOST(body, authorization, subscription)
 
-Pre-registro de cuentas de beneficiarios.
+Pre-registro de cuentas de beneficiarios SPEI®.
 
-Pre-registra una o más cuentas de beneficiario en la plataforma, proporcionando una URL donde el cuentahabiente Monex debe ingresar un valor de su llave digital para confirmar el alta de las cuentas de beneficiarios.&lt;br/&gt;Los posibles valores de &lt;i&gt;relationship&lt;/i&gt; y &lt;i&gt;kind_of_relationship&lt;/i&gt; se deben  obtener de /subscriptions/{subscription}/beneficiaries/relationships.&lt;br/&gt;&lt;br/&gt;La confirmación de registro en Monex se realiza a través de una llamada a los webhooks registrados con el evento ACCOUNT.CREATED.
+Pre-registra una o más cuentas de beneficiario en la plataforma de Wire4, ésta le proporcionará una URL donde lo llevará al centro de autorización para que el cuentahabiente Monex ingrese su llave digital para confirmar el alta de las cuentas de beneficiarios.&lt;br/&gt; Los posibles valores de &lt;em&gt;relationship&lt;/em&gt; y &lt;em&gt;kind_of_relationship&lt;/em&gt; se deben  obtener de &lt;a href&#x3D;\&quot;#operation/getAvailableRelationshipsMonexUsingGET\&quot;&gt;/subscriptions/{subscription}/beneficiaries/relationships.&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;La confirmación de registro en Monex se realizará a través de una notificación a los webhooks registrados con el evento de tipo &lt;a href&#x3D;\&quot;#section/Eventos/Tipos-de-Eventos\&quot;&gt;ACCOUNT.CREATED.&lt;/a&gt;
 
 ### Example
 ```java
@@ -285,7 +285,7 @@ Pre-registra una o más cuentas de beneficiario en la plataforma, proporcionando
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 AccountRequest body = new AccountRequest(); // AccountRequest | Información de la cuenta del beneficiario
 String authorization = "authorization_example"; // String | Header para token
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     TokenRequiredResponse result = apiInstance.preRegisterAccountsUsingPOST(body, authorization, subscription);
     System.out.println(result);
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**AccountRequest**](AccountRequest.md)| Información de la cuenta del beneficiario |
  **authorization** | **String**| Header para token |
- **subscription** | **String**| El identificador de la suscripción a esta API |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 
@@ -322,7 +322,7 @@ No authorization required
 
 Eliminación de beneficiarios SPEI® sin confirmar
 
-Elimina un conjunto de beneficiarios a registrar en la cuenta del cliente Monex relacionada a la suscripción, los beneficiarios no deben haber sido confirmados por el cliente.
+Elimina uno o más beneficiarios que se encuentran en estado pendiente de confirmar (autorizar) de la cuenta del cliente Monex relacionada a la suscripción.
 
 ### Example
 ```java
@@ -333,8 +333,8 @@ Elimina un conjunto de beneficiarios a registrar en la cuenta del cliente Monex 
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
 String authorization = "authorization_example"; // String | Header para token
-String requestId = "requestId_example"; // String | Identificador de los beneficiarios a eliminar
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String requestId = "requestId_example"; // String | Es el identificador con el que se dió de alta a los beneficiarios (viene en el cuerpo de la respuesta del <a href=\"#operation/getAvailableRelationshipsMonexUsingGET\">pre-registro de beneficiarios</a>), los registros bajo éste campo van a ser eliminados.
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     apiInstance.removeBeneficiariesPendingUsingDELETE(authorization, requestId, subscription);
 } catch (ApiException e) {
@@ -348,8 +348,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
- **requestId** | **String**| Identificador de los beneficiarios a eliminar |
- **subscription** | **String**| El identificador de la suscripción a esta API |
+ **requestId** | **String**| Es el identificador con el que se dió de alta a los beneficiarios (viene en el cuerpo de la respuesta del &lt;a href&#x3D;\&quot;#operation/getAvailableRelationshipsMonexUsingGET\&quot;&gt;pre-registro de beneficiarios&lt;/a&gt;), los registros bajo éste campo van a ser eliminados. |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 
@@ -368,9 +368,9 @@ No authorization required
 # **updateAmountLimitAccountUsingPUT**
 > TokenRequiredResponse updateAmountLimitAccountUsingPUT(body, authorization, account, subscription)
 
-Actualiza el monto límite
+Solicitud para actualizar el monto límite de una cuenta
 
-Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la subscripción.
+Se crea una solicitud para actualizar el monto límite a la cuenta de beneficiario proporcionada y relacionada al contrato perteneciente a la subscripción. Una vez enviada la solicitud se retornará una URl que lo llevará al centro de autorización para que el cuentahabiente Monex ingrese su llave digital para confirmar la actualización del monto límite. 
 
 ### Example
 ```java
@@ -380,10 +380,10 @@ Actualiza el monto límite a la cuenta de beneficiario proporcionada relacionada
 
 
 CuentasDeBeneficiariosSpeiApi apiInstance = new CuentasDeBeneficiariosSpeiApi();
-AmountRequest body = new AmountRequest(); // AmountRequest | Información de la cuenta y el monto límite a actualizar
+AmountRequest body = new AmountRequest(); // AmountRequest | Información de la cuenta y el monto límite a actualizar.
 String authorization = "authorization_example"; // String | Header para token
-String account = "account_example"; // String | Cuenta a actualizar
-String subscription = "subscription_example"; // String | El identificador de la suscripción a esta API
+String account = "account_example"; // String | Es la cuenta que va a ser actualizada.
+String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
 try {
     TokenRequiredResponse result = apiInstance.updateAmountLimitAccountUsingPUT(body, authorization, account, subscription);
     System.out.println(result);
@@ -397,10 +397,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**AmountRequest**](AmountRequest.md)| Información de la cuenta y el monto límite a actualizar |
+ **body** | [**AmountRequest**](AmountRequest.md)| Información de la cuenta y el monto límite a actualizar. |
  **authorization** | **String**| Header para token |
- **account** | **String**| Cuenta a actualizar |
- **subscription** | **String**| El identificador de la suscripción a esta API |
+ **account** | **String**| Es la cuenta que va a ser actualizada. |
+ **subscription** | **String**| Es el identificador de la suscripción a esta API. |
 
 ### Return type
 

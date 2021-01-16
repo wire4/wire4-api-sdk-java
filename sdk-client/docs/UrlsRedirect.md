@@ -3,5 +3,5 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cancelReturnUrl** | **String** | Url a la que se redirigira en caso de que el cliente cancele el registro | 
-**returnUrl** | **String** | Url a la que se redireccionara en caso exitoso | 
+**cancelReturnUrl** | **String** | Es la dirección URL a la que se redirigirá en caso de que el cliente cancele el registro. Se valida hasta 512 caracteres. | 
+**returnUrl** | **String** | Es la dirección URL a la que se redirigirá en caso exitoso. Se valida hasta 512 caracteres. | 
