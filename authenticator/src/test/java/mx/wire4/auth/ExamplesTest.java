@@ -1811,4 +1811,51 @@ public class ExamplesTest {
             return;
         }
     }
+
+
+    @Test
+    public void changeSubscriptionUseUsingPATCH() {
+
+        // Create the api component
+        final SuscripcionesApi api = new SuscripcionesApi();
+
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use password flow and scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        String subscriptionId= "17fa79db-759f-4105-bc47-688fed75ddac";
+        // Build body
+        final ServiceBanking body = new ServiceBanking();
+        final UseServiceBanking spei = new UseServiceBanking();
+        spei.setUse(UseServiceBanking.UseEnum.DEPOSIT);
+        spei.setStatus(UseServiceBanking.StatusEnum.ACTIVE);
+        body.setSpei(spei);
+        final UseServiceBanking spid = new UseServiceBanking();
+        spid.setUse(UseServiceBanking.UseEnum.WITHDRAWAL_DEPOSIT);
+        spid.setStatus(UseServiceBanking.StatusEnum.INACTIVE);
+        body.setSpid(spid);
+        try {
+
+            // Obtain the response
+            final ServiceBanking response = api.changeSubscriptionUseUsingPATCH(body, bearer, subscriptionId);
+
+            System.out.println("response:" + response);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
 }
