@@ -39,7 +39,6 @@ import static mx.wire4.core.EnvironmentEnum.SANDBOX;
  * @version 1.0
  */
 @SuppressWarnings({"UnnecessaryLocalVariable", "UnnecessaryReturnStatement"})
-
 public class ExamplesTest {
 
     private static final String CLIENT_ID = "FxUWmqYGZuv8O1qjxstvIyJothMa";
