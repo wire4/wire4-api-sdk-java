@@ -1,0 +1,11 @@
+<settings>
+    <!-- Repository credentials -->
+    <mirrors>
+        <mirror>
+            <id>maven-central</id>
+            <name>Maven Central US</name>
+            <url>https://repo1.maven.org/maven2/</url>
+            <mirrorOf>maven-central</mirrorOf>
+        </mirror>
+    </mirrors>
+</settings>
