@@ -7,16 +7,17 @@
  * You shall not disclose such Confidential Information and shall use it only
  * in accordance with the company policy.
  */
-package mx.wire4.auth;
+package examples;
 
 import mx.wire4.ApiException;
 import mx.wire4.ApiResponse;
 import mx.wire4.api.*;
+import mx.wire4.auth.OAuthWire4;
 import mx.wire4.core.EnvironmentEnum;
 import mx.wire4.model.*;
 import mx.wire4.webhook.verification.signature.UtilsCompute;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -29,7 +30,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static mx.wire4.core.EnvironmentEnum.SANDBOX;
-import static org.junit.Assert.assertTrue;
+
 
 /**
  * <i>Fecha de creación: 22 de octubre, 2019</i>
@@ -38,7 +39,6 @@ import static org.junit.Assert.assertTrue;
  * @version 1.0
  */
 @SuppressWarnings({"UnnecessaryLocalVariable", "UnnecessaryReturnStatement"})
-@Ignore
 public class ExamplesTest {
 
     private static final String CLIENT_ID = "FxUWmqYGZuv8O1qjxstvIyJothMa";
@@ -55,19 +55,17 @@ public class ExamplesTest {
 
     @Test
     public void sendContact() {
-
         // Create the api component
         final ContactoApi api = new ContactoApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use application flow and scope "general"
             bearer = oAuthWire4.obtainAccessTokenApp("general");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -104,14 +102,13 @@ public class ExamplesTest {
         final ComprobanteElectrnicoDePagoCepApi api = new ComprobanteElectrnicoDePagoCepApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use application flow and scope "general"
             bearer = oAuthWire4.obtainAccessTokenApp("general");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -151,10 +148,9 @@ public class ExamplesTest {
         final SuscripcionesApi api = new SuscripcionesApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
-
         try {
 
             // Obtain an access token use application flow and scope "general"
@@ -189,41 +185,7 @@ public class ExamplesTest {
     @Test
     public void deletePreSubscription() {
 
-        // Create the api component
-        final SuscripcionesApi api = new SuscripcionesApi();
 
-        // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
-
-        final String bearer;
-
-        try {
-
-            // Obtain an access token use application flow and scope "general"
-            bearer = oAuthWire4.obtainAccessTokenApp("general");
-
-        } catch (ApiException e) {
-
-            e.printStackTrace();
-            // Optional manage exception in access token flow
-            return;
-        }
-
-        // Build body with info (check references for more info, types, required fields)
-        final String subscription = "2e11655e-392d-48ff-a35f-22a270bbfe7f";
-
-        try {
-
-            // Obtain the response
-            final ApiResponse<Void> response = api.removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(bearer, subscription);
-
-            System.out.println("Delete Pre-Subscription result:" + response);
-        } catch (ApiException e) {
-
-            e.printStackTrace();
-            // Optional manage exception in access token flow
-            return;
-        }
     }
 
     @Test
@@ -233,19 +195,52 @@ public class ExamplesTest {
         final SuscripcionesApi api = new SuscripcionesApi();
 
         // Create the authenticator to obtain access token
-        // The token URL and Service URL are defined for this environment enum value.
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
+        try {
 
+            // Obtain an access token use application flow and scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = "81b282bb-9056-4412-82de-ab066eae08a4";
+
+        try {
+
+            // Obtain the response
+            final ApiResponse<Void> response = api.removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(bearer, subscription);
+
+            System.out.println("Delete Pre-Subscription result:" + response.getStatusCode());
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
+
+    @Test
+    public void removeEnrollmentUserUsingDELETE(){
+        // Create the api component
+        final SuscripcionesApi api = new SuscripcionesApi();
+
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             // The user_key and user_secret belongs to the subscription to delete
-            bearer = oAuthWire4.obtainAccessTokenAppUser(
-                    "86b348442874908861098f03ed9ffa@sandbox.wire4.mx", "9ee9ae9a86446c289656ff40934370",
-                    "spei_admin");
-
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -277,14 +272,13 @@ public class ExamplesTest {
         final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -371,7 +365,7 @@ public class ExamplesTest {
         final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -410,7 +404,7 @@ public class ExamplesTest {
         final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -440,7 +434,7 @@ public class ExamplesTest {
             final BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(bearer, subscription, account,
                     beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
 
-            System.out.println("Relationships response:" + response);
+            System.out.println("Beneficiaries response:" + response);
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -456,14 +450,13 @@ public class ExamplesTest {
         final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -501,14 +494,13 @@ public class ExamplesTest {
         final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -518,13 +510,13 @@ public class ExamplesTest {
 
         // Build body with info (check references for more info, types, required fields)
         final String subscription = SUBSCRIPTION;
-        final String account = "044680035044988526";
+        final String account = "112680000156896531";
         try {
 
             // Obtain the response
             final ApiResponse<Void> response = api.deleteAccountUsingDELETEWithHttpInfo(bearer, account, subscription);
 
-            System.out.println("response:" + response);
+            System.out.println("response:" + response.getStatusCode());
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -540,14 +532,13 @@ public class ExamplesTest {
         final InstitucionesApi api = new InstitucionesApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use application flow and scope "general"
             bearer = oAuthWire4.obtainAccessTokenApp("general");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -577,14 +568,13 @@ public class ExamplesTest {
         final SaldoApi api = new SaldoApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -597,33 +587,32 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final BalanceListResponse response = api.getBalanceUsingGET(bearer, subscription);
+            final BalanceListResponse response = api.getBalanceUsingGET(bearer,subscription);
 
-            System.out.println("Response:" + response);
+            System.out.println("Balance Response:" + response);
         } catch (ApiException e) {
 
             e.printStackTrace();
             // Optional manage exception in access token flow
             return;
         }
+
     }
 
     @Test
     public void preRegisterBeneficiariesSPID() {
 
         // Create the api component
-        final CuentasDeBeneficiariosSpidApi api = new CuentasDeBeneficiariosSpidApi();
+        final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
-
         try {
 
-            // Obtain an access token use password flow and scope "spid_admin"
+            // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -633,22 +622,28 @@ public class ExamplesTest {
 
         // Build body with info (check references for more info, types, required fields)
         final String subscription = SUBSCRIPTION;
-        final AccountSpid body = new AccountSpid()
+        final AccountRequest body = new AccountRequest()
                 .returnUrl("https://your-app-url.mx/return")
                 .cancelReturnUrl("https://your-app-url.mx/cancel")
-                .amountLimit(new BigDecimal("1000.00"))
-                .beneficiaryAccount("112680000156896531")
-                .institution(new BeneficiaryInstitution().name("Compu Mundo Hiper Mega Red"))
-                .email(Collections.singletonList("beneficiary.spid@wire4.mx"))
-                .kindOfRelationship("RECURRENTE")
-                .numericReference("1234567")
-                .paymentConcept("concept spid")
-                .relationship("ACREEDOR")
-                .rfc("SJBA920125AB1");
+                .accounts(Collections.singletonList(
+                        new Account()
+                                .amountLimit(new BigDecimal("10000.00"))
+                                .beneficiaryAccount("112680000156896531")
+                                .email(Collections.singletonList("beneficiary@wire4.mx"))
+                                .kindOfRelationship("RECURRENTE")
+                                .numericReferenceSpei("1234567")
+                                .paymentConceptSpei("concept spei")
+                                .person(new Person()
+                                        .name("Bartolomeo")
+                                        .middleName("Jay")
+                                        .lastName("Simpson"))
+                                .relationship("ACREEDOR")
+                                .rfc("SJBA920125AB1")));
+
         try {
 
             // Obtain the response
-            TokenRequiredResponse response = api.preRegisterAccountsUsingPOST1(body, bearer, subscription);
+            final TokenRequiredResponse response = api.preRegisterAccountsUsingPOST(body, bearer, subscription);
 
             System.out.println("TokenRequiredResponse response:" + response);
         } catch (ApiException e) {
@@ -666,7 +661,7 @@ public class ExamplesTest {
         final CuentasDeBeneficiariosSpidApi api = new CuentasDeBeneficiariosSpidApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -706,21 +701,67 @@ public class ExamplesTest {
     }
 
     @Test
+    public void preRegisterAPIDAccountsUsingPOST(){
+        // Create the api component
+        final CuentasDeBeneficiariosSpidApi api = new CuentasDeBeneficiariosSpidApi();
+
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use password flow and scope "spid_admin"
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spid_admin");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = SUBSCRIPTION;
+        final AccountSpid body = new AccountSpid()
+                .returnUrl("https://your-app-url.mx/return")
+                .cancelReturnUrl("https://your-app-url.mx/cancel")
+                .amountLimit(new BigDecimal("1000.00"))
+                .beneficiaryAccount("112680000156896531")
+                .institution(new BeneficiaryInstitution().name("BMONEX"))
+                .email(Collections.singletonList("beneficiary.spid@wire4.mx"))
+                .kindOfRelationship("RECURRENTE")
+                .numericReference("1234567")
+                .paymentConcept("concept spid")
+                .relationship("ACREEDOR")
+                .rfc("SJBA920125AB1");
+        try {
+
+            // Obtain the response
+            final TokenRequiredResponse response = api.preRegisterAccountsUsingPOST1(body, bearer, subscription);
+
+            System.out.println("TokenRequiredResponse response:" + response);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
+
+    @Test
     public void obtainSPIDClassifications() {
 
         // Create the api component
         final TransferenciasSpidApi api = new TransferenciasSpidApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
-
         try {
 
             // Obtain an access token use password flow and scope "spid_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spid_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -735,7 +776,7 @@ public class ExamplesTest {
             // Obtain the response
             final SpidClassificationsResponseDTO response = api.getSpidClassificationsUsingGET(bearer, subscription);
 
-            System.out.println("Response:" + response);
+            System.out.println("SPID Classifications Response:" + response);
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -751,7 +792,7 @@ public class ExamplesTest {
         final DepositantesApi api = new DepositantesApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
 
@@ -759,7 +800,6 @@ public class ExamplesTest {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -773,7 +813,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final GetDepositants response = api.getDepositantsUsingGET(bearer, subscription);
+            final GetDepositants response = api.getDepositantsUsingGET(bearer,subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -791,7 +831,7 @@ public class ExamplesTest {
         final DepositantesApi api = new DepositantesApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
 
@@ -799,7 +839,6 @@ public class ExamplesTest {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -836,15 +875,13 @@ public class ExamplesTest {
         final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
-
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -875,7 +912,7 @@ public class ExamplesTest {
         final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -913,14 +950,13 @@ public class ExamplesTest {
         final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
-
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -934,14 +970,13 @@ public class ExamplesTest {
                 .returnUrl("https://your-app-url.mx/return")
                 .cancelReturnUrl("https://your-app-url.mx/cancel")
                 .addTransactionsItem(new TransactionOutgoing()
-                        .orderId("2454ffb2-a699-408f-9812-9a12eed11bfc")
+                        .orderId("4648024e-cfc1-4576-a8b2-52a1d5379398")
                         .amount(new BigDecimal("120.25"))
                         .beneficiaryAccount("112680000156896531")
                         .currencyCode("MXP")
                         .addEmailItem("notificar@wire4.mx")
                         .concept("Transfer out test 1")
-                        .reference(1234567)
-                );
+                        .reference(1234567));
 
         try {
 
@@ -964,10 +999,9 @@ public class ExamplesTest {
         final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
-
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
@@ -981,7 +1015,7 @@ public class ExamplesTest {
 
         // Build body with info (check references for more info, types, required fields)
         final String subscription = SUBSCRIPTION;
-        final String requestId = "fcb62831-cc04-4b3b-93d4-39e698a3bad6";
+        final String requestId = REQUEST_ID;
         final String orderIds = null; // Optional, comma separated order identifiers list or null
         try {
 
@@ -1006,13 +1040,13 @@ public class ExamplesTest {
         final TransferenciasSpidApi api = new TransferenciasSpidApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
-            // Obtain an access token use password flow and scope "spei_admin"
-            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+            // Obtain an access token use password flow and scope "spid_admin"
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spid_admin");
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -1021,11 +1055,12 @@ public class ExamplesTest {
         }
 
         // Build body with info (check references for more info, types, required fields)
+        //final String subscription = "ad30176d-c826-4f89-9b48-3d8b614ed826";
         final String subscription = SUBSCRIPTION;
         final TransactionOutgoingSpid body = new TransactionOutgoingSpid()
                 .returnUrl("https://your-app-url.mx/return")
                 .cancelReturnUrl("https://your-app-url.mx/cancel")
-                .orderId("c3fc9fa3-d2d1-4eef-8906-ae2514fefdfa")
+                .orderId("c361cdfa-8d33-4c85-8e12-eef33fd1acef")
                 .amount(new BigDecimal("120.25"))
                 .beneficiaryAccount("112680000156896531")
                 .classificationId("01")
@@ -1037,8 +1072,7 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final TokenRequiredResponse response = api.registerOutgoingSpidTransactionUsingPOST(
-                    body, bearer, subscription);
+            final TokenRequiredResponse response = api.registerOutgoingSpidTransactionUsingPOST(body, bearer, subscription);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {
@@ -1051,32 +1085,39 @@ public class ExamplesTest {
 
     @Test
     public void registerWebhookTest() {
-
         // Create the api component
         final WebhooksApi api = new WebhooksApi();
+
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
+        // Configure OAuth2 access token for authorization: oauth2
         final String bearer;
         try {
+
             // Obtain an access token use application flow and scope "general"
             bearer = oAuthWire4.obtainAccessTokenApp("general");
-
         } catch (ApiException e) {
+
             e.printStackTrace();
             return;
         }
+
         try {
+
             final WebhookRequest request = new WebhookRequest()
                     .name("SDK-WEBHOOK-REGISTER")
-                    .url("https://en0fpu357pjff.x.pipedream.net")
+                    .url("http://your-url-webhook.mx")
                     .events(Arrays.asList(
                             "ACCOUNT.CREATED",
                             "TRANSACTION.OUTGOING.RECEIVED",
                             "ENROLLMENT.CREATED"));
-            WebhookResponse response = api.registerWebhook(request, bearer);
-            System.out.println("Webhook registered :: " + response);
+
+            final WebhookResponse response = api.registerWebhook(request, bearer);
+
+            System.out.println("Webhook registered: " + response);
         } catch (ApiException e) {
+
             e.printStackTrace();
             return;
         }
@@ -1086,23 +1127,26 @@ public class ExamplesTest {
     public void getWebhooksTest() {
         // Create the api component
         final WebhooksApi api = new WebhooksApi();
+
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
-
         try {
+
             // Obtain an access token use application flow and scope "general"
             bearer = oAuthWire4.obtainAccessTokenApp("general");
-
         } catch (ApiException e) {
             e.printStackTrace();
             return;
         }
+
         try {
-            WebhooksList response = api.getWebhooks(bearer);
-            System.out.println("Webhooks :: " + response);
+
+            final WebhooksList response = api.getWebhooks(bearer);
+            System.out.println("Webhooks: " + response);
         } catch (ApiException e) {
+
             e.printStackTrace();
             return;
         }
@@ -1112,23 +1156,28 @@ public class ExamplesTest {
     public void getWebhookTest() {
         // Create the api component
         final WebhooksApi api = new WebhooksApi();
+
         // Create the authenticator to obtain access token
         final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
-
         try {
+
             // Obtain an access token use application flow and scope "general"
             bearer = oAuthWire4.obtainAccessTokenApp("general");
-
         } catch (ApiException e) {
+
             e.printStackTrace();
             return;
         }
+
         try {
-            WebhookResponse response = api.getWebhook(bearer, "wh_f16529713e6a4be88097740cc7db1f28");
-            System.out.println("Webhook :: " + response);
+
+            final WebhookResponse response = api.getWebhook(bearer, "wh_f16529713e6a4be88097740cc7db1f28");
+
+            System.out.println("Webhook: " + response);
         } catch (ApiException e) {
+
             e.printStackTrace();
             return;
         }
@@ -1205,13 +1254,15 @@ public class ExamplesTest {
         final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
+
         try {
 
             // Obtain an access token use password flow and scope "spei_admin"
             bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -1221,13 +1272,11 @@ public class ExamplesTest {
 
         // Build body with info (check references for more info, types, required fields)
         final String subscription = SUBSCRIPTION;
-        final String orderId = "5fec50a8-d987-4e11-b23e-606ca296712b"; // null for no filter
+        final String requestId = REQUEST_ID; // null for no filter
         try {
 
             // Obtain the response
-
-            final PaymentsRequestId paymentsRequestId = api.outCommingSpeiRequestIdTransactionsReportUsingGET(
-                    bearer, subscription, orderId);
+            final PaymentsRequestId paymentsRequestId = api.outCommingSpeiRequestIdTransactionsReportUsingGET(bearer, requestId, subscription);
 
             System.out.println("Response:" + paymentsRequestId);
         } catch (ApiException e) {
@@ -1245,7 +1294,7 @@ public class ExamplesTest {
         final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -1261,13 +1310,13 @@ public class ExamplesTest {
 
         // Build body with info (check references for more info, types, required fields)
         final String subscription = SUBSCRIPTION;
-        final String requestId = "0726a947-deaf-4bdc-a411-dc40192c78d9";
+        final String requestId = REQUEST_ID;
         try {
 
             // Obtain the response
             final BeneficiariesResponse response = api.getBeneficiariesByRequestId(bearer, requestId, subscription);
 
-            System.out.println("Relationships response:" + response);
+            System.out.println("Beneficiaries By Request Id:" + response);
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -1288,7 +1337,7 @@ public class ExamplesTest {
         final String signature = "8e63e88434679473bdb28546d7d91537601f4588e801972376d5c5addcb8fd706e6c92421b73151de3c" +
                 "1945ce000a8a5aa1d5cc3cdd73f2769ee9980db420db9";
 
-        assertTrue(UtilsCompute.compareWebHookMsgSignatures(message, key, signature));
+        Assertions.assertTrue(UtilsCompute.compareWebHookMsgSignatures(message, key, signature));
     }
 
     @Test
@@ -1298,7 +1347,7 @@ public class ExamplesTest {
         final CuentasDeBeneficiariosSpeiApi api = new CuentasDeBeneficiariosSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -1323,7 +1372,7 @@ public class ExamplesTest {
             final AuthorizedBeneficiariesResponse response = api.authorizeAccountsPendingPUT(urlsRedirect, bearer,
                     subscription);
 
-            System.out.println("response:" + response);
+            System.out.println("Authorize accounts pending response:" + response);
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -1339,7 +1388,7 @@ public class ExamplesTest {
         final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -1355,8 +1404,9 @@ public class ExamplesTest {
 
         // Build body with info (check references for more info, types, required fields)
         final String subscription = SUBSCRIPTION;
+        final String orderId = ORDER_ID;
         final AuthorizationTransactionGroup authorizationTransactionGroup = new AuthorizationTransactionGroup()
-                .addTransactionsItem("2454ffb2-a699-408f-9812-9a12eed11bfc"); // Add N transactions order identifiers
+                .addTransactionsItem(orderId); // Add N transactions order identifiers
 
         final UrlsRedirect urlsRedirect = new UrlsRedirect()
                 .returnUrl("https://your-app-url.mx/return")
@@ -1384,7 +1434,7 @@ public class ExamplesTest {
         final EmpresasCoDiApi apiInstance = new EmpresasCoDiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -1412,6 +1462,7 @@ public class ExamplesTest {
 
             // Obtain the response
             final CompanyRegistered response = apiInstance.registerCompanyUsingPOST(body, bearer);
+
             System.out.println("response: " + response);
         } catch (ApiException e) {
 
@@ -1428,7 +1479,7 @@ public class ExamplesTest {
         final EmpresasCoDiApi apiInstance = new EmpresasCoDiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -1446,6 +1497,7 @@ public class ExamplesTest {
 
             // Obtain the response
             final List<CompanyRegistered> response = apiInstance.obtainCompanies(bearer);
+
             System.out.println("response: " + response);
         } catch (ApiException e) {
 
@@ -1453,6 +1505,7 @@ public class ExamplesTest {
             // Optional manage exception in access token flow
             return;
         }
+
     }
 
     private static final String COMPANY_ID = "0b43cbd2-2a86-4eb5-a51c-49a53d521295";
@@ -1464,7 +1517,7 @@ public class ExamplesTest {
         final PuntosDeVentaCoDiApi api = new PuntosDeVentaCoDiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -1483,7 +1536,7 @@ public class ExamplesTest {
         final SalesPointRequest salesPointRequest = new SalesPointRequest()
                 .name("Taqueria Sur, caja 1")
                 .accessIp("189.180.255.229")
-                .notificationsUrl("https://webhook.site/3e32e1c4-1346-4f5a-92d5-2a921c5c85df")
+                .notificationsUrl("https://webhook.site/b0e4410f-0994-4b1f-93a3-963c51aefc64")
                 .account("044680035044988526");
         try {
 
@@ -1506,7 +1559,7 @@ public class ExamplesTest {
         final PuntosDeVentaCoDiApi api = new PuntosDeVentaCoDiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -1547,7 +1600,7 @@ public class ExamplesTest {
         final PeticionesDePagoPorCoDiApi api = new PeticionesDePagoPorCoDiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -1604,13 +1657,13 @@ public class ExamplesTest {
         final PeticionesDePagoPorCoDiApi api = new PeticionesDePagoPorCoDiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "codi_admin"
-            bearer = oAuthWire4.obtainAccessTokenAppUser(SALES_POINT_KEY, SALES_POINT_SECRET, "codi_admin");
+            bearer = oAuthWire4.obtainAccessTokenAppUser(SALES_POINT_KEY, SALES_POINT_SECRET,"codi_admin");
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -1642,13 +1695,13 @@ public class ExamplesTest {
         final OperacionesCoDiApi api = new OperacionesCoDiApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
 
             // Obtain an access token use password flow and scope "codi_report"
-            bearer = oAuthWire4.obtainAccessTokenAppUser(SALES_POINT_KEY, SALES_POINT_SECRET, "codi_report");
+            bearer = oAuthWire4.obtainAccessTokenAppUser(SALES_POINT_KEY, SALES_POINT_SECRET,"codi_report");
         } catch (ApiException e) {
 
             e.printStackTrace();
@@ -1820,7 +1873,7 @@ public class ExamplesTest {
         final SuscripcionesApi api = new SuscripcionesApi();
 
         // Create the authenticator to obtain access token
-        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
 
         final String bearer;
         try {
@@ -1834,8 +1887,9 @@ public class ExamplesTest {
             return;
         }
 
-        String subscriptionId= "17fa79db-759f-4105-bc47-688fed75ddac";
         // Build body
+        String subscription= "17fa79db-759f-4105-bc47-688fed75ddac";
+
         final ServiceBanking body = new ServiceBanking();
         final UseServiceBanking spei = new UseServiceBanking();
         spei.setUse(UseServiceBanking.UseEnum.DEPOSIT);
@@ -1848,9 +1902,136 @@ public class ExamplesTest {
         try {
 
             // Obtain the response
-            final ServiceBanking response = api.changeSubscriptionUseUsingPATCH(body, bearer, subscriptionId);
+            final ServiceBanking response = api.changeSubscriptionUseUsingPATCH(body, bearer, subscription);
 
             System.out.println("response:" + response);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
+
+    @Test
+    public void changeSubscriptionStatusUsingPUT(){
+        // Create the api component
+        final SuscripcionesApi api = new SuscripcionesApi();
+
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use application flow and scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        String subscription= "17fa79db-759f-4105-bc47-688fed75ddac";
+
+        final SubscriptionChangeStatusRequest body = new SubscriptionChangeStatusRequest();
+        body.setStatus(SubscriptionChangeStatusRequest.StatusEnum.INACTIVE);
+
+        try {
+
+            // Obtain the response
+            final ApiResponse<Void> response = api.changeSubscriptionStatusUsingPUTWithHttpInfo(body, bearer, subscription);
+
+            System.out.println("Response:" + response.getStatusCode());
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
+
+    @Test
+    public void obtainConfigurationsLimits(){
+        // Create the api component
+        final LmitesDeMontosApi apiInstance = new LmitesDeMontosApi();
+
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use password flow and scope "spei_admin"
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = SUBSCRIPTION;
+        try {
+
+            // Obtain the response
+            final MessageConfigurationsLimits response = apiInstance.obtainConfigurationsLimits(bearer, subscription);
+            System.out.println("Response:" + response);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
+
+    @Test
+    public void updateConfigurations(){
+        // Create the api component
+        final LmitesDeMontosApi api = new LmitesDeMontosApi();
+
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use password flow and scope "spei_admin"
+            // The user_key and user_secret belongs to the subscription to delete
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = SUBSCRIPTION;
+
+        final UpdateConfigurationsRequestDTO body = new UpdateConfigurationsRequestDTO();
+        final ConfigurationsLimits configurationsItem = new ConfigurationsLimits();
+        configurationsItem.setGroup("LIMIT_BY_TIME");
+        final Item amountLimit = new Item();
+        amountLimit.setKey("BY_AMOUNT");
+        amountLimit.setValue("18000.00");
+        configurationsItem.addItemsItem(amountLimit);
+        final Item operationsLimit = new Item();
+        operationsLimit.setKey("BY_OPERATION");
+        operationsLimit.setValue("180");
+        configurationsItem.addItemsItem(operationsLimit);
+        body.addConfigurationsItem(configurationsItem);
+
+        try {
+
+            // Obtain the response
+            final ApiResponse<Void> response = api.updateConfigurationsWithHttpInfo(body, bearer, subscription);
+
+            System.out.println("Update Configurations result:" + response.getStatusCode());
         } catch (ApiException e) {
 
             e.printStackTrace();

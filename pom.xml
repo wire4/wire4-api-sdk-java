@@ -4,11 +4,35 @@
 
     <groupId>mx.wire4.sdk</groupId>
     <artifactId>wire4-sdk</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>1.1.0</version>
     <packaging>pom</packaging>
 
     <name>wire4-sdk</name>
     <description>Wire4 sdk</description>
+    <url>https://github.com/wire4/wire4-api-sdk-java</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>speiok.team</name>
+            <email>speiok.team@tcpip.tech</email>
+            <organization>wire4</organization>
+            <organizationUrl>https://wire4.mx/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/wire4/wire4-api-sdk-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:wire4/wire4-api-sdk-java.git</developerConnection>
+        <url>https://github.com/wire4/wire4-api-sdk-java/tree/master</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,11 +40,24 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <skipTests>true</skipTests>
         <nexus.tcpip.repository.url>http://nexus.tcpip.tech/nexus/content/repositories/releases/</nexus.tcpip.repository.url>
         <nexus.tcpip.snapshot.url>http://nexus.tcpip.tech/nexus/content/repositories/snapshots/</nexus.tcpip.snapshot.url>
         <nexus.openpay.repository.url>http://nexus.openpay.mx:8081/nexus/content/repositories/releases/</nexus.openpay.repository.url>
         <nexus.openpay.snapshot.url>http://nexus.openpay.mx:8081/nexus/content/repositories/snapshots/</nexus.openpay.snapshot.url>
     </properties>
+
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <modules>
         <module>sdk-client</module>
@@ -30,6 +67,58 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -41,60 +130,6 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.1.1</version>
             </plugin>
-
-            <plugin>
-                <groupId>io.ultreia.java4all.jgitflow</groupId>
-                <artifactId>jgitflow-maven-plugin</artifactId>
-                <version>1.0.0-rc-1</version>
-
-                <configuration>
-                    <!--suppress UnresolvedMavenProperty -->
-                    <username>${gitUser}</username>
-                    <!--suppress UnresolvedMavenProperty -->
-                    <password>${gitPassword}</password>
-                    <squash>true</squash>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <pushFeatures>true</pushFeatures>
-                    <pushHotfixes>true</pushHotfixes>
-                    <pushReleases>true</pushReleases>
-                    <enableSshAgent>true</enableSshAgent>
-                    <flowInitContext>
-                        <masterBranchName>master</masterBranchName>
-                        <developBranchName>develop</developBranchName>
-                        <featureBranchPrefix>feature-</featureBranchPrefix>
-                        <releaseBranchPrefix>release-</releaseBranchPrefix>
-                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
-                        <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
-                    </flowInitContext>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>nexus-tcpip</id>
-            <url>${nexus.tcpip.repository.url}</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>nexus-tcpip</id>
-            <url>${nexus.tcpip.snapshot.url}</url>
-        </snapshotRepository>
-
-        <!--<repository>
-            <id>nexus-facelend</id>
-            <url>${nexus.openpay.repository.url}</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>nexus-facelend</id>
-            <url>${nexus.openpay.snapshot.url}</url>
-        </snapshotRepository>-->
-    </distributionManagement>
-
-    <organization>
-        <name>TCPIP</name>
-        <url>https://tcpip.tech</url>
-    </organization>
 </project>
