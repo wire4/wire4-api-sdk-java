@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>sdk-client</artifactId>
-  <version>1.1.0</version>
+  <version>0.0.11-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
