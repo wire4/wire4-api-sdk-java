@@ -891,10 +891,18 @@ public class ExamplesTest {
 
         // Build body with info (check references for more info, types, required fields)
         final String subscription = SUBSCRIPTION;
+        /*
+         * Filtering by date is optional, but both parameters must be present when use filter by date:
+         * begin date, end date,
+         * Formato 'yyyy-MM-dd'
+         */
+        final String beginDate = null;
+        final String endDate = null;
         try {
 
             // Obtain the response
-            final List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(bearer, subscription);
+            final List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(bearer, subscription, beginDate,
+                    endDate);
 
             System.out.println("Response:" + response);
         } catch (ApiException e) {

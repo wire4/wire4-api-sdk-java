@@ -7,12 +7,12 @@
     <parent>
         <groupId>mx.wire4.sdk</groupId>
         <artifactId>wire4-sdk</artifactId>
-        <version>1.1.0</version>
+        <version>0.0.12-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
     <artifactId>authenticator</artifactId>
-    <version>1.1.0</version>
+    <version>0.0.12-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Wire4 authenticator</name>
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>mx.wire4.sdk</groupId>
             <artifactId>sdk-client</artifactId>
-            <version>1.0.1</version>
+            <version>0.0.12-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <!-- test dependencies -->
