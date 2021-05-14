@@ -112,7 +112,7 @@ No authorization required
 
 <a name="incomingSpeiTransactionsReportUsingGET"></a>
 # **incomingSpeiTransactionsReportUsingGET**
-> List&lt;Deposit&gt; incomingSpeiTransactionsReportUsingGET(authorization, subscription)
+> List&lt;Deposit&gt; incomingSpeiTransactionsReportUsingGET(authorization, subscription, beginDate, endDate)
 
 Consulta de transferencias recibidas
 
@@ -128,8 +128,10 @@ Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta d
 TransferenciasSpeiApi apiInstance = new TransferenciasSpeiApi();
 String authorization = "authorization_example"; // String | Header para token
 String subscription = "subscription_example"; // String | Es el identificador de la suscripción a esta API.
+String beginDate = "beginDate_example"; // String | Fecha inicial para filtrar los depósitos, se espera en formato 'yyyy-MM-dd'
+String endDate = "endDate_example"; // String | Fecha final para filtrar los depósitos, se espera en formato 'yyyy-MM-dd'
 try {
-    List<Deposit> result = apiInstance.incomingSpeiTransactionsReportUsingGET(authorization, subscription);
+    List<Deposit> result = apiInstance.incomingSpeiTransactionsReportUsingGET(authorization, subscription, beginDate, endDate);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TransferenciasSpeiApi#incomingSpeiTransactionsReportUsingGET");
@@ -143,6 +145,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**| Header para token |
  **subscription** | **String**| Es el identificador de la suscripción a esta API. |
+ **beginDate** | **String**| Fecha inicial para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; | [optional]
+ **endDate** | **String**| Fecha final para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; | [optional]
 
 ### Return type
 

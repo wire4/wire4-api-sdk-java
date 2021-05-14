@@ -1,6 +1,6 @@
 /*
  * Wire4RestAPI
- * Referencia de API. La API de Wire4 está organizada en torno a REST
+ * Referencia de la API de Wire4
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -69,7 +69,7 @@ public class WebhooksApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/webhooks/{webhook_id}"
+        String localVarPath = "/webhooks/{id}"
             .replaceAll("\\{" + "webhook_id" + "\\}", apiClient.escapeString(webhookId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();

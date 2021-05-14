@@ -1,6 +1,6 @@
 /*
  * Wire4RestAPI
- * Referencia de API. La API de Wire4 está organizada en torno a REST
+ * Referencia de la API de Wire4
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -56,6 +56,9 @@ public class MessageDepositAuthorizationRequest {
 
   @SerializedName("depositant")
   private String depositant = null;
+
+  @SerializedName("depositant_alias")
+  private String depositantAlias = null;
 
   @SerializedName("depositant_clabe")
   private String depositantClabe = null;
@@ -250,6 +253,24 @@ public class MessageDepositAuthorizationRequest {
 
   public void setDepositant(String depositant) {
     this.depositant = depositant;
+  }
+
+  public MessageDepositAuthorizationRequest depositantAlias(String depositantAlias) {
+    this.depositantAlias = depositantAlias;
+    return this;
+  }
+
+   /**
+   * Es el alias de la cuenta CLABE del depositante en caso que la transferencia se reciba de una cuenta de depositante
+   * @return depositantAlias
+  **/
+  @Schema(description = "Es el alias de la cuenta CLABE del depositante en caso que la transferencia se reciba de una cuenta de depositante")
+  public String getDepositantAlias() {
+    return depositantAlias;
+  }
+
+  public void setDepositantAlias(String depositantAlias) {
+    this.depositantAlias = depositantAlias;
   }
 
   public MessageDepositAuthorizationRequest depositantClabe(String depositantClabe) {
@@ -469,6 +490,7 @@ public class MessageDepositAuthorizationRequest {
         Objects.equals(this.currencyCode, messageDepositAuthorizationRequest.currencyCode) &&
         Objects.equals(this.depositDate, messageDepositAuthorizationRequest.depositDate) &&
         Objects.equals(this.depositant, messageDepositAuthorizationRequest.depositant) &&
+        Objects.equals(this.depositantAlias, messageDepositAuthorizationRequest.depositantAlias) &&
         Objects.equals(this.depositantClabe, messageDepositAuthorizationRequest.depositantClabe) &&
         Objects.equals(this.depositantEmail, messageDepositAuthorizationRequest.depositantEmail) &&
         Objects.equals(this.depositantRfc, messageDepositAuthorizationRequest.depositantRfc) &&
@@ -484,7 +506,7 @@ public class MessageDepositAuthorizationRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, reference, senderAccount, senderBank, senderName, senderRfc);
+    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantAlias, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, reference, senderAccount, senderBank, senderName, senderRfc);
   }
 
 
@@ -502,6 +524,7 @@ public class MessageDepositAuthorizationRequest {
     sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
     sb.append("    depositDate: ").append(toIndentedString(depositDate)).append("\n");
     sb.append("    depositant: ").append(toIndentedString(depositant)).append("\n");
+    sb.append("    depositantAlias: ").append(toIndentedString(depositantAlias)).append("\n");
     sb.append("    depositantClabe: ").append(toIndentedString(depositantClabe)).append("\n");
     sb.append("    depositantEmail: ").append(toIndentedString(depositantEmail)).append("\n");
     sb.append("    depositantRfc: ").append(toIndentedString(depositantRfc)).append("\n");

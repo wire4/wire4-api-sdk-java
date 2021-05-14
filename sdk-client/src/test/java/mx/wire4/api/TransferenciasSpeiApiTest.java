@@ -1,6 +1,6 @@
 /*
  * Wire4RestAPI
- * Referencia de API. La API de Wire4 está organizada en torno a REST
+ * Referencia de la API de Wire4
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -84,7 +84,9 @@ public class TransferenciasSpeiApiTest {
     public void incomingSpeiTransactionsReportUsingGETTest() throws ApiException {
         String authorization = null;
         String subscription = null;
-        List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(authorization, subscription);
+        String beginDate = null;
+        String endDate = null;
+        List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(authorization, subscription, beginDate, endDate);
 
         // TODO: test validations
     }
