@@ -6,26 +6,27 @@
     <groupId>com.mycompany.app</groupId>
     <artifactId>examples</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-
     <name>wire4-sdk-examples</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <wire4.sdk-client.version>1.1.1</wire4.sdk-client.version>
+        <wire4.authenticator.version>1.1.1</wire4.authenticator.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>mx.wire4.sdk</groupId>
             <artifactId>sdk-client</artifactId>
-            <version>0.0.12-SNAPSHOT</version>
+            <version>${wire4.sdk-client.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>mx.wire4.sdk</groupId>
             <artifactId>authenticator</artifactId>
-            <version>0.0.12-SNAPSHOT</version>
+            <version>${wire4.authenticator.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
