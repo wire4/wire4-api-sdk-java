@@ -185,7 +185,41 @@ public class ExamplesTest {
     @Test
     public void deletePreSubscription() {
 
+        // Create the api component
+        final SuscripcionesApi api = new SuscripcionesApi();
 
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, SANDBOX);
+
+        final String bearer;
+
+        try {
+
+            // Obtain an access token use application flow and scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = "2e11655e-392d-48ff-a35f-22a270bbfe7f";
+
+        try {
+
+            // Obtain the response
+            final ApiResponse<Void> response = api.removeSubscriptionPendingStatusUsingDELETEWithHttpInfo(bearer, subscription);
+
+            System.out.println("Delete Pre-Subscription result:" + response);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
     }
 
     @Test
