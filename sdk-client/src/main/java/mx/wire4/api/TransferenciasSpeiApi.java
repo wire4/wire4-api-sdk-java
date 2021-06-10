@@ -430,7 +430,7 @@ public class TransferenciasSpeiApi {
 
     /**
      * Consulta de transferencias recibidas
-     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta.
+     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta. Para consultar transacciones que se encuentran en otras fechas se debe utilizar los parámetros de fecha inicial (beginDate) y fecha final (endDate), siempre deben de ir las dos ya que en caso de que falte una marcará error la consulta, si faltan las dos la consulta lanzará solo las del día, como se describe al inicio. El formato para las fechas es \&quot;yyyy-MM-dd\&quot;
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
      * @param beginDate Fecha inicial para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
@@ -445,7 +445,7 @@ public class TransferenciasSpeiApi {
 
     /**
      * Consulta de transferencias recibidas
-     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta.
+     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta. Para consultar transacciones que se encuentran en otras fechas se debe utilizar los parámetros de fecha inicial (beginDate) y fecha final (endDate), siempre deben de ir las dos ya que en caso de que falte una marcará error la consulta, si faltan las dos la consulta lanzará solo las del día, como se describe al inicio. El formato para las fechas es \&quot;yyyy-MM-dd\&quot;
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
      * @param beginDate Fecha inicial para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
@@ -461,7 +461,7 @@ public class TransferenciasSpeiApi {
 
     /**
      * Consulta de transferencias recibidas (asynchronously)
-     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta.
+     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta. Para consultar transacciones que se encuentran en otras fechas se debe utilizar los parámetros de fecha inicial (beginDate) y fecha final (endDate), siempre deben de ir las dos ya que en caso de que falte una marcará error la consulta, si faltan las dos la consulta lanzará solo las del día, como se describe al inicio. El formato para las fechas es \&quot;yyyy-MM-dd\&quot;
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
      * @param beginDate Fecha inicial para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
