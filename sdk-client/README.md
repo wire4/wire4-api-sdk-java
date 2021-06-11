@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>sdk-client</artifactId>
-  <version>0.0.11-SNAPSHOT</version>
+  <version>1.1.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "mx.wire4.sdk:sdk-client:0.0.11-SNAPSHOT"
+compile "mx.wire4.sdk:sdk-client:1.1.1"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sdk-client-0.0.11-SNAPSHOT.jar`
+* `target/sdk-client-1.1.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
