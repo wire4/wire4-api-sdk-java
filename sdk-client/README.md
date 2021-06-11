@@ -1,7 +1,7 @@
 # sdk-client
 
 Wire4RestAPI
-- API version: 1.0.0
+- API version: 1.1.1
 
 Referencia de la API de Wire4
 
