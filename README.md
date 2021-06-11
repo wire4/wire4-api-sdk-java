@@ -6,8 +6,8 @@ Referencia del SDK para el consumo del API de Wire4
 
 Este SDK es hecho y distrubuido por Wire4:
 
-- Versión del API de Wire4: 1.0.0
-- Versión de los paquetes SDK: 1.1.0
+- Versión del API de Wire4: 1.1.1
+- Versión de los paquetes SDK: 1.1.1
 
 ## Requerimientos.
 

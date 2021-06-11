@@ -1,6 +1,6 @@
 /*
  * Wire4RestAPI
- * Referencia de API. La API de Wire4 está organizada en torno a REST
+ * Referencia de la API de Wire4
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -75,7 +75,7 @@ public class TransferenciasSpeiApiTest {
     /**
      * Consulta de transferencias recibidas
      *
-     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta.
+     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta. Para consultar transacciones que se encuentran en otras fechas se debe utilizar los parámetros de fecha inicial (beginDate) y fecha final (endDate), siempre deben de ir las dos ya que en caso de que falte una marcará error la consulta, si faltan las dos la consulta lanzará solo las del día, como se describe al inicio. El formato para las fechas es \&quot;yyyy-MM-dd\&quot;
      *
      * @throws ApiException
      *          if the Api call fails
@@ -84,7 +84,9 @@ public class TransferenciasSpeiApiTest {
     public void incomingSpeiTransactionsReportUsingGETTest() throws ApiException {
         String authorization = null;
         String subscription = null;
-        List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(authorization, subscription);
+        String beginDate = null;
+        String endDate = null;
+        List<Deposit> response = api.incomingSpeiTransactionsReportUsingGET(authorization, subscription, beginDate, endDate);
 
         // TODO: test validations
     }

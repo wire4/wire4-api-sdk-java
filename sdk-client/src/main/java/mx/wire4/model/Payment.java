@@ -1,6 +1,6 @@
 /*
  * Wire4RestAPI
- * Referencia de API. La API de Wire4 está organizada en torno a REST
+ * Referencia de la API de Wire4
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -94,10 +94,10 @@ public class Payment {
   }
 
    /**
-   * Es la uenta emisora.
+   * Es la cuenta emisora.
    * @return account
   **/
-  @Schema(description = "Es la uenta emisora.")
+  @Schema(description = "Es la cuenta emisora.")
   public String getAccount() {
     return account;
   }

@@ -1,6 +1,6 @@
 /*
  * Wire4RestAPI
- * Referencia de API. La API de Wire4 está organizada en torno a REST
+ * Referencia de la API de Wire4
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -60,6 +60,9 @@ public class Deposit {
 
   @SerializedName("depositant")
   private String depositant = null;
+
+  @SerializedName("depositant_alias")
+  private String depositantAlias = null;
 
   @SerializedName("depositant_clabe")
   private String depositantClabe = null;
@@ -272,6 +275,24 @@ public class Deposit {
 
   public void setDepositant(String depositant) {
     this.depositant = depositant;
+  }
+
+  public Deposit depositantAlias(String depositantAlias) {
+    this.depositantAlias = depositantAlias;
+    return this;
+  }
+
+   /**
+   * Es el alias asignado a la cuenta CABLE del depositante.
+   * @return depositantAlias
+  **/
+  @Schema(description = "Es el alias asignado a la cuenta CABLE del depositante.")
+  public String getDepositantAlias() {
+    return depositantAlias;
+  }
+
+  public void setDepositantAlias(String depositantAlias) {
+    this.depositantAlias = depositantAlias;
   }
 
   public Deposit depositantClabe(String depositantClabe) {
@@ -492,6 +513,7 @@ public class Deposit {
         Objects.equals(this.currencyCode, deposit.currencyCode) &&
         Objects.equals(this.depositDate, deposit.depositDate) &&
         Objects.equals(this.depositant, deposit.depositant) &&
+        Objects.equals(this.depositantAlias, deposit.depositantAlias) &&
         Objects.equals(this.depositantClabe, deposit.depositantClabe) &&
         Objects.equals(this.depositantEmail, deposit.depositantEmail) &&
         Objects.equals(this.depositantRfc, deposit.depositantRfc) &&
@@ -507,7 +529,7 @@ public class Deposit {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, cep, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, reference, senderAccount, senderBank, senderName, senderRfc);
+    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, cep, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantAlias, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, reference, senderAccount, senderBank, senderName, senderRfc);
   }
 
 
@@ -526,6 +548,7 @@ public class Deposit {
     sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
     sb.append("    depositDate: ").append(toIndentedString(depositDate)).append("\n");
     sb.append("    depositant: ").append(toIndentedString(depositant)).append("\n");
+    sb.append("    depositantAlias: ").append(toIndentedString(depositantAlias)).append("\n");
     sb.append("    depositantClabe: ").append(toIndentedString(depositantClabe)).append("\n");
     sb.append("    depositantEmail: ").append(toIndentedString(depositantEmail)).append("\n");
     sb.append("    depositantRfc: ").append(toIndentedString(depositantRfc)).append("\n");

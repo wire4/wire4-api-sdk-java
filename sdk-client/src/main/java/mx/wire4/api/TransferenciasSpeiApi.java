@@ -1,6 +1,6 @@
 /*
  * Wire4RestAPI
- * Referencia de API. La API de Wire4 está organizada en torno a REST
+ * Referencia de la API de Wire4
  *
  * OpenAPI spec version: 1.0.0
  * 
@@ -353,12 +353,14 @@ public class TransferenciasSpeiApi {
      * Build call for incomingSpeiTransactionsReportUsingGET
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param beginDate Fecha inicial para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
+     * @param endDate Fecha final para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call incomingSpeiTransactionsReportUsingGETCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call incomingSpeiTransactionsReportUsingGETCall(String authorization, String subscription, String beginDate, String endDate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -367,6 +369,10 @@ public class TransferenciasSpeiApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (beginDate != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("beginDate", beginDate));
+        if (endDate != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("endDate", endDate));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (authorization != null)
@@ -403,7 +409,7 @@ public class TransferenciasSpeiApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call incomingSpeiTransactionsReportUsingGETValidateBeforeCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call incomingSpeiTransactionsReportUsingGETValidateBeforeCall(String authorization, String subscription, String beginDate, String endDate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
             throw new ApiException("Missing the required parameter 'authorization' when calling incomingSpeiTransactionsReportUsingGET(Async)");
@@ -413,7 +419,7 @@ public class TransferenciasSpeiApi {
             throw new ApiException("Missing the required parameter 'subscription' when calling incomingSpeiTransactionsReportUsingGET(Async)");
         }
         
-        com.squareup.okhttp.Call call = incomingSpeiTransactionsReportUsingGETCall(authorization, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = incomingSpeiTransactionsReportUsingGETCall(authorization, subscription, beginDate, endDate, progressListener, progressRequestListener);
         return call;
 
         
@@ -424,41 +430,47 @@ public class TransferenciasSpeiApi {
 
     /**
      * Consulta de transferencias recibidas
-     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta.
+     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta. Para consultar transacciones que se encuentran en otras fechas se debe utilizar los parámetros de fecha inicial (beginDate) y fecha final (endDate), siempre deben de ir las dos ya que en caso de que falte una marcará error la consulta, si faltan las dos la consulta lanzará solo las del día, como se describe al inicio. El formato para las fechas es \&quot;yyyy-MM-dd\&quot;
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param beginDate Fecha inicial para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
+     * @param endDate Fecha final para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
      * @return List&lt;Deposit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Deposit> incomingSpeiTransactionsReportUsingGET(String authorization, String subscription) throws ApiException {
-        ApiResponse<List<Deposit>> resp = incomingSpeiTransactionsReportUsingGETWithHttpInfo(authorization, subscription);
+    public List<Deposit> incomingSpeiTransactionsReportUsingGET(String authorization, String subscription, String beginDate, String endDate) throws ApiException {
+        ApiResponse<List<Deposit>> resp = incomingSpeiTransactionsReportUsingGETWithHttpInfo(authorization, subscription, beginDate, endDate);
         return resp.getData();
     }
 
     /**
      * Consulta de transferencias recibidas
-     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta.
+     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta. Para consultar transacciones que se encuentran en otras fechas se debe utilizar los parámetros de fecha inicial (beginDate) y fecha final (endDate), siempre deben de ir las dos ya que en caso de que falte una marcará error la consulta, si faltan las dos la consulta lanzará solo las del día, como se describe al inicio. El formato para las fechas es \&quot;yyyy-MM-dd\&quot;
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param beginDate Fecha inicial para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
+     * @param endDate Fecha final para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
      * @return ApiResponse&lt;List&lt;Deposit&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Deposit>> incomingSpeiTransactionsReportUsingGETWithHttpInfo(String authorization, String subscription) throws ApiException {
-        com.squareup.okhttp.Call call = incomingSpeiTransactionsReportUsingGETValidateBeforeCall(authorization, subscription, null, null);
+    public ApiResponse<List<Deposit>> incomingSpeiTransactionsReportUsingGETWithHttpInfo(String authorization, String subscription, String beginDate, String endDate) throws ApiException {
+        com.squareup.okhttp.Call call = incomingSpeiTransactionsReportUsingGETValidateBeforeCall(authorization, subscription, beginDate, endDate, null, null);
         Type localVarReturnType = new TypeToken<List<Deposit>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Consulta de transferencias recibidas (asynchronously)
-     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta.
+     * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta. Para consultar transacciones que se encuentran en otras fechas se debe utilizar los parámetros de fecha inicial (beginDate) y fecha final (endDate), siempre deben de ir las dos ya que en caso de que falte una marcará error la consulta, si faltan las dos la consulta lanzará solo las del día, como se describe al inicio. El formato para las fechas es \&quot;yyyy-MM-dd\&quot;
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param beginDate Fecha inicial para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
+     * @param endDate Fecha final para filtrar los depósitos, se espera en formato &#x27;yyyy-MM-dd&#x27; (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call incomingSpeiTransactionsReportUsingGETAsync(String authorization, String subscription, final ApiCallback<List<Deposit>> callback) throws ApiException {
+    public com.squareup.okhttp.Call incomingSpeiTransactionsReportUsingGETAsync(String authorization, String subscription, String beginDate, String endDate, final ApiCallback<List<Deposit>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -479,7 +491,7 @@ public class TransferenciasSpeiApi {
             };
         }
 
-        com.squareup.okhttp.Call call = incomingSpeiTransactionsReportUsingGETValidateBeforeCall(authorization, subscription, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = incomingSpeiTransactionsReportUsingGETValidateBeforeCall(authorization, subscription, beginDate, endDate, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Deposit>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
