@@ -12,8 +12,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <wire4.sdk-client.version>1.1.1</wire4.sdk-client.version>
-        <wire4.authenticator.version>1.1.1</wire4.authenticator.version>
+        <wire4.sdk-client.version>1.1.2</wire4.sdk-client.version>
+        <wire4.authenticator.version>1.1.2</wire4.authenticator.version>
     </properties>
 
     <dependencies>

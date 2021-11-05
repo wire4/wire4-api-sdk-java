@@ -13,10 +13,7 @@
 package mx.wire4.api;
 
 import mx.wire4.ApiException;
-import mx.wire4.model.DepositantsRegister;
-import mx.wire4.model.DepositantsResponse;
-import mx.wire4.model.ErrorResponse;
-import mx.wire4.model.GetDepositants;
+import mx.wire4.model.*;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -32,6 +29,23 @@ import java.util.Map;
 public class DepositantesApiTest {
 
     private final DepositantesApi api = new DepositantesApi();
+
+    /**
+     * Consulta cuantas cuentas de depositantes existen
+     *
+     * Obtiene la cantidad el total de depositantes asociados al contrato relacionado a la suscripción.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getDepositantsTotalsUsingGETTest() throws ApiException {
+        String authorization = null;
+        String subscription = null;
+        DepositantCountResponse response = api.getDepositantsTotalsUsingGET(authorization, subscription);
+
+        // TODO: test validations
+    }
 
     /**
      * Consulta de cuentas de depositantes

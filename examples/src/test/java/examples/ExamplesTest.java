@@ -820,6 +820,45 @@ public class ExamplesTest {
     }
 
     @Test
+    public void getDepositantsTotalsUsingGETTest() {
+
+        // Create the api component
+        final DepositantesApi api = new DepositantesApi();
+
+        // Create the authenticator to obtain access token
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+
+        try {
+
+            // Obtain an access token use password flow and scope "spei_admin"
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = SUBSCRIPTION;
+
+        try {
+
+            // Obtain the response
+            final DepositantCountResponse response = api.getDepositantsTotalsUsingGET(bearer,subscription);
+
+            System.out.println("Response:" + response);
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+    }
+
+    @Test
     public void getDepositantsUsingGETTest() {
 
         // Create the api component
