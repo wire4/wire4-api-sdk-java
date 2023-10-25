@@ -12,17 +12,18 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.CompanyRegistered;
 import mx.wire4.model.CompanyRequested;
 import mx.wire4.model.ErrorResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for EmpresasCoDiApi
@@ -37,11 +38,11 @@ public class EmpresasCoDiApiTest {
      *
      * Consulta de empresas CODI® registradas para la aplicación.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void obtainCompaniesTest() throws ApiException {
+    public void obtainCompaniesTest() throws Exception {
         String authorization = null;
         List<CompanyRegistered> response = api.obtainCompanies(authorization);
 
@@ -52,11 +53,11 @@ public class EmpresasCoDiApiTest {
      *
      * Registra una empresa para hacer uso de operaciones CODI®.&lt;br&gt;&lt;br&gt; &lt;b&gt;Nota:&lt;b&gt; Es requerido tener el certificado emitido por BANXICO® asi como el Nombre de la empresa, Nombre comercial y el Registro Federal de Contribuyentes (RFC) de la empresa.&lt;br/&gt;
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void registerCompanyUsingPOSTTest() throws ApiException {
+    public void registerCompanyUsingPOSTTest() throws Exception {
         CompanyRequested body = null;
         String authorization = null;
         CompanyRegistered response = api.registerCompanyUsingPOST(body, authorization);

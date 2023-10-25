@@ -30,6 +30,7 @@ import mx.wire4.model.MessageInstitution;
  */
 @Schema(description = "Es el objeto del mensaje que se envía mediante webhook con la información de la transferencia de salida realizada.")
 
+
 public class MessagePayment {
   @SerializedName("account")
   private String account = null;

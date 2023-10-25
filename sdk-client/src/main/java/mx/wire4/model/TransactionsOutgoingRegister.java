@@ -29,6 +29,7 @@ import mx.wire4.model.TransactionOutgoing;
  */
 @Schema(description = "Objeto que contiene la información de las transferencias SPEI de salida.")
 
+
 public class TransactionsOutgoingRegister {
   @SerializedName("cancel_return_url")
   private String cancelReturnUrl = null;

@@ -26,13 +26,16 @@ import java.io.IOException;
  */
 @Schema(description = "Uso y estado de la subscripción")
 
+
 public class UseServiceBanking {
   /**
    * Estatus que se le asigna a la subscripción
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
+    @SerializedName("ACTIVE")
     ACTIVE("ACTIVE"),
+    @SerializedName("INACTIVE")
     INACTIVE("INACTIVE");
 
     private String value;
@@ -48,9 +51,9 @@ public class UseServiceBanking {
     public String toString() {
       return String.valueOf(value);
     }
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String input) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -59,13 +62,13 @@ public class UseServiceBanking {
     public static class Adapter extends TypeAdapter<StatusEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return StatusEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("status")
@@ -76,8 +79,11 @@ public class UseServiceBanking {
    */
   @JsonAdapter(UseEnum.Adapter.class)
   public enum UseEnum {
+    @SerializedName("WITHDRAWAL_DEPOSIT")
     WITHDRAWAL_DEPOSIT("WITHDRAWAL_DEPOSIT"),
+    @SerializedName("WITHDRAWAL")
     WITHDRAWAL("WITHDRAWAL"),
+    @SerializedName("DEPOSIT")
     DEPOSIT("DEPOSIT");
 
     private String value;
@@ -93,9 +99,9 @@ public class UseServiceBanking {
     public String toString() {
       return String.valueOf(value);
     }
-    public static UseEnum fromValue(String text) {
+    public static UseEnum fromValue(String input) {
       for (UseEnum b : UseEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -104,13 +110,13 @@ public class UseServiceBanking {
     public static class Adapter extends TypeAdapter<UseEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final UseEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public UseEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return UseEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return UseEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("use")

@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Contiene la información de una empresa registrada")
 
+
 public class CompanyRegistered {
   @SerializedName("business_name")
   private String businessName = null;

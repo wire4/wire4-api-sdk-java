@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Es el objeto de mensaje que se envía mediante webhook con la información del usuario que se le autorizó el uso del API de Monex.")
 
+
 public class MessageUserAuthorized {
   @SerializedName("account")
   private String account = null;

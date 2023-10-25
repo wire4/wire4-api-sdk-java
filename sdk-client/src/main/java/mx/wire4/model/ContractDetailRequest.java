@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 
 
+
 public class ContractDetailRequest {
   @SerializedName("contract")
   private String contract = null;

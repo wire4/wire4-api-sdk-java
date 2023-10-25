@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "La información acerca de la clasificación de la operación.")
 
+
 public class SpidClassificationDTO {
   @SerializedName("classification_id")
   private String classificationId = null;

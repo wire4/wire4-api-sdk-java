@@ -12,16 +12,17 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.BalanceListResponse;
 import mx.wire4.model.ErrorResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for SaldoApi
@@ -36,11 +37,11 @@ public class SaldoApiTest {
      *
      * Obtiene el saldo de un contrato, según las divisas que se manejen en dicho contrato, ya sea peso mexicano (MXP) o dólar estadounidense (USD).
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getBalanceUsingGETTest() throws ApiException {
+    public void getBalanceUsingGETTest() throws Exception {
         String authorization = null;
         String subscription = null;
         BalanceListResponse response = api.getBalanceUsingGET(authorization, subscription);

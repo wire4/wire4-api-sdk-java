@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Objeto que contiene la información de la empresa")
 
+
 public class Compay {
   @SerializedName("commercial_name")
   private String commercialName = null;

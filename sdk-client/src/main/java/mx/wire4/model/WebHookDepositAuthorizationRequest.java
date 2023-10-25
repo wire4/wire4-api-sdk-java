@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Contiene la información de un WebHook para autorización de depósitos.")
 
+
 public class WebHookDepositAuthorizationRequest {
   @SerializedName("name")
   private String name = null;

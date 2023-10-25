@@ -27,6 +27,7 @@ import java.math.BigDecimal;
  */
 @Schema(description = "Objeto que contiene la información del previo y nuevo monto límite.")
 
+
 public class AmountRequest {
   @SerializedName("amount_limit")
   private BigDecimal amountLimit = null;

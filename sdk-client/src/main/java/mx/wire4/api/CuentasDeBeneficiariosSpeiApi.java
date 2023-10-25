@@ -631,14 +631,16 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @param beneficiaryName Es el nombre del beneficiario. (optional)
      * @param endDate Es la fecha de inicio del perido a filtrar en formato dd-mm-yyyy. (optional)
      * @param initDate Es la fºecha de inicio del perido a filtrar en formato dd-mm-yyyy. (optional)
+     * @param page Es el número de página. (optional, default to 0)
      * @param rfc Es el Registro Federal de Controbuyentes (RFC) del beneficiario. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param status Es el estado (estatus) de la cuenta. Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETCall(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETCall(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -657,8 +659,12 @@ public class CuentasDeBeneficiariosSpeiApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("end_date", endDate));
         if (initDate != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("init_date", initDate));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
         if (rfc != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("rfc", rfc));
+        if (size != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("size", size));
         if (status != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("status", status));
 
@@ -697,7 +703,7 @@ public class CuentasDeBeneficiariosSpeiApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETValidateBeforeCall(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETValidateBeforeCall(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
             throw new ApiException("Missing the required parameter 'authorization' when calling getBeneficiariesForAccountUsingGET(Async)");
@@ -707,7 +713,7 @@ public class CuentasDeBeneficiariosSpeiApi {
             throw new ApiException("Missing the required parameter 'subscription' when calling getBeneficiariesForAccountUsingGET(Async)");
         }
         
-        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status, progressListener, progressRequestListener);
         return call;
 
         
@@ -726,13 +732,15 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @param beneficiaryName Es el nombre del beneficiario. (optional)
      * @param endDate Es la fecha de inicio del perido a filtrar en formato dd-mm-yyyy. (optional)
      * @param initDate Es la fºecha de inicio del perido a filtrar en formato dd-mm-yyyy. (optional)
+     * @param page Es el número de página. (optional, default to 0)
      * @param rfc Es el Registro Federal de Controbuyentes (RFC) del beneficiario. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param status Es el estado (estatus) de la cuenta. Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. (optional)
      * @return BeneficiariesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public BeneficiariesResponse getBeneficiariesForAccountUsingGET(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status) throws ApiException {
-        ApiResponse<BeneficiariesResponse> resp = getBeneficiariesForAccountUsingGETWithHttpInfo(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
+    public BeneficiariesResponse getBeneficiariesForAccountUsingGET(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status) throws ApiException {
+        ApiResponse<BeneficiariesResponse> resp = getBeneficiariesForAccountUsingGETWithHttpInfo(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status);
         return resp.getData();
     }
 
@@ -746,13 +754,15 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @param beneficiaryName Es el nombre del beneficiario. (optional)
      * @param endDate Es la fecha de inicio del perido a filtrar en formato dd-mm-yyyy. (optional)
      * @param initDate Es la fºecha de inicio del perido a filtrar en formato dd-mm-yyyy. (optional)
+     * @param page Es el número de página. (optional, default to 0)
      * @param rfc Es el Registro Federal de Controbuyentes (RFC) del beneficiario. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param status Es el estado (estatus) de la cuenta. Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. (optional)
      * @return ApiResponse&lt;BeneficiariesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<BeneficiariesResponse> getBeneficiariesForAccountUsingGETWithHttpInfo(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status) throws ApiException {
-        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETValidateBeforeCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status, null, null);
+    public ApiResponse<BeneficiariesResponse> getBeneficiariesForAccountUsingGETWithHttpInfo(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status) throws ApiException {
+        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETValidateBeforeCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status, null, null);
         Type localVarReturnType = new TypeToken<BeneficiariesResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -767,13 +777,15 @@ public class CuentasDeBeneficiariosSpeiApi {
      * @param beneficiaryName Es el nombre del beneficiario. (optional)
      * @param endDate Es la fecha de inicio del perido a filtrar en formato dd-mm-yyyy. (optional)
      * @param initDate Es la fºecha de inicio del perido a filtrar en formato dd-mm-yyyy. (optional)
+     * @param page Es el número de página. (optional, default to 0)
      * @param rfc Es el Registro Federal de Controbuyentes (RFC) del beneficiario. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param status Es el estado (estatus) de la cuenta. Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETAsync(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status, final ApiCallback<BeneficiariesResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getBeneficiariesForAccountUsingGETAsync(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status, final ApiCallback<BeneficiariesResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -794,7 +806,7 @@ public class CuentasDeBeneficiariosSpeiApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETValidateBeforeCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getBeneficiariesForAccountUsingGETValidateBeforeCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<BeneficiariesResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

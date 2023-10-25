@@ -29,6 +29,7 @@ import mx.wire4.model.MessageInstitution;
  */
 @Schema(description = "Es el objet mensaje que se envía mediante webHook con la información de un depósito que necesita ser autorizado.")
 
+
 public class MessageDepositAuthorizationRequest {
   @SerializedName("amount")
   private BigDecimal amount = null;

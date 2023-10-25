@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Objeto que contiene la cantidad de depositantes")
 
+
 public class DepositantCountResponse {
   @SerializedName("total")
   private Integer total = null;

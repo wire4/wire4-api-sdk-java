@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Es el objeto del mensaje que se envía mediante webhook con la información de la suscripción a esta a esta API")
 
+
 public class MessageSubscription {
   @SerializedName("contract")
   private String contract = null;

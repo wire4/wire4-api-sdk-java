@@ -11,3 +11,11 @@ Name | Type | Description | Notes
 **reference** | **String** | Es la referencia numérica de la transferencia. Se valida hasta 7 dígitos. |  [optional]
 **senderAccount** | **String** | Es la cuenta ordenante, es requerida cuando se no se envía la clave del banco ordenante. |  [optional]
 **senderBankKey** | **String** | Es la clave del banco ordenante, es requerida cuando no se envía la cuenta ordenante.  Se puede obtener del recurso de las &lt;a href&#x3D;\&quot;#operation/getAllInstitutionsUsingGET\&quot;&gt;instituciones.&lt;/a&gt; |  [optional]
+**type** | [**TypeEnum**](#TypeEnum) | Es el tipo de cep a consultar, puede ser SPEI o SPID. |  [optional]
+
+<a name="TypeEnum"></a>
+## Enum: TypeEnum
+Name | Value
+---- | -----
+SPEI | &quot;SPEI&quot;
+SPID | &quot;SPID&quot;

@@ -30,6 +30,7 @@ import mx.wire4.model.MessageCEP;
  */
 
 
+
 public class Payment {
   @SerializedName("account")
   private String account = null;

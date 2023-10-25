@@ -32,9 +32,13 @@ import mx.wire4.model.Institution;
  */
 @Schema(description = "Objeto que contiene información de la cuenta de beneficiario SPID")
 
+
 public class SpidBeneficiaryResponse {
   @SerializedName("amount_limit")
   private BigDecimal amountLimit = null;
+
+  @SerializedName("authorization_date")
+  private OffsetDateTime authorizationDate = null;
 
   @SerializedName("bank")
   private Institution bank = null;
@@ -85,6 +89,24 @@ public class SpidBeneficiaryResponse {
 
   public void setAmountLimit(BigDecimal amountLimit) {
     this.amountLimit = amountLimit;
+  }
+
+  public SpidBeneficiaryResponse authorizationDate(OffsetDateTime authorizationDate) {
+    this.authorizationDate = authorizationDate;
+    return this;
+  }
+
+   /**
+   * La fecha en la que se registro el beneficiario.
+   * @return authorizationDate
+  **/
+  @Schema(description = "La fecha en la que se registro el beneficiario.")
+  public OffsetDateTime getAuthorizationDate() {
+    return authorizationDate;
+  }
+
+  public void setAuthorizationDate(OffsetDateTime authorizationDate) {
+    this.authorizationDate = authorizationDate;
   }
 
   public SpidBeneficiaryResponse bank(Institution bank) {
@@ -304,6 +326,7 @@ public class SpidBeneficiaryResponse {
     }
     SpidBeneficiaryResponse spidBeneficiaryResponse = (SpidBeneficiaryResponse) o;
     return Objects.equals(this.amountLimit, spidBeneficiaryResponse.amountLimit) &&
+        Objects.equals(this.authorizationDate, spidBeneficiaryResponse.authorizationDate) &&
         Objects.equals(this.bank, spidBeneficiaryResponse.bank) &&
         Objects.equals(this.beneficiaryAccount, spidBeneficiaryResponse.beneficiaryAccount) &&
         Objects.equals(this.email, spidBeneficiaryResponse.email) &&
@@ -319,7 +342,7 @@ public class SpidBeneficiaryResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountLimit, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpid, paymentConceptSpid, registerDate, relationship, rfc, status);
+    return Objects.hash(amountLimit, authorizationDate, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpid, paymentConceptSpid, registerDate, relationship, rfc, status);
   }
 
 
@@ -329,6 +352,7 @@ public class SpidBeneficiaryResponse {
     sb.append("class SpidBeneficiaryResponse {\n");
     
     sb.append("    amountLimit: ").append(toIndentedString(amountLimit)).append("\n");
+    sb.append("    authorizationDate: ").append(toIndentedString(authorizationDate)).append("\n");
     sb.append("    bank: ").append(toIndentedString(bank)).append("\n");
     sb.append("    beneficiaryAccount: ").append(toIndentedString(beneficiaryAccount)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");

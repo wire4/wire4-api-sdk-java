@@ -1,7 +1,7 @@
 # sdk-client
 
 Wire4RestAPI
-- API version: 1.1.1
+- API version: 1.0.0
 
 Referencia de la API de Wire4
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>sdk-client</artifactId>
-  <version>1.1.1</version>
+  <version>11.0.16.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "mx.wire4.sdk:sdk-client:1.1.1"
+compile "mx.wire4.sdk:sdk-client:11.0.16.1"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sdk-client-1.1.1.jar`
+* `target/sdk-client-11.0.16.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -129,6 +129,8 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AutorizacinDeDepsitosApi* | [**getDepositAuthConfigurations**](docs/AutorizacinDeDepsitosApi.md#getDepositAuthConfigurations) | **GET** /subscriptions/{subscription}/configurations/deposit-authorization | Consulta autorización de depósitos
 *AutorizacinDeDepsitosApi* | [**putDepositAuthConfigurations**](docs/AutorizacinDeDepsitosApi.md#putDepositAuthConfigurations) | **PUT** /subscriptions/{subscription}/configurations/deposit-authorization | Habilita / Deshabilita la autorización de depósitos
+*CargosRecurrentesApi* | [**deleteRecurringChargeUsingDELETE**](docs/CargosRecurrentesApi.md#deleteRecurringChargeUsingDELETE) | **DELETE** /recurring-charge/{orderId} | Cancelación/desubscripción de cargos recurrentes
+*CargosRecurrentesApi* | [**registerRecurringChargeUsingPOST**](docs/CargosRecurrentesApi.md#registerRecurringChargeUsingPOST) | **POST** /recurring-charge | Registro de cargos recurrentes
 *ComprobanteElectrnicoDePagoCepApi* | [**obtainTransactionCepUsingPOST**](docs/ComprobanteElectrnicoDePagoCepApi.md#obtainTransactionCepUsingPOST) | **POST** /ceps | Consulta de CEP
 *ContactoApi* | [**sendContactUsingPOST**](docs/ContactoApi.md#sendContactUsingPOST) | **POST** /contact | Solicitud de contacto
 *ContractsDetailsApi* | [**createAuthorization**](docs/ContractsDetailsApi.md#createAuthorization) | **POST** /onboarding/accounts/authorize | Devuelve la URL para autorización del usuario Monex
@@ -145,8 +147,11 @@ Class | Method | HTTP request | Description
 *CuentasDeBeneficiariosSpeiApi* | [**updateAmountLimitAccountUsingPUT**](docs/CuentasDeBeneficiariosSpeiApi.md#updateAmountLimitAccountUsingPUT) | **PUT** /subscriptions/{subscription}/beneficiaries/spei/{account} | Solicitud para actualizar el monto límite de una cuenta
 *CuentasDeBeneficiariosSpidApi* | [**getSpidBeneficiariesForAccount**](docs/CuentasDeBeneficiariosSpidApi.md#getSpidBeneficiariesForAccount) | **GET** /subscriptions/{subscription}/beneficiaries/spid | Consulta los beneficiarios SPID registrados
 *CuentasDeBeneficiariosSpidApi* | [**preRegisterAccountsUsingPOST1**](docs/CuentasDeBeneficiariosSpidApi.md#preRegisterAccountsUsingPOST1) | **POST** /subscriptions/{subscription}/beneficiaries/spid | Pre-registro de cuentas de beneficiarios SPID®
+*DepositantesApi* | [**getDepositantsTotalsUsingGET**](docs/DepositantesApi.md#getDepositantsTotalsUsingGET) | **GET** /subscriptions/{subscription}/depositants/count | Número de depositantes por suscripción
 *DepositantesApi* | [**getDepositantsUsingGET**](docs/DepositantesApi.md#getDepositantsUsingGET) | **GET** /subscriptions/{subscription}/depositants | Consulta de cuentas de depositantes
 *DepositantesApi* | [**registerDepositantsUsingPOST**](docs/DepositantesApi.md#registerDepositantsUsingPOST) | **POST** /subscriptions/{subscription}/depositants | Registra un nuevo depositante
+*DepositantesApi* | [**updateStatusDepositantsNoSuscrptionUsingPATCH**](docs/DepositantesApi.md#updateStatusDepositantsNoSuscrptionUsingPATCH) | **PATCH** /depositants/{account}/{action} | Solicitud para actualizar el estado de un depositante sin utilizar la suscripción
+*DepositantesApi* | [**updateStatusDepositantsUsingPATCH**](docs/DepositantesApi.md#updateStatusDepositantsUsingPATCH) | **PATCH** /subscriptions/{subscription}/depositants/{account}/{action} | Solicitud para actualizar el estado de un depossitante
 *EmpresasCoDiApi* | [**obtainCompanies**](docs/EmpresasCoDiApi.md#obtainCompanies) | **GET** /codi/companies | Consulta de empresas CODI®
 *EmpresasCoDiApi* | [**registerCompanyUsingPOST**](docs/EmpresasCoDiApi.md#registerCompanyUsingPOST) | **POST** /codi/companies | Registro de empresas CODI®
 *FacturasApi* | [**billingsReportByIdUsingGET**](docs/FacturasApi.md#billingsReportByIdUsingGET) | **GET** /billings/{id} | Consulta de facturas por identificador
@@ -159,7 +164,10 @@ Class | Method | HTTP request | Description
 *PeticionesDePagoPorCoDiApi* | [**generateCodiCodeQR**](docs/PeticionesDePagoPorCoDiApi.md#generateCodiCodeQR) | **POST** /codi/sales-point/charges | Genera código QR
 *PuntosDeVentaCoDiApi* | [**createSalesPoint**](docs/PuntosDeVentaCoDiApi.md#createSalesPoint) | **POST** /codi/companies/salespoint | Registro de punto de venta.
 *PuntosDeVentaCoDiApi* | [**obtainSalePoints**](docs/PuntosDeVentaCoDiApi.md#obtainSalePoints) | **GET** /codi/companies/salespoint | Consulta de puntos de venta
+*ReporteDeSolicitudesDePagosApi* | [**paymentRequestIdReportByOrderIdUsingGET**](docs/ReporteDeSolicitudesDePagosApi.md#paymentRequestIdReportByOrderIdUsingGET) | **GET** /payment-request | Consulta de solicitudes de pago por numero de orden.
+*ReporteDeSolicitudesDePagosApi* | [**paymentRequestIdReportUsingGET**](docs/ReporteDeSolicitudesDePagosApi.md#paymentRequestIdReportUsingGET) | **GET** /payment-request/{requestId} | Consulta de solicitudes de pago por identificador de petición
 *SaldoApi* | [**getBalanceUsingGET**](docs/SaldoApi.md#getBalanceUsingGET) | **GET** /subscriptions/{subscription}/balance | Consulta los saldo de una cuenta
+*SolicitudDePagosApi* | [**registerPaymentRequestUsingPOST**](docs/SolicitudDePagosApi.md#registerPaymentRequestUsingPOST) | **POST** /payment-request | Registro de solicitud de pagos
 *SuscripcionesApi* | [**changeSubscriptionStatusUsingPUT**](docs/SuscripcionesApi.md#changeSubscriptionStatusUsingPUT) | **PUT** /subscriptions/{subscription}/status | Cambia el estatus de la suscripción
 *SuscripcionesApi* | [**changeSubscriptionUseUsingPATCH**](docs/SuscripcionesApi.md#changeSubscriptionUseUsingPATCH) | **PATCH** /subscriptions/{subscription} | Cambia el uso de la suscripción
 *SuscripcionesApi* | [**preEnrollmentMonexUserUsingPOST**](docs/SuscripcionesApi.md#preEnrollmentMonexUserUsingPOST) | **POST** /subscriptions/pre-subscription | Pre-registro de una suscripción
@@ -169,8 +177,11 @@ Class | Method | HTTP request | Description
 *TransferenciasSpeiApi* | [**dropTransactionsPendingUsingDELETE**](docs/TransferenciasSpeiApi.md#dropTransactionsPendingUsingDELETE) | **DELETE** /subscriptions/{subscription}/transactions/outcoming/spei/request/{requestId} | Eliminación de transferencias SPEI® pendientes
 *TransferenciasSpeiApi* | [**incomingSpeiTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#incomingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/incoming/spei | Consulta de transferencias recibidas
 *TransferenciasSpeiApi* | [**outCommingSpeiRequestIdTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#outCommingSpeiRequestIdTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei/{requestId} | Consulta de transferencias de salida por identificador de petición
+*TransferenciasSpeiApi* | [**outCommingSpeiSpidOrderIdTransactionReportUsingGET**](docs/TransferenciasSpeiApi.md#outCommingSpeiSpidOrderIdTransactionReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming | Consulta de transferencias realizadas por order_id
+*TransferenciasSpeiApi* | [**outCommingSpeiSpidRequestIdTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#outCommingSpeiSpidRequestIdTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/{requestId} | Consulta de transferencias de salida por identificador de petición
 *TransferenciasSpeiApi* | [**outgoingSpeiTransactionsReportUsingGET**](docs/TransferenciasSpeiApi.md#outgoingSpeiTransactionsReportUsingGET) | **GET** /subscriptions/{subscription}/transactions/outcoming/spei | Consulta de transferencias realizadas
 *TransferenciasSpeiApi* | [**registerOutgoingSpeiTransactionUsingPOST**](docs/TransferenciasSpeiApi.md#registerOutgoingSpeiTransactionUsingPOST) | **POST** /subscriptions/{subscription}/transactions/outcoming/spei | Registro de transferencias
+*TransferenciasSpeiApi* | [**registerSpeiSpidOutgoingTransactionsUsingPOST**](docs/TransferenciasSpeiApi.md#registerSpeiSpidOutgoingTransactionsUsingPOST) | **POST** /subscriptions/{subscription}/transactions/outcoming | Registro de transferencias SPEI y SPID
 *TransferenciasSpidApi* | [**getSpidClassificationsUsingGET**](docs/TransferenciasSpidApi.md#getSpidClassificationsUsingGET) | **GET** /subscriptions/{subscription}/beneficiaries/spid/classifications | Consulta de clasificaciones para operaciones SPID®
 *TransferenciasSpidApi* | [**registerOutgoingSpidTransactionUsingPOST**](docs/TransferenciasSpidApi.md#registerOutgoingSpidTransactionUsingPOST) | **POST** /subscriptions/{subscription}/transactions/outcoming/spid | Registro de transferencias SPID®
 *WebhooksApi* | [**getWebhook**](docs/WebhooksApi.md#getWebhook) | **GET** /webhooks/{webhook_id} | Consulta de Webhook
@@ -194,6 +205,7 @@ Class | Method | HTTP request | Description
  - [BalanceListResponse](docs/BalanceListResponse.md)
  - [BeneficiariesQueryRegisterStatus](docs/BeneficiariesQueryRegisterStatus.md)
  - [BeneficiariesResponse](docs/BeneficiariesResponse.md)
+ - [BeneficiaryDTO](docs/BeneficiaryDTO.md)
  - [BeneficiaryInstitution](docs/BeneficiaryInstitution.md)
  - [Billing](docs/Billing.md)
  - [BillingTransaction](docs/BillingTransaction.md)
@@ -208,17 +220,21 @@ Class | Method | HTTP request | Description
  - [CompanyRequested](docs/CompanyRequested.md)
  - [Compay](docs/Compay.md)
  - [ConfigurationsLimits](docs/ConfigurationsLimits.md)
+ - [ConfirmRecurringCharge](docs/ConfirmRecurringCharge.md)
  - [ContactRequest](docs/ContactRequest.md)
  - [ContractDetailRequest](docs/ContractDetailRequest.md)
  - [ContractDetailResponse](docs/ContractDetailResponse.md)
+ - [Customer](docs/Customer.md)
  - [Deposit](docs/Deposit.md)
  - [DepositAuthorizationRequest](docs/DepositAuthorizationRequest.md)
  - [Depositant](docs/Depositant.md)
+ - [DepositantCountResponse](docs/DepositantCountResponse.md)
  - [DepositantsRegister](docs/DepositantsRegister.md)
  - [DepositantsResponse](docs/DepositantsResponse.md)
  - [DepositsAuthorizationResponse](docs/DepositsAuthorizationResponse.md)
  - [DetailedErrorResponse](docs/DetailedErrorResponse.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [FailedChargesDataDTO](docs/FailedChargesDataDTO.md)
  - [GetDepositants](docs/GetDepositants.md)
  - [Institution](docs/Institution.md)
  - [InstitutionsList](docs/InstitutionsList.md)
@@ -242,11 +258,18 @@ Class | Method | HTTP request | Description
  - [Payment](docs/Payment.md)
  - [PaymentCODI](docs/PaymentCODI.md)
  - [PaymentRequestCodiResponseDTO](docs/PaymentRequestCodiResponseDTO.md)
+ - [PaymentRequestReportDTO](docs/PaymentRequestReportDTO.md)
+ - [PaymentRequestReq](docs/PaymentRequestReq.md)
+ - [PaymentRequestResponse](docs/PaymentRequestResponse.md)
  - [PaymentsRequestId](docs/PaymentsRequestId.md)
+ - [PaymentsSpeiAndSpidOrderId](docs/PaymentsSpeiAndSpidOrderId.md)
+ - [PaymentsSpeiAndSpidRequestId](docs/PaymentsSpeiAndSpidRequestId.md)
  - [Person](docs/Person.md)
  - [PreEnrollmentData](docs/PreEnrollmentData.md)
  - [PreEnrollmentResponse](docs/PreEnrollmentResponse.md)
  - [PreMonexAuthorization](docs/PreMonexAuthorization.md)
+ - [Product](docs/Product.md)
+ - [RecurringChargeRequest](docs/RecurringChargeRequest.md)
  - [Relationship](docs/Relationship.md)
  - [RelationshipsResponse](docs/RelationshipsResponse.md)
  - [SalesPoint](docs/SalesPoint.md)
@@ -259,11 +282,15 @@ Class | Method | HTTP request | Description
  - [SpidClassificationDTO](docs/SpidClassificationDTO.md)
  - [SpidClassificationsResponseDTO](docs/SpidClassificationsResponseDTO.md)
  - [SubscriptionChangeStatusRequest](docs/SubscriptionChangeStatusRequest.md)
+ - [SuccessChargesDataDTO](docs/SuccessChargesDataDTO.md)
+ - [SuccessDataDTO](docs/SuccessDataDTO.md)
  - [TokenRequiredResponse](docs/TokenRequiredResponse.md)
  - [TransactionErrorCode](docs/TransactionErrorCode.md)
  - [TransactionOutgoing](docs/TransactionOutgoing.md)
  - [TransactionOutgoingSpid](docs/TransactionOutgoingSpid.md)
+ - [TransactionSpeiSpid](docs/TransactionSpeiSpid.md)
  - [TransactionsOutgoingRegister](docs/TransactionsOutgoingRegister.md)
+ - [TransactionsRegister](docs/TransactionsRegister.md)
  - [UpdateConfigurationsRequestDTO](docs/UpdateConfigurationsRequestDTO.md)
  - [UrlsRedirect](docs/UrlsRedirect.md)
  - [UseServiceBanking](docs/UseServiceBanking.md)

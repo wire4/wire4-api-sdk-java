@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Es el objeto del mensaje que se envía mediante webhook con la información acerca de algún cambio en el procesamiento o estado de la petición a esta a esta API.")
 
+
 public class MessageRequestChanged {
   @SerializedName("request_id")
   private String requestId = null;
@@ -35,6 +36,7 @@ public class MessageRequestChanged {
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
+    @SerializedName("AUTHORIZED")
     AUTHORIZED("AUTHORIZED");
 
     private String value;
@@ -50,9 +52,9 @@ public class MessageRequestChanged {
     public String toString() {
       return String.valueOf(value);
     }
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String input) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -61,13 +63,13 @@ public class MessageRequestChanged {
     public static class Adapter extends TypeAdapter<StatusEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return StatusEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("status")

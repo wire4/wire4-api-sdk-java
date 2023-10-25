@@ -28,6 +28,7 @@ import java.util.List;
  */
 
 
+
 public class DepositantsRegister {
   @SerializedName("alias")
   private String alias = null;

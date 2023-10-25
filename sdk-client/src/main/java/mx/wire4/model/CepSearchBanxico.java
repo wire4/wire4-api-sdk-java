@@ -27,6 +27,7 @@ import java.math.BigDecimal;
  */
 
 
+
 public class CepSearchBanxico {
   @SerializedName("amount")
   private BigDecimal amount = null;
@@ -51,6 +52,52 @@ public class CepSearchBanxico {
 
   @SerializedName("sender_bank_key")
   private String senderBankKey = null;
+
+  /**
+   * Es el tipo de cep a consultar, puede ser SPEI o SPID.
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    @SerializedName("SPEI")
+    SPEI("SPEI"),
+    @SerializedName("SPID")
+    SPID("SPID");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    public static TypeEnum fromValue(String input) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(input)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        Object value = jsonReader.nextString();
+        return TypeEnum.fromValue((String)(value));
+      }
+    }
+  }  @SerializedName("type")
+  private TypeEnum type = null;
 
   public CepSearchBanxico amount(BigDecimal amount) {
     this.amount = amount;
@@ -196,6 +243,24 @@ public class CepSearchBanxico {
     this.senderBankKey = senderBankKey;
   }
 
+  public CepSearchBanxico type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Es el tipo de cep a consultar, puede ser SPEI o SPID.
+   * @return type
+  **/
+  @Schema(description = "Es el tipo de cep a consultar, puede ser SPEI o SPID.")
+  public TypeEnum getType() {
+    return type;
+  }
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -213,12 +278,13 @@ public class CepSearchBanxico {
         Objects.equals(this.operationDate, cepSearchBanxico.operationDate) &&
         Objects.equals(this.reference, cepSearchBanxico.reference) &&
         Objects.equals(this.senderAccount, cepSearchBanxico.senderAccount) &&
-        Objects.equals(this.senderBankKey, cepSearchBanxico.senderBankKey);
+        Objects.equals(this.senderBankKey, cepSearchBanxico.senderBankKey) &&
+        Objects.equals(this.type, cepSearchBanxico.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, beneficiaryAccount, beneficiaryBankKey, claveRastreo, operationDate, reference, senderAccount, senderBankKey);
+    return Objects.hash(amount, beneficiaryAccount, beneficiaryBankKey, claveRastreo, operationDate, reference, senderAccount, senderBankKey, type);
   }
 
 
@@ -235,6 +301,7 @@ public class CepSearchBanxico {
     sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("    senderAccount: ").append(toIndentedString(senderAccount)).append("\n");
     sb.append("    senderBankKey: ").append(toIndentedString(senderBankKey)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

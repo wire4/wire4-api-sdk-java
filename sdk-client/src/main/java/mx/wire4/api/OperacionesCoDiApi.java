@@ -60,9 +60,9 @@ public class OperacionesCoDiApi {
      * @param authorization Header para token (required)
      * @param body Filtros de busqueda (optional)
      * @param companyId Es el identificador de empresa CODI®. (optional)
-     * @param page Es el número de pago. (optional)
+     * @param page Es el número de pago. (optional, default to 0)
      * @param salesPointId Es el identificador del punto de venta. (optional)
-     * @param size Es el tamaño de página. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -141,9 +141,9 @@ public class OperacionesCoDiApi {
      * @param authorization Header para token (required)
      * @param body Filtros de busqueda (optional)
      * @param companyId Es el identificador de empresa CODI®. (optional)
-     * @param page Es el número de pago. (optional)
+     * @param page Es el número de pago. (optional, default to 0)
      * @param salesPointId Es el identificador del punto de venta. (optional)
-     * @param size Es el tamaño de página. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @return PagerResponseDto
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -158,9 +158,9 @@ public class OperacionesCoDiApi {
      * @param authorization Header para token (required)
      * @param body Filtros de busqueda (optional)
      * @param companyId Es el identificador de empresa CODI®. (optional)
-     * @param page Es el número de pago. (optional)
+     * @param page Es el número de pago. (optional, default to 0)
      * @param salesPointId Es el identificador del punto de venta. (optional)
-     * @param size Es el tamaño de página. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @return ApiResponse&lt;PagerResponseDto&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -176,9 +176,9 @@ public class OperacionesCoDiApi {
      * @param authorization Header para token (required)
      * @param body Filtros de busqueda (optional)
      * @param companyId Es el identificador de empresa CODI®. (optional)
-     * @param page Es el número de pago. (optional)
+     * @param page Es el número de pago. (optional, default to 0)
      * @param salesPointId Es el identificador del punto de venta. (optional)
-     * @param size Es el tamaño de página. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

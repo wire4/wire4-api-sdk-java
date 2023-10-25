@@ -28,6 +28,7 @@ import java.util.List;
  */
 @Schema(description = "El usuario que corresponde al contrato")
 
+
 public class UserCompany {
   @SerializedName("emails")
   private List<String> emails = null;

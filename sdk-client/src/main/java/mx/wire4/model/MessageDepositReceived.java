@@ -30,6 +30,7 @@ import mx.wire4.model.MessageInstitution;
  */
 @Schema(description = "Es el objeto del mensaje que se envía mediante webhook con la información de una transferencia de entrada recibida.")
 
+
 public class MessageDepositReceived {
   @SerializedName("amount")
   private BigDecimal amount = null;
@@ -82,8 +83,17 @@ public class MessageDepositReceived {
   @SerializedName("monex_transaction_id")
   private String monexTransactionId = null;
 
+  @SerializedName("order_id")
+  private String orderId = null;
+
   @SerializedName("reference")
   private String reference = null;
+
+  @SerializedName("request_id")
+  private String requestId = null;
+
+  @SerializedName("return_id_instruction")
+  private Integer returnIdInstruction = null;
 
   @SerializedName("sender_account")
   private String senderAccount = null;
@@ -403,6 +413,24 @@ public class MessageDepositReceived {
     this.monexTransactionId = monexTransactionId;
   }
 
+  public MessageDepositReceived orderId(String orderId) {
+    this.orderId = orderId;
+    return this;
+  }
+
+   /**
+   * Número de orden asignado por el cliente de Wire4
+   * @return orderId
+  **/
+  @Schema(description = "Número de orden asignado por el cliente de Wire4")
+  public String getOrderId() {
+    return orderId;
+  }
+
+  public void setOrderId(String orderId) {
+    this.orderId = orderId;
+  }
+
   public MessageDepositReceived reference(String reference) {
     this.reference = reference;
     return this;
@@ -419,6 +447,42 @@ public class MessageDepositReceived {
 
   public void setReference(String reference) {
     this.reference = reference;
+  }
+
+  public MessageDepositReceived requestId(String requestId) {
+    this.requestId = requestId;
+    return this;
+  }
+
+   /**
+   * Es el identificador de la solicitud de cobro establecido por la aplicación.
+   * @return requestId
+  **/
+  @Schema(description = "Es el identificador de la solicitud de cobro establecido por la aplicación.")
+  public String getRequestId() {
+    return requestId;
+  }
+
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
+  }
+
+  public MessageDepositReceived returnIdInstruction(Integer returnIdInstruction) {
+    this.returnIdInstruction = returnIdInstruction;
+    return this;
+  }
+
+   /**
+   * Es el id de devolucion de la transaccion.
+   * @return returnIdInstruction
+  **/
+  @Schema(description = "Es el id de devolucion de la transaccion.")
+  public Integer getReturnIdInstruction() {
+    return returnIdInstruction;
+  }
+
+  public void setReturnIdInstruction(Integer returnIdInstruction) {
+    this.returnIdInstruction = returnIdInstruction;
   }
 
   public MessageDepositReceived senderAccount(String senderAccount) {
@@ -520,7 +584,10 @@ public class MessageDepositReceived {
         Objects.equals(this.description, messageDepositReceived.description) &&
         Objects.equals(this.monexDescription, messageDepositReceived.monexDescription) &&
         Objects.equals(this.monexTransactionId, messageDepositReceived.monexTransactionId) &&
+        Objects.equals(this.orderId, messageDepositReceived.orderId) &&
         Objects.equals(this.reference, messageDepositReceived.reference) &&
+        Objects.equals(this.requestId, messageDepositReceived.requestId) &&
+        Objects.equals(this.returnIdInstruction, messageDepositReceived.returnIdInstruction) &&
         Objects.equals(this.senderAccount, messageDepositReceived.senderAccount) &&
         Objects.equals(this.senderBank, messageDepositReceived.senderBank) &&
         Objects.equals(this.senderName, messageDepositReceived.senderName) &&
@@ -529,7 +596,7 @@ public class MessageDepositReceived {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, cep, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantAlias, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, reference, senderAccount, senderBank, senderName, senderRfc);
+    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, cep, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantAlias, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, orderId, reference, requestId, returnIdInstruction, senderAccount, senderBank, senderName, senderRfc);
   }
 
 
@@ -555,7 +622,10 @@ public class MessageDepositReceived {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    monexDescription: ").append(toIndentedString(monexDescription)).append("\n");
     sb.append("    monexTransactionId: ").append(toIndentedString(monexTransactionId)).append("\n");
+    sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
+    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
+    sb.append("    returnIdInstruction: ").append(toIndentedString(returnIdInstruction)).append("\n");
     sb.append("    senderAccount: ").append(toIndentedString(senderAccount)).append("\n");
     sb.append("    senderBank: ").append(toIndentedString(senderBank)).append("\n");
     sb.append("    senderName: ").append(toIndentedString(senderName)).append("\n");

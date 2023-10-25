@@ -12,16 +12,17 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.ContactRequest;
 import mx.wire4.model.ErrorResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for ContactoApi
@@ -36,11 +37,11 @@ public class ContactoApiTest {
      *
      * Notifica a un asesor Monex para que se ponga en contacto con un posible cliente.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void sendContactUsingPOSTTest() throws ApiException {
+    public void sendContactUsingPOSTTest() throws Exception {
         ContactRequest body = null;
         String authorization = null;
         api.sendContactUsingPOST(body, authorization);

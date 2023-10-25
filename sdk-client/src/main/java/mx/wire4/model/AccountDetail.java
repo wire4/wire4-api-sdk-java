@@ -29,6 +29,7 @@ import mx.wire4.model.AddressCompany;
  */
 @Schema(description = "La información de la compañía que corresponde al contrato.")
 
+
 public class AccountDetail {
   @SerializedName("address")
   private AddressCompany address = null;

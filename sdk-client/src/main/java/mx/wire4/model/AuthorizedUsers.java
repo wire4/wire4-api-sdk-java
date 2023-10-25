@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "La información del usuario autorizado para usar el API de Monex.")
 
+
 public class AuthorizedUsers {
   @SerializedName("account")
   private String account = null;

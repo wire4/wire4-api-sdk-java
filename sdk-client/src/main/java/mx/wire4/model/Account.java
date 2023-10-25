@@ -31,6 +31,7 @@ import mx.wire4.model.Person;
  */
 @Schema(description = "Objeto que contiene información de la cuenta")
 
+
 public class Account {
   @SerializedName("amount_limit")
   private BigDecimal amountLimit = null;

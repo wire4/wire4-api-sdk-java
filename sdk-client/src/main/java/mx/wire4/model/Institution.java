@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Objeto que contiene la información del banco.")
 
+
 public class Institution {
   @SerializedName("company_name")
   private String companyName = null;

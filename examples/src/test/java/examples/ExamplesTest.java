@@ -2120,4 +2120,346 @@ public class ExamplesTest {
             return;
         }
     }
+
+    
+
+    @Test
+    public void updateDepositantsNoSubscription(){
+        // Create the api component
+        final DepositantesApi api = new DepositantesApi();
+
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            // Optional manage exception in access token flow
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String account = "112180002129375639";
+        final String action = "ACTIVE";
+
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.updateStatusDepositantsNoSuscrptionUsingPATCHWithHttpInfo(bearer, account, action, null);
+
+            System.out.println("Result:" + response.getStatusCode());
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @Test
+    public void getPaymentRequestByOrderId(){
+        // Create the api component
+        final ReporteDeSolicitudesDePagosApi api = new ReporteDeSolicitudesDePagosApi();
+
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+
+            // Obtain an access token use scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+        } catch (ApiException e) {
+
+            e.printStackTrace();
+            return;
+        }
+
+        final String orderId = "Order_1";
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.paymentRequestIdReportByOrderIdUsingGETWithHttpInfo(bearer, orderId);
+            System.out.println("Result:" + response.getStatusCode());
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @Test
+    public void createPaymentRequest(){
+        // Create the api component
+        final SolicitudDePagosApi api = new SolicitudDePagosApi();
+
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+            // Obtain an access token use scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final PaymentRequestReq body = new PaymentRequestReq();
+        final Customer customer = new Customer();
+        customer.setName("Juan Perez");
+        customer.setEmail("juanperez@correo.com");
+        customer.setMobile("+5955500000000");
+        body.setCustomer(customer);
+        body.setDescription("otros");
+        body.setDueDate("2023-11-21");
+        body.setAmount(BigDecimal.valueOf("4000"));
+        body.setOrderId("Order_1");
+        body.setCancelReturnUrl("https://wire4.mx");
+        body.setReturnUrl("https://wire4.mx");
+        body.setMethod("CARD");
+
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.registerPaymentRequestUsingPOST(body, bearer);
+            System.out.println("Result:" + response.getStatusCode());
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @Test
+    public void getPaymentRequestByRequestId(){
+        // Create the api component
+        final ReporteDeSolicitudesDePagosApi api = new ReporteDeSolicitudesDePagosApi();
+
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+            // Obtain an access token use scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        final String requestId = "1000-1000-1";
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.paymentRequestIdReportUsingGET(bearer, requestId);
+            System.out.println("Result:" + response.getStatusCode());
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @Test
+    public void createRecurringCharge(){
+        // Create the api component
+        final CargosRecurrentesApi api = new CargosRecurrentesApi();
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+            // Obtain an access token use scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("charges_general");
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        final RecurringChargeRequest body = new RecurringChargeRequest();
+        final Customer customer = new Customer();
+        final Product product = new Product();
+
+        customer.setName("Juan Perez");
+        customer.setEmail("juanperez@correo.com");
+        product.setName("Prueba suscripcion");
+        product.setAmount(BigDecimal.valueOf("2"));
+        product.setBillingPeriod("WEEKLY");
+        product.frequency(1);
+        body.setCustomer(customer);
+        body.setProduct(product);
+        body.setFirstChargeDate("2023-11-21");
+        body.setCharges(5);
+        body.setOrderId("Order_1");
+        body.setCancelReturnUrl("https://wire4.mx");
+        body.setReturnUrl("https://wire4.mx");
+
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.registerRecurringChargeUsingPOST(body, bearer);
+            System.out.println("Result:" + response.getStatusCode());
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @Test
+    public void deleteRecurringCharge(){
+        // Create the api component
+        final CargosRecurrentesApi api = new CargosRecurrentesApi();
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+            // Obtain an access token use scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("charges_general");
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        final String orderId = "Order_1";
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.deleteRecurringChargeUsingDELETE(bearer, orderId);
+            System.out.println("Result:" + response.getStatusCode());
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @Test
+    public void getDepositAutorization(){
+        // Create the api component
+        final AutorizacinDeDepsitosApi api = new AutorizacinDeDepsitosApi();
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+        final String bearer;
+        try {
+            // Obtain an access token use password flow and scope "spei_admin"
+            // The user_key and user_secret belongs to the subscription to delete
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        final String subscription = SUBSCRIPTION;
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.getDepositAuthConfigurations(bearer, subscription);
+            System.out.println("Update Configurations result:" + response.getStatusCode());
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @Test
+    public void enableDisableDepositAuthConfigurations(){
+        // Create the api component
+        final AutorizacinDeDepsitosApi api = new AutorizacinDeDepsitosApi();
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+            // Obtain an access token use password flow and scope "spei_admin"
+            // The user_key and user_secret belongs to the subscription to delete
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_admin");
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Build body with info (check references for more info, types, required fields)
+        final String subscription = SUBSCRIPTION;
+        final DepositAuthorizationRequest body = new DepositAuthorizationRequest();
+        final WebHookDepositAuthorizationRequest webhook = new WebHookDepositAuthorizationRequest();
+        body.setEnabled(true);
+        body.setWhUuid("wh_30");
+        webhook.setName("webh");
+        webhook.setUrl("https://tu-url-de-webhook");
+        body.setWebhook(webhook);
+
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.putDepositAuthConfigurations(body, bearer, subscription);
+            System.out.println("Update Configurations result:" + response.getStatusCode());
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @Test
+    public void updateDepositants(){
+        // Create the api component
+        final DepositantesApi api = new DepositantesApi();
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+            // Obtain an access token use scope "general"
+            bearer = oAuthWire4.obtainAccessTokenApp("general");
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        final String account = "112180002129375639";
+        final String action = "ACTIVE";
+
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.updateStatusDepositantsUsingPATCH(bearer, account, action, null);
+            System.out.println("Result:" + response.getStatusCode());
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    @Test
+    public void getOutcommingSPEISPIDByRequestId(){
+        // Create the api component
+        final TransferenciasSpeiApi api = new TransferenciasSpeiApi();
+        // Create the authenticator to obtain access token
+        // The token URL and Service URL are defined for this environment enum value.
+        final OAuthWire4 oAuthWire4 = new OAuthWire4(CLIENT_ID, CLIENT_SECRET, AMBIENT);
+
+        final String bearer;
+        try {
+            // Obtain an access token use password flow and scope "spei_admin"
+            // The user_key and user_secret belongs to the subscription to delete
+            bearer = oAuthWire4.obtainAccessTokenAppUser(USER_KEY, SECRET_KEY, "spei_spid_admin");
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        final String subscription = SUBSCRIPTION;
+        final String requestId = "1000-1000-1";
+
+        try {
+            // Obtain the response
+            final ApiResponse<Void> response = api.outCommingSpeiSpidRequestIdTransactionsReportUsingGET(bearer, requestId, subscription);
+            System.out.println("Update Configurations result:" + response.getStatusCode());
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
 }

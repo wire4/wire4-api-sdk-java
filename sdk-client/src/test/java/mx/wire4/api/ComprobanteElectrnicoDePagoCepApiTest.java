@@ -12,17 +12,18 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.CepResponse;
 import mx.wire4.model.CepSearchBanxico;
 import mx.wire4.model.ErrorResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for ComprobanteElectrnicoDePagoCepApi
@@ -37,11 +38,11 @@ public class ComprobanteElectrnicoDePagoCepApiTest {
      *
      * Consulta el CEP de un pago realizado a través del SPEI, si es que este se encuentra disponible en BANXICO.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void obtainTransactionCepUsingPOSTTest() throws ApiException {
+    public void obtainTransactionCepUsingPOSTTest() throws Exception {
         CepSearchBanxico body = null;
         String authorization = null;
         CepResponse response = api.obtainTransactionCepUsingPOST(body, authorization);

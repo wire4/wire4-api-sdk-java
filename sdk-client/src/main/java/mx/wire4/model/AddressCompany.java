@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "La dirección de la companía")
 
+
 public class AddressCompany {
   @SerializedName("city")
   private String city = null;

@@ -28,6 +28,7 @@ import java.util.List;
  */
 @Schema(description = "Contiene la información de un WebHook para autorización de depósitos.")
 
+
 public class WebHookDepositAuthorizationResponse {
   @SerializedName("events")
   private List<String> events = null;

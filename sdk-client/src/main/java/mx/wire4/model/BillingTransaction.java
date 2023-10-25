@@ -28,6 +28,7 @@ import java.time.OffsetDateTime;
  */
 @Schema(description = "Contiene información de las transacciones que se facturan")
 
+
 public class BillingTransaction {
   @SerializedName("amount")
   private BigDecimal amount = null;
@@ -55,7 +56,9 @@ public class BillingTransaction {
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
+    @SerializedName("IN")
     IN("IN"),
+    @SerializedName("OUT")
     OUT("OUT");
 
     private String value;
@@ -71,9 +74,9 @@ public class BillingTransaction {
     public String toString() {
       return String.valueOf(value);
     }
-    public static TypeEnum fromValue(String text) {
+    public static TypeEnum fromValue(String input) {
       for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -82,13 +85,13 @@ public class BillingTransaction {
     public static class Adapter extends TypeAdapter<TypeEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return TypeEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("type")

@@ -28,6 +28,7 @@ import mx.wire4.model.MessageInstitution;
  */
 @Schema(description = "Es el objeto del mensaje que se envía mediante webhook con la información de una transferencia que está pendiente de ser completada.")
 
+
 public class MessagePaymentStatePending {
   @SerializedName("account")
   private String account = null;

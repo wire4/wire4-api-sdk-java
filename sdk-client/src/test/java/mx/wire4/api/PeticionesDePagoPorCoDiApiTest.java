@@ -12,7 +12,6 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.CodiCodeQrResponseDTO;
 import mx.wire4.model.CodiCodeRequestDTO;
 import mx.wire4.model.ErrorResponse;
@@ -20,10 +19,12 @@ import mx.wire4.model.PaymentRequestCodiResponseDTO;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for PeticionesDePagoPorCoDiApi
@@ -38,11 +39,11 @@ public class PeticionesDePagoPorCoDiApiTest {
      *
      * Obtiene la información de una petición de pago CODI® por orderId para un punto de venta.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void consultCodiRequestByOrderIdTest() throws ApiException {
+    public void consultCodiRequestByOrderIdTest() throws Exception {
         String authorization = null;
         String orderId = null;
         String salesPointId = null;
@@ -55,11 +56,11 @@ public class PeticionesDePagoPorCoDiApiTest {
      *
      * Genera un código QR solicitado por un punto de venta para un pago mediante CODI®
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void generateCodiCodeQRTest() throws ApiException {
+    public void generateCodiCodeQRTest() throws Exception {
         CodiCodeRequestDTO body = null;
         String authorization = null;
         String salesPointId = null;

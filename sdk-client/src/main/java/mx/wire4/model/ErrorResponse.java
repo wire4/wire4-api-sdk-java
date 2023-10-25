@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 
 
+
 public class ErrorResponse {
   @SerializedName("http_status")
   private Integer httpStatus = null;

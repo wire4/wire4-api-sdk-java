@@ -29,6 +29,7 @@ import mx.wire4.model.SpidBeneficiaryResponse;
  */
 
 
+
 public class SpidBeneficiariesResponse {
   @SerializedName("beneficiaries")
   private List<SpidBeneficiaryResponse> beneficiaries = null;

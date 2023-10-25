@@ -27,6 +27,7 @@ import java.time.OffsetDateTime;
  */
 @Schema(description = "Objeto que contiene la información del punto de venta encontrada.")
 
+
 public class SalesPointFound {
   @SerializedName("access_ip")
   private String accessIp = null;
@@ -48,7 +49,9 @@ public class SalesPointFound {
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
+    @SerializedName("ACTIVE")
     ACTIVE("ACTIVE"),
+    @SerializedName("INACTIVE")
     INACTIVE("INACTIVE");
 
     private String value;
@@ -64,9 +67,9 @@ public class SalesPointFound {
     public String toString() {
       return String.valueOf(value);
     }
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String input) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -75,13 +78,13 @@ public class SalesPointFound {
     public static class Adapter extends TypeAdapter<StatusEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return StatusEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("status")

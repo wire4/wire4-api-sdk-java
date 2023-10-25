@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Objeto que contiene el nombre de la institución, este campo se debe llenar si el dueño de la cuenta es una persona moral")
 
+
 public class BeneficiaryInstitution {
   @SerializedName("name")
   private String name = null;

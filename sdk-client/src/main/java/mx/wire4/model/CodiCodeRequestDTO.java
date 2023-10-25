@@ -23,14 +23,19 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import mx.wire4.model.BeneficiaryDTO;
 /**
  * CodiCodeRequestDTO
  */
 
 
+
 public class CodiCodeRequestDTO {
   @SerializedName("amount")
   private BigDecimal amount = null;
+
+  @SerializedName("beneficiary2")
+  private BeneficiaryDTO beneficiary2 = null;
 
   @SerializedName("concept")
   private String concept = null;
@@ -44,16 +49,73 @@ public class CodiCodeRequestDTO {
   @SerializedName("order_id")
   private String orderId = null;
 
+  /**
+   * El tipo de pago ya sea en una ocasión (ONE_OCCASION) o recurrente (RECURRENT)
+   */
+  @JsonAdapter(PaymentTypeEnum.Adapter.class)
+  public enum PaymentTypeEnum {
+    @SerializedName("ONE_OCCASION")
+    ONE_OCCASION("ONE_OCCASION"),
+    @SerializedName("RECURRENT")
+    RECURRENT("RECURRENT"),
+    @SerializedName("RECURRENT_NO_RECURRENT")
+    RECURRENT_NO_RECURRENT("RECURRENT_NO_RECURRENT"),
+    @SerializedName("UNKNOWN")
+    UNKNOWN("UNKNOWN");
+
+    private String value;
+
+    PaymentTypeEnum(String value) {
+      this.value = value;
+    }
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    public static PaymentTypeEnum fromValue(String input) {
+      for (PaymentTypeEnum b : PaymentTypeEnum.values()) {
+        if (b.value.equals(input)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    public static class Adapter extends TypeAdapter<PaymentTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PaymentTypeEnum enumeration) throws IOException {
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
+      }
+
+      @Override
+      public PaymentTypeEnum read(final JsonReader jsonReader) throws IOException {
+        Object value = jsonReader.nextString();
+        return PaymentTypeEnum.fromValue((String)(value));
+      }
+    }
+  }  @SerializedName("payment_type")
+  private PaymentTypeEnum paymentType = null;
+
   @SerializedName("phone_number")
   private String phoneNumber = null;
 
+  @SerializedName("reference")
+  private Integer reference = null;
+
   /**
-   * El tipo de código QR para pago con CODI®
+   * El tipo de solicitud QR o PUSH para pago con CODI®
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
+    @SerializedName("PUSH_NOTIFICATION")
     PUSH_NOTIFICATION("PUSH_NOTIFICATION"),
-    QR_CODE("QR_CODE");
+    @SerializedName("QR_CODE")
+    QR_CODE("QR_CODE"),
+    @SerializedName("UNKNOWN")
+    UNKNOWN("UNKNOWN");
 
     private String value;
 
@@ -68,9 +130,9 @@ public class CodiCodeRequestDTO {
     public String toString() {
       return String.valueOf(value);
     }
-    public static TypeEnum fromValue(String text) {
+    public static TypeEnum fromValue(String input) {
       for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -79,13 +141,13 @@ public class CodiCodeRequestDTO {
     public static class Adapter extends TypeAdapter<TypeEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return TypeEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("type")
@@ -111,16 +173,34 @@ public class CodiCodeRequestDTO {
     this.amount = amount;
   }
 
+  public CodiCodeRequestDTO beneficiary2(BeneficiaryDTO beneficiary2) {
+    this.beneficiary2 = beneficiary2;
+    return this;
+  }
+
+   /**
+   * Get beneficiary2
+   * @return beneficiary2
+  **/
+  @Schema(description = "")
+  public BeneficiaryDTO getBeneficiary2() {
+    return beneficiary2;
+  }
+
+  public void setBeneficiary2(BeneficiaryDTO beneficiary2) {
+    this.beneficiary2 = beneficiary2;
+  }
+
   public CodiCodeRequestDTO concept(String concept) {
     this.concept = concept;
     return this;
   }
 
    /**
-   * Descripción del pago CODI®
+   * Descripción del pago CODI®, no debe contener letras con acentos ni caracteres especiales
    * @return concept
   **/
-  @Schema(example = "Pago consumo 1024", required = true, description = "Descripción del pago CODI®")
+  @Schema(example = "Pago consumo 1024", required = true, description = "Descripción del pago CODI®, no debe contener letras con acentos ni caracteres especiales")
   public String getConcept() {
     return concept;
   }
@@ -138,7 +218,7 @@ public class CodiCodeRequestDTO {
    * Fecha de operación pago CODI®, formato: yyyy-MM-dd&#x27;T&#x27;HH:mm:ss
    * @return dueDate
   **/
-  @Schema(required = true, description = "Fecha de operación pago CODI®, formato: yyyy-MM-dd'T'HH:mm:ss")
+  @Schema(description = "Fecha de operación pago CODI®, formato: yyyy-MM-dd'T'HH:mm:ss")
   public OffsetDateTime getDueDate() {
     return dueDate;
   }
@@ -183,6 +263,24 @@ public class CodiCodeRequestDTO {
     this.orderId = orderId;
   }
 
+  public CodiCodeRequestDTO paymentType(PaymentTypeEnum paymentType) {
+    this.paymentType = paymentType;
+    return this;
+  }
+
+   /**
+   * El tipo de pago ya sea en una ocasión (ONE_OCCASION) o recurrente (RECURRENT)
+   * @return paymentType
+  **/
+  @Schema(example = "ONE_OCCASION", required = true, description = "El tipo de pago ya sea en una ocasión (ONE_OCCASION) o recurrente (RECURRENT)")
+  public PaymentTypeEnum getPaymentType() {
+    return paymentType;
+  }
+
+  public void setPaymentType(PaymentTypeEnum paymentType) {
+    this.paymentType = paymentType;
+  }
+
   public CodiCodeRequestDTO phoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
@@ -201,16 +299,36 @@ public class CodiCodeRequestDTO {
     this.phoneNumber = phoneNumber;
   }
 
+  public CodiCodeRequestDTO reference(Integer reference) {
+    this.reference = reference;
+    return this;
+  }
+
+   /**
+   * Referencia numérica del pago CODI®. Debe ser de 7 dígitos
+   * minimum: 0
+   * maximum: 9999999
+   * @return reference
+  **/
+  @Schema(example = "1234567", required = true, description = "Referencia numérica del pago CODI®. Debe ser de 7 dígitos")
+  public Integer getReference() {
+    return reference;
+  }
+
+  public void setReference(Integer reference) {
+    this.reference = reference;
+  }
+
   public CodiCodeRequestDTO type(TypeEnum type) {
     this.type = type;
     return this;
   }
 
    /**
-   * El tipo de código QR para pago con CODI®
+   * El tipo de solicitud QR o PUSH para pago con CODI®
    * @return type
   **/
-  @Schema(example = "PUSH_NOTIFICATION", required = true, description = "El tipo de código QR para pago con CODI®")
+  @Schema(example = "PUSH_NOTIFICATION", required = true, description = "El tipo de solicitud QR o PUSH para pago con CODI®")
   public TypeEnum getType() {
     return type;
   }
@@ -230,17 +348,20 @@ public class CodiCodeRequestDTO {
     }
     CodiCodeRequestDTO codiCodeRequestDTO = (CodiCodeRequestDTO) o;
     return Objects.equals(this.amount, codiCodeRequestDTO.amount) &&
+        Objects.equals(this.beneficiary2, codiCodeRequestDTO.beneficiary2) &&
         Objects.equals(this.concept, codiCodeRequestDTO.concept) &&
         Objects.equals(this.dueDate, codiCodeRequestDTO.dueDate) &&
         Objects.equals(this.metadata, codiCodeRequestDTO.metadata) &&
         Objects.equals(this.orderId, codiCodeRequestDTO.orderId) &&
+        Objects.equals(this.paymentType, codiCodeRequestDTO.paymentType) &&
         Objects.equals(this.phoneNumber, codiCodeRequestDTO.phoneNumber) &&
+        Objects.equals(this.reference, codiCodeRequestDTO.reference) &&
         Objects.equals(this.type, codiCodeRequestDTO.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, concept, dueDate, metadata, orderId, phoneNumber, type);
+    return Objects.hash(amount, beneficiary2, concept, dueDate, metadata, orderId, paymentType, phoneNumber, reference, type);
   }
 
 
@@ -250,11 +371,14 @@ public class CodiCodeRequestDTO {
     sb.append("class CodiCodeRequestDTO {\n");
     
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    beneficiary2: ").append(toIndentedString(beneficiary2)).append("\n");
     sb.append("    concept: ").append(toIndentedString(concept)).append("\n");
     sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
+    sb.append("    paymentType: ").append(toIndentedString(paymentType)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();

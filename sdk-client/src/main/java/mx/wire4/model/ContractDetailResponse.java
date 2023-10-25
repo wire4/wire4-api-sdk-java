@@ -28,6 +28,7 @@ import mx.wire4.model.UserCompany;
  */
 
 
+
 public class ContractDetailResponse {
   @SerializedName("account")
   private AccountDetail account = null;

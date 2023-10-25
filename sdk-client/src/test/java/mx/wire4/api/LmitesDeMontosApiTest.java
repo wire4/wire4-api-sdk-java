@@ -12,17 +12,18 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.MessageConfigurationsLimits;
 import mx.wire4.model.UpdateConfigurationsRequestDTO;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for LmitesDeMontosApi
@@ -37,11 +38,11 @@ public class LmitesDeMontosApiTest {
      *
      * Consulta las configuraciones para el contrato asocaido al enrolamiento en la aplicación.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void obtainConfigurationsLimitsTest() throws ApiException {
+    public void obtainConfigurationsLimitsTest() throws Exception {
         String authorization = null;
         String suscription = null;
         MessageConfigurationsLimits response = api.obtainConfigurationsLimits(authorization, suscription);
@@ -53,11 +54,11 @@ public class LmitesDeMontosApiTest {
      *
      * Actualiza las configuraciones de un contrato asociado a una suscripción
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void updateConfigurationsTest() throws ApiException {
+    public void updateConfigurationsTest() throws Exception {
         UpdateConfigurationsRequestDTO body = null;
         String authorization = null;
         String suscription = null;

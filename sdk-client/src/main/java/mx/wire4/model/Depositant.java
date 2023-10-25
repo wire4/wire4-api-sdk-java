@@ -28,6 +28,7 @@ import java.util.List;
  */
 @Schema(description = "Objeto que contiene los datos del depositante")
 
+
 public class Depositant {
   @SerializedName("alias")
   private String alias = null;
@@ -43,6 +44,9 @@ public class Depositant {
 
   @SerializedName("name")
   private String name = null;
+
+  @SerializedName("status")
+  private String status = null;
 
   public Depositant alias(String alias) {
     this.alias = alias;
@@ -142,6 +146,24 @@ public class Depositant {
     this.name = name;
   }
 
+  public Depositant status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Es el estatus del depositante.
+   * @return status
+  **/
+  @Schema(example = "ACTIVE", description = "Es el estatus del depositante.")
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -156,12 +178,13 @@ public class Depositant {
         Objects.equals(this.currencyCode, depositant.currencyCode) &&
         Objects.equals(this.depositantClabe, depositant.depositantClabe) &&
         Objects.equals(this.email, depositant.email) &&
-        Objects.equals(this.name, depositant.name);
+        Objects.equals(this.name, depositant.name) &&
+        Objects.equals(this.status, depositant.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(alias, currencyCode, depositantClabe, email, name);
+    return Objects.hash(alias, currencyCode, depositantClabe, email, name, status);
   }
 
 
@@ -175,6 +198,7 @@ public class Depositant {
     sb.append("    depositantClabe: ").append(toIndentedString(depositantClabe)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Objeto que contiene información básica de un posible cliente.")
 
+
 public class ContactRequest {
   @SerializedName("address")
   private String address = null;

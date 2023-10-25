@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Es el objet del mensaje que se envía con la información del punto de venta registrado.")
 
+
 public class MessageSalesPoint {
   @SerializedName("account")
   private String account = null;

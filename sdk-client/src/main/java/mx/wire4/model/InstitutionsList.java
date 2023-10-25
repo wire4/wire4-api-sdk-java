@@ -29,6 +29,7 @@ import mx.wire4.model.Institution;
  */
 
 
+
 public class InstitutionsList {
   @SerializedName("institutions")
   private List<Institution> institutions = null;

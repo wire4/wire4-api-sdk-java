@@ -30,6 +30,7 @@ import mx.wire4.model.AccountResponse;
  */
 
 
+
 public class BeneficiariesQueryRegisterStatus {
   @SerializedName("authorization_date")
   private OffsetDateTime authorizationDate = null;
@@ -48,7 +49,9 @@ public class BeneficiariesQueryRegisterStatus {
    */
   @JsonAdapter(StatusRequestEnum.Adapter.class)
   public enum StatusRequestEnum {
+    @SerializedName("PENDING")
     PENDING("PENDING"),
+    @SerializedName("AUTHORIZED")
     AUTHORIZED("AUTHORIZED");
 
     private String value;
@@ -64,9 +67,9 @@ public class BeneficiariesQueryRegisterStatus {
     public String toString() {
       return String.valueOf(value);
     }
-    public static StatusRequestEnum fromValue(String text) {
+    public static StatusRequestEnum fromValue(String input) {
       for (StatusRequestEnum b : StatusRequestEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -75,13 +78,13 @@ public class BeneficiariesQueryRegisterStatus {
     public static class Adapter extends TypeAdapter<StatusRequestEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final StatusRequestEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public StatusRequestEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusRequestEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return StatusRequestEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("status_request")

@@ -12,7 +12,6 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.AccountSpid;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.SpidBeneficiariesResponse;
@@ -20,10 +19,12 @@ import mx.wire4.model.TokenRequiredResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for CuentasDeBeneficiariosSpidApi
@@ -38,11 +39,11 @@ public class CuentasDeBeneficiariosSpidApiTest {
      *
      * Obtiene los beneficiarios SPID registrados al contrato relacionado con la suscripción. Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getSpidBeneficiariesForAccountTest() throws ApiException {
+    public void getSpidBeneficiariesForAccountTest() throws Exception {
         String authorization = null;
         String subscription = null;
         String account = null;
@@ -50,9 +51,11 @@ public class CuentasDeBeneficiariosSpidApiTest {
         String beneficiaryName = null;
         String endDate = null;
         String initDate = null;
+        String page = null;
         String rfc = null;
+        String size = null;
         String status = null;
-        SpidBeneficiariesResponse response = api.getSpidBeneficiariesForAccount(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
+        SpidBeneficiariesResponse response = api.getSpidBeneficiariesForAccount(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status);
 
         // TODO: test validations
     }
@@ -61,11 +64,11 @@ public class CuentasDeBeneficiariosSpidApiTest {
      *
      * Pre-registra una o más cuentas de beneficiario SPID® en la plataforma de Wire4, ésta le proporcionaará una URL donde lo llevará al centro de autorización para que el cuentahabiente Monex ingrese su llave digital para confirmar el alta de las cuentas de beneficiarios.&lt;br/&gt; Los posibles valores de &lt;em&gt;relationship&lt;/em&gt; y &lt;em&gt;kind_of_relationship&lt;/em&gt; se deben  obtener de &lt;a href&#x3D;\&quot;#operation/getAvailableRelationshipsMonexUsingGET\&quot;&gt;/subscriptions/{subscription}/beneficiaries/relationships.&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;La confirmación de registro en Monex se realizará a través de una notificación a los webhooks registrados con el evento de tipo &lt;a href&#x3D;\&quot;#section/Eventos/Tipos-de-Eventos\&quot;&gt;ACCOUNT.CREATED.&lt;/a&gt;
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void preRegisterAccountsUsingPOST1Test() throws ApiException {
+    public void preRegisterAccountsUsingPOST1Test() throws Exception {
         AccountSpid body = null;
         String authorization = null;
         String subscription = null;

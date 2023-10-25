@@ -29,6 +29,7 @@ import mx.wire4.model.Depositant;
  */
 @Schema(description = "Es el objeto que contiene una lista de depositantes.")
 
+
 public class GetDepositants {
   @SerializedName("depositants")
   private List<Depositant> depositants = new ArrayList<>();

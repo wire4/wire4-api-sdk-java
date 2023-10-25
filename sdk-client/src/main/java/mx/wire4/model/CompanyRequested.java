@@ -27,6 +27,7 @@ import mx.wire4.model.CertificateRequest;
  */
 @Schema(description = "Contiene la información de la empresa que se quiere registrar.")
 
+
 public class CompanyRequested {
   @SerializedName("business_name")
   private String businessName = null;

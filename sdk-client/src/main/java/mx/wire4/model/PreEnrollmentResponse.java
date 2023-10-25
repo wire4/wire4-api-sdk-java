@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 
 
+
 public class PreEnrollmentResponse {
   @SerializedName("subscription_id")
   private String subscriptionId = null;

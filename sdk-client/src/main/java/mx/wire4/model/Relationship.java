@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 
 
+
 public class Relationship {
   @SerializedName("kind_of_relationship")
   private String kindOfRelationship = null;

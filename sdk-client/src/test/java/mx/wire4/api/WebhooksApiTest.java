@@ -12,7 +12,6 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.WebhookRequest;
 import mx.wire4.model.WebhookResponse;
@@ -20,10 +19,12 @@ import mx.wire4.model.WebhooksList;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for WebhooksApi
@@ -38,11 +39,11 @@ public class WebhooksApiTest {
      *
      * Obtiene un webhook registrado en la plataforma mediante su identificador.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getWebhookTest() throws ApiException {
+    public void getWebhookTest() throws Exception {
         String authorization = null;
         String webhookId = null;
         WebhookResponse response = api.getWebhook(authorization, webhookId);
@@ -54,11 +55,11 @@ public class WebhooksApiTest {
      *
      * Obtiene una lista de los webhooks registrados en la plataforma que tengan el estado (estatus)  Activo (ACTIVE) e Inactivo (INACTIVE).
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getWebhooksTest() throws ApiException {
+    public void getWebhooksTest() throws Exception {
         String authorization = null;
         WebhooksList response = api.getWebhooks(authorization);
 
@@ -69,11 +70,11 @@ public class WebhooksApiTest {
      *
      * Registra un webhook en la plataforma para su uso como notificador de eventos, cuándo estos ocurran.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void registerWebhookTest() throws ApiException {
+    public void registerWebhookTest() throws Exception {
         WebhookRequest body = null;
         String authorization = null;
         WebhookResponse response = api.registerWebhook(body, authorization);

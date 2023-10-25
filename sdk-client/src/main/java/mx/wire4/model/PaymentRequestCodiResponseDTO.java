@@ -31,6 +31,7 @@ import mx.wire4.model.CodiOperationResponseDTO;
  */
 @Schema(description = "Objeto que contiene la información de solicitud de pago por CODI®.")
 
+
 public class PaymentRequestCodiResponseDTO {
   @SerializedName("amount")
   private BigDecimal amount = null;
