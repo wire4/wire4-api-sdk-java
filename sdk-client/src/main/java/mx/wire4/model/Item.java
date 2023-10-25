@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Cada Item especifica el valor configurado para límite de monto permitido o número de operaciones permitidas. Debe especificar un item por cada configuración")
 
+
 public class Item {
   @SerializedName("key")
   private String key = null;

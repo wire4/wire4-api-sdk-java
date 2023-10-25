@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Información para obtener la URL para la autorización")
 
+
 public class PreMonexAuthorization {
   @SerializedName("business_name")
   private String businessName = null;

@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Objeto que contiene la información del punto de venta")
 
+
 public class SalesPoint {
   @SerializedName("account")
   private String account = null;

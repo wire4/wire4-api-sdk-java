@@ -29,6 +29,7 @@ import java.util.List;
  */
 @Schema(description = "Objeto que contiene la información de una transferencia SPID® de salida.")
 
+
 public class TransactionOutgoingSpid {
   @SerializedName("amount")
   private BigDecimal amount = null;

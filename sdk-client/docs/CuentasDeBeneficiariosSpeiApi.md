@@ -208,7 +208,7 @@ No authorization required
 
 <a name="getBeneficiariesForAccountUsingGET"></a>
 # **getBeneficiariesForAccountUsingGET**
-> BeneficiariesResponse getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status)
+> BeneficiariesResponse getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status)
 
 Consulta los beneficiarios registrados
 
@@ -229,10 +229,12 @@ String beneficiaryBank = "beneficiaryBank_example"; // String | Es la clave del 
 String beneficiaryName = "beneficiaryName_example"; // String | Es el nombre del beneficiario.
 String endDate = "endDate_example"; // String | Es la fecha de inicio del perido a filtrar en formato dd-mm-yyyy.
 String initDate = "initDate_example"; // String | Es la fºecha de inicio del perido a filtrar en formato dd-mm-yyyy.
+String page = "0"; // String | Es el número de página.
 String rfc = "rfc_example"; // String | Es el Registro Federal de Controbuyentes (RFC) del beneficiario.
+String size = "20"; // String | Es el tamaño de página.
 String status = "status_example"; // String | Es el estado (estatus) de la cuenta. Los valores pueden ser <b>PENDING</b> y <b>REGISTERED</b>.
 try {
-    BeneficiariesResponse result = apiInstance.getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
+    BeneficiariesResponse result = apiInstance.getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CuentasDeBeneficiariosSpeiApi#getBeneficiariesForAccountUsingGET");
@@ -251,7 +253,9 @@ Name | Type | Description  | Notes
  **beneficiaryName** | **String**| Es el nombre del beneficiario. | [optional]
  **endDate** | **String**| Es la fecha de inicio del perido a filtrar en formato dd-mm-yyyy. | [optional]
  **initDate** | **String**| Es la fºecha de inicio del perido a filtrar en formato dd-mm-yyyy. | [optional]
+ **page** | **String**| Es el número de página. | [optional] [default to 0]
  **rfc** | **String**| Es el Registro Federal de Controbuyentes (RFC) del beneficiario. | [optional]
+ **size** | **String**| Es el tamaño de página. | [optional] [default to 20]
  **status** | **String**| Es el estado (estatus) de la cuenta. Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. | [optional]
 
 ### Return type

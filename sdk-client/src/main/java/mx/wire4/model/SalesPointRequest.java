@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Información para registrar un punto de venta asociado una empresa.")
 
+
 public class SalesPointRequest {
   @SerializedName("access_ip")
   private String accessIp = null;

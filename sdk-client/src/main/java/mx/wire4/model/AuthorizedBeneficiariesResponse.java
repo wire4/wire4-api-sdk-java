@@ -29,6 +29,7 @@ import mx.wire4.model.AccountReassigned;
  */
 
 
+
 public class AuthorizedBeneficiariesResponse {
   @SerializedName("accounts")
   private List<AccountReassigned> accounts = null;

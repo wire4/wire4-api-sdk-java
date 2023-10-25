@@ -12,17 +12,18 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.DepositAuthorizationRequest;
 import mx.wire4.model.DepositsAuthorizationResponse;
 import mx.wire4.model.ErrorResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for AutorizacinDeDepsitosApi
@@ -37,11 +38,11 @@ public class AutorizacinDeDepsitosApiTest {
      *
      * Obtiene la información de la autorización de depósitos del contrato relacionado a la suscripción.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getDepositAuthConfigurationsTest() throws ApiException {
+    public void getDepositAuthConfigurationsTest() throws Exception {
         String authorization = null;
         String subscription = null;
         DepositsAuthorizationResponse response = api.getDepositAuthConfigurations(authorization, subscription);
@@ -53,11 +54,11 @@ public class AutorizacinDeDepsitosApiTest {
      *
      * Habilita o deshabilita la autorización de depósitos. Devuelve la información final de la autorización de depósitos del contrato relacionado a la suscripción al terminar.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void putDepositAuthConfigurationsTest() throws ApiException {
+    public void putDepositAuthConfigurationsTest() throws Exception {
         DepositAuthorizationRequest body = null;
         String authorization = null;
         String subscription = null;

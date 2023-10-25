@@ -25,9 +25,9 @@ OperacionesCoDiApi apiInstance = new OperacionesCoDiApi();
 String authorization = "authorization_example"; // String | Header para token
 CodiOperationsFiltersRequestDTO body = new CodiOperationsFiltersRequestDTO(); // CodiOperationsFiltersRequestDTO | Filtros de busqueda
 String companyId = "companyId_example"; // String | Es el identificador de empresa CODI®.
-String page = "page_example"; // String | Es el número de pago.
+String page = "0"; // String | Es el número de pago.
 String salesPointId = "salesPointId_example"; // String | Es el identificador del punto de venta.
-String size = "size_example"; // String | Es el tamaño de página.
+String size = "20"; // String | Es el tamaño de página.
 try {
     PagerResponseDto result = apiInstance.consultCodiOperations(authorization, body, companyId, page, salesPointId, size);
     System.out.println(result);
@@ -44,9 +44,9 @@ Name | Type | Description  | Notes
  **authorization** | **String**| Header para token |
  **body** | [**CodiOperationsFiltersRequestDTO**](CodiOperationsFiltersRequestDTO.md)| Filtros de busqueda | [optional]
  **companyId** | **String**| Es el identificador de empresa CODI®. | [optional]
- **page** | **String**| Es el número de pago. | [optional]
+ **page** | **String**| Es el número de pago. | [optional] [default to 0]
  **salesPointId** | **String**| Es el identificador del punto de venta. | [optional]
- **size** | **String**| Es el tamaño de página. | [optional]
+ **size** | **String**| Es el tamaño de página. | [optional] [default to 20]
 
 ### Return type
 

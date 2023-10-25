@@ -32,8 +32,11 @@ import mx.wire4.model.DetailedErrorResponse;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.Payment;
 import mx.wire4.model.PaymentsRequestId;
+import mx.wire4.model.PaymentsSpeiAndSpidOrderId;
+import mx.wire4.model.PaymentsSpeiAndSpidRequestId;
 import mx.wire4.model.TokenRequiredResponse;
 import mx.wire4.model.TransactionsOutgoingRegister;
+import mx.wire4.model.TransactionsRegister;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -641,6 +644,291 @@ public class TransferenciasSpeiApi {
         return call;
     }
     /**
+     * Build call for outCommingSpeiSpidOrderIdTransactionReportUsingGET
+     * @param authorization Header para token (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param orderId Es el identificador de la orden a buscar. (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call outCommingSpeiSpidOrderIdTransactionReportUsingGETCall(String authorization, String subscription, String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/subscriptions/{subscription}/transactions/outcoming"
+            .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (orderId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("order_id", orderId));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call outCommingSpeiSpidOrderIdTransactionReportUsingGETValidateBeforeCall(String authorization, String subscription, String orderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling outCommingSpeiSpidOrderIdTransactionReportUsingGET(Async)");
+        }
+        // verify the required parameter 'subscription' is set
+        if (subscription == null) {
+            throw new ApiException("Missing the required parameter 'subscription' when calling outCommingSpeiSpidOrderIdTransactionReportUsingGET(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = outCommingSpeiSpidOrderIdTransactionReportUsingGETCall(authorization, subscription, orderId, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Consulta de transferencias realizadas por order_id
+     * Consulta las transferencias que regresa este recuso son únicamente las transferencias recibidas en el día en el que se realiza la consulta o las transferencias identificadas con el &lt;strong&gt;order_id&lt;/strong&gt; proporcionado, para este tipo de consultas no importa el día en el que se realizó la transferencia. &lt;br&gt; Es importante que conozca que la respuesta puede dar como resultado un objeto con una lista spei o una lista spid con el/los elementos ya que un identificador order_id solo puede pertenecer a una transacción sea spei o spid.
+     * @param authorization Header para token (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param orderId Es el identificador de la orden a buscar. (optional)
+     * @return PaymentsSpeiAndSpidOrderId
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PaymentsSpeiAndSpidOrderId outCommingSpeiSpidOrderIdTransactionReportUsingGET(String authorization, String subscription, String orderId) throws ApiException {
+        ApiResponse<PaymentsSpeiAndSpidOrderId> resp = outCommingSpeiSpidOrderIdTransactionReportUsingGETWithHttpInfo(authorization, subscription, orderId);
+        return resp.getData();
+    }
+
+    /**
+     * Consulta de transferencias realizadas por order_id
+     * Consulta las transferencias que regresa este recuso son únicamente las transferencias recibidas en el día en el que se realiza la consulta o las transferencias identificadas con el &lt;strong&gt;order_id&lt;/strong&gt; proporcionado, para este tipo de consultas no importa el día en el que se realizó la transferencia. &lt;br&gt; Es importante que conozca que la respuesta puede dar como resultado un objeto con una lista spei o una lista spid con el/los elementos ya que un identificador order_id solo puede pertenecer a una transacción sea spei o spid.
+     * @param authorization Header para token (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param orderId Es el identificador de la orden a buscar. (optional)
+     * @return ApiResponse&lt;PaymentsSpeiAndSpidOrderId&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PaymentsSpeiAndSpidOrderId> outCommingSpeiSpidOrderIdTransactionReportUsingGETWithHttpInfo(String authorization, String subscription, String orderId) throws ApiException {
+        com.squareup.okhttp.Call call = outCommingSpeiSpidOrderIdTransactionReportUsingGETValidateBeforeCall(authorization, subscription, orderId, null, null);
+        Type localVarReturnType = new TypeToken<PaymentsSpeiAndSpidOrderId>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Consulta de transferencias realizadas por order_id (asynchronously)
+     * Consulta las transferencias que regresa este recuso son únicamente las transferencias recibidas en el día en el que se realiza la consulta o las transferencias identificadas con el &lt;strong&gt;order_id&lt;/strong&gt; proporcionado, para este tipo de consultas no importa el día en el que se realizó la transferencia. &lt;br&gt; Es importante que conozca que la respuesta puede dar como resultado un objeto con una lista spei o una lista spid con el/los elementos ya que un identificador order_id solo puede pertenecer a una transacción sea spei o spid.
+     * @param authorization Header para token (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param orderId Es el identificador de la orden a buscar. (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call outCommingSpeiSpidOrderIdTransactionReportUsingGETAsync(String authorization, String subscription, String orderId, final ApiCallback<PaymentsSpeiAndSpidOrderId> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = outCommingSpeiSpidOrderIdTransactionReportUsingGETValidateBeforeCall(authorization, subscription, orderId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PaymentsSpeiAndSpidOrderId>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for outCommingSpeiSpidRequestIdTransactionsReportUsingGET
+     * @param authorization Header para token (required)
+     * @param requestId Identificador de la petición a buscar. (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call outCommingSpeiSpidRequestIdTransactionsReportUsingGETCall(String authorization, String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/subscriptions/{subscription}/transactions/outcoming/{requestId}"
+            .replaceAll("\\{" + "requestId" + "\\}", apiClient.escapeString(requestId.toString()))
+            .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call outCommingSpeiSpidRequestIdTransactionsReportUsingGETValidateBeforeCall(String authorization, String requestId, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling outCommingSpeiSpidRequestIdTransactionsReportUsingGET(Async)");
+        }
+        // verify the required parameter 'requestId' is set
+        if (requestId == null) {
+            throw new ApiException("Missing the required parameter 'requestId' when calling outCommingSpeiSpidRequestIdTransactionsReportUsingGET(Async)");
+        }
+        // verify the required parameter 'subscription' is set
+        if (subscription == null) {
+            throw new ApiException("Missing the required parameter 'subscription' when calling outCommingSpeiSpidRequestIdTransactionsReportUsingGET(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = outCommingSpeiSpidRequestIdTransactionsReportUsingGETCall(authorization, requestId, subscription, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Consulta de transferencias de salida por identificador de petición
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cuál se debe especificar como parte del path de este endpoint.
+     * @param authorization Header para token (required)
+     * @param requestId Identificador de la petición a buscar. (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @return PaymentsSpeiAndSpidRequestId
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PaymentsSpeiAndSpidRequestId outCommingSpeiSpidRequestIdTransactionsReportUsingGET(String authorization, String requestId, String subscription) throws ApiException {
+        ApiResponse<PaymentsSpeiAndSpidRequestId> resp = outCommingSpeiSpidRequestIdTransactionsReportUsingGETWithHttpInfo(authorization, requestId, subscription);
+        return resp.getData();
+    }
+
+    /**
+     * Consulta de transferencias de salida por identificador de petición
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cuál se debe especificar como parte del path de este endpoint.
+     * @param authorization Header para token (required)
+     * @param requestId Identificador de la petición a buscar. (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @return ApiResponse&lt;PaymentsSpeiAndSpidRequestId&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PaymentsSpeiAndSpidRequestId> outCommingSpeiSpidRequestIdTransactionsReportUsingGETWithHttpInfo(String authorization, String requestId, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = outCommingSpeiSpidRequestIdTransactionsReportUsingGETValidateBeforeCall(authorization, requestId, subscription, null, null);
+        Type localVarReturnType = new TypeToken<PaymentsSpeiAndSpidRequestId>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Consulta de transferencias de salida por identificador de petición (asynchronously)
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cuál se debe especificar como parte del path de este endpoint.
+     * @param authorization Header para token (required)
+     * @param requestId Identificador de la petición a buscar. (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call outCommingSpeiSpidRequestIdTransactionsReportUsingGETAsync(String authorization, String requestId, String subscription, final ApiCallback<PaymentsSpeiAndSpidRequestId> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = outCommingSpeiSpidRequestIdTransactionsReportUsingGETValidateBeforeCall(authorization, requestId, subscription, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PaymentsSpeiAndSpidRequestId>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for outgoingSpeiTransactionsReportUsingGET
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
@@ -920,6 +1208,149 @@ public class TransferenciasSpeiApi {
         }
 
         com.squareup.okhttp.Call call = registerOutgoingSpeiTransactionUsingPOSTValidateBeforeCall(body, authorization, subscription, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for registerSpeiSpidOutgoingTransactionsUsingPOST
+     * @param body Información de las transferencias SPEI y SPID de salida (required)
+     * @param authorization Header para token (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call registerSpeiSpidOutgoingTransactionsUsingPOSTCall(TransactionsRegister body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/subscriptions/{subscription}/transactions/outcoming"
+            .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call registerSpeiSpidOutgoingTransactionsUsingPOSTValidateBeforeCall(TransactionsRegister body, String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling registerSpeiSpidOutgoingTransactionsUsingPOST(Async)");
+        }
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling registerSpeiSpidOutgoingTransactionsUsingPOST(Async)");
+        }
+        // verify the required parameter 'subscription' is set
+        if (subscription == null) {
+            throw new ApiException("Missing the required parameter 'subscription' when calling registerSpeiSpidOutgoingTransactionsUsingPOST(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = registerSpeiSpidOutgoingTransactionsUsingPOSTCall(body, authorization, subscription, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Registro de transferencias SPEI y SPID
+     * Se registra un conjunto de transferencias (una o más) tanto SPEI como SPID en una sola petición en la cuenta del cliente Monex relacionada a la suscripción. En la respuesta se proporcionará una dirección URL que lo llevará al centro de autorización para que las transferencias sean confirmadas (autorizadas) por el cliente para que se efectúen, para ello debe ingresar la llave electrónica (Token).&lt;br&gt;  Nota: Debe considerar que el concepto de cada una de las transacciones solo debe contener caracteres alfanuméricos por lo que en caso de que se reciban caracteres como ñ o acentos serán sustituidos por n o en su caso por la letra sin acento. Los caracteres no alfanuméricos como pueden ser caracteres especiales serán eliminados.
+     * @param body Información de las transferencias SPEI y SPID de salida (required)
+     * @param authorization Header para token (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @return TokenRequiredResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public TokenRequiredResponse registerSpeiSpidOutgoingTransactionsUsingPOST(TransactionsRegister body, String authorization, String subscription) throws ApiException {
+        ApiResponse<TokenRequiredResponse> resp = registerSpeiSpidOutgoingTransactionsUsingPOSTWithHttpInfo(body, authorization, subscription);
+        return resp.getData();
+    }
+
+    /**
+     * Registro de transferencias SPEI y SPID
+     * Se registra un conjunto de transferencias (una o más) tanto SPEI como SPID en una sola petición en la cuenta del cliente Monex relacionada a la suscripción. En la respuesta se proporcionará una dirección URL que lo llevará al centro de autorización para que las transferencias sean confirmadas (autorizadas) por el cliente para que se efectúen, para ello debe ingresar la llave electrónica (Token).&lt;br&gt;  Nota: Debe considerar que el concepto de cada una de las transacciones solo debe contener caracteres alfanuméricos por lo que en caso de que se reciban caracteres como ñ o acentos serán sustituidos por n o en su caso por la letra sin acento. Los caracteres no alfanuméricos como pueden ser caracteres especiales serán eliminados.
+     * @param body Información de las transferencias SPEI y SPID de salida (required)
+     * @param authorization Header para token (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @return ApiResponse&lt;TokenRequiredResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<TokenRequiredResponse> registerSpeiSpidOutgoingTransactionsUsingPOSTWithHttpInfo(TransactionsRegister body, String authorization, String subscription) throws ApiException {
+        com.squareup.okhttp.Call call = registerSpeiSpidOutgoingTransactionsUsingPOSTValidateBeforeCall(body, authorization, subscription, null, null);
+        Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Registro de transferencias SPEI y SPID (asynchronously)
+     * Se registra un conjunto de transferencias (una o más) tanto SPEI como SPID en una sola petición en la cuenta del cliente Monex relacionada a la suscripción. En la respuesta se proporcionará una dirección URL que lo llevará al centro de autorización para que las transferencias sean confirmadas (autorizadas) por el cliente para que se efectúen, para ello debe ingresar la llave electrónica (Token).&lt;br&gt;  Nota: Debe considerar que el concepto de cada una de las transacciones solo debe contener caracteres alfanuméricos por lo que en caso de que se reciban caracteres como ñ o acentos serán sustituidos por n o en su caso por la letra sin acento. Los caracteres no alfanuméricos como pueden ser caracteres especiales serán eliminados.
+     * @param body Información de las transferencias SPEI y SPID de salida (required)
+     * @param authorization Header para token (required)
+     * @param subscription Es el identificador de la suscripción a esta API. (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call registerSpeiSpidOutgoingTransactionsUsingPOSTAsync(TransactionsRegister body, String authorization, String subscription, final ApiCallback<TokenRequiredResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = registerSpeiSpidOutgoingTransactionsUsingPOSTValidateBeforeCall(body, authorization, subscription, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TokenRequiredResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

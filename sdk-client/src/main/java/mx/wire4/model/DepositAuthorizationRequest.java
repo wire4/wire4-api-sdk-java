@@ -27,6 +27,7 @@ import mx.wire4.model.WebHookDepositAuthorizationRequest;
  */
 @Schema(description = "Contiene la información de la autorización de depósitos")
 
+
 public class DepositAuthorizationRequest {
   @SerializedName("enabled")
   private Boolean enabled = null;

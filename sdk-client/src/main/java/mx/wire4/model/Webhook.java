@@ -28,6 +28,7 @@ import java.util.List;
  */
 @Schema(description = "Objeto de Webhook creado para notificaciones CODI®.")
 
+
 public class Webhook {
   @SerializedName("events")
   private List<String> events = null;
@@ -43,8 +44,11 @@ public class Webhook {
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
+    @SerializedName("ACTIVE")
     ACTIVE("ACTIVE"),
+    @SerializedName("INACTIVE")
     INACTIVE("INACTIVE"),
+    @SerializedName("DELETED")
     DELETED("DELETED");
 
     private String value;
@@ -60,9 +64,9 @@ public class Webhook {
     public String toString() {
       return String.valueOf(value);
     }
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String input) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -71,13 +75,13 @@ public class Webhook {
     public static class Adapter extends TypeAdapter<StatusEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return StatusEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("status")

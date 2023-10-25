@@ -16,6 +16,11 @@ Name | Type | Description | Notes
 ## Enum: StatusEnum
 Name | Value
 ---- | -----
+ACCEPTED | &quot;ACCEPTED&quot;
 RECEIVED | &quot;RECEIVED&quot;
 COMPLETED | &quot;COMPLETED&quot;
 CANCELLED | &quot;CANCELLED&quot;
+POSTPONED | &quot;POSTPONED&quot;
+REJECTED | &quot;REJECTED&quot;
+REVERSED | &quot;REVERSED&quot;
+PENDING | &quot;PENDING&quot;

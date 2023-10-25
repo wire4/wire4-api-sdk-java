@@ -25,3 +25,15 @@ Name | Type | Description | Notes
 **senderBank** | [**MessageInstitution**](MessageInstitution.md) |  |  [optional]
 **senderName** | **String** | Es el nombre del ordenante. |  [optional]
 **senderRfc** | **String** | Es el Registro Federal de Contribuyentes (RFC) de la cuenta ordenante. |  [optional]
+**status** | [**StatusEnum**](#StatusEnum) | Es el estatus del depósito (COMPLETED/RETURNED). |  [optional]
+
+<a name="StatusEnum"></a>
+## Enum: StatusEnum
+Name | Value
+---- | -----
+PENDING | &quot;PENDING&quot;
+COMPLETED | &quot;COMPLETED&quot;
+FAILED | &quot;FAILED&quot;
+CANCELLED | &quot;CANCELLED&quot;
+AUTHORIZING | &quot;AUTHORIZING&quot;
+REJECTED | &quot;REJECTED&quot;

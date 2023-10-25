@@ -30,6 +30,7 @@ import mx.wire4.model.MessageInstitution;
  */
 
 
+
 public class Deposit {
   @SerializedName("amount")
   private BigDecimal amount = null;
@@ -96,6 +97,60 @@ public class Deposit {
 
   @SerializedName("sender_rfc")
   private String senderRfc = null;
+
+  /**
+   * Es el estatus del depósito (COMPLETED/RETURNED).
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    @SerializedName("PENDING")
+    PENDING("PENDING"),
+    @SerializedName("COMPLETED")
+    COMPLETED("COMPLETED"),
+    @SerializedName("FAILED")
+    FAILED("FAILED"),
+    @SerializedName("CANCELLED")
+    CANCELLED("CANCELLED"),
+    @SerializedName("AUTHORIZING")
+    AUTHORIZING("AUTHORIZING"),
+    @SerializedName("REJECTED")
+    REJECTED("REJECTED");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    public static StatusEnum fromValue(String input) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(input)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        Object value = jsonReader.nextString();
+        return StatusEnum.fromValue((String)(value));
+      }
+    }
+  }  @SerializedName("status")
+  private StatusEnum status = null;
 
   public Deposit amount(BigDecimal amount) {
     this.amount = amount;
@@ -493,6 +548,24 @@ public class Deposit {
     this.senderRfc = senderRfc;
   }
 
+  public Deposit status(StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Es el estatus del depósito (COMPLETED/RETURNED).
+   * @return status
+  **/
+  @Schema(description = "Es el estatus del depósito (COMPLETED/RETURNED).")
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -524,12 +597,13 @@ public class Deposit {
         Objects.equals(this.senderAccount, deposit.senderAccount) &&
         Objects.equals(this.senderBank, deposit.senderBank) &&
         Objects.equals(this.senderName, deposit.senderName) &&
-        Objects.equals(this.senderRfc, deposit.senderRfc);
+        Objects.equals(this.senderRfc, deposit.senderRfc) &&
+        Objects.equals(this.status, deposit.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, cep, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantAlias, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, reference, senderAccount, senderBank, senderName, senderRfc);
+    return Objects.hash(amount, beneficiaryAccount, beneficiaryName, beneficiaryRfc, cep, claveRastreo, confirmDate, currencyCode, depositDate, depositant, depositantAlias, depositantClabe, depositantEmail, depositantRfc, description, monexDescription, monexTransactionId, reference, senderAccount, senderBank, senderName, senderRfc, status);
   }
 
 
@@ -560,6 +634,7 @@ public class Deposit {
     sb.append("    senderBank: ").append(toIndentedString(senderBank)).append("\n");
     sb.append("    senderName: ").append(toIndentedString(senderName)).append("\n");
     sb.append("    senderRfc: ").append(toIndentedString(senderRfc)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -33,9 +33,13 @@ import mx.wire4.model.Person;
  */
 @Schema(description = "Objeto que contiene información de la cuenta.")
 
+
 public class AccountResponse {
   @SerializedName("amount_limit")
   private BigDecimal amountLimit = null;
+
+  @SerializedName("authorization_date")
+  private OffsetDateTime authorizationDate = null;
 
   @SerializedName("bank")
   private Institution bank = null;
@@ -89,6 +93,24 @@ public class AccountResponse {
 
   public void setAmountLimit(BigDecimal amountLimit) {
     this.amountLimit = amountLimit;
+  }
+
+  public AccountResponse authorizationDate(OffsetDateTime authorizationDate) {
+    this.authorizationDate = authorizationDate;
+    return this;
+  }
+
+   /**
+   * Es la fecha en la que se autorizó el registro del beneficiario. Ésta fecha viene en formato ISO 8601 con zona horaria, ejemplo: &lt;strong&gt;2020-10-27T11:03:15.000-06:00&lt;/strong&gt;.
+   * @return authorizationDate
+  **/
+  @Schema(description = "Es la fecha en la que se autorizó el registro del beneficiario. Ésta fecha viene en formato ISO 8601 con zona horaria, ejemplo: <strong>2020-10-27T11:03:15.000-06:00</strong>.")
+  public OffsetDateTime getAuthorizationDate() {
+    return authorizationDate;
+  }
+
+  public void setAuthorizationDate(OffsetDateTime authorizationDate) {
+    this.authorizationDate = authorizationDate;
   }
 
   public AccountResponse bank(Institution bank) {
@@ -326,6 +348,7 @@ public class AccountResponse {
     }
     AccountResponse accountResponse = (AccountResponse) o;
     return Objects.equals(this.amountLimit, accountResponse.amountLimit) &&
+        Objects.equals(this.authorizationDate, accountResponse.authorizationDate) &&
         Objects.equals(this.bank, accountResponse.bank) &&
         Objects.equals(this.beneficiaryAccount, accountResponse.beneficiaryAccount) &&
         Objects.equals(this.email, accountResponse.email) &&
@@ -342,7 +365,7 @@ public class AccountResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountLimit, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpei, paymentConceptSpei, person, registerDate, relationship, rfc, status);
+    return Objects.hash(amountLimit, authorizationDate, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpei, paymentConceptSpei, person, registerDate, relationship, rfc, status);
   }
 
 
@@ -352,6 +375,7 @@ public class AccountResponse {
     sb.append("class AccountResponse {\n");
     
     sb.append("    amountLimit: ").append(toIndentedString(amountLimit)).append("\n");
+    sb.append("    authorizationDate: ").append(toIndentedString(authorizationDate)).append("\n");
     sb.append("    bank: ").append(toIndentedString(bank)).append("\n");
     sb.append("    beneficiaryAccount: ").append(toIndentedString(beneficiaryAccount)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");

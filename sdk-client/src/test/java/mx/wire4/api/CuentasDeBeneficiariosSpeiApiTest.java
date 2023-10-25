@@ -12,7 +12,6 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.AccountRequest;
 import mx.wire4.model.AmountRequest;
 import mx.wire4.model.AuthorizedBeneficiariesResponse;
@@ -24,10 +23,12 @@ import mx.wire4.model.UrlsRedirect;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for CuentasDeBeneficiariosSpeiApi
@@ -42,11 +43,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      *
      * Solicta la agrupación de las cuentas de beneficiarios en estado pendiente para que sean autorizadas,  para ello se crea un conjunto de éstas que puede incluir tanto de SPEI como de SPID. Además se debe indicar las urls de redirección en caso de error y éxito
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void authorizeAccountsPendingPUTTest() throws ApiException {
+    public void authorizeAccountsPendingPUTTest() throws Exception {
         UrlsRedirect body = null;
         String authorization = null;
         String subscription = null;
@@ -59,11 +60,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      *
      * Elimina la cuenta de beneficiario proporcionada relacionada al contrato perteneciente a la suscripción. La cuenta a borrar debe ser una que opere con SPEI.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void deleteAccountUsingDELETETest() throws ApiException {
+    public void deleteAccountUsingDELETETest() throws Exception {
         String authorization = null;
         String account = null;
         String subscription = null;
@@ -76,11 +77,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      *
      * Obtiene las posibles relaciones existentes para registrar beneficiarios en Monex. Se debe invocar este recurso antes de pre-registrar una cuenta de beneficiario.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getAvailableRelationshipsMonexUsingGETTest() throws ApiException {
+    public void getAvailableRelationshipsMonexUsingGETTest() throws Exception {
         String authorization = null;
         String subscription = null;
         RelationshipsResponse response = api.getAvailableRelationshipsMonexUsingGET(authorization, subscription);
@@ -92,11 +93,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      *
      * Obtiene los beneficiarios enviados para registro en una petición al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex, que pertenezcan a la petición que se solicita.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getBeneficiariesByRequestIdTest() throws ApiException {
+    public void getBeneficiariesByRequestIdTest() throws Exception {
         String authorization = null;
         String requestId = null;
         String subscription = null;
@@ -109,11 +110,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      *
      * Obtiene los beneficiarios registrados al contrato relacionado con la suscripción, Los beneficiarios son los que actualmente se encuentran registrados en banca Monex.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void getBeneficiariesForAccountUsingGETTest() throws ApiException {
+    public void getBeneficiariesForAccountUsingGETTest() throws Exception {
         String authorization = null;
         String subscription = null;
         String account = null;
@@ -121,9 +122,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
         String beneficiaryName = null;
         String endDate = null;
         String initDate = null;
+        String page = null;
         String rfc = null;
+        String size = null;
         String status = null;
-        BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
+        BeneficiariesResponse response = api.getBeneficiariesForAccountUsingGET(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status);
 
         // TODO: test validations
     }
@@ -132,11 +135,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      *
      * Pre-registra una o más cuentas de beneficiario en la plataforma de Wire4, ésta le proporcionará una URL donde lo llevará al centro de autorización para que el cuentahabiente Monex ingrese su llave digital para confirmar el alta de las cuentas de beneficiarios.&lt;br/&gt; Los posibles valores de &lt;em&gt;relationship&lt;/em&gt; y &lt;em&gt;kind_of_relationship&lt;/em&gt; se deben  obtener de &lt;a href&#x3D;\&quot;#operation/getAvailableRelationshipsMonexUsingGET\&quot;&gt;/subscriptions/{subscription}/beneficiaries/relationships.&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;La confirmación de registro en Monex se realizará a través de una notificación a los webhooks registrados con el evento de tipo &lt;a href&#x3D;\&quot;#section/Eventos/Tipos-de-Eventos\&quot;&gt;ACCOUNT.CREATED.&lt;/a&gt;
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void preRegisterAccountsUsingPOSTTest() throws ApiException {
+    public void preRegisterAccountsUsingPOSTTest() throws Exception {
         AccountRequest body = null;
         String authorization = null;
         String subscription = null;
@@ -149,11 +152,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      *
      * Elimina uno o más beneficiarios que se encuentran en estado pendiente de confirmar (autorizar) de la cuenta del cliente Monex relacionada a la suscripción.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void removeBeneficiariesPendingUsingDELETETest() throws ApiException {
+    public void removeBeneficiariesPendingUsingDELETETest() throws Exception {
         String authorization = null;
         String requestId = null;
         String subscription = null;
@@ -166,11 +169,11 @@ public class CuentasDeBeneficiariosSpeiApiTest {
      *
      * Se crea una solicitud para actualizar el monto límite a la cuenta de beneficiario proporcionada y relacionada al contrato perteneciente a la subscripción. Una vez enviada la solicitud se retornará una URl que lo llevará al centro de autorización para que el cuentahabiente Monex ingrese su llave digital para confirmar la actualización del monto límite. 
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void updateAmountLimitAccountUsingPUTTest() throws ApiException {
+    public void updateAmountLimitAccountUsingPUTTest() throws Exception {
         AmountRequest body = null;
         String authorization = null;
         String account = null;

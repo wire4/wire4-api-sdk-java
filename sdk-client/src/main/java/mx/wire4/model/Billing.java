@@ -31,6 +31,7 @@ import mx.wire4.model.BillingTransaction;
  */
 @Schema(description = "Contiene la información de la factura")
 
+
 public class Billing {
   @SerializedName("amount")
   private BigDecimal amount = null;
@@ -52,9 +53,13 @@ public class Billing {
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
+    @SerializedName("PAID")
     PAID("PAID"),
+    @SerializedName("OMMITED")
     OMMITED("OMMITED"),
+    @SerializedName("WAITING_PAYMENT")
     WAITING_PAYMENT("WAITING_PAYMENT"),
+    @SerializedName("EMISSION_PENDING")
     EMISSION_PENDING("EMISSION_PENDING");
 
     private String value;
@@ -70,9 +75,9 @@ public class Billing {
     public String toString() {
       return String.valueOf(value);
     }
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String input) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -81,13 +86,13 @@ public class Billing {
     public static class Adapter extends TypeAdapter<StatusEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return StatusEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("status")

@@ -28,6 +28,7 @@ import java.time.OffsetDateTime;
  */
 @Schema(description = "Objeto que contiene la información de solicitud de pago por CODI®.")
 
+
 public class CodiOperationResponseDTO {
   @SerializedName("amount")
   private BigDecimal amount = null;

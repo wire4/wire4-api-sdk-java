@@ -8,3 +8,4 @@ Name | Type | Description | Notes
 **depositantClabe** | **String** | Es la cuenta CLABE (es de 18 dígitos) del depositante. |  [optional]
 **email** | **List&lt;String&gt;** | Es la lista de correos electrónicos (emails) del depositante. |  [optional]
 **name** | **String** | Es el nombre del depositante. |  [optional]
+**status** | **String** | Es el estatus del depositante. |  [optional]

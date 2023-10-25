@@ -23,4 +23,12 @@ Name | Type | Description | Notes
 **senderName** | **String** | Es el nombre del emisor. |  [optional]
 **senderRfc** | **String** | Es el Registro Federal de Contribuyentes (RFC) del emisor. |  [optional]
 **signature** | **String** | Firma del CEP.. |  [optional]
+**type** | [**TypeEnum**](#TypeEnum) | Es el tiop de CEP, puede ser: &lt;strong&gt;SPEI&lt;/strong&gt; o &lt;strong&gt;SPID&lt;/strong&gt;. |  [optional]
 **urlZip** | **String** | La url al archivo zip del CEP, el cual contiene el xml y pdf |  [optional]
+
+<a name="TypeEnum"></a>
+## Enum: TypeEnum
+Name | Value
+---- | -----
+SPEI | &quot;SPEI&quot;
+SPID | &quot;SPID&quot;

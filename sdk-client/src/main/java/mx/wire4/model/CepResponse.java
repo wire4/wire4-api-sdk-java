@@ -28,6 +28,7 @@ import java.time.OffsetDateTime;
  */
 
 
+
 public class CepResponse {
   @SerializedName("account_beneficiary")
   private String accountBeneficiary = null;
@@ -88,6 +89,52 @@ public class CepResponse {
 
   @SerializedName("signature")
   private String signature = null;
+
+  /**
+   * Es el tiop de CEP, puede ser: &lt;strong&gt;SPEI&lt;/strong&gt; o &lt;strong&gt;SPID&lt;/strong&gt;.
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    @SerializedName("SPEI")
+    SPEI("SPEI"),
+    @SerializedName("SPID")
+    SPID("SPID");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    public static TypeEnum fromValue(String input) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(input)) {
+          return b;
+        }
+      }
+      return null;
+    }
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        Object value = jsonReader.nextString();
+        return TypeEnum.fromValue((String)(value));
+      }
+    }
+  }  @SerializedName("type")
+  private TypeEnum type = null;
 
   @SerializedName("url_zip")
   private String urlZip = null;
@@ -452,6 +499,24 @@ public class CepResponse {
     this.signature = signature;
   }
 
+  public CepResponse type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Es el tiop de CEP, puede ser: &lt;strong&gt;SPEI&lt;/strong&gt; o &lt;strong&gt;SPID&lt;/strong&gt;.
+   * @return type
+  **/
+  @Schema(description = "Es el tiop de CEP, puede ser: <strong>SPEI</strong> o <strong>SPID</strong>.")
+  public TypeEnum getType() {
+    return type;
+  }
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
   public CepResponse urlZip(String urlZip) {
     this.urlZip = urlZip;
     return this;
@@ -500,12 +565,13 @@ public class CepResponse {
         Objects.equals(this.senderName, cepResponse.senderName) &&
         Objects.equals(this.senderRfc, cepResponse.senderRfc) &&
         Objects.equals(this.signature, cepResponse.signature) &&
+        Objects.equals(this.type, cepResponse.type) &&
         Objects.equals(this.urlZip, cepResponse.urlZip);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountBeneficiary, accountSender, amount, available, beneficiaryBankKey, beneficiaryName, beneficiaryRfc, cadenaOriginal, captureDate, certificateSerialNumber, claveRastreo, description, iva, operationDate, operationDateCep, reference, senderBankKey, senderName, senderRfc, signature, urlZip);
+    return Objects.hash(accountBeneficiary, accountSender, amount, available, beneficiaryBankKey, beneficiaryName, beneficiaryRfc, cadenaOriginal, captureDate, certificateSerialNumber, claveRastreo, description, iva, operationDate, operationDateCep, reference, senderBankKey, senderName, senderRfc, signature, type, urlZip);
   }
 
 
@@ -534,6 +600,7 @@ public class CepResponse {
     sb.append("    senderName: ").append(toIndentedString(senderName)).append("\n");
     sb.append("    senderRfc: ").append(toIndentedString(senderRfc)).append("\n");
     sb.append("    signature: ").append(toIndentedString(signature)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    urlZip: ").append(toIndentedString(urlZip)).append("\n");
     sb.append("}");
     return sb.toString();

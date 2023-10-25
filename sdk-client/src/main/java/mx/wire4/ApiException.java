@@ -15,6 +15,7 @@ package mx.wire4;
 import java.util.Map;
 import java.util.List;
 
+
 public class ApiException extends Exception {
     private int code = 0;
     private Map<String, List<String>> responseHeaders = null;

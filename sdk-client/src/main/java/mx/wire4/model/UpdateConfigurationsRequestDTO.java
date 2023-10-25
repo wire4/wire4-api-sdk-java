@@ -29,6 +29,7 @@ import mx.wire4.model.ConfigurationsLimits;
  */
 @Schema(description = "Contiene el listado de grupo de configuraciones para actualizar")
 
+
 public class UpdateConfigurationsRequestDTO {
   @SerializedName("configurations")
   private List<ConfigurationsLimits> configurations = new ArrayList<>();

@@ -12,7 +12,6 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.AuthorizedUsers;
 import mx.wire4.model.ContractDetailRequest;
 import mx.wire4.model.ContractDetailResponse;
@@ -22,10 +21,12 @@ import mx.wire4.model.TokenRequiredResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for ContractsDetailsApi
@@ -40,11 +41,11 @@ public class ContractsDetailsApiTest {
      *
      * Se obtiene la URL para la autorización del usuario Monex.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void createAuthorizationTest() throws ApiException {
+    public void createAuthorizationTest() throws Exception {
         PreMonexAuthorization body = null;
         String authorization = null;
         TokenRequiredResponse response = api.createAuthorization(body, authorization);
@@ -56,11 +57,11 @@ public class ContractsDetailsApiTest {
      *
      * Obtienen los detalles de los usuarios autorizados de Monex.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void obtainAuthorizedUsersTest() throws ApiException {
+    public void obtainAuthorizedUsersTest() throws Exception {
         String authorization = null;
         String X_ACCESS_KEY = null;
         String requestId = null;
@@ -73,11 +74,11 @@ public class ContractsDetailsApiTest {
      *
      * Obtienen los detalles de los usuarios autorizados por contrato Monex.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void obtainAuthorizedUsersByContractTest() throws ApiException {
+    public void obtainAuthorizedUsersByContractTest() throws Exception {
         String authorization = null;
         String X_ACCESS_KEY = null;
         String contract = null;
@@ -90,11 +91,11 @@ public class ContractsDetailsApiTest {
      *
      * Detalles de la compañía relacionada con el contrato de Monex.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void obtainContractDetailsTest() throws ApiException {
+    public void obtainContractDetailsTest() throws Exception {
         ContractDetailRequest body = null;
         String authorization = null;
         String X_ACCESS_KEY = null;

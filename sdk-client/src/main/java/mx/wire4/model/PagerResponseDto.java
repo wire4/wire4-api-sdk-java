@@ -29,6 +29,7 @@ import mx.wire4.model.Operations;
  */
 
 
+
 public class PagerResponseDto {
   @SerializedName("content")
   private List<Operations> content = null;

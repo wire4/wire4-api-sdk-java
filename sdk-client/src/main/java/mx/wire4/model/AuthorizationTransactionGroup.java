@@ -29,6 +29,7 @@ import mx.wire4.model.UrlsRedirect;
  */
 @Schema(description = "Contiene la información para agrupar transacciones existentes y autorizarlas de forma conjunta")
 
+
 public class AuthorizationTransactionGroup {
   @SerializedName("redirect_urls")
   private UrlsRedirect redirectUrls = null;

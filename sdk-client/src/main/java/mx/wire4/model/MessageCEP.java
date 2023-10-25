@@ -28,6 +28,7 @@ import java.time.OffsetDateTime;
  */
 @Schema(description = "Es el objeto del Comprobante Electrónico de Pago (CEP) de la transferencia, que es emitido por Banxico. Se muestra sólo cuando esté disponible, en otro caso se podrá usar la <a href=\"#operation/obtainTransactionCepUsingPOST\">Consulta de CEP</a> que ésta misma API ofrece.")
 
+
 public class MessageCEP {
   @SerializedName("account_beneficiary")
   private String accountBeneficiary = null;

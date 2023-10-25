@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Certificado de la empresa que se está registrando.")
 
+
 public class CertificateRequest {
   @SerializedName("alias")
   private String alias = null;
@@ -81,10 +82,10 @@ public class CertificateRequest {
   }
 
    /**
-   * Es el dígito verificador. Es un sólo dígito.
+   * Es el dígito verificador. Máximo 3 dígitos.
    * @return checkDigit
   **/
-  @Schema(description = "Es el dígito verificador. Es un sólo dígito.")
+  @Schema(description = "Es el dígito verificador. Máximo 3 dígitos.")
   public String getCheckDigit() {
     return checkDigit;
   }

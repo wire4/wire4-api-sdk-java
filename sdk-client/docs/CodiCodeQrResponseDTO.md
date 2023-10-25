@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **dueDate** | [**OffsetDateTime**](OffsetDateTime.md) | Es la fecha de operación del pago CODI®. Ésta fecha viene en formato ISO 8601 con zona horaria, ejemplo: &lt;strong&gt;2020-10-27T11:03:15.000-06:00&lt;/strong&gt;. |  [optional]
 **orderId** | **String** | Es la referencia de la transferencia asignada por el cliente. |  [optional]
 **phoneNumber** | **String** | Es el Número de teléfono móvil en caso de ser un pago CODI® usando \&quot;PUSH_NOTIFICATION\&quot;. |  [optional]
+**reference** | **Integer** | Referencia numérica del pago CODI®. |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) | El estado del código QR para pago CODI®. |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) | Es el tipo de código QR para pago con CODI®. |  [optional]
 
@@ -18,9 +19,14 @@ Name | Type | Description | Notes
 ## Enum: StatusEnum
 Name | Value
 ---- | -----
+ACCEPTED | &quot;ACCEPTED&quot;
 RECEIVED | &quot;RECEIVED&quot;
 COMPLETED | &quot;COMPLETED&quot;
 CANCELLED | &quot;CANCELLED&quot;
+POSTPONED | &quot;POSTPONED&quot;
+REJECTED | &quot;REJECTED&quot;
+REVERSED | &quot;REVERSED&quot;
+PENDING | &quot;PENDING&quot;
 
 <a name="TypeEnum"></a>
 ## Enum: TypeEnum
@@ -28,3 +34,4 @@ Name | Value
 ---- | -----
 PUSH_NOTIFICATION | &quot;PUSH_NOTIFICATION&quot;
 QR_CODE | &quot;QR_CODE&quot;
+UNKNOWN | &quot;UNKNOWN&quot;

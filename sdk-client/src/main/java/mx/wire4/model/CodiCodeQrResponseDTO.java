@@ -28,6 +28,7 @@ import java.time.OffsetDateTime;
  */
 
 
+
 public class CodiCodeQrResponseDTO {
   @SerializedName("amount")
   private BigDecimal amount = null;
@@ -53,14 +54,30 @@ public class CodiCodeQrResponseDTO {
   @SerializedName("phone_number")
   private String phoneNumber = null;
 
+  @SerializedName("reference")
+  private Integer reference = null;
+
   /**
    * El estado del código QR para pago CODI®.
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
+    @SerializedName("ACCEPTED")
+    ACCEPTED("ACCEPTED"),
+    @SerializedName("RECEIVED")
     RECEIVED("RECEIVED"),
+    @SerializedName("COMPLETED")
     COMPLETED("COMPLETED"),
-    CANCELLED("CANCELLED");
+    @SerializedName("CANCELLED")
+    CANCELLED("CANCELLED"),
+    @SerializedName("POSTPONED")
+    POSTPONED("POSTPONED"),
+    @SerializedName("REJECTED")
+    REJECTED("REJECTED"),
+    @SerializedName("REVERSED")
+    REVERSED("REVERSED"),
+    @SerializedName("PENDING")
+    PENDING("PENDING");
 
     private String value;
 
@@ -75,9 +92,9 @@ public class CodiCodeQrResponseDTO {
     public String toString() {
       return String.valueOf(value);
     }
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String input) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -86,13 +103,13 @@ public class CodiCodeQrResponseDTO {
     public static class Adapter extends TypeAdapter<StatusEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return StatusEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("status")
@@ -103,8 +120,12 @@ public class CodiCodeQrResponseDTO {
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
+    @SerializedName("PUSH_NOTIFICATION")
     PUSH_NOTIFICATION("PUSH_NOTIFICATION"),
-    QR_CODE("QR_CODE");
+    @SerializedName("QR_CODE")
+    QR_CODE("QR_CODE"),
+    @SerializedName("UNKNOWN")
+    UNKNOWN("UNKNOWN");
 
     private String value;
 
@@ -119,9 +140,9 @@ public class CodiCodeQrResponseDTO {
     public String toString() {
       return String.valueOf(value);
     }
-    public static TypeEnum fromValue(String text) {
+    public static TypeEnum fromValue(String input) {
       for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -130,13 +151,13 @@ public class CodiCodeQrResponseDTO {
     public static class Adapter extends TypeAdapter<TypeEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return TypeEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("type")
@@ -286,6 +307,24 @@ public class CodiCodeQrResponseDTO {
     this.phoneNumber = phoneNumber;
   }
 
+  public CodiCodeQrResponseDTO reference(Integer reference) {
+    this.reference = reference;
+    return this;
+  }
+
+   /**
+   * Referencia numérica del pago CODI®.
+   * @return reference
+  **/
+  @Schema(description = "Referencia numérica del pago CODI®.")
+  public Integer getReference() {
+    return reference;
+  }
+
+  public void setReference(Integer reference) {
+    this.reference = reference;
+  }
+
   public CodiCodeQrResponseDTO status(StatusEnum status) {
     this.status = status;
     return this;
@@ -340,13 +379,14 @@ public class CodiCodeQrResponseDTO {
         Objects.equals(this.dueDate, codiCodeQrResponseDTO.dueDate) &&
         Objects.equals(this.orderId, codiCodeQrResponseDTO.orderId) &&
         Objects.equals(this.phoneNumber, codiCodeQrResponseDTO.phoneNumber) &&
+        Objects.equals(this.reference, codiCodeQrResponseDTO.reference) &&
         Objects.equals(this.status, codiCodeQrResponseDTO.status) &&
         Objects.equals(this.type, codiCodeQrResponseDTO.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, barcodeBase64, barcodeUrl, concept, creationDate, dueDate, orderId, phoneNumber, status, type);
+    return Objects.hash(amount, barcodeBase64, barcodeUrl, concept, creationDate, dueDate, orderId, phoneNumber, reference, status, type);
   }
 
 
@@ -363,6 +403,7 @@ public class CodiCodeQrResponseDTO {
     sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");

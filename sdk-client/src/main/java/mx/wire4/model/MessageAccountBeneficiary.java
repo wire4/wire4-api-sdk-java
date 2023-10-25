@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Es el objeto del mensaje que se envía mediante webhook con la información del registro de la cuenta del beneficiario.")
 
+
 public class MessageAccountBeneficiary {
   @SerializedName("account")
   private String account = null;

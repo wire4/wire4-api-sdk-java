@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 
 
+
 public class TransactionErrorCode {
   @SerializedName("code")
   private String code = null;

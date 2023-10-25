@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Objeto que contiene los datos de la persona propietaria de la cuenta")
 
+
 public class Person {
   @SerializedName("last_name")
   private String lastName = null;
@@ -45,7 +46,7 @@ public class Person {
    * Apellido Materno del propietario de la cuenta
    * @return lastName
   **/
-  @Schema(required = true, description = "Apellido Materno del propietario de la cuenta")
+  @Schema(description = "Apellido Materno del propietario de la cuenta")
   public String getLastName() {
     return lastName;
   }

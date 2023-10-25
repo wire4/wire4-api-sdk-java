@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Respuesta con una dirección URL para el centro de autorización y se que requiere una autorización mediante un token.")
 
+
 public class TokenRequiredResponse {
   @SerializedName("request_id")
   private String requestId = null;

@@ -27,6 +27,7 @@ import java.math.BigDecimal;
  */
 @Schema(description = "Objeto que contiene el saldo, moneda y código de moneda.")
 
+
 public class Balance {
   @SerializedName("balance")
   private BigDecimal balance = null;

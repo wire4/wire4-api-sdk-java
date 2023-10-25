@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amountLimit** | [**BigDecimal**](BigDecimal.md) | Monto límite permitido para la cuenta. Ejemplo: 1000.00 | 
+**authorizationDate** | [**OffsetDateTime**](OffsetDateTime.md) | La fecha en la que se registro el beneficiario. |  [optional]
 **bank** | [**Institution**](Institution.md) |  |  [optional]
 **beneficiaryAccount** | **String** | Cuenta del beneficiario debe ser una cuenta CLABE. Ejemplo: 032180000118359719. | 
 **email** | **List&lt;String&gt;** | Lista de correos electrónicos (emails), este dato es opcional. |  [optional]

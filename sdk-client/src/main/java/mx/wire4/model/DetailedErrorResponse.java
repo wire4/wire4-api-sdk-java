@@ -29,6 +29,7 @@ import mx.wire4.model.TransactionErrorCode;
  */
 
 
+
 public class DetailedErrorResponse {
   @SerializedName("errors")
   private List<TransactionErrorCode> errors = null;

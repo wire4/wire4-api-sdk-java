@@ -31,6 +31,7 @@ import mx.wire4.model.Payment;
  */
 
 
+
 public class PaymentsRequestId {
   @SerializedName("authorization_date")
   private OffsetDateTime authorizationDate = null;

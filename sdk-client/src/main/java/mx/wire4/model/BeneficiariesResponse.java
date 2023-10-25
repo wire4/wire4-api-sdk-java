@@ -29,6 +29,7 @@ import mx.wire4.model.AccountResponse;
  */
 
 
+
 public class BeneficiariesResponse {
   @SerializedName("beneficiaries")
   private List<AccountResponse> beneficiaries = null;

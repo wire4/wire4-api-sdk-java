@@ -29,6 +29,7 @@ import mx.wire4.model.SpidClassificationDTO;
  */
 
 
+
 public class SpidClassificationsResponseDTO {
   @SerializedName("classifications")
   private List<SpidClassificationDTO> classifications = null;

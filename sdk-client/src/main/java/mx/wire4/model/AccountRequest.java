@@ -29,6 +29,7 @@ import mx.wire4.model.Account;
  */
 @Schema(description = "Objeto request para guardar la cuenta del beneficiario")
 
+
 public class AccountRequest {
   @SerializedName("accounts")
   private List<Account> accounts = null;

@@ -28,6 +28,7 @@ import java.time.LocalDate;
  */
 
 
+
 public class CodiOperationsFiltersRequestDTO {
   @SerializedName("amount_from")
   private BigDecimal amountFrom = null;
@@ -55,9 +56,22 @@ public class CodiOperationsFiltersRequestDTO {
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
+    @SerializedName("ACCEPTED")
+    ACCEPTED("ACCEPTED"),
+    @SerializedName("RECEIVED")
     RECEIVED("RECEIVED"),
+    @SerializedName("COMPLETED")
     COMPLETED("COMPLETED"),
-    CANCELLED("CANCELLED");
+    @SerializedName("CANCELLED")
+    CANCELLED("CANCELLED"),
+    @SerializedName("POSTPONED")
+    POSTPONED("POSTPONED"),
+    @SerializedName("REJECTED")
+    REJECTED("REJECTED"),
+    @SerializedName("REVERSED")
+    REVERSED("REVERSED"),
+    @SerializedName("PENDING")
+    PENDING("PENDING");
 
     private String value;
 
@@ -72,9 +86,9 @@ public class CodiOperationsFiltersRequestDTO {
     public String toString() {
       return String.valueOf(value);
     }
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String input) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(input)) {
           return b;
         }
       }
@@ -83,13 +97,13 @@ public class CodiOperationsFiltersRequestDTO {
     public static class Adapter extends TypeAdapter<StatusEnum> {
       @Override
       public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
+        jsonWriter.value(String.valueOf(enumeration.getValue()));
       }
 
       @Override
       public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return StatusEnum.fromValue(String.valueOf(value));
+        Object value = jsonReader.nextString();
+        return StatusEnum.fromValue((String)(value));
       }
     }
   }  @SerializedName("status")

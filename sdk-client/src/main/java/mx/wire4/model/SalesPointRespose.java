@@ -27,6 +27,7 @@ import mx.wire4.model.Webhook;
  */
 @Schema(description = "Objeto que contiene la información del punto de venta que se registró.")
 
+
 public class SalesPointRespose {
   @SerializedName("sales_point_id")
   private String salesPointId = null;

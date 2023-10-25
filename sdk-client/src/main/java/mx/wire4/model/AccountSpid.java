@@ -30,6 +30,7 @@ import mx.wire4.model.BeneficiaryInstitution;
  */
 @Schema(description = "Objeto que contiene información de la cuenta")
 
+
 public class AccountSpid {
   @SerializedName("amount_limit")
   private BigDecimal amountLimit = null;

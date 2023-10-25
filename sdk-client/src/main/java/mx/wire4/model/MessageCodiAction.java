@@ -28,6 +28,7 @@ import java.time.OffsetDateTime;
  */
 @Schema(description = "Es el objeto del mensaje que se envía con la información del punto de venta registrado.")
 
+
 public class MessageCodiAction {
   @SerializedName("amount")
   private BigDecimal amount = null;

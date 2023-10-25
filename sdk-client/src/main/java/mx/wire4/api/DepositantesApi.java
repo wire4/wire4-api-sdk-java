@@ -26,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import mx.wire4.model.Depositant;
 import mx.wire4.model.DepositantCountResponse;
 import mx.wire4.model.DepositantsRegister;
 import mx.wire4.model.DepositantsResponse;
@@ -68,28 +69,28 @@ public class DepositantesApi {
      */
     public com.squareup.okhttp.Call getDepositantsTotalsUsingGETCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-
+        
         // create path and map variables
         String localVarPath = "/subscriptions/{subscription}/depositants/count"
-                .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
+            .replaceAll("\\{" + "subscription" + "\\}", apiClient.escapeString(subscription.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (authorization != null)
-            localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-
+            
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -100,8 +101,8 @@ public class DepositantesApi {
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                            .build();
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
                 }
             });
         }
@@ -109,7 +110,7 @@ public class DepositantesApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-
+    
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call getDepositantsTotalsUsingGETValidateBeforeCall(String authorization, String subscription, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'authorization' is set
@@ -120,14 +121,18 @@ public class DepositantesApi {
         if (subscription == null) {
             throw new ApiException("Missing the required parameter 'subscription' when calling getDepositantsTotalsUsingGET(Async)");
         }
-
+        
         com.squareup.okhttp.Call call = getDepositantsTotalsUsingGETCall(authorization, subscription, progressListener, progressRequestListener);
         return call;
 
+        
+        
+        
+        
     }
 
     /**
-     * Consulta cuantas cuentas de depositantes existen
+     * Número de depositantes por suscripción
      * Obtiene la cantidad el total de depositantes asociados al contrato relacionado a la suscripción.
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
@@ -140,7 +145,7 @@ public class DepositantesApi {
     }
 
     /**
-     * Consulta cuantas cuentas de depositantes existen
+     * Número de depositantes por suscripción
      * Obtiene la cantidad el total de depositantes asociados al contrato relacionado a la suscripción.
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
@@ -154,7 +159,7 @@ public class DepositantesApi {
     }
 
     /**
-     * Consulta cuantas cuentas de depositantes existen (asynchronously)
+     * Número de depositantes por suscripción (asynchronously)
      * Obtiene la cantidad el total de depositantes asociados al contrato relacionado a la suscripción.
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
@@ -188,7 +193,6 @@ public class DepositantesApi {
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-
     /**
      * Build call for getDepositantsUsingGET
      * @param authorization Header para token (required)
@@ -404,7 +408,7 @@ public class DepositantesApi {
 
     /**
      * Registra un nuevo depositante
-     * Registra un nuevo depositante en el contrato asociado a la suscripción.
+     * Registra un nuevo depositante en el contrato asociado a la suscripción. Si intenta registrar un depositante que previamente se había registrado, se devolverá la cuenta clabe asociada al Álias que está intentando registrar. Queda bajo responsabilidad del cliente verificar que los álias sean únicos en sus sistemas.
      * @param body Depositant info (required)
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
@@ -418,7 +422,7 @@ public class DepositantesApi {
 
     /**
      * Registra un nuevo depositante
-     * Registra un nuevo depositante en el contrato asociado a la suscripción.
+     * Registra un nuevo depositante en el contrato asociado a la suscripción. Si intenta registrar un depositante que previamente se había registrado, se devolverá la cuenta clabe asociada al Álias que está intentando registrar. Queda bajo responsabilidad del cliente verificar que los álias sean únicos en sus sistemas.
      * @param body Depositant info (required)
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
@@ -433,7 +437,7 @@ public class DepositantesApi {
 
     /**
      * Registra un nuevo depositante (asynchronously)
-     * Registra un nuevo depositante en el contrato asociado a la suscripción.
+     * Registra un nuevo depositante en el contrato asociado a la suscripción. Si intenta registrar un depositante que previamente se había registrado, se devolverá la cuenta clabe asociada al Álias que está intentando registrar. Queda bajo responsabilidad del cliente verificar que los álias sean únicos en sus sistemas.
      * @param body Depositant info (required)
      * @param authorization Header para token (required)
      * @param subscription Es el identificador de la suscripción a esta API. (required)
@@ -464,6 +468,302 @@ public class DepositantesApi {
 
         com.squareup.okhttp.Call call = registerDepositantsUsingPOSTValidateBeforeCall(body, authorization, subscription, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<DepositantsResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateStatusDepositantsNoSuscrptionUsingPATCH
+     * @param authorization Header para token (required)
+     * @param account Es la cuenta que va a ser actualizada. (required)
+     * @param action Es la cuenta que va a ser actualizada. (required)
+     * @param body Empty value (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateStatusDepositantsNoSuscrptionUsingPATCHCall(String authorization, String account, String action, String body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/depositants/{account}/{action}"
+            .replaceAll("\\{" + "account" + "\\}", apiClient.escapeString(account.toString()))
+            .replaceAll("\\{" + "action" + "\\}", apiClient.escapeString(action.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call updateStatusDepositantsNoSuscrptionUsingPATCHValidateBeforeCall(String authorization, String account, String action, String body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling updateStatusDepositantsNoSuscrptionUsingPATCH(Async)");
+        }
+        // verify the required parameter 'account' is set
+        if (account == null) {
+            throw new ApiException("Missing the required parameter 'account' when calling updateStatusDepositantsNoSuscrptionUsingPATCH(Async)");
+        }
+        // verify the required parameter 'action' is set
+        if (action == null) {
+            throw new ApiException("Missing the required parameter 'action' when calling updateStatusDepositantsNoSuscrptionUsingPATCH(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = updateStatusDepositantsNoSuscrptionUsingPATCHCall(authorization, account, action, body, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Solicitud para actualizar el estado de un depositante sin utilizar la suscripción
+     * 
+     * @param authorization Header para token (required)
+     * @param account Es la cuenta que va a ser actualizada. (required)
+     * @param action Es la cuenta que va a ser actualizada. (required)
+     * @param body Empty value (optional)
+     * @return Depositant
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Depositant updateStatusDepositantsNoSuscrptionUsingPATCH(String authorization, String account, String action, String body) throws ApiException {
+        ApiResponse<Depositant> resp = updateStatusDepositantsNoSuscrptionUsingPATCHWithHttpInfo(authorization, account, action, body);
+        return resp.getData();
+    }
+
+    /**
+     * Solicitud para actualizar el estado de un depositante sin utilizar la suscripción
+     * 
+     * @param authorization Header para token (required)
+     * @param account Es la cuenta que va a ser actualizada. (required)
+     * @param action Es la cuenta que va a ser actualizada. (required)
+     * @param body Empty value (optional)
+     * @return ApiResponse&lt;Depositant&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Depositant> updateStatusDepositantsNoSuscrptionUsingPATCHWithHttpInfo(String authorization, String account, String action, String body) throws ApiException {
+        com.squareup.okhttp.Call call = updateStatusDepositantsNoSuscrptionUsingPATCHValidateBeforeCall(authorization, account, action, body, null, null);
+        Type localVarReturnType = new TypeToken<Depositant>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Solicitud para actualizar el estado de un depositante sin utilizar la suscripción (asynchronously)
+     * 
+     * @param authorization Header para token (required)
+     * @param account Es la cuenta que va a ser actualizada. (required)
+     * @param action Es la cuenta que va a ser actualizada. (required)
+     * @param body Empty value (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateStatusDepositantsNoSuscrptionUsingPATCHAsync(String authorization, String account, String action, String body, final ApiCallback<Depositant> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateStatusDepositantsNoSuscrptionUsingPATCHValidateBeforeCall(authorization, account, action, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Depositant>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for updateStatusDepositantsUsingPATCH
+     * @param authorization Header para token (required)
+     * @param account Es la cuenta que va a ser actualizada. (required)
+     * @param action Es la cuenta que va a ser actualizada. (required)
+     * @param body Empty value (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call updateStatusDepositantsUsingPATCHCall(String authorization, String account, String action, String body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+        
+        // create path and map variables
+        String localVarPath = "/subscriptions/{subscription}/depositants/{account}/{action}"
+            .replaceAll("\\{" + "account" + "\\}", apiClient.escapeString(account.toString()))
+            .replaceAll("\\{" + "action" + "\\}", apiClient.escapeString(action.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (authorization != null)
+        localVarHeaderParams.put("Authorization", apiClient.parameterToString(authorization));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "*/*"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call updateStatusDepositantsUsingPATCHValidateBeforeCall(String authorization, String account, String action, String body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling updateStatusDepositantsUsingPATCH(Async)");
+        }
+        // verify the required parameter 'account' is set
+        if (account == null) {
+            throw new ApiException("Missing the required parameter 'account' when calling updateStatusDepositantsUsingPATCH(Async)");
+        }
+        // verify the required parameter 'action' is set
+        if (action == null) {
+            throw new ApiException("Missing the required parameter 'action' when calling updateStatusDepositantsUsingPATCH(Async)");
+        }
+        
+        com.squareup.okhttp.Call call = updateStatusDepositantsUsingPATCHCall(authorization, account, action, body, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Solicitud para actualizar el estado de un depossitante
+     * 
+     * @param authorization Header para token (required)
+     * @param account Es la cuenta que va a ser actualizada. (required)
+     * @param action Es la cuenta que va a ser actualizada. (required)
+     * @param body Empty value (optional)
+     * @return Depositant
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Depositant updateStatusDepositantsUsingPATCH(String authorization, String account, String action, String body) throws ApiException {
+        ApiResponse<Depositant> resp = updateStatusDepositantsUsingPATCHWithHttpInfo(authorization, account, action, body);
+        return resp.getData();
+    }
+
+    /**
+     * Solicitud para actualizar el estado de un depossitante
+     * 
+     * @param authorization Header para token (required)
+     * @param account Es la cuenta que va a ser actualizada. (required)
+     * @param action Es la cuenta que va a ser actualizada. (required)
+     * @param body Empty value (optional)
+     * @return ApiResponse&lt;Depositant&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Depositant> updateStatusDepositantsUsingPATCHWithHttpInfo(String authorization, String account, String action, String body) throws ApiException {
+        com.squareup.okhttp.Call call = updateStatusDepositantsUsingPATCHValidateBeforeCall(authorization, account, action, body, null, null);
+        Type localVarReturnType = new TypeToken<Depositant>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Solicitud para actualizar el estado de un depossitante (asynchronously)
+     * 
+     * @param authorization Header para token (required)
+     * @param account Es la cuenta que va a ser actualizada. (required)
+     * @param action Es la cuenta que va a ser actualizada. (required)
+     * @param body Empty value (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateStatusDepositantsUsingPATCHAsync(String authorization, String account, String action, String body, final ApiCallback<Depositant> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateStatusDepositantsUsingPATCHValidateBeforeCall(authorization, account, action, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Depositant>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

@@ -29,6 +29,7 @@ import mx.wire4.model.Balance;
  */
 @Schema(description = "Objeto que contiene la lista de movimientos del balance del contrato")
 
+
 public class BalanceListResponse {
   @SerializedName("balances")
   private List<Balance> balances = null;

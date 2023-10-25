@@ -65,14 +65,16 @@ public class CuentasDeBeneficiariosSpidApi {
      * @param beneficiaryName Es el nombre del beneficiario. (optional)
      * @param endDate Es la fecha de inicio del periodo a filtrar en formato dd-mm-yyyy. (optional)
      * @param initDate Es la fecha de inicio del periodo a filtrar en formato dd-mm-yyyy. (optional)
+     * @param page Es el número de página. (optional, default to 0)
      * @param rfc Es el Registro Federal de Contribuyentes (RFC) del beneficiario. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param status Es el estado (estatus) de la cuenta, Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getSpidBeneficiariesForAccountCall(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getSpidBeneficiariesForAccountCall(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -91,8 +93,12 @@ public class CuentasDeBeneficiariosSpidApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("end_date", endDate));
         if (initDate != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("init_date", initDate));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
         if (rfc != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("rfc", rfc));
+        if (size != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("size", size));
         if (status != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("status", status));
 
@@ -131,7 +137,7 @@ public class CuentasDeBeneficiariosSpidApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getSpidBeneficiariesForAccountValidateBeforeCall(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getSpidBeneficiariesForAccountValidateBeforeCall(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
             throw new ApiException("Missing the required parameter 'authorization' when calling getSpidBeneficiariesForAccount(Async)");
@@ -141,7 +147,7 @@ public class CuentasDeBeneficiariosSpidApi {
             throw new ApiException("Missing the required parameter 'subscription' when calling getSpidBeneficiariesForAccount(Async)");
         }
         
-        com.squareup.okhttp.Call call = getSpidBeneficiariesForAccountCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getSpidBeneficiariesForAccountCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status, progressListener, progressRequestListener);
         return call;
 
         
@@ -160,13 +166,15 @@ public class CuentasDeBeneficiariosSpidApi {
      * @param beneficiaryName Es el nombre del beneficiario. (optional)
      * @param endDate Es la fecha de inicio del periodo a filtrar en formato dd-mm-yyyy. (optional)
      * @param initDate Es la fecha de inicio del periodo a filtrar en formato dd-mm-yyyy. (optional)
+     * @param page Es el número de página. (optional, default to 0)
      * @param rfc Es el Registro Federal de Contribuyentes (RFC) del beneficiario. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param status Es el estado (estatus) de la cuenta, Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. (optional)
      * @return SpidBeneficiariesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SpidBeneficiariesResponse getSpidBeneficiariesForAccount(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status) throws ApiException {
-        ApiResponse<SpidBeneficiariesResponse> resp = getSpidBeneficiariesForAccountWithHttpInfo(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status);
+    public SpidBeneficiariesResponse getSpidBeneficiariesForAccount(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status) throws ApiException {
+        ApiResponse<SpidBeneficiariesResponse> resp = getSpidBeneficiariesForAccountWithHttpInfo(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status);
         return resp.getData();
     }
 
@@ -180,13 +188,15 @@ public class CuentasDeBeneficiariosSpidApi {
      * @param beneficiaryName Es el nombre del beneficiario. (optional)
      * @param endDate Es la fecha de inicio del periodo a filtrar en formato dd-mm-yyyy. (optional)
      * @param initDate Es la fecha de inicio del periodo a filtrar en formato dd-mm-yyyy. (optional)
+     * @param page Es el número de página. (optional, default to 0)
      * @param rfc Es el Registro Federal de Contribuyentes (RFC) del beneficiario. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param status Es el estado (estatus) de la cuenta, Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. (optional)
      * @return ApiResponse&lt;SpidBeneficiariesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SpidBeneficiariesResponse> getSpidBeneficiariesForAccountWithHttpInfo(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status) throws ApiException {
-        com.squareup.okhttp.Call call = getSpidBeneficiariesForAccountValidateBeforeCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status, null, null);
+    public ApiResponse<SpidBeneficiariesResponse> getSpidBeneficiariesForAccountWithHttpInfo(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status) throws ApiException {
+        com.squareup.okhttp.Call call = getSpidBeneficiariesForAccountValidateBeforeCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status, null, null);
         Type localVarReturnType = new TypeToken<SpidBeneficiariesResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -201,13 +211,15 @@ public class CuentasDeBeneficiariosSpidApi {
      * @param beneficiaryName Es el nombre del beneficiario. (optional)
      * @param endDate Es la fecha de inicio del periodo a filtrar en formato dd-mm-yyyy. (optional)
      * @param initDate Es la fecha de inicio del periodo a filtrar en formato dd-mm-yyyy. (optional)
+     * @param page Es el número de página. (optional, default to 0)
      * @param rfc Es el Registro Federal de Contribuyentes (RFC) del beneficiario. (optional)
+     * @param size Es el tamaño de página. (optional, default to 20)
      * @param status Es el estado (estatus) de la cuenta, Los valores pueden ser &lt;b&gt;PENDING&lt;/b&gt; y &lt;b&gt;REGISTERED&lt;/b&gt;. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getSpidBeneficiariesForAccountAsync(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String rfc, String status, final ApiCallback<SpidBeneficiariesResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getSpidBeneficiariesForAccountAsync(String authorization, String subscription, String account, String beneficiaryBank, String beneficiaryName, String endDate, String initDate, String page, String rfc, String size, String status, final ApiCallback<SpidBeneficiariesResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -228,7 +240,7 @@ public class CuentasDeBeneficiariosSpidApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getSpidBeneficiariesForAccountValidateBeforeCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, rfc, status, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getSpidBeneficiariesForAccountValidateBeforeCall(authorization, subscription, account, beneficiaryBank, beneficiaryName, endDate, initDate, page, rfc, size, status, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<SpidBeneficiariesResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

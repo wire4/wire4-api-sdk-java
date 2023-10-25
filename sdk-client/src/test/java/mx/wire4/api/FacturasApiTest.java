@@ -12,16 +12,17 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.Billing;
 import mx.wire4.model.ErrorResponse;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for FacturasApi
@@ -36,11 +37,11 @@ public class FacturasApiTest {
      *
      * Consulta las facturas emitidas por conceptos de uso de la plataforma y operaciones realizadas tanto de entrada como de salida. Se debe especificar el identificador de la factura
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void billingsReportByIdUsingGETTest() throws ApiException {
+    public void billingsReportByIdUsingGETTest() throws Exception {
         String authorization = null;
         String id = null;
         Billing response = api.billingsReportByIdUsingGET(authorization, id);
@@ -52,11 +53,11 @@ public class FacturasApiTest {
      *
      * Consulta las facturas emitidas por conceptos de uso de la plataforma y operaciones realizadas tanto de entrada como de salida. Es posible filtrar por periodo de fecha yyyy-MM, por ejemplo 2019-11
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void billingsReportUsingGETTest() throws ApiException {
+    public void billingsReportUsingGETTest() throws Exception {
         String authorization = null;
         String period = null;
         List<Billing> response = api.billingsReportUsingGET(authorization, period);

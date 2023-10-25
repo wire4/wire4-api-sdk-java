@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Schema(description = "Recibe las direcciones URL para redirigir en caso de éxito o de error.")
 
+
 public class UrlsRedirect {
   @SerializedName("cancel_return_url")
   private String cancelReturnUrl = null;

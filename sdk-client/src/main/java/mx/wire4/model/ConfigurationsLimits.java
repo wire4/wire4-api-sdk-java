@@ -29,6 +29,7 @@ import mx.wire4.model.Item;
  */
 @Schema(description = "Es la lista de configuraciones asociadas al contrato")
 
+
 public class ConfigurationsLimits {
   @SerializedName("group")
   private String group = null;

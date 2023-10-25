@@ -12,17 +12,18 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.CodiOperationsFiltersRequestDTO;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.PagerResponseDto;
 import org.junit.Test;
 import org.junit.Ignore;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for OperacionesCoDiApi
@@ -37,11 +38,11 @@ public class OperacionesCoDiApiTest {
      *
      * Obtiene las operaciones generadas a partir de peticiones de pago CODI® de forma paginada, pudiendo aplicar filtros.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void consultCodiOperationsTest() throws ApiException {
+    public void consultCodiOperationsTest() throws Exception {
         String authorization = null;
         CodiOperationsFiltersRequestDTO body = null;
         String companyId = null;

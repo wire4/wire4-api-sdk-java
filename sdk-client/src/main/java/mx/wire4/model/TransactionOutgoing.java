@@ -29,6 +29,7 @@ import java.util.List;
  */
 @Schema(description = "Objeto que contiene la información de una transferencias SPEI de salida")
 
+
 public class TransactionOutgoing {
   @SerializedName("amount")
   private BigDecimal amount = null;

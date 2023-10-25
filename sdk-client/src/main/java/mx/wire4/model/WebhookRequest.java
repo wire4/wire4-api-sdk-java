@@ -28,6 +28,7 @@ import java.util.List;
  */
 @Schema(description = "Objeto que contiene la información de un webhook.")
 
+
 public class WebhookRequest {
   @SerializedName("events")
   private List<String> events = new ArrayList<>();

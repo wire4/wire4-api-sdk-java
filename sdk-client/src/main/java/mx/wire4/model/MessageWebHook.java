@@ -27,6 +27,7 @@ import java.time.OffsetDateTime;
  */
 @Schema(description = "El objeto que se envía mediante un mensaje WebHook.")
 
+
 public class MessageWebHook {
   @SerializedName("api_version")
   private String apiVersion = null;

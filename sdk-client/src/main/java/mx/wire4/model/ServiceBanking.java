@@ -27,6 +27,7 @@ import mx.wire4.model.UseServiceBanking;
  */
 @Schema(description = "Servicio con el que se transacciona en la subscripción")
 
+
 public class ServiceBanking {
   @SerializedName("spei")
   private UseServiceBanking spei = null;

@@ -33,18 +33,19 @@ import mx.wire4.model.Person;
  */
 @Schema(description = "Objeto que contiene información de las cuenta SPEI/SPID reasignadas bajo un nuevo identificador de solicitud.")
 
+
 public class AccountReassigned {
   @SerializedName("amount_limit")
   private BigDecimal amountLimit = null;
+
+  @SerializedName("authorization_date")
+  private OffsetDateTime authorizationDate = null;
 
   @SerializedName("bank")
   private Institution bank = null;
 
   @SerializedName("beneficiary_account")
   private String beneficiaryAccount = null;
-
-  @SerializedName("currency_code")
-  private String currencyCode = null;
 
   @SerializedName("email")
   private List<String> email = null;
@@ -94,6 +95,24 @@ public class AccountReassigned {
     this.amountLimit = amountLimit;
   }
 
+  public AccountReassigned authorizationDate(OffsetDateTime authorizationDate) {
+    this.authorizationDate = authorizationDate;
+    return this;
+  }
+
+   /**
+   * Es la fecha en la que se autorizó el registro del beneficiario. Ésta fecha viene en formato ISO 8601 con zona horaria, ejemplo: &lt;strong&gt;2020-10-27T11:03:15.000-06:00&lt;/strong&gt;.
+   * @return authorizationDate
+  **/
+  @Schema(description = "Es la fecha en la que se autorizó el registro del beneficiario. Ésta fecha viene en formato ISO 8601 con zona horaria, ejemplo: <strong>2020-10-27T11:03:15.000-06:00</strong>.")
+  public OffsetDateTime getAuthorizationDate() {
+    return authorizationDate;
+  }
+
+  public void setAuthorizationDate(OffsetDateTime authorizationDate) {
+    this.authorizationDate = authorizationDate;
+  }
+
   public AccountReassigned bank(Institution bank) {
     this.bank = bank;
     return this;
@@ -128,24 +147,6 @@ public class AccountReassigned {
 
   public void setBeneficiaryAccount(String beneficiaryAccount) {
     this.beneficiaryAccount = beneficiaryAccount;
-  }
-
-  public AccountReassigned currencyCode(String currencyCode) {
-    this.currencyCode = currencyCode;
-    return this;
-  }
-
-   /**
-   * Es el código de divisa. Es en el formato estándar de 3 dígitos, por ejemplo para el peso mexicano: &lt;b&gt;MXP&lt;/b&gt;, para el dólar estadounidense: &lt;b&gt;USD&lt;/b&gt;.&lt;br/&gt;&lt;br/&gt;Este dato es opcional, al registrar una cuenta si no se cuenta con este valor se asignará &lt;b&gt;MXP&lt;/b&gt;
-   * @return currencyCode
-  **/
-  @Schema(description = "Es el código de divisa. Es en el formato estándar de 3 dígitos, por ejemplo para el peso mexicano: <b>MXP</b>, para el dólar estadounidense: <b>USD</b>.<br/><br/>Este dato es opcional, al registrar una cuenta si no se cuenta con este valor se asignará <b>MXP</b>")
-  public String getCurrencyCode() {
-    return currencyCode;
-  }
-
-  public void setCurrencyCode(String currencyCode) {
-    this.currencyCode = currencyCode;
   }
 
   public AccountReassigned email(List<String> email) {
@@ -347,9 +348,9 @@ public class AccountReassigned {
     }
     AccountReassigned accountReassigned = (AccountReassigned) o;
     return Objects.equals(this.amountLimit, accountReassigned.amountLimit) &&
+        Objects.equals(this.authorizationDate, accountReassigned.authorizationDate) &&
         Objects.equals(this.bank, accountReassigned.bank) &&
         Objects.equals(this.beneficiaryAccount, accountReassigned.beneficiaryAccount) &&
-        Objects.equals(this.currencyCode, accountReassigned.currencyCode) &&
         Objects.equals(this.email, accountReassigned.email) &&
         Objects.equals(this.institution, accountReassigned.institution) &&
         Objects.equals(this.kindOfRelationship, accountReassigned.kindOfRelationship) &&
@@ -364,7 +365,7 @@ public class AccountReassigned {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountLimit, bank, beneficiaryAccount, currencyCode, email, institution, kindOfRelationship, numericReferenceSpei, paymentConceptSpei, person, registerDate, relationship, rfc, status);
+    return Objects.hash(amountLimit, authorizationDate, bank, beneficiaryAccount, email, institution, kindOfRelationship, numericReferenceSpei, paymentConceptSpei, person, registerDate, relationship, rfc, status);
   }
 
 
@@ -374,9 +375,9 @@ public class AccountReassigned {
     sb.append("class AccountReassigned {\n");
     
     sb.append("    amountLimit: ").append(toIndentedString(amountLimit)).append("\n");
+    sb.append("    authorizationDate: ").append(toIndentedString(authorizationDate)).append("\n");
     sb.append("    bank: ").append(toIndentedString(bank)).append("\n");
     sb.append("    beneficiaryAccount: ").append(toIndentedString(beneficiaryAccount)).append("\n");
-    sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    institution: ").append(toIndentedString(institution)).append("\n");
     sb.append("    kindOfRelationship: ").append(toIndentedString(kindOfRelationship)).append("\n");

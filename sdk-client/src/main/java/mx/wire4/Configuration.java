@@ -12,6 +12,7 @@
 
 package mx.wire4;
 
+
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 

@@ -29,6 +29,7 @@ import mx.wire4.model.ConfigurationsLimits;
  */
 @Schema(description = "Configuración de límites de montos.")
 
+
 public class MessageConfigurationsLimits {
   @SerializedName("configurations")
   private List<ConfigurationsLimits> configurations = null;

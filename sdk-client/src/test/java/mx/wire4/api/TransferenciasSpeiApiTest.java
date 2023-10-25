@@ -12,22 +12,26 @@
 
 package mx.wire4.api;
 
-import mx.wire4.ApiException;
 import mx.wire4.model.AuthorizationTransactionGroup;
 import mx.wire4.model.Deposit;
 import mx.wire4.model.DetailedErrorResponse;
 import mx.wire4.model.ErrorResponse;
 import mx.wire4.model.Payment;
 import mx.wire4.model.PaymentsRequestId;
+import mx.wire4.model.PaymentsSpeiAndSpidOrderId;
+import mx.wire4.model.PaymentsSpeiAndSpidRequestId;
 import mx.wire4.model.TokenRequiredResponse;
 import mx.wire4.model.TransactionsOutgoingRegister;
+import mx.wire4.model.TransactionsRegister;
 import org.junit.Test;
 import org.junit.Ignore;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * API tests for TransferenciasSpeiApi
@@ -42,11 +46,11 @@ public class TransferenciasSpeiApiTest {
      *
      * Agrupa transacciones SPEI/SPID en un mismo transaction_id, posteriormente genera la dirección URL del centro de autorización para la confirmación de las transacciones. &lt;br&gt;&lt;br&gt;Las transacciones deben estar en estatus PENDING y pertenecer a un mismo contrato.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void createAuthorizationTransactionsGroupTest() throws ApiException {
+    public void createAuthorizationTransactionsGroupTest() throws Exception {
         AuthorizationTransactionGroup body = null;
         String authorization = null;
         String subscription = null;
@@ -59,11 +63,11 @@ public class TransferenciasSpeiApiTest {
      *
      * Elimina un conjunto de transferencias en estado pendiente de confirmar o autorizar, en la cuenta del cliente Monex relacionada a la suscripción.&lt;br&gt;&lt;br&gt;&lt;b&gt;Nota:&lt;/b&gt; Las transferencias no deben haber sido confirmadas o autorizadas por el cliente.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void dropTransactionsPendingUsingDELETETest() throws ApiException {
+    public void dropTransactionsPendingUsingDELETETest() throws Exception {
         String authorization = null;
         String requestId = null;
         String subscription = null;
@@ -77,11 +81,11 @@ public class TransferenciasSpeiApiTest {
      *
      * Realiza una consulta de las transferencias recibidas (depósitos) en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias  recibidas durante el día en el que se realiza la consulta. Para consultar transacciones que se encuentran en otras fechas se debe utilizar los parámetros de fecha inicial (beginDate) y fecha final (endDate), siempre deben de ir las dos ya que en caso de que falte una marcará error la consulta, si faltan las dos la consulta lanzará solo las del día, como se describe al inicio. El formato para las fechas es \&quot;yyyy-MM-dd\&quot;
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void incomingSpeiTransactionsReportUsingGETTest() throws ApiException {
+    public void incomingSpeiTransactionsReportUsingGETTest() throws Exception {
         String authorization = null;
         String subscription = null;
         String beginDate = null;
@@ -95,11 +99,11 @@ public class TransferenciasSpeiApiTest {
      *
      * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cuál se debe especificar como parte del path de este endpoint.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void outCommingSpeiRequestIdTransactionsReportUsingGETTest() throws ApiException {
+    public void outCommingSpeiRequestIdTransactionsReportUsingGETTest() throws Exception {
         String authorization = null;
         String requestId = null;
         String subscription = null;
@@ -108,15 +112,49 @@ public class TransferenciasSpeiApiTest {
         // TODO: test validations
     }
     /**
+     * Consulta de transferencias realizadas por order_id
+     *
+     * Consulta las transferencias que regresa este recuso son únicamente las transferencias recibidas en el día en el que se realiza la consulta o las transferencias identificadas con el &lt;strong&gt;order_id&lt;/strong&gt; proporcionado, para este tipo de consultas no importa el día en el que se realizó la transferencia. &lt;br&gt; Es importante que conozca que la respuesta puede dar como resultado un objeto con una lista spei o una lista spid con el/los elementos ya que un identificador order_id solo puede pertenecer a una transacción sea spei o spid.
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void outCommingSpeiSpidOrderIdTransactionReportUsingGETTest() throws Exception {
+        String authorization = null;
+        String subscription = null;
+        String orderId = null;
+        PaymentsSpeiAndSpidOrderId response = api.outCommingSpeiSpidOrderIdTransactionReportUsingGET(authorization, subscription, orderId);
+
+        // TODO: test validations
+    }
+    /**
+     * Consulta de transferencias de salida por identificador de petición
+     *
+     * Consulta las transferencias de salida registradas en una petición, las transferencias que regresa este recuso son únicamente las transferencias de salida agrupadas al identificador de la petición que se generó al hacer el registro de las transacciones el cuál se debe especificar como parte del path de este endpoint.
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void outCommingSpeiSpidRequestIdTransactionsReportUsingGETTest() throws Exception {
+        String authorization = null;
+        String requestId = null;
+        String subscription = null;
+        PaymentsSpeiAndSpidRequestId response = api.outCommingSpeiSpidRequestIdTransactionsReportUsingGET(authorization, requestId, subscription);
+
+        // TODO: test validations
+    }
+    /**
      * Consulta de transferencias realizadas
      *
      * Consulta las transferencias realizadas en la cuenta del cliente Monex relacionada a la suscripción, las transferencias que regresa este recuso son únicamente las transferencias recibidas en el día en el que se realiza la consulta.&lt;br&gt;Se pueden realizar consultas por &lt;strong&gt;order_id&lt;/strong&gt; al realizar este tipo de consultas no importa el día en el que se realizó la transferencia
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void outgoingSpeiTransactionsReportUsingGETTest() throws ApiException {
+    public void outgoingSpeiTransactionsReportUsingGETTest() throws Exception {
         String authorization = null;
         String subscription = null;
         String orderId = null;
@@ -129,15 +167,32 @@ public class TransferenciasSpeiApiTest {
      *
      * Se registra un conjunto de transferencias (una o más) a realizar en la cuenta del cliente Monex relacionada a la suscripción. En la respuesta se proporcionará una dirección URL que lo llevará al centro de autorización para que las transferencias sean confirmadas (autorizadas) por el cliente para que se efectúen, para ello debe ingresar la llave electrónica (Token).&lt;br&gt;  Nota: Debe considerar que el concepto de cada una de las transacciones solo debe contener caracteres alfanuméricos por lo que en caso de que se reciban caracteres como ñ o acentos serán sustituidos por n o en su caso por la letra sin acento. Los caracteres no alfanuméricos como pueden ser caracteres especiales serán eliminados.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void registerOutgoingSpeiTransactionUsingPOSTTest() throws ApiException {
+    public void registerOutgoingSpeiTransactionUsingPOSTTest() throws Exception {
         TransactionsOutgoingRegister body = null;
         String authorization = null;
         String subscription = null;
         TokenRequiredResponse response = api.registerOutgoingSpeiTransactionUsingPOST(body, authorization, subscription);
+
+        // TODO: test validations
+    }
+    /**
+     * Registro de transferencias SPEI y SPID
+     *
+     * Se registra un conjunto de transferencias (una o más) tanto SPEI como SPID en una sola petición en la cuenta del cliente Monex relacionada a la suscripción. En la respuesta se proporcionará una dirección URL que lo llevará al centro de autorización para que las transferencias sean confirmadas (autorizadas) por el cliente para que se efectúen, para ello debe ingresar la llave electrónica (Token).&lt;br&gt;  Nota: Debe considerar que el concepto de cada una de las transacciones solo debe contener caracteres alfanuméricos por lo que en caso de que se reciban caracteres como ñ o acentos serán sustituidos por n o en su caso por la letra sin acento. Los caracteres no alfanuméricos como pueden ser caracteres especiales serán eliminados.
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void registerSpeiSpidOutgoingTransactionsUsingPOSTTest() throws Exception {
+        TransactionsRegister body = null;
+        String authorization = null;
+        String subscription = null;
+        TokenRequiredResponse response = api.registerSpeiSpidOutgoingTransactionsUsingPOST(body, authorization, subscription);
 
         // TODO: test validations
     }

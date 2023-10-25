@@ -29,6 +29,7 @@ import mx.wire4.model.Relationship;
  */
 
 
+
 public class RelationshipsResponse {
   @SerializedName("relationships")
   private List<Relationship> relationships = null;
