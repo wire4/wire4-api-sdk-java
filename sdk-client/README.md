@@ -1,7 +1,7 @@
 # sdk-client
 
 Wire4RestAPI
-- API version: 1.0.0
+- API version: 1.1.3
 
 Referencia de la API de Wire4
 
@@ -12,7 +12,7 @@ Referencia de la API de Wire4
 ## Requirements
 
 Building the API client library requires:
-1. Java 1.7+
+1. Java 1.8+
 2. Maven/Gradle
 
 ## Installation
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>sdk-client</artifactId>
-  <version>11.0.16.1</version>
+  <version>1.1.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "mx.wire4.sdk:sdk-client:11.0.16.1"
+compile "mx.wire4.sdk:sdk-client:1.1.3"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/sdk-client-11.0.16.1.jar`
+* `target/sdk-client-1.1.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
