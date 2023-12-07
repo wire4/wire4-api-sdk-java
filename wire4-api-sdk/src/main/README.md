@@ -6,14 +6,14 @@ Referencia del SDK para el consumo del API de Wire4
 
 Este SDK es hecho y distrubuido por Wire4:
 
-- Versión del API de Wire4: 1.0.0
-- Versión de los paquetes SDK: 1.1.2
+- Versión del API de Wire4: 1.1.3
+- Versión de los paquetes SDK: 1.1.3
 
 ## Requerimientos.
 
 La compilación de la librería SDK requiere:
 
-1. Java 1.7+
+1. Java 1.8+
 2. Maven/Gradle
 
 ## <a name="installation"></a>Instalación y Uso
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>mx.wire4.sdk</groupId>
   <artifactId>wire4-api-sdk</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,7 +52,7 @@ Add this dependency to your project's POM:
 Agregar está dependencia al tu archivo de compilación `build` de tu proyecto:
 
 ```groovy
-compile "mx.wire4.sdk:wire4-api-sdk:1.1.0"
+compile "mx.wire4.sdk:wire4-api-sdk:1.1.3"
 ```
 
 ### Manualmente
@@ -66,7 +66,7 @@ mvn clean package
 
 Después manualmente hay que instalar los `JARs` en tu proyecto:
 
-* `target/wire4-api-sdk-1.1.0.jar`
+* `target/wire4-api-sdk-1.1.3.jar`
 * `target/lib/*.jar`
 
 ## Change log
